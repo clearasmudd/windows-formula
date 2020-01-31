@@ -1,0 +1,158 @@
+-----> Starting Test Kitchen (v2.3.4)
+-----> Cleaning up any prior instances of <py3-windows-10-1809>
+-----> Destroying <py3-windows-10-1809>...
+       Finished destroying <py3-windows-10-1809> (0m0.00s).
+-----> Testing <py3-windows-10-1809>
+-----> Creating <py3-windows-10-1809>...
+       Bringing machine 'default' up with 'virtualbox' provider...
+       ==> default: Cloning VM...
+       [K==> default: Matching MAC address for NAT networking...
+       ==> default: Checking if box 'StefanScherer/windows_10' version '2019.05.15' is up to date...
+       ==> default: Setting the name of the VM: kitchen-saltstack-windows-test-kitchen-examples-py3-windows-10-1809-e02e74e6-df63-4d23-83f9-efb326eb0d78
+       ==> default: Clearing any previously set network interfaces...
+       ==> default: Preparing network interfaces based on configuration...
+           default: Adapter 1: nat
+       ==> default: Forwarding ports...
+           default: 3389 (guest) => 3389 (host) (adapter 1)
+           default: 5985 (guest) => 55985 (host) (adapter 1)
+           default: 5986 (guest) => 55986 (host) (adapter 1)
+           default: 22 (guest) => 2222 (host) (adapter 1)
+       ==> default: Running 'pre-boot' VM customizations...
+       ==> default: Booting VM...
+       ==> default: Waiting for machine to boot. This may take a few minutes...
+           default: WinRM address: 127.0.0.1:55985
+           default: WinRM username: vagrant
+           default: WinRM execution_time_limit: PT2H
+           default: WinRM transport: negotiate
+       ==> default: Machine booted and ready!
+       ==> default: Checking for guest additions in VM...
+           default: The guest additions on this VM do not match the installed version of
+           default: VirtualBox! In most cases this is fine, but in rare cases it can
+           default: prevent things such as shared folders from working properly. If you see
+           default: shared folder errors, please make sure the guest additions within the
+           default: virtual machine match the version of VirtualBox you have installed on
+           default: your host and reload your VM.
+           default: 
+           default: Guest Additions Version: 5.2.30
+           default: VirtualBox Version: 6.0
+       ==> default: Machine not provisioned because `--no-provision` is specified.
+       [WinRM] Established
+       
+       Vagrant instance <py3-windows-10-1809> created.
+       Finished creating <py3-windows-10-1809> (0m59.92s).
+-----> Converging <py3-windows-10-1809>...
+       Preparing files for transfer
+       Preparing salt-minion
+       Preparing pillars into /srv/pillar
+       Copying pillars from test/salt/pillar/ to srv/pillar/
+       Preparing formula: windows from /mnt/c/vagrant/github/clearasmudd/saltstack-windows-test-kitchen-examples
+       Preparing state_top
+       Preparing scripts into /etc/salt/scripts
+       
+       
+           Directory: C:\
+       
+       
+       Mode                LastWriteTime         Length Name                                                                                                                                                                                                    
+       ----                -------------         ------ ----                                                                                                                                                                                                    
+       d-----         2/4/2020   7:58 PM                temp                                                                                                                                                                                                    
+       Downloading Salt minion installer Salt-Minion-2019.2.3-Py3-AMD64-Setup.exe
+       Installing Salt minion
+       Starting the Salt minion service
+       Salt minion successfully installed
+       You asked for latest and you have 2019.2.3 installed, sweet!
+       
+       
+       
+       
+           Directory: C:\Users\vagrant\AppData\Local\Temp
+       
+       
+       Mode                LastWriteTime         Length Name                                                                                                                                                                                                    
+       ----                -------------         ------ ----                                                                                                                                                                                                    
+       d-----         2/4/2020   7:58 PM                kitchen                                                                                                                                                                                                 
+       
+       
+       Transferring files to <py3-windows-10-1809>
+       local:
+       ----------
+          ID: tom
+           Function: user.present
+             Result: True
+            Comment: New user tom created
+            Started: 19:59:02.751465
+           Duration: 95.125 ms
+            Changes:   
+              ----------
+              account_disabled:
+                  False
+              account_locked:
+                  False
+              active:
+                  True
+              comment:
+              description:
+              disallow_change_password:
+                  False
+              expiration_date:
+                  2106-02-06 22:28:15
+              expired:
+                  True
+              failed_logon_attempts:
+                  0
+              fullname:
+                  tom
+              gid:
+              groups:
+              home:
+              homedrive:
+              last_logon:
+                  Never
+              logonscript:
+              name:
+                  tom
+              passwd:
+                  None
+              password_changed:
+                  2020-02-04 19:59:02
+              password_never_expires:
+                  False
+              profile:
+                  None
+              successful_logon_attempts:
+                  0
+              uid:
+                  S-1-5-21-3606173970-3686194111-1760979364-1002
+       
+       Summary for local
+       ------------
+       Succeeded: 1 (changed=1)
+       Failed:    0
+       ------------
+       Total states run:     1
+       Total run time:  95.125 ms
+       Downloading files from <py3-windows-10-1809>
+       Finished converging <py3-windows-10-1809> (0m47.86s).
+-----> Setting up <py3-windows-10-1809>...
+       Finished setting up <py3-windows-10-1809> (0m0.00s).
+-----> Verifying <py3-windows-10-1809>...
+       Loaded tests from {:path=>".mnt.c.vagrant.github.clearasmudd.saltstack-windows-test-kitchen-examples.test.integration.default"} 
+
+Profile: tests from {:path=>"/mnt/c/vagrant/github/clearasmudd/saltstack-windows-test-kitchen-examples/test/integration/default"} (tests from {:path=>".mnt.c.vagrant.github.clearasmudd.saltstack-windows-test-kitchen-examples.test.integration.default"})
+Version: (not specified)
+Target:  winrm://vagrant@http://127.0.0.1:55985/wsman:3389
+
+  windows_10_enterprise_evaluation
+[38;5;41m     ✔  should include "windows"[0m
+  User tom
+[38;5;41m     ✔  should exist[0m
+
+Test Summary: [38;5;41m2 successful[0m, 0 failures, 0 skipped
+       Finished verifying <py3-windows-10-1809> (0m4.51s).
+-----> Destroying <py3-windows-10-1809>...
+       ==> default: Forcing shutdown of VM...
+       ==> default: Destroying VM and associated drives...
+       Vagrant instance <py3-windows-10-1809> destroyed.
+       Finished destroying <py3-windows-10-1809> (0m12.28s).
+       Finished testing <py3-windows-10-1809> (2m4.59s).
+-----> Test Kitchen is finished. (2m19.65s)

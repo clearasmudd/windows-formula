@@ -1,0 +1,37 @@
+{
+  "name": "windows-formula",
+  "version": "1.0.0",
+  "description": "SaltStack Windows Formula",
+  "main": "",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "commit": "commit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clearasmudd/windows-formula.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/clearasmudd/windows-formula/issues"
+  },
+  "homepage": "https://github.com/clearasmudd/windows-formula#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@semantic-release/changelog": "^3.0.6",
+    "@semantic-release/exec": "^3.3.8",
+    "@semantic-release/git": "^7.0.18",
+    "husky": "^4.2.1"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}

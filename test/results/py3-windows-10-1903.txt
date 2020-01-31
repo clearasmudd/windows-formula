@@ -1,0 +1,10 @@
+
+windows_10_enterprise_evaluation
+  should include "windows"
+
+User tom
+  should exist
+
+Finished in 3.29 seconds (files took 1 minute 52.29 seconds to load)
+2 examples, 0 failures
+

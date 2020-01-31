@@ -1,0 +1,29 @@
+---
+driver:
+  name: proxy
+  host: localhost
+  reset_command: "exit 0"
+  port: 5985
+  username: <%= ENV["machine_user"] %>
+  password: <%= ENV["machine_pass"] %>
+
+transport:
+  name: winrm
+  elevated: true
+  username: <%= ENV["machine_user"] %>
+  password: <%= ENV["machine_pass"] %>
+  connection_retries: 20
+  connection_retry_sleep: 5
+
+platforms:
+  - name: windows
+
+verifier:
+  name: inspec
+  windows: true
+  run_destructive: true
+  inspec_tests:
+    - path: test/integration/default
+  reporter:
+    - cli
+    - junit:test/results/TEST.xml

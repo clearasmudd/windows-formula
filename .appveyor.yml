@@ -1,0 +1,162 @@
+---
+version: '1.0.{build}'
+
+environment:
+  matrix:
+    # # Linux job
+    # - job_name: Lint Tests
+    #   appveyor_build_worker_image: Ubuntu
+
+    # Windows jobs
+    # - job_name: Chef Inspec Tests (Windows Server 2019)
+    #   job_depends_on: Lint Tests
+    #   job_group: Chef Inspec Tests
+    #   appveyor_build_worker_image: Visual Studio 2019
+
+    # - job_name: Chef Inspec Tests (Windows Server 2016)
+    #   job_depends_on: Lint Tests
+    #   job_group: Chef Inspec Tests
+    #   appveyor_build_worker_image: Visual Studio 2017
+
+    # - job_name: Chef Inspec Tests (Windows Server 2012 R2)
+    #   job_depends_on: Lint Tests
+    #   job_group: Chef Inspec Tests
+    #   appveyor_build_worker_image: Visual Studio 2015
+
+    # - job_name: On-Premise Chef Inspec Test Results (Windows 10 Build 1903)
+    #   local_kitchen_suite_platform: py3-windows-10-1903
+    #   job_depends_on: Chef Inspec Tests
+    #   job_group: Mock Chef Inspec Tests
+    #   appveyor_build_worker_image: Visual Studio 2019
+
+    # - job_name: On-Premise Chef Inspec Test Results (Windows 10 Build 1809)
+    #   local_kitchen_suite_platform: py3-windows-10-1809
+    #   job_depends_on: Chef Inspec Tests
+    #   job_group: Mock Chef Inspec Tests
+    #   appveyor_build_worker_image: Visual Studio 2019
+
+    # - job_name: On-Premise Chef Inspec Test Results (Windows 10 Build 1803)
+    #   local_kitchen_suite_platform: py3-windows-10-1803
+    #   # job_depends_on: Chef Inspec Tests
+    #   job_depends_on: Lint Tests
+    #   job_group: Mock Chef Inspec Tests
+    #   appveyor_build_worker_image: Visual Studio 2019
+
+    - job_name: Release
+      appveyor_build_worker_image: Ubuntu
+      job_depends_on: Lint Tests, Chef Inspec Tests, Mock Chef Inspec Tests
+      MAINTAINER_TOKEN: ${GH_TOKEN}
+
+matrix:
+  fast_finish: true
+
+for:
+  -
+    matrix:
+      only:
+        - job_name: Lint Tests
+    build_script:
+      - sh: echo build_script for $APPVEYOR_JOB_NAME
+      - sh: pwd; ls -la; printenv
+      # - if [[ -z "${APPVEYOR_PULL_REQUEST_NUMBER}" ]]; then export TRAVIS_EVENT_TYPE='pull_request'; fi # for travis-cli
+      - sh: PATH=$PATH:/home/appveyor/.local/bin
+      - sh: pip install --user salt-lint
+      # - sh: git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst' | xargs salt-lint
+      # Install and run `yamllint`
+      # Need at least `v1.17.0` for the `yaml-files` setting
+      - sh: pip install --user yamllint>=1.17.0
+      # - sh: yamllint -s .
+      # Install and run `rubocop`
+      - sh: gem install rubocop
+      # - sh: rubocop -d
+      # Run `shellcheck` (already pre-installed in Travis)
+      - sh: sudo apt-get install shellcheck
+      - sh: shellcheck --version
+      # - sh: git ls-files -- '*.sh' '*.bash' '*.ksh' | xargs shellcheck
+      # Install and run `commitlint`
+      - sh: npm i -D @commitlint/config-conventional
+      # - sh: npx commitlint --from=HEAD~1
+    test_script:
+      - sh: echo test_script for $APPVEYOR_JOB_NAME
+      - sh: echo SALT LINT
+      - sh: git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst' | xargs salt-lint
+      - sh: echo YAML LINT
+      - sh: yamllint -s .
+      - sh: echo RUBOCOP
+      - sh: rubocop -d
+      - sh: echo SHELL CHECK
+      - sh: git ls-files -- '*.sh' '*.bash' '*.ksh' | xargs shellcheck
+      - sh: echo COMMIT LINT
+      - sh: npx commitlint --from=HEAD~1
+
+  -
+    matrix:
+      only:
+        - job_depends_on: Lint Testss
+    build_script:
+      - ps: Write-Host "build_script for $env:APPVEYOR_JOB_NAME"
+      - ps: $env:machine_user="vagrant"
+      - ps: $env:machine_pass="vagrant"
+      - ps: $env:KITCHEN_LOCAL_YAML=".kitchen.appveyor.yml"
+      - ps: $env:CHEF_LICENSE="accept"
+      - ps: Get-CimInstance Win32_OperatingSystem | Format-List *
+      - ps: $PSVersionTable
+      - ps: (& cmd /c); iex (irm https://omnitruck.chef.io/install.ps1); Install-Project -Project chefdk -channel current
+      - c:\opscode\chefdk\bin\chef.bat exec ruby --version
+      - ps: secedit /export /cfg $env:temp/export.cfg
+      - ps: ((get-content $env:temp/export.cfg) -replace ('PasswordComplexity = 1', 'PasswordComplexity = 0')) | Out-File $env:temp/export.cfg
+      - ps: ((get-content $env:temp/export.cfg) -replace ('MinimumPasswordLength = 8', 'MinimumPasswordLength = 0')) | Out-File $env:temp/export.cfg
+      - ps: secedit /configure /db $env:windir/security/new.sdb /cfg $env:temp/export.cfg /areas SECURITYPOLICY
+      - ps: net user /add $env:machine_user $env:machine_pass
+      - ps: net localgroup administrators $env:machine_user /add
+      - ps: c:\opscode\chefdk\bin\chef.bat shell-init powershell | iex; cmd /c c:\opscode\chefdk\bin\chef.bat --version
+      - ps: c:\opscode\chefdk\bin\chef.bat exec bundle install
+      - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen list
+    test_script:
+      - ps: Write-Host "test_script for $env:APPVEYOR_JOB_NAME"
+      - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen test
+    on_finish:
+      - ps: Write-Host "on_finish for $env:APPVEYOR_JOB_NAME"
+      - ps: |
+          # upload results to AppVeyor
+          $wc = New-Object 'System.Net.WebClient'
+          $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\test\results\TEST.xml))
+
+  -
+    matrix:
+      only:
+        - job_depends_on: Lint Tests
+    build_script:
+      - ps: Write-Host "build_script for $env:APPVEYOR_JOB_NAME"
+      - ps: $env:local_kitchen_results = "c:\projects\windows-formula\test\results"
+      - ps: $env:local_kitchen_results_log = "$env:local_kitchen_results\$env:local_kitchen_suite_platform.log"
+      - ps: $env:local_kitchen_results_xml = "$env:local_kitchen_results\$env:local_kitchen_suite_platform.xml"
+      - ps: if (Test-Path "$env:local_kitchen_results_log" -PathType Leaf) { Write-Host "OUTPUTTING ON PREMISE TEST KITCHEN RESULTS FOR $env:local_kitchen_suite_platform"} Else { Write-Host "NO LOCAL RESULTS INCLUDED" }
+      - ps: if (Test-Path "$env:local_kitchen_results_log" -PathType Leaf) { Get-Content "$env:local_kitchen_results_log" }
+      - ps: if (Test-Path "$env:local_kitchen_results_xml" -PathType Leaf) { Copy-Item "$env:local_kitchen_results_xml" "$env:local_kitchen_results\TEST.xml" }
+    on_finish:
+      - ps: Write-Host "on_finish for $env:APPVEYOR_JOB_NAME"
+      - ps: |
+          # upload results to AppVeyor
+          $wc = New-Object 'System.Net.WebClient'
+          $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\test\results\TEST.xml))
+  -
+    matrix:
+      only:
+        - job_name: Release
+    branches:
+      only:
+        - master
+    build_script:
+      - sh: echo build_script for $APPVEYOR_JOB_NAME on branch $APPVEYOR_REPO_BRANCH
+      - sh: go get github.com/myii/maintainer
+      - sh: maintainer contributor
+      - sh: nvm current; nvm ls; nvm use 12.14.1
+      - sh: npm i -D semantic-release
+      - sh: npm i -D @semantic-release/changelog@3 @semantic-release/exec@3 @semantic-release/git@7 semantic-release@>=15.8.0
+      - sh: npx semantic-release@15.14
+      # - sh: npm i
+    # deploy:
+    #   provider: Script
+    #   sh: npx semantic-release@15.14
+    #   # sh: if [ "$APPVEYOR_REPO_BRANCH" == "master" ]; then npx semantic-release@15.14; fi

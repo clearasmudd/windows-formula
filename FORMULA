@@ -1,0 +1,9 @@
+name: windows
+os: Windows
+os_family: Windows
+version: 1.0.0
+release: 1
+minimum_version: 2017.7
+summary: windows formula
+description: Formula to use as a template for other formulas
+top_level_dir: windows

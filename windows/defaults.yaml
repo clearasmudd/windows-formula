@@ -1,0 +1,15 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+windows:
+  pkg:
+    name: windows
+  rootgroup: root
+  config: '/etc/windows'
+  service:
+    name: windows
+  subcomponent:
+    config: '/etc/windows-subcomponent-formula.conf'
+  # Just here for testing
+  added_in_defaults: defaults_value
+  winner: defaults

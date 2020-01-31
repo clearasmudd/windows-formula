@@ -1,0 +1,141 @@
+---
+# version format
+version: 1.0.{build}
+
+# skip_commits:
+#   message:
+#     - /\[skip ci\]/
+#     - /\[skip appveyor\]/
+
+# only_commits:
+#   message: /\[build\]/
+
+platform:
+  - Any CPU
+
+# Do not build on tags (GitHub only)
+skip_tags: true
+
+configuration:
+  - Lint
+  - Test
+  - Release
+
+image:
+  - Ubuntu
+  - Visual Studio 2019
+  # - Visual Studio 2017
+  # - Visual Studio 2015
+  # - Visual Studio 2013
+  # - Visual Studio 2019 Preview
+
+deploy: off
+
+matrix:
+  fast_finish: true
+  exclude:
+    - image: Visual Studio 2019
+      configuration: Lint
+    - image: Ubuntu
+      configuration: Test
+    - image: Visual Studio 2019
+      configuration: Release
+
+for:
+  -
+    matrix:
+      fast_finish: true
+      only:
+        - configuration: Lint
+        - image: Ubuntu
+    # environment
+    #   https://github.com/conventional-changelog/commitlint/blob/master/%40commitlint/travis-cli/src/cli.js
+    #   TRAVIS_COMMIT: $APPVEYOR_REPO_COMMIT
+    #   # TRAVIS_COMMIT_RANGE:
+    #   TRAVIS_REPO_SLUG: $APPVEYOR_REPO_NAME
+    #   TRAVIS_PULL_REQUEST_SLUG: $APPVEYOR_REPO_NAME
+    stack: node 9
+    install:
+      - sh: echo Ubuntu install script
+      # - if [[ -z "${APPVEYOR_PULL_REQUEST_NUMBER}" ]]; then export TRAVIS_EVENT_TYPE='pull_request'; fi # for travis-cli
+      - sh: PATH=$PATH:/home/appveyor/.local/bin
+      - sh: pip install --user salt-lint
+      - sh: git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst' | xargs salt-lint
+      # Install and run `yamllint`
+      # Need at least `v1.17.0` for the `yaml-files` setting
+      - sh: pip install --user yamllint>=1.17.0
+      - sh: yamllint -s .
+      # Install and run `rubocop`
+      - sh: gem install rubocop
+      - sh: rubocop -d
+      # Run `shellcheck` (already pre-installed in Travis)
+      - sh: sudo apt-get install shellcheck
+      - sh: shellcheck --version
+      - sh: git ls-files -- '*.sh' '*.bash' '*.ksh' | xargs shellcheck
+      # Install and run `commitlint`
+      - sh: npm i -D @commitlint/config-conventional
+      - sh: npx commitlint --from=HEAD~1
+    build_script:
+      - sh: echo Ubuntu build script
+
+  -
+    matrix:
+      fast_finish: true
+      only:
+        - configuration: Test
+        - image: /Visual/
+
+    # environment:
+    #   machine_user: vagrant
+    #   machine_pass: vagrant
+    #   KITCHEN_LOCAL_YAML: .kitchen.appveyor.yml
+    #   CHEF_LICENSE: accept
+
+    # Install the latest nightly of ChefDK
+    install:
+      - ps: $env:machine_user="vagrant"
+      - ps: $env:machine_pass="vagrant"
+      - ps: $env:KITCHEN_LOCAL_YAML=".kitchen.appveyor.yml"
+      - ps: $env:CHEF_LICENSE="accept"
+      - ps: (& cmd /c); iex (irm https://omnitruck.chef.io/install.ps1); Install-Project -Project chefdk -channel current
+      - ps: Get-CimInstance Win32_OperatingSystem | Format-List *
+      - ps: $PSVersionTable
+      - c:\opscode\chefdk\bin\chef.bat exec ruby --version
+      - ps: secedit /export /cfg $env:temp/export.cfg
+      - ps: ((get-content $env:temp/export.cfg) -replace ('PasswordComplexity = 1', 'PasswordComplexity = 0')) | Out-File $env:temp/export.cfg
+      - ps: ((get-content $env:temp/export.cfg) -replace ('MinimumPasswordLength = 8', 'MinimumPasswordLength = 0')) | Out-File $env:temp/export.cfg
+      - ps: secedit /configure /db $env:windir/security/new.sdb /cfg $env:temp/export.cfg /areas SECURITYPOLICY
+      - ps: net user /add $env:machine_user $env:machine_pass
+      - ps: net localgroup administrators $env:machine_user /add
+      - ps: c:\opscode\chefdk\bin\chef.bat shell-init powershell | iex; cmd /c c:\opscode\chefdk\bin\chef.bat --version
+
+    build_script:
+      - ps: c:\opscode\chefdk\bin\chef.bat exec bundle install
+      - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen list
+
+    test_script:
+      - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen test
+
+    on_finish:
+      - ps: |
+          # upload results to AppVeyor
+          $wc = New-Object 'System.Net.WebClient'
+          $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\test\results\TEST.xml))
+    # deploy:
+    #   provider: Environment
+    #   name: staging
+  -
+    matrix:
+      fast_finish: true
+      only:
+        - configuration: Lint
+        - image: Ubuntu
+    # install:
+    #   - sh: echo Ubuntu install script
+    # build_script:
+    #   - sh: echo Ubuntu build script
+    deploy:
+      provider: Environment
+      name: staging
+      on:
+        branch: master

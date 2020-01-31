@@ -1,0 +1,30 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+# General overrides used across formulas in the org
+Layout/LineLength:
+  # Increase from default of `80`
+  # Based on https://github.com/PyCQA/flake8-bugbear#opinionated-warnings (`B950`)
+  Max: 88
+
+# Too short methods lead to extraction of single-use methods, which can make
+# the code easier to read (by naming things), but can also clutter the class
+Metrics/MethodLength:
+  Max: 20
+
+# The guiding principle of classes is SRP, SRP can't be accurately measured by LoC
+Metrics/ClassLength:
+  Max: 1500
+
+Metrics/BlockLength:
+  Description: 'Avoid long blocks with many lines.'
+  Enabled: true
+  CountComments: false  # count full line comments?
+  Max: 35
+  ExcludedMethods:
+    # By default, exclude the `#refine` method, as it tends to have larger
+    # associated blocks.
+    - refine
+  Exclude:
+    - '**/*.gemspec'
+# Any offenses that should be fixed, e.g. collected via. `rubocop --auto-gen-config`
