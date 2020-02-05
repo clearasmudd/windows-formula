@@ -1,0 +1,344 @@
+# -*- coding: utf-8 -*-
+# vim: ft=jinja
+
+{#
+  examples using pillar as 'states_dict' input. 'id' and 'enabled' attributes are optional for each state in pillar.
+  windows:
+    states:
+      enabled: true
+      system:
+        computer_desc:
+          id: description
+          enabled: true
+          name: "Saltstack Computer Description"
+        hostname:
+          name: "saltstack1"
+      timezone:
+        system:
+          name: America/New_York
+          utc: false
+
+  {{ states(windows.states) }}
+    RENDERS:
+      windows.state.system.computer_desc.description:
+        system.computer_desc:
+          - name: Saltstack Computer Description
+      windows.state.system.hostname.saltstack1:
+        system.hostname:
+          - name: saltstack1
+      windows.state.timezone.system.America/New_York:
+        timezone.system:
+          - name: America/New_York
+          - utc: False
+  {{ states(windows.states, 'system.hostname') }}
+
+    {{ ("# states_dict: " + (states_dict | pprint(verbose=False))) if debug }}
+  {{ "# function_match: " + function_match if debug }}
+    {{ "# state_match: " + state_match if debug }}
+#}
+
+{%- macro states(states_dict, state_function_name_string) %}
+  {%- set debug = false %}
+  {%- set internal_keys = ['enabled', 'id'] %}
+  {%- set state_function_name_string = state_function_name_string | default('', true) %}
+  {%- set state_match = (((state_function_name_string | regex_search('(\w*)'))[0]) | default ('.*', true)) %}
+  {%- set function_match = (state_function_name_string.split('.')[1] | default ('.*', true)) %}
+  {%- for state, function_dict in states_dict.items() if not state in internal_keys %}
+    {%- if ((not (function_dict.enabled is defined and not function_dict.enabled)) and (state is match(state_match))) %}
+      {%- for function, attributes_dict in function_dict.items() if not function in internal_keys %}
+        {%- if ((not (attributes_dict.enabled is defined and not attributes_dict.enabled)) and (function is match(function_match))) %}
+          {%- set id = "." + (attributes_dict.id | default(attributes_dict.name)) if (attributes_dict.id is defined or attributes_dict.name is defined) %}
+windows.state.{{ state }}.{{ function }}{{ id | default('') }}:
+  {{ state }}.{{ function }}:
+          {%- for key, value in attributes_dict.items() if not key in internal_keys %}
+            {%- if value is iterable and value is not string %}
+    - {{ key }}:
+              {%- for item in value %}
+              - {{ item }}
+              {%- endfor %}
+            {%- else %}
+    - {{ key }}: {{ value }}
+            {%- endif %}
+          {%- endfor %}
+        {%- endif %}
+      {%- endfor %}
+    {%- endif %}
+  {%- endfor %}
+{%- endmacro %}
+
+{#
+EXAMPLE PILLAR:
+  modules:
+    enabled: true
+    system:
+      reboot:
+        enabled: true
+        timeout: 5
+        in_seconds: true
+        only_on_pending_reboot: true
+        wait_for_reboot: false
+        order: last
+    user:
+      enabled: true
+      current:
+        enabled: true
+        sam: true
+    status:
+      uptime:
+        enabled: true
+        human_readable: true
+        require:
+          - windows.module.user.current
+
+WHICH RENDERS:
+  windows.module.system.reboot:
+    module.run:
+      - system.reboot:
+        - timeout: 5
+        - in_seconds: True
+        - only_on_pending_reboot: True
+        - wait_for_reboot: False
+      - order: last
+  windows.module.user.current:
+    module.run:
+      - user.current:
+        - sam: True
+  windows.module.status.uptime:
+    module.run:
+      - status.uptime:
+        - human_readable: True
+      - require:
+        - windows.module.user.current
+#}
+{%- macro modules(modules_dict, module_function_name_string) %}
+  {%- set internal_attributes = ['enabled', 'id'] %}
+  {%- set requisites_and_other_global_state_arguments = ['require', 'watch', 'prereq', 'onchange', 'onfail', 'use', 'require_in',
+  'watch_in', 'prereq_in', 'use_in', 'onchanges_in', 'onfail_in', 'require_any', 'watch_any', 'onchanges_any',
+  'onfail_any', 'fire_event', 'reload_modules', 'reload_pillar', 'reload_grains', 'unless', 'onlyif', 'listen',
+  'listen_in', 'check_cmd', 'retry', 'order'] %}
+  {%- set module_function_name_string = module_function_name_string | default('', true) %}
+  {%- set module_match = (((module_function_name_string | regex_search('(\w*)'))[0]) | default ('.*', true)) %}
+  {%- set function_match = (module_function_name_string.split('.')[1] | default ('.*', true)) %}
+  {%- for module, function_dict in modules_dict.items() if not module in internal_attributes %}
+    {%- if ((not (function_dict.enabled is defined and not function_dict.enabled)) and (module is match(module_match))) %}
+      {%- for function, attributes_dict in function_dict.items() if not function in internal_attributes %}
+        {%- if ((not (attributes_dict.enabled is defined and not attributes_dict.enabled)) and (function is match(function_match))) %}
+          {%- set id = "." + (attributes_dict.id | default(attributes_dict.name)) if (attributes_dict.id is defined or attributes_dict.name is defined) %}
+windows.module.{{ module }}.{{ function }}{{ id | default('') }}:
+  module.run:
+    - {{ module }}.{{ function }}:
+          {%- if attributes_dict is iterable and attributes_dict is not string%}
+            {%- for key, value in attributes_dict.items() if not key in internal_attributes %}
+              {%- set indent_width = 4 %}
+              {%- if key not in requisites_and_other_global_state_arguments %}
+                {%- set indent_width = indent_width + 2 %}
+              {%- endif %}
+              {%- if value is iterable and value is not string %}
+{{ ("- " + key + ":") | indent (width=indent_width, first=true) }}
+                {%- for item in value %}
+{{ ("- " + item) | indent (width=(indent_width + 2), first=true) }}
+                {%- endfor %}
+              {%- else %}
+{{ ("- " + key + ": ") | indent (width=indent_width, first=true) }}{{ value }}
+              {%- endif %}
+            {%- endfor %}
+          {%- endif %}
+        {%- endif %}
+      {%- endfor %}
+    {%- endif %}
+  {%- endfor %}
+{%- endmacro %}
+
+{#
+  https://docs.saltstack.com/en/latest/ref/states/requisites.html
+{%- macro states(states_dict, state_function_name_string) %}
+  {%- set state_match = "(" + (((state_function_name_string | regex_search('(\w*)'))[0]) + ")"  | default ('(.*)', true)) %}
+  {%- set function_match = "(" + (state_function_name_string.split('.')[1] + ")" | default ('(.*)', true)) %}
+  {%- for state, function_dict in states_dict.items() %}
+    {%- if ((not state == 'enabled') and (state in ((state | regex_match(state_match, ignorecase=True)) | default('[]')))) %}
+      {%- if not (function_dict.enabled is defined and not function_dict.enabled) %}
+        {%- for function, attributes_dict in function_dict.items() %}
+          {%- if ((not function == 'enabled') and (function in ((function | regex_match(function_match, ignorecase=True)) | default('[]')))) %}
+            {%- if not (attributes_dict.enabled is defined and not attributes_dict.enabled) %}
+        {# salt.modules.state.id_exists(ids, mods, test=None, queue=False, **kwargs)
+              {%- set id = "." + (attributes_dict.id | default(attributes_dict.name)) if (attributes_dict.id is defined or attributes_dict.name is defined) %}
+windows.state.{{ state }}.{{ function }}{{ id | default('') }}:
+  {{ state }}.{{ function }}:
+              {%- for key, value in attributes_dict.items() if not key == "enabled" %}
+                {%- if value is iterable and value is not string %}
+    - {{ key }}:
+                  {%- for item in value   %}
+            - {{ item }}
+                  {%- endfor %}
+                {%- else %}
+    - {{ key }}: {{ value }}
+                {%- endif %}
+              {%- endfor %}
+            {%- endif %}
+          {%- endif %}
+        {%- endfor %}
+      {%- endif %}
+    {%- endif %}
+  {%- endfor %}
+{%- endmacro %}
+
+{%- macro statess(states_dict, state_function_name_string) %}
+  {%- set state_match = "(" + (((state_function_name_string | regex_search('(\w*)'))[0]) + ")"  | default ('(.*)', true)) %}
+  {%- set function_match = "(" + (state_function_name_string.split('.')[1] + ")" | default ('(.*)', true)) %}
+# state_match: {{ state_match }} , function_match: {{ function_match }}
+# regex_match(state_match, ignorecase=True): {{ "timezone" | regex_match(state_match, ignorecase=True) }}
+# regex_match(function_match, ignorecase=True): {{ "system" | regex_match(function_match, ignorecase=True) }}
+{%- set state = "timezone" %}
+{%- if ((not state == 'enabled') and (state in (state | regex_match(state_match, ignorecase=True)))) %}
+# YES
+  {%- else %}
+# NO
+{%- endif %}
+{%- endmacro %}
+
+{%- macro statessss(states_dict, state_function_name_string) %}
+  {%- if state_function_name_string is defined %}
+    {%- set states_list = [(state_function_name_string | regex_search('(\w*)'))[0]] %}
+    {%- set functions_list = [(state_function_name_string.split('.')[1] | default ([], true))] %}
+  {%- else %}
+    {%- set states_list = [] %}
+    {%- set functions_list  = [] %}
+    {%- for state in states_dict.items() %}
+      {%- set states_list = states_list.append(state[0]) if not state[0] == "enabled" %}
+    {%- endfor %}
+  {%- endif %}
+
+  {%- for state, function_dict in states_dict.items() if state in states_list %}
+    {%- if not (function_dict.enabled is defined and not function_dict.enabled) %}
+      {%- if functions_list | length == 0 %}
+        {%- for function in function_dict.items() %}
+          {%- set functions_list = functions_list.append(function[0]) if not function[0] == "enabled"%}
+        {%- endfor %}
+      {%- endif %}
+      {%- for function, attributes_dict in function_dict.items() if function in functions_list %}
+        {%- if not (attributes_dict.enabled is defined and not attributes_dict.enabled) %}
+        {# salt.modules.state.id_exists(ids, mods, test=None, queue=False, **kwargs)
+          {%- set id = "." + (attributes_dict.id | default(attributes_dict.name)) if (attributes_dict.id is defined or attributes_dict.name is defined) %}
+windows.state.{{ state }}.{{ function }}{{ id | default('') }}:
+  {{ state }}.{{ function }}:
+          {%- for key, value in attributes_dict.items() if not key == "enabled" %}
+            {%- if value is iterable and value is not string %}
+    - {{ key }}:
+              {%- for item in value   %}
+            - {{ item }}
+              {%- endfor %}
+            {%- else %}
+    - {{ key }}: {{ value }}
+            {%- endif %}
+          {%- endfor %}
+        {%- endif %}
+      {%- endfor %}
+    {%- endif %}
+  {%- endfor %}
+{%- endmacro %}
+
+{%- macro states_flat(states_dict, state_name_string) %}
+  {%- set apply_states = [(state_name_string | default ('', true))] %}
+  {%- if apply_states[0] == '' %}
+    {%- for state in states_dict if not state == "enabled" %}
+      {%- set apply_states = apply_states.append(state) %}
+    {%- endfor %}
+  {%- endif %}
+  {%- for state, attributes_dict in states_dict.items() if state in apply_states %}
+    {%- if not (attributes_dict.enabled is defined and not attributes_dict.enabled) %}
+      {%- set id = "." + (attributes_dict.id | default(attributes_dict.name)) if (attributes_dict.id is defined or attributes_dict.name is defined) %}
+windows.state.{{ state }}{{ id | default('') }}:
+  {{ state }}:
+      {%- for key, value in attributes_dict.items() if not key == "enabled" %}
+        {%- if value is iterable and value is not string %}
+    - {{ key }}:
+          {%- for item in value   %}
+            - {{ item }}
+          {%- endfor %}
+        {%- else %}
+    - {{ key }}: {{ value }}
+        {%- endif %}
+      {%- endfor %}
+    {%- endif %}
+  {%- endfor %}
+{%- endmacro %}
+
+{% macro state_function(state, function_dict) -%}
+  {%- for function, attributes_dict in function_dict.items() %}
+    {%- if not (attributes_dict.enabled is defined and not attributes_dict.enabled) %}
+      {%- set id = "." + (attributes_dict.id | default(attributes_dict.name)) if (attributes_dict.id is defined or attributes_dict.name is defined) %}
+windows.state.{{ state }}.{{ function }}{{ id | default('') }}:
+  {{ state }}.{{ function }}:
+      {%- for key, value in attributes_dict.items() if not key == "enabled" %}
+        {%- if value is iterable and value is not string %}
+    - {{ key }}:
+          {%- for item in value   %}
+            - {{ item }}
+          {%- endfor %}
+        {%- else %}
+    - {{ key }}: {{ value }}
+        {%- endif %}
+      {%- endfor %}
+    {%- endif %}
+  {%- endfor %}
+{%- endmacro %}
+
+{%- macro modules(modules_dict, module_name_string) %}
+  {%- set states = [(module_name_string | default ('', true))] %}
+  {{ "# STATES: " + states | pprint }}
+  {%- if states[0] == '' %}
+    {%- for state in modules_dict if not state == "enabled" %}
+      {%- set states = states.append(state) %}
+    {%- endfor %}
+  {%- endif %}
+  {%- for state, function_dict in modules_dict.items() if state in states %}
+    {%- if not (function_dict.enabled is defined and not function_dict.enabled) %}
+      {%- for function, attributes_dict in function_dict.items() %}
+        {%- if not (attributes_dict.enabled is defined and not attributes_dict.enabled) %}
+          {%- set id = "." + (attributes_dict.id | default(attributes_dict.name)) if (attributes_dict.id is defined or attributes_dict.name is defined) %}
+windows.state.{{ state }}.{{ function }}{{ id | default('') }}:
+  {{ state }}.{{ function }}:
+          {%- for key, value in attributes_dict.items() if not key == "enabled" %}
+            {%- if value is iterable and value is not string %}
+    - {{ key }}:
+              {%- for item in value   %}
+            - {{ item }}
+              {%- endfor %}
+            {%- else %}
+    - {{ key }}: {{ value }}
+            {%- endif %}
+          {%- endfor %}
+        {%- endif %}
+      {%- endfor %}
+    {%- endif %}
+  {%- endfor %}
+{%- endmacro %}
+
+  XXXXXXXXXXXXXXXX: {{ show_full_context()|yaml(False) }}
+
+windows.system.reboot:
+  module.run:
+    - system.reboot:
+      - only_on_pending_reboot: {{ local.only_on_pending_reboot }}
+      - timeout: {{ local.timeout_in_seconds }}
+      - in_seconds: True
+      - wait_for_reboot: False
+    - order: last
+
+rename-extract:
+  module.run:
+    - file.rename:
+      - src: /srv/salt/win/repo-ng/salt-winrepo-ng-master
+      - dst: /srv/salt/win/repo-ng/salt-winrepo-ng
+    - onchanges:
+      - manually.update_git_repo-ng
+        # execution.modules:
+  #   enabled: true
+  #   windows.system.reboot:
+  #     - system.reboot:
+  #       - only_on_pending_reboot: {{ local.only_on_pending_reboot }}
+  #       - timeout: {{ local.timeout_in_seconds }}
+  #       - in_seconds: True
+  #       - wait_for_reboot: False
+  #     - order: last
+#}

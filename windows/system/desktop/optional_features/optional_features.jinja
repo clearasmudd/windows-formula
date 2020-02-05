@@ -1,0 +1,22 @@
+# -*- coding: utf-8 -*-
+# vim: ft=sls
+{# https://docs.saltstack.com/en/latest/ref/states/all/salt.states.win_dism.html #}
+{%- set action = action | default('feature_installed', true) %}
+{%- if action == 'feature_installed' %}
+  {%- set state_check = 'Enabled'%}
+{%- else %}
+  {%- set state_check = 'Disabled'%}
+{%- endif %}
+{%- if windows.system.desktop.optional_features.installed %}
+  {%- if windows.system.desktop.optional_features.installed is iterable %}
+    {%- for feature, context in windows.system.desktop.optional_features.installed.items() %}
+windows.system.desktop.optional_features.installed.{{ feature }}:
+  dism.{{ action }}:
+    - name: {{ feature }}
+    - onlyif: >
+        powershell -command "if ((Get-WindowsOptionalFeature -online |
+        Where-Object {($_.FeatureName -eq '{{ feature }}')
+        -and ($_.State -eq '{{ state_check }}')}) -ne $null) {exit 1}"
+    {%- endfor %}
+  {%- endif %}
+{%- endif %}

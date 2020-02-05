@@ -3,7 +3,9 @@
                        default_files_switch=['id', 'os_family'],
                        indent_width=6,
                        use_subpath=False) %}
+
   {#-
+
     Returns a valid value for the "source" parameter of a "file.managed"
     state function. This makes easier the usage of the Template Override and
     Files Switch (TOFS) pattern.
@@ -30,7 +32,7 @@
           - source: {{ files_switch(['/etc/yyy/zzz.conf', '/etc/yyy/zzz.conf.jinja'],
                                     lookup='Deploy configuration'
                     ) }}
-          - template: jinja
+          - windows: jinja
 
     In a minion with id=theminion and os_family=RedHat, it's going to be
     rendered as:
@@ -45,9 +47,10 @@
             - salt://xxx/files/RedHat/etc/yyy/zzz.conf.jinja
             - salt://xxx/files/default/etc/yyy/zzz.conf
             - salt://xxx/files/default/etc/yyy/zzz.conf.jinja
-          - template: jinja
+          - windows: jinja
+
   #}
-  {#- Get the `tplroot` from `tpldir` #}
+
   {%- set tplroot = tpldir.split('/')[0] %}
   {%- set path_prefix = salt['config.get'](tplroot ~ ':tofs:path_prefix', tplroot) %}
   {%- set files_dir = salt['config.get'](tplroot ~ ':tofs:dirs:files', 'files') %}

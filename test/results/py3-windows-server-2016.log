@@ -1,0 +1,54 @@
+Fri Feb  7 10:12:23 EST 2020
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   docs/README.rst
+	modified:   docs/conf.py
+	deleted:    test/results/py3-windows-10-1903.json
+	deleted:    test/results/py3-windows-10-1903.log
+	deleted:    test/results/py3-windows-10-1903.txt
+	deleted:    test/results/py3-windows-10-1903.xml
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	test/results/py3-windows-server-2016.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+commit f055e330425fde482c28046e550565a8e9e5244b
+Author: Peter Mudd <muddman@users.noreply.github.com>
+Date:   Fri Feb 7 10:02:55 2020 -0500
+
+    chore: dos2unix
+
+commit b850fcfc45fb21ae4a784d67c5e057a946f8c58a
+Author: Peter Mudd <muddman@users.noreply.github.com>
+Date:   Thu Feb 6 15:58:05 2020 -0500
+
+    chore: lint
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   docs/README.rst
+	modified:   docs/conf.py
+	deleted:    test/results/py3-windows-10-1903.json
+	deleted:    test/results/py3-windows-10-1903.log
+	deleted:    test/results/py3-windows-10-1903.txt
+	deleted:    test/results/py3-windows-10-1903.xml
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	test/results/py3-windows-server-2016.log
+
+no changes added to commit (use "git add" and/or "git commit -a")

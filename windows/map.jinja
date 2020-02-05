@@ -9,6 +9,7 @@
 {%- import_yaml tplroot ~ "/osfamilymap.yaml" as osfamilymap %}
 {%- import_yaml tplroot ~ "/osmap.yaml" as osmap %}
 {%- import_yaml tplroot ~ "/osfingermap.yaml" as osfingermap %}
+{%- import_yaml tplroot ~ "/osversionmap.yaml" as osversionmap %}
 
 {#- Retrieve the config dict only once #}
 {%- set _config = salt['config.get'](tplroot, default={}) %}
@@ -29,8 +30,12 @@
               osfingermap,
               grain='osfinger',
               merge=salt['grains.filter_by'](
-                _config,
-                default='lookup'
+                osversionmap,
+                grain='osversion',
+                merge=salt['grains.filter_by'](
+                  _config,
+                  default='lookup'
+                )
               )
             )
           )

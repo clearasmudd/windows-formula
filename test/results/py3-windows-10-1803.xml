@@ -1,7 +1,0 @@
-<?xml version='1.0'?>
-<testsuites>
-  <testsuite name='tests from {:path=&gt;&quot;.mnt.c.vagrant.github.clearasmudd.saltstack-windows-test-kitchen-examples.test.integration.default&quot;}' tests='2' failed='0' failures='0'>
-    <testcase name='windows_10_enterprise_evaluation should include &quot;windows&quot;' classname='tests from {:path=&gt;&quot;.mnt.c.vagrant.github.clearasmudd.saltstack-windows-test-kitchen-examples.test.integration.default&quot;}.Anonymous' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.0512588'/>
-    <testcase name='User tom should exist' classname='tests from {:path=&gt;&quot;.mnt.c.vagrant.github.clearasmudd.saltstack-windows-test-kitchen-examples.test.integration.default&quot;}.Anonymous' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.9068957'/>
-  </testsuite>
-</testsuites>

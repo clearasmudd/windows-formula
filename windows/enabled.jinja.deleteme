@@ -1,0 +1,18 @@
+{#
+    {% for box in boxes %}
+    {% include 'box.j2' %}
+
+    {% endfor %}
+
+    # sls: {{ sls }} {{ sls.split('.')[0] }} {{ sls.split('.')[-1] }}
+    # slspath: {{ slspath }} {{ slspath.split('/')[0] }} {{ slspath.split('/')[-1] }}
+
+    # sls: os_windows.desktop.features os_windows features
+    # slspath: os_windows/desktop os_windows desktop
+#}
+{%- set tplroot = tpldir.split('/')[0] %}
+{%- from tplroot ~ "/map.jinja" import windows with context %}
+{%- if windows is defined %}
+    {%- block child %}
+    {%- endblock %}
+{%- endif %}

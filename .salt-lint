@@ -8,7 +8,9 @@ skip_list:
   - 205  # Use ".sls" as a Salt State file extension
   # Skipping `207` and `208` because `210` is sufficient, at least for the time-being
   # I.e. Allows 3-digit unquoted codes to still be used, such as `644` and `755`
+  - 202  # Jinja statement should have spaces before and after: {% statement %}
   - 207  # File modes should always be encapsulated in quotation marks
   - 208  # File modes should always contain a leading zero
+  - 209  # Jinja comment should have spaces before and after: {# comment #}
 tags: []
 verbosity: 1

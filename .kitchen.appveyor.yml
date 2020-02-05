@@ -26,4 +26,4 @@ verifier:
     - path: test/integration/default
   reporter:
     - cli
-    - junit:test/results/TEST.xml
+    - junit:test/results/%{suite}-%{platform}.xml

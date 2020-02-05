@@ -1,0 +1,5 @@
+{%- from "windows/map.jinja" import windows with context %}
+{%- if windows.system.enabled and windows.system.packages.saltstack.enabled %}
+  {%- set action = sls.split('.')[-1] %}
+  {%- include slspath + "/pkg.jinja" %}
+{%- endif %}

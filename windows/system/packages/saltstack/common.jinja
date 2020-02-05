@@ -1,0 +1,12 @@
+# -*- coding: utf-8 -*-
+# vim: ft=jinja
+{%- set tplroot = tpldir.split('/')[0] %}
+{%- from tplroot ~ "/map.jinja" import windows with context %}
+
+{%- set masterless_minion = (opts['file_client'] == 'local') %}
+
+{%- if salt['pkg.version']('git') %}
+  {% set git_installed = True %}
+{%- else %}
+  {% set git_installed = False %}
+{%- endif %}

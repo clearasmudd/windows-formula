@@ -3,7 +3,7 @@ os: Windows
 os_family: Windows
 version: 1.0.0
 release: 1
-minimum_version: 2017.7
+minimum_version: 2019.2.2
 summary: windows formula
-description: Formula to use as a template for other formulas
+description: Formula to use as a windows for other formulas
 top_level_dir: windows

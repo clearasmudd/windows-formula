@@ -1,32 +1,40 @@
 .. _readme:
 
+####################
 windows-formula
-================
+####################
 
-|img_travis| |img_sr|
+|img_appveyor| |img_sr|
 
-.. |img_travis| image:: https://travis-ci.com/clearasmudd/windows-formula.svg?branch=master
+.. |img_appveyor| image:: https://ci.appveyor.com/api/projects/status/5nm6yfh5n5qk1isn?svg=true
    :alt: Travis CI Build Status
    :scale: 100%
-   :target: https://travis-ci.com/clearasmudd/windows-formula
+   :target: https://ci.appveyor.com/project/muddman/windows-formula
 .. |img_sr| image:: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
    :alt: Semantic Release
    :scale: 100%
    :target: https://github.com/semantic-release/semantic-release
 
-A SaltStack formula that is empty. It has dummy content to help with a quick
-start on a new formula and it serves as a style guide.
+A SaltStack formula for Windows operating systems inspired by `salt-formula-linux <https://github.com/salt-formulas/salt-formula-linux>`_. 
+
+Tested Windows Operating Systems:
+
+* Windows 10, version 1903
+* Windows 10, version 1809
+* Windows 10, version 1803
+* Windows 10, version 1709
+* Windows Server 2019, version 1809
+* Windows Server 2016, version 1607
+* Windows Server 2012 R2
 
 .. contents:: **Table of Contents**
+    :depth: 3
 
 General notes
--------------
+=======================
 
 See the full `SaltStack Formulas installation and usage instructions
 <https://docs.saltstack.com/en/latest/topics/development/conventions/formulas.html>`_.
-
-If you are interested in writing or contributing to formulas, please pay attention to the `Writing Formula Section
-<https://docs.saltstack.com/en/latest/topics/development/conventions/formulas.html#writing-formulas>`_.
 
 If you want to use this formula, please pay attention to the ``FORMULA`` file and/or ``git tag``,
 which contains the currently released version. This formula is versioned according to `Semantic Versioning <http://semver.org/>`_.
@@ -35,106 +43,179 @@ See `Formula Versioning Section <https://docs.saltstack.com/en/latest/topics/dev
 
 If you need (non-default) configuration, please pay attention to the ``pillar.example`` file and/or `Special notes`_ section.
 
-Contributing to this repo
--------------------------
-
-**Commit message formatting is significant!!**
-
-Please see `How to contribute <https://github.com/saltstack-formulas/.github/blob/master/CONTRIBUTING.rst>`_ for more details.
-
-Special notes
--------------
-
-None
-
 Available states
-----------------
+=======================
 
 .. contents::
    :local:
+   :depth: 1
 
 ``windows``
-^^^^^^^^^^^^
+--------------------------
 
-*Meta-state (This is a state that includes other states)*.
+"Meta-state (This is a state that includes other states).
 
 This installs the windows package,
 manages the windows configuration file and then
-starts the associated windows service.
+starts the associated windows service.ku
+ 
 
-``windows.package``
-^^^^^^^^^^^^^^^^^^^^
+``windows.states``
+--------------------------
 
-This state will install the windows package only.
+This state uses a jinja macro to render salt `state modules <https://docs.saltstack.com/en/2019.2/ref/states/all/index.html>`_ dynamically 
+from the ``windows.states`` pillar dictionary.
 
-``windows.config``
-^^^^^^^^^^^^^^^^^^^
+Optional
+^^^^^^^^^^
 
-This state will configure the windows service and has a dependency on ``windows.install``
-via include list.
+These optional dictionary keys can be included with each state definition defined in the pillar.
 
-``windows.service``
-^^^^^^^^^^^^^^^^^^^^
+:enabled (bool): Enabled or disable rendering of a state included in the pillar dictionary.  If the key is not present, it is assumed to be true.
 
-This state will start the windows service and has a dependency on ``windows.config``
-via include list.
+:id (str): If provided, ``id`` will be used as the `ID Declaration <https://docs.saltstack.com/en/2019.2/ref/states/highstate.html#id-declaration>`_ suffix, instead of ``name`` in the format windows.state.*state_name*.*state_function_name*.*id*.
 
-``windows.clean``
-^^^^^^^^^^^^^^^^^^
+:global arguments: The use of `requisites and other global state arguments <https://docs.saltstack.com/en/2019.2/ref/states/requisites.html>`_ is supported but has not been exhaustively tested.
 
-*Meta-state (This is a state that includes other states)*.
 
-this state will undo everything performed in the ``windows`` meta-state in reverse order, i.e.
-stops the service,
-removes the configuration file and
-then uninstalls the package.
+Example 1:
+^^^^^^^^^^^
+The following pillar definition implements the `salt.states.timezone.system <https://docs.saltstack.com/en/2019.2/ref/states/all/salt.states.timezone.html>`_ state module:
 
-``windows.service.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: yaml
 
-This state will stop the windows service and disable it at boot time.
+    windows:
+      states:
+        enabled: true
+        timezone:
+          system:
+            name: America/New_York
+            utc: false
 
-``windows.config.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^^
+It is rendered as:
 
-This state will remove the configuration of the windows service and has a
-dependency on ``windows.service.clean`` via include list.
+.. code-block:: yaml
 
-``windows.package.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+    windows.state.timezone.system.America/New_York:
+      timezone.system:
+        - name: America/New_York
+        - utc: False
 
-This state will remove the windows package and has a depency on
-``windows.config.clean`` via include list.
+Example 2:
+^^^^^^^^^^^
+The following pillar definition implements the `salt.states.win_system.computer_desc <https://docs.saltstack.com/en/2019.2/ref/states/all/salt.states.win_system.html#salt.states.win_system.computer_desc>`_, `salt.states.win_system.hostname <https://docs.saltstack.com/en/master/ref/states/all/salt.states.win_system.html#salt.states.win_system.hostname>`_, `salt.states.win_system.reboot <https://docs.saltstack.com/en/master/ref/states/all/salt.states.win_system.html#salt.states.win_system.reboot>`_, `salt.states.timezone.system <https://docs.saltstack.com/en/master/ref/states/all/salt.states.timezone.html>`_, and `salt.states.win_wua.uptodate <https://docs.saltstack.com/en/master/ref/states/all/salt.states.win_wua.html#salt.states.win_wua.uptodate>`_ state modules, uses the optional ``enabled`` and ``id`` keys and includes the use of the `require <https://docs.saltstack.com/en/latest/ref/states/requisites.html#require>`_ requisite.
 
-``windows.subcomponent``
-^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: yaml
 
-*Meta-state (This is a state that includes other states)*.
+    windows:
+      states:
+        enabled: true
+        system:
+          computer_desc:
+            enabled: true
+            id: description
+            name: "Saltstack Computer Description"
+            require:
+              - windows.state.system.hostname.saltstack1
+          hostname:
+            name: "saltstack1"
+          reboot:
+            enabled: false
+            message: rebooting in 60 seconds
+            timeout: 60
+            in_seconds: true
+        timezone:
+          system:
+            name: America/New_York
+            utc: false
+        wua:
+          uptodate:
+            enabled: true
+            software: true
+            drivers: true
+            skip_hidden: false
+            skip_mandatory: false
+            skip_reboot: false
+            categories:
+              - Critical Updates
+              - Definition Updates
+              - Drivers
+              - Feature Packs
+              - Security Updates
+              - Update Rollups
+              - Updates
+              - Update Rollups
+              - Windows Defender
+            severities:
+              - Critical
+              - Important
 
-This state installs a subcomponent configuration file before
-configuring and starting the windows service.
+The ``system.reboot`` state is not rendered as this example has an ``enabled`` key set to ``false``.
 
-``windows.subcomponent.config``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: yaml
 
-This state will configure the windows subcomponent and has a
-dependency on ``windows.config`` via include list.
+    windows.state.system.computer_desc.description:
+      system.computer_desc:
+        - name: Saltstack Computer Description
+        - require:
+            - windows.state.system.hostname.saltstack1
 
-``windows.subcomponent.config.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    windows.state.system.hostname.saltstack1:
+      system.hostname:
+        - name: saltstack1
 
-This state will remove the configuration of the windows subcomponent
-and reload the windows service by a dependency on
-``windows.service.running`` via include list and ``watch_in``
-requisite.
+    windows.state.timezone.system.America/New_York:
+      timezone.system:
+        - name: America/New_York
+        - utc: False
+
+    windows.state.wua.uptodate:
+      wua.uptodate:
+        - software: True
+        - drivers: True
+        - skip_hidden: False
+        - skip_mandatory: False
+        - skip_reboot: False
+        - categories:
+            - Critical Updates
+            - Definition Updates
+            - Drivers
+            - Feature Packs
+            - Security Updates
+            - Update Rollups
+            - Updates
+            - Update Rollups
+            - Windows Defender
+        - severities:
+            - Critical
+            - Important
+
+This approach is `modular and creates a direct relationship between pillars and states <https://docs.saltstack.com/en/2019.2/topics/best_practices.html>`_ , however, there are several tradeoffs.
+
+#. The pure jinja implementation does not go `Easy on the Jinja <https://docs.saltstack.com/en/2019.2/topics/development/conventions/formulas.html#easy-on-the-jinja>`_ so 
+changes to the macro can be difficult to debug. 
+#. Theoritaclly, this could be used to implement 
+any state, which makes exhaustive testing difficult.  Report any issues that are found.
+
+A maximum dept of four is currently supported.
+
+While this state is not windows specific, it has only been tested within the scope of this formula.
+
+``windows.modules``
+--------------------------
+
+This state uses a jinja macro to render salt `execution modules <https://docs.saltstack.com/en/2019.2/ref/modules/all/index.html>`_ from pillar dictionaries.
+
+While this state is not windows specific, it has only been tested within the scope of this formula.
+
 
 Testing
--------
+=======================
 
 Linux testing is done with ``kitchen-salt``.
 
 Requirements
-^^^^^^^^^^^^
+--------------------------
 
 * Ruby
 * Docker
@@ -149,27 +230,177 @@ Where ``[platform]`` is the platform name defined in ``kitchen.yml``,
 e.g. ``debian-9-2019-2-py3``.
 
 ``bin/kitchen converge``
-^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------
 
 Creates the docker instance and runs the ``windows`` main state, ready for testing.
 
 ``bin/kitchen verify``
-^^^^^^^^^^^^^^^^^^^^^^
+--------------------------
 
 Runs the ``inspec`` tests on the actual instance.
 
 ``bin/kitchen destroy``
-^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------
 
 Removes the docker instance.
 
 ``bin/kitchen test``
-^^^^^^^^^^^^^^^^^^^^
+--------------------------
 
 Runs all of the stages above in one go: i.e. ``destroy`` + ``converge`` + ``verify`` + ``destroy``.
 
 ``bin/kitchen login``
-^^^^^^^^^^^^^^^^^^^^^
+--------------------------
 
 Gives you SSH access to the instance for manual testing.
 
+Manually Run salt on windows:
+-------------------------------
+
+``C:\Windows\system32\cmd.exe /c ""C:\salt\salt-call.bat" --state-output=changes --config-dir=C:\Users\vagrant\AppData\Local\Temp\kitchen\etc\salt state.highstate --log-level=trace --retcode-passthrough"``
+
+SaltStack installation
+=======================
+
+``Masterless Minion``
+--------------------------
+
+https://docs.saltstack.com/en/develop/topics/installation/windows.html
+
+https://raw.githubusercontent.com/saltstack/salt-bootstrap/v2019.10.03/bootstrap-salt.ps1
+https://github.com/saltstack/salt-bootstrap/blob/v2019.10.03/bootstrap-salt.ps1
+
+.. Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/saltstack/salt-bootstrap/v2019.10.03/bootstrap-salt.ps1'));bootstrap-salt.ps1 -version 2019.2.2 -runservice false -pythonVersion 3
+
+.. @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/saltstack/salt-bootstrap/v2019.10.03/bootstrap-salt.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+
+
+Contributing to this repo
+===========================
+
+If you are interested in writing or contributing to formulas, please pay attention to the `Writing Formula Section
+<https://docs.saltstack.com/en/latest/topics/development/conventions/formulas.html#writing-formulas>`_.
+
+**Commit message formatting is significant!!**
+
+Please see `How to contribute <https://github.com/saltstack-formulas/.github/blob/master/CONTRIBUTING.rst>`_ for more details.
+
+Commit Message Format
+----------------------
+Each commit message consists of a **header**, a **body** and a **footer**.  The header has a special
+format that includes a **type**, a **scope** and a **subject**:
+
+```
+<type>(<scope>): <subject>
+<BLANK LINE>
+<body>
+<BLANK LINE>
+<footer>
+```
+
+The **header** is mandatory and the **scope** of the header is optional.
+
+Any line of the commit message cannot be longer 100 characters! This allows the message to be easier
+to read on GitHub as well as in various git tools.
+
+Revert
+^^^^^^^^^^^^^^^^^^^^^^
+If the commit reverts a previous commit, it should begin with `revert: `, followed by the header
+of the reverted commit.
+In the body it should say: `This reverts commit <hash>.`, where the hash is the SHA of the commit
+being reverted.
+
+Type
+^^^^^^^^^^^^^^^^^^^^^^
+Must be one of the following:
+
+* **feat**: A new feature
+* **fix**: A bug fix
+* **docs**: Documentation only changes
+* **style**: Changes that do not affect the meaning of the code (white-space, formatting, missing
+  semi-colons, etc)
+* **refactor**: A code change that neither fixes a bug nor adds a feature
+* **perf**: A code change that improves performance
+* **test**: Adding missing or correcting existing tests
+* **chore**: Changes to the build process or auxiliary tools and libraries such as documentation
+  generation
+
+Scope
+^^^^^^^^^^^^^^^^^^^^^^
+The scope could be anything specifying place of the commit change. For example `$location`,
+`$browser`, `$compile`, `$rootScope`, `ngHref`, `ngClick`, `ngView`, etc...
+
+You can use `*` when the change affects more than a single scope.
+
+Subject
+^^^^^^^^^^^^^^^^^^^^^^
+The subject contains succinct description of the change:
+
+* use the imperative, present tense: "change" not "changed" nor "changes"
+* don't capitalize first letter
+* no dot (.) at the end
+
+Body
+^^^^^^^^^^^^^^^^^^^^^^
+Just as in the **subject**, use the imperative, present tense: "change" not "changed" nor "changes".
+The body should include the motivation for the change and contrast this with previous behavior.
+
+Footer
+^^^^^^^^^^^^^^^^^^^^^^
+The footer should contain any information about **Breaking Changes** and is also the place to
+[reference GitHub issues that this commit closes][closing-issues].
+
+**Breaking Changes** should start with the word `BREAKING CHANGE:` with a space or two newlines.
+The rest of the commit message is then used for this.
+
+A detailed explanation can be found in this `document <https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#>`_.
+
+Special notes
+=======================
+
+None
+
+ToDo
+=======================
+
+#. discuss with windows working group: https://github.com/saltstack/community/tree/master/working_groups/wg-Windows
+
+#. Salt builds: https://jenkinsci.saltstack.com/, noxfile.py, https://nox.thea.codes/en/stable/, 
+
+
+Examples
+=======================
+
+.. code-block:: yaml
+
+    windows.state.system.computer_desc.description:
+      system.computer_desc:
+        - name: Saltstack Computer Description
+        - require:
+          - windows.state.system.hostname.saltstack1
+    windows.state.system.hostname.saltstack1:
+      system.hostname:
+        - name: saltstack1
+    windows.state.timezone.system.America/New_York:
+      timezone.system:
+        - name: America/New_York
+        - utc: False
+
+    windows.module.system.reboot:
+      module.run:
+        - system.reboot:
+          - timeout: 5
+          - in_seconds: True
+          - only_on_pending_reboot: True
+          - wait_for_reboot: False
+        - order: last
+    windows.module.user.current:
+      module.run:
+        - user.current:
+          - sam: True
+    windows.module.status.uptime:
+      module.run:
+        - status.uptime:
+          - human_readable: True
+        - require:
+          - windows.module.user.current

@@ -2,17 +2,16 @@
 # vim: ft=yaml
 ---
 name: default
-title: windows formula
+title: SaltStack Windows Formula
 maintainer: SaltStack Formulas
 license: Apache-2.0
 summary: Verify that the windows formula is setup and configured correctly
 supports:
-  - platform-name: debian
-  - platform-name: ubuntu
-  - platform-name: centos
-  - platform-name: fedora
-  - platform-name: opensuse
-  - platform-name: suse
-  - platform-name: freebsd
-  - platform-name: amazon
-  - platform-name: arch
+  - platform-family: windows
+  # depends:
+  # - name: windows-baseline
+  #   url: https://github.com/dev-sec/windows-baseline/archive/master.tar.gz
+  #   tag: 2.0.0
+  # - name: windows-patch-baseline
+  #   url: https://github.com/dev-sec/windows-patch-baseline
+  #   tag: 0.4.0

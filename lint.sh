@@ -1,9 +1,14 @@
 #!/bin/bash
-echo "SALT-LINT"
+echo "** DOS2UNIX"
+git ls-files | xargs dos2unix
+git ls-files '*.sln' '*.bat' | xargs unix2dos
+set -e
+echo "** SALT-LINT"
 git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst' | xargs salt-lint
-echo "YAMLLINT"
+echo "** YAMLLINT"
 yamllint -s .
-echo "RUBOCOPY"
+echo "** RUBOCOPY"
 rubocop -d
-echo "SHELLCHECK"
+echo "** SHELLCHECK"
 shellcheck --version
+echo "** Linting completed successfully"

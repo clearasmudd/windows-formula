@@ -1,0 +1,58 @@
+{# https://docs.saltstack.com/en/latest/ref/states/all/salt.states.pkg.html #}
+{# https://docs.saltstack.com/en/latest/ref/modules/all/salt.modules.win_pkg.html #}
+{%- set masterless_minion = (opts['file_client'] == 'local') %}
+{%- set refresh_minion = [] %}
+{%- set action = action | default('installed', true) %}
+
+{%- if action == 'installed' and windows.system.packages.always_upgrade_to_latest_version %}
+  {%- set action = 'latest' %}
+{%- endif %}
+
+{%- if salt['pkg.version']('git') %}
+  {%- set git_installed = True %}
+{%- else %}
+  {%- set git_installed = False %}
+{%- endif %}
+
+include:
+  - .windows_software_repository
+
+{%- if windows.system.packages.saltstack.installed %}
+  {%- if windows.system.packages.saltstack.installed is iterable %}
+    {%- for package, args in windows.system.packages.saltstack.installed.items() %}
+      {%- if args.refresh_minion_env_path | d(false, true) %}
+        {%- do refresh_minion.append(package) %}
+      {%- endif %}
+{{ package }}:
+  pkg.{{ action }}
+      {%- if masterless_minion %}:
+      {%- endif %}
+      {%- if args is iterable %}
+        {%- for arg in args %}
+          {%- if (not ((arg == 'version') and windows.system.packages.always_install_latest_version)) or
+              windows.system.packages.always_upgrade_to_latest_version %}
+    - {{ arg }}: {{ args['%s'| format(arg)] }}
+          {%- endif %}
+        {%- endfor %}
+      {%- endif %}
+      {%- if masterless_minion %}
+    - require:
+        {%- if git_installed %}
+      - winrepo.update_git_repos
+        {%- else %}
+      - pkg.refresh_db
+        {%- endif %}
+      {%- endif %}
+    {%- endfor %}
+    {%- if refresh_minion %}
+windows_environment.refresh.path:
+  module.run:
+    - windows_environment.refresh:
+    - onchanges:
+{# refresh_minion_env_path_after_install set in windows.system.packages.saltstack.windows_software_repository #}
+      {%- for package in refresh_minion %}
+      - pkg: {{ package }}
+      {%- endfor %}
+    {%- endif %}
+  {%- endif %}
+{%- endif %}

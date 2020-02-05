@@ -1,0 +1,19 @@
+{# https://docs.saltstack.com/en/latest/ref/states/all/salt.states.win_servermanager.html #}
+{#
+    https://www.inspec.io/docs/reference/resources/windows_feature/
+    Windows Server Core
+    https://docs.microsoft.com/en-us/windows-server/administration/server-core/server-core-removed-roles
+    https://docs.microsoft.com/en-us/windows-server/administration/server-core/server-core-roles-and-services
+    Get-WindowsFeature
+#}
+{%- set action = action | default('installed', true) %}
+{%- if windows.system.server.features.installed %}
+  {%- if windows.system.server.features.installed is iterable %}
+    {%- for feature, context in windows.system.server.features.installed.items() %}
+windows.system.server.features.installed.{{ feature }}:
+  win_servermanager.{{ action }}:
+    - name: {{ feature }}
+    - recurse: true
+    {%- endfor %}
+  {%- endif %}
+{%- endif %}
