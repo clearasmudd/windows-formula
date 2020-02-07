@@ -27,7 +27,7 @@ driver:
 
 provisioner:
   name: salt_solo
-  log_level: info
+  log_level: debug
   client_rb:
     add_formatter: min
   # Error message due to reboot during converge:

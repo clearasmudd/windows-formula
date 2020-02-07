@@ -26,12 +26,12 @@ do
   echo    # (optional) move to a new line
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
-    git add test/results/*
-    git commit -m "test(local): local 'kitchen test' results."
+    git add -A test/results
+    git commit -m "test(local): local 'kitchen test' results"
     git push
   else 
     echo "git add test/results/*"
-    echo "git commit -m \"test(local): local 'kitchen test' results.\""
+    echo "git commit -m \"test(local): local 'kitchen test' results\""
     echo "git push"
   fi
 done
