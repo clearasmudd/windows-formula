@@ -105,7 +105,7 @@ for:
       - ps: $PSVersionTable
       - ps: >
           (& cmd /c); iex (irm https://omnitruck.chef.io/install.ps1);
-          Install-Project -Project chefdk -channel current
+          Install-Project -Project chefdk -channel stable
       - c:\opscode\chefdk\bin\chef.bat exec ruby --version
       - ps: secedit /export /cfg $env:temp/export.cfg
       - ps: >
