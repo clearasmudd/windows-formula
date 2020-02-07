@@ -14,11 +14,11 @@ for SERVER in $(kitchen list | awk '{if(NR>1)print $1}')
 do
   my_log="test/results/$SERVER.log"
   if [[ $SERVER == *"windows-10-1903"* ]]; then
-    date | tee $my_log
+    date | tee "$my_log"
     set -ex
-    git log HEAD~2..HEAD | tee -a $my_log
-    git status | tee -a $my_log
-    kitchen test $SERVER -l info | tee -a $my_log
+    git log HEAD~2..HEAD | tee -a "$my_log"
+    git status | tee -a "$my_log"
+    kitchen test "$SERVER" -l info | tee -a "$my_log"
   fi
 done
 

@@ -11,4 +11,5 @@ echo "** RUBOCOPY"
 rubocop -d
 echo "** SHELLCHECK"
 shellcheck --version
+git ls-files -- '*.sh' '*.bash' '*.ksh' | xargs shellcheck
 echo "** Linting completed successfully"
