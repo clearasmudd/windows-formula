@@ -4,7 +4,7 @@
 git diff-index --quiet HEAD -- || { echo "Exiting, you have uncommitted git changes."; git status; exit 1; } 
 
 ./lint.sh
-
+set +e
 echo "** Removing the following test kitchen results:"
 find test/results/ -type f -iregex '.*[json|txt|xml|log]'
 find test/results/ -type f -iregex '.*[json|txt|xml|log]' -delete
