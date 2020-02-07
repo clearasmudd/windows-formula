@@ -1,34 +1,30 @@
-Fri Feb  7 10:21:27 EST 2020
-git status:
+Fri Feb  7 11:28:09 EST 2020
+commit afd679f995ae0d11e3c3728854754c5bb1d1fbe4
+Author: Peter Mudd <muddman@users.noreply.github.com>
+Date:   Fri Feb 7 11:27:22 2020 -0500
+
+    test: script update
+
+commit 91e4380dc2a625898c50a395b78ec2feb743b232
+Author: Peter Mudd <muddman@users.noreply.github.com>
+Date:   Fri Feb 7 11:20:32 2020 -0500
+
+    test: script updates
 On branch master
-Your branch is ahead of 'origin/master' by 2 commits.
+Your branch is ahead of 'origin/master' by 4 commits.
   (use "git push" to publish your local commits)
 
 Changes not staged for commit:
   (use "git add/rm <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
 
+	deleted:    test/results/py3-windows-10-1903.json
+	modified:   test/results/py3-windows-10-1903.log
+	deleted:    test/results/py3-windows-10-1903.txt
+	deleted:    test/results/py3-windows-10-1903.xml
 	deleted:    test/results/py3-windows-server-2016.log
 
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-	test/results/py3-windows-10-1903.log
-
 no changes added to commit (use "git add" and/or "git commit -a")
-git log HEAD~2..HEAD
-commit 7d89e687f0f4ff35b9b1611924b9a44f60991c7f
-Author: Peter Mudd <muddman@users.noreply.github.com>
-Date:   Fri Feb 7 10:20:46 2020 -0500
-
-    chore: testing
-
-commit f055e330425fde482c28046e550565a8e9e5244b
-Author: Peter Mudd <muddman@users.noreply.github.com>
-Date:   Fri Feb 7 10:02:55 2020 -0500
-
-    chore: dos2unix
-Running test kitchen against py3-windows-10-1903.
 -----> Starting Test Kitchen (v2.3.4)
 -----> Cleaning up any prior instances of <py3-windows-10-1903>
 -----> Destroying <py3-windows-10-1903>...
@@ -39,7 +35,7 @@ Running test kitchen against py3-windows-10-1903.
        ==> default: Cloning VM...
        [K==> default: Matching MAC address for NAT networking...
        ==> default: Checking if box 'StefanScherer/windows_10' version '2020.01.15' is up to date...
-       ==> default: Setting the name of the VM: kitchen-windows-formula-py3-windows-10-1903-397b22b8-a305-40cf-b145-a429b6bbfd29
+       ==> default: Setting the name of the VM: kitchen-windows-formula-py3-windows-10-1903-441d9d52-5829-4265-b9f5-9712c290f177
        ==> default: Clearing any previously set network interfaces...
        ==> default: Preparing network interfaces based on configuration...
            default: Adapter 1: nat
@@ -61,7 +57,7 @@ Running test kitchen against py3-windows-10-1903.
        [WinRM] Established
        
        Vagrant instance <py3-windows-10-1903> created.
-       Finished creating <py3-windows-10-1903> (1m4.57s).
+       Finished creating <py3-windows-10-1903> (1m2.13s).
 -----> Converging <py3-windows-10-1903>...
        Preparing files for transfer
        Preparing salt-minion
@@ -77,7 +73,7 @@ Running test kitchen against py3-windows-10-1903.
        
        Mode                LastWriteTime         Length Name                                                                                                                                                                                                    
        ----                -------------         ------ ----                                                                                                                                                                                                    
-       d-----         2/7/2020   7:22 AM                temp                                                                                                                                                                                                    
+       d-----         2/7/2020   8:29 AM                temp                                                                                                                                                                                                    
        Downloading Salt minion installer Salt-Minion-2019.2.3-Py3-AMD64-Setup.exe
        Installing Salt minion
        Starting the Salt minion service
@@ -92,23 +88,1185 @@ Running test kitchen against py3-windows-10-1903.
        
        Mode                LastWriteTime         Length Name                                                                                                                                                                                                    
        ----                -------------         ------ ----                                                                                                                                                                                                    
-       d-----         2/7/2020   7:23 AM                kitchen                                                                                                                                                                                                 
+       d-----         2/7/2020   8:30 AM                kitchen                                                                                                                                                                                                 
        
        
        Transferring files to <py3-windows-10-1903>
-       c:\salt\salt-call.bat : [WARNING ] C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extmods\modules\windows_environment\__init__.py:46: DeprecationWarning: bad escape \P
+       c:\salt\salt-call.bat : [INFO    ] Loading fresh modules for state activity
        At line:1 char:131
        + ... alt\minion ;c:\salt\salt-call.bat --state-output=changes --config-dir ...
        +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-           + CategoryInfo          : NotSpecified: ([WARNING ] C:\U...: bad escape \P:String) [], RemoteException
+           + CategoryInfo          : NotSpecified: ([INFO    ] Load... state activity:String) [], RemoteException
            + FullyQualifiedErrorId : NativeCommandError
         
-         environ[key] = redata.sub(a, value)
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'top.sls'
        
+       [INFO    ] Creating module dir 'C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extmods\clouds'
+       
+       [INFO    ] Syncing clouds for environment 'base'
+       
+       [INFO    ] Loading cache from salt://_clouds, for base)
+       
+       [INFO    ] Caching directory '_clouds/' for environment 'base'
+       
+       [INFO    ] Creating module dir 'C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extmods\beacons'
+       
+       [INFO    ] Syncing beacons for environment 'base'
+       
+       [INFO    ] Loading cache from salt://_beacons, for base)
+       
+       [INFO    ] Caching directory '_beacons/' for environment 'base'
+       
+       [INFO    ] Creating module dir 'C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extmods\modules'
+       
+       [INFO    ] Syncing modules for environment 'base'
+       
+       [INFO    ] Loading cache from salt://_modules, for base)
+       
+       [INFO    ] Caching directory '_modules/' for environment 'base'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** '_modules/windows_environment/__init__.py'
+       
+       [INFO    ] Copying 'C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\files\base\_modules\windows_environment\__init__.py' to 
+       'C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extmods\modules\windows_environment\__init__.py'
+       
+       [INFO    ] Creating module dir 'C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extmods\states'
+       
+       [INFO    ] Syncing states for environment 'base'
+       
+       [INFO    ] Loading cache from salt://_states, for base)
+       
+       [INFO    ] Caching directory '_states/' for environment 'base'
+       
+       [INFO    ] Creating module dir 'C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extmods\sdb'
+       
+       [INFO    ] Syncing sdb for environment 'base'
+       
+       [INFO    ] Loading cache from salt://_sdb, for base)
+       
+       [INFO    ] Caching directory '_sdb/' for environment 'base'
+       
+       [INFO    ] Creating module dir 'C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extmods\grains'
+       
+       [INFO    ] Syncing grains for environment 'base'
+       
+       [INFO    ] Loading cache from salt://_grains, for base)
+       
+       [INFO    ] Caching directory '_grains/' for environment 'base'
+       
+       [INFO    ] Creating module dir 'C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extmods\renderers'
+       
+       [INFO    ] Syncing renderers for environment 'base'
+       
+       [INFO    ] Loading cache from salt://_renderers, for base)
+       
+       [INFO    ] Caching directory '_renderers/' for environment 'base'
+       
+       [INFO    ] Creating module dir 'C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extmods\returners'
+       
+       [INFO    ] Syncing returners for environment 'base'
+       
+       [INFO    ] Loading cache from salt://_returners, for base)
+       
+       [INFO    ] Caching directory '_returners/' for environment 'base'
+       
+       [INFO    ] Creating module dir 'C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extmods\output'
+       
+       [INFO    ] Syncing output for environment 'base'
+       
+       [INFO    ] Loading cache from salt://_output, for base)
+       
+       [INFO    ] Caching directory '_output/' for environment 'base'
+       
+       [INFO    ] Creating module dir 'C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extmods\utils'
+       
+       [INFO    ] Syncing utils for environment 'base'
+       
+       [INFO    ] Loading cache from salt://_utils, for base)
+       
+       [INFO    ] Caching directory '_utils/' for environment 'base'
+       
+       [INFO    ] Creating module dir 'C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extmods\log_handlers'
+       
+       [INFO    ] Syncing log_handlers for environment 'base'
+       
+       [INFO    ] Loading cache from salt://_log_handlers, for base)
+       
+       [INFO    ] Caching directory '_log_handlers/' for environment 'base'
+       
+       [INFO    ] Creating module dir 'C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extmods\proxy'
+       
+       [INFO    ] Syncing proxy for environment 'base'
+       
+       [INFO    ] Loading cache from salt://_proxy, for base)
+       
+       [INFO    ] Caching directory '_proxy/' for environment 'base'
+       
+       [INFO    ] Creating module dir 'C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extmods\engines'
+       
+       [INFO    ] Syncing engines for environment 'base'
+       
+       [INFO    ] Loading cache from salt://_engines, for base)
+       
+       [INFO    ] Caching directory '_engines/' for environment 'base'
+       
+       [INFO    ] Creating module dir 'C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extmods\thorium'
+       
+       [INFO    ] Syncing thorium for environment 'base'
+       
+       [INFO    ] Loading cache from salt://_thorium, for base)
+       
+       [INFO    ] Caching directory '_thorium/' for environment 'base'
+       
+       [INFO    ] Creating module dir 'C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extmods\serializers'
+       
+       [INFO    ] Syncing serializers for environment 'base'
+       
+       [INFO    ] Loading cache from salt://_serializers, for base)
+       
+       [INFO    ] Caching directory '_serializers/' for environment 'base'
+       
+       [INFO    ] Creating module dir 'C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extmods\matchers'
+       
+       [INFO    ] Syncing matchers for environment 'base'
+       
+       [INFO    ] Loading cache from salt://_matchers, for base)
+       
+       [INFO    ] Caching directory '_matchers/' for environment 'base'
+       
+       [INFO    ] Creating module dir 'C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extmods\pillar'
+       
+       [INFO    ] Syncing pillar for environment 'base'
+       
+       [INFO    ] Loading cache from salt://_pillar, for base)
+       
+       [INFO    ] Caching directory '_pillar/' for environment 'base'
+       
+       [INFO    ] Loading fresh modules for state activity
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/init.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/map.jinja'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/defaults.yaml'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/osarchmap.yaml'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/osfamilymap.yaml'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/osmap.yaml'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/osfingermap.yaml'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/osversionmap.yaml'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/states.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/macros.jinja'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/modules.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/system/init.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/system/packages/init.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/system/packages/appx/init.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/system/packages/appx/remove-provisioned-apps.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/system/packages/appx/removed.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/system/packages/saltstack/init.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/system/packages/saltstack/installed.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/system/packages/saltstack/action.jinja'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/system/packages/saltstack/pkg.jinja'
+       
+       [INFO    ] Removing all *.sls files under 'C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\files\base\win\repo-ng'
+       
+       [INFO    ] Fetching *.sls files from salt://win/repo-ng/
+       
+       [INFO    ] Caching directory 'win/repo-ng/' for environment 'base'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/system/packages/saltstack/windows_software_repository.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/system/packages/chocolatey/init.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/system/packages/chocolatey/installed.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/system/packages/chocolatey/bootstrap.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/system/server/init.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/system/server/features/init.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/system/server/features/installed.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/system/server/features/action.jinja'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/system/desktop/init.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/system/desktop/optional_features/init.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/system/desktop/optional_features/feature_installed.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/system/desktop/optional_features/action.jinja'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'windows/system/desktop/optional_features/optional_features.jinja'
+       
+       [INFO    ] Running state [saltstack1] at time 08:30:32.267858
+       
+       [INFO    ] Executing state system.hostname for [saltstack1]
+       
+       [INFO    ] Executing command 'hostname' in directory 'C:\Users\vagrant'
+       
+       [INFO    ] Executing command 'hostname' in directory 'C:\Users\vagrant'
+       
+       [INFO    ] Executing command 'wmic computersystem where name='vagrant-10' call rename name='saltstack1'' in directory 'C:\Users\vagrant'
+       
+       [INFO    ] {'hostname': 'saltstack1'}
+       
+       [INFO    ] Completed state [saltstack1] at time 08:30:32.408390 (duration_in_ms=140.532)
+       
+       [INFO    ] Running state [Saltstack Computer Description] at time 08:30:32.408390
+       
+       [INFO    ] Executing state system.computer_desc for [Saltstack Computer Description]
+       
+       [INFO    ] {'new': 'Saltstack Computer Description', 'old': ''}
+       
+       [INFO    ] Completed state [Saltstack Computer Description] at time 08:30:35.689388 (duration_in_ms=3280.998)
+       
+       [INFO    ] Running state [America/New_York] at time 08:30:35.721571
+       
+       [INFO    ] Executing state timezone.system for [America/New_York]
+       
+       [INFO    ] Executing command ['tzutil', '/s', 'Eastern Standard Time'] in directory 'C:\Users\vagrant'
+       
+       [INFO    ] {'timezone': 'America/New_York'}
+       
+       [INFO    ] Completed state [America/New_York] at time 08:30:35.752164 (duration_in_ms=30.593)
+       
+       [INFO    ] Running state [windows.module.user.current] at time 08:30:35.767448
+       
+       [INFO    ] Executing state module.run for [windows.module.user.current]
+       
+       [INFO    ] {'user.current': 'VAGRANT-10\\vagrant'}
+       
+       [INFO    ] Completed state [windows.module.user.current] at time 08:30:35.799114 (duration_in_ms=31.666)
+       
+       [INFO    ] Running state [windows.module.status.uptime] at time 08:30:35.799114
+       
+       [INFO    ] Executing state module.run for [windows.module.status.uptime]
+       
+       [INFO    ] {'status.uptime': '0:01:42.845553'}
+       
+       [INFO    ] Completed state [windows.module.status.uptime] at time 08:30:35.845553 (duration_in_ms=46.439)
+       
+       [INFO    ] Running state [Get-AppxPackage Microsoft.MicrosoftSolitaireCollection | Remove-AppxPackage -Allusers] at time 08:30:35.861483
+       
+       [INFO    ] Executing state cmd.run for [Get-AppxPackage Microsoft.MicrosoftSolitaireCollection | Remove-AppxPackage -Allusers]
+       
+       [INFO    ] Executing command 'Powershell -NonInteractive -NoProfile "if ((Get-AppxPackage Microsoft.MicrosoftSolitaireCollection ) -eq $null) {exit 1}"' in directory 'C:\Users\vagrant'
+       
+       [INFO    ] Executing command 'Powershell -NonInteractive -NoProfile "Get-AppxPackage Microsoft.MicrosoftSolitaireCollection | Remove-AppxPackage -Allusers"' in directory 'C:\Users\vagrant'
+       
+       [INFO    ] {'retcode': 0, 'stderr': '', 'pid': 2652, 'stdout': ''}
+       
+       [INFO    ] Completed state [Get-AppxPackage Microsoft.MicrosoftSolitaireCollection | Remove-AppxPackage -Allusers] at time 08:30:40.033211 (duration_in_ms=4171.728)
+       
+       [INFO    ] Running state [Get-AppxPackage Microsoft.Wallet | Remove-AppxPackage -Allusers] at time 08:30:40.033211
+       
+       [INFO    ] Executing state cmd.run for [Get-AppxPackage Microsoft.Wallet | Remove-AppxPackage -Allusers]
+       
+       [INFO    ] Executing command 'Powershell -NonInteractive -NoProfile "if ((Get-AppxPackage Microsoft.Wallet ) -eq $null) {exit 1}"' in directory 'C:\Users\vagrant'
+       
+       [INFO    ] Executing command 'Powershell -NonInteractive -NoProfile "Get-AppxPackage Microsoft.Wallet | Remove-AppxPackage -Allusers"' in directory 'C:\Users\vagrant'
+       
+       [INFO    ] {'retcode': 0, 'stderr': '', 'pid': 2796, 'stdout': ''}
+       
+       [INFO    ] Completed state [Get-AppxPackage Microsoft.Wallet | Remove-AppxPackage -Allusers] at time 08:30:43.205639 (duration_in_ms=3172.428)
+       
+       [INFO    ] Running state [Get-AppxPackage Microsoft.ZuneMusic | Remove-AppxPackage -Allusers] at time 08:30:43.205639
+       
+       [INFO    ] Executing state cmd.run for [Get-AppxPackage Microsoft.ZuneMusic | Remove-AppxPackage -Allusers]
+       
+       [INFO    ] Executing command 'Powershell -NonInteractive -NoProfile "if ((Get-AppxPackage Microsoft.ZuneMusic ) -eq $null) {exit 1}"' in directory 'C:\Users\vagrant'
+       
+       [INFO    ] Executing command 'Powershell -NonInteractive -NoProfile "Get-AppxPackage Microsoft.ZuneMusic | Remove-AppxPackage -Allusers"' in directory 'C:\Users\vagrant'
+       
+       [INFO    ] {'retcode': 0, 'stderr': '', 'pid': 6236, 'stdout': ''}
+       
+       [INFO    ] Completed state [Get-AppxPackage Microsoft.ZuneMusic | Remove-AppxPackage -Allusers] at time 08:30:45.767688 (duration_in_ms=2562.049)
+       
+       [INFO    ] Running state [Get-AppxPackage Microsoft.ZuneVideo | Remove-AppxPackage -Allusers] at time 08:30:45.767688
+       
+       [INFO    ] Executing state cmd.run for [Get-AppxPackage Microsoft.ZuneVideo | Remove-AppxPackage -Allusers]
+       
+       [INFO    ] Executing command 'Powershell -NonInteractive -NoProfile "if ((Get-AppxPackage Microsoft.ZuneVideo ) -eq $null) {exit 1}"' in directory 'C:\Users\vagrant'
+       
+       [INFO    ] Executing command 'Powershell -NonInteractive -NoProfile "Get-AppxPackage Microsoft.ZuneVideo | Remove-AppxPackage -Allusers"' in directory 'C:\Users\vagrant'
+       
+       [INFO    ] {'retcode': 0, 'stderr': '', 'pid': 4904, 'stdout': ''}
+       
+       [INFO    ] Completed state [Get-AppxPackage Microsoft.ZuneVideo | Remove-AppxPackage -Allusers] at time 08:30:48.674024 (duration_in_ms=2906.336)
+       
+       [INFO    ] Running state [Get-AppxPackage Microsoft.MixedReality.Portal | Remove-AppxPackage -Allusers] at time 08:30:48.674024
+       
+       [INFO    ] Executing state cmd.run for [Get-AppxPackage Microsoft.MixedReality.Portal | Remove-AppxPackage -Allusers]
+       
+       [INFO    ] Executing command 'Powershell -NonInteractive -NoProfile "if ((Get-AppxPackage Microsoft.MixedReality.Portal ) -eq $null) {exit 1}"' in directory 'C:\Users\vagrant'
+       
+       [INFO    ] Executing command 'Powershell -NonInteractive -NoProfile "Get-AppxPackage Microsoft.MixedReality.Portal | Remove-AppxPackage -Allusers"' in directory 'C:\Users\vagrant'
+       
+       [INFO    ] {'retcode': 0, 'stderr': '', 'pid': 7148, 'stdout': ''}
+       
+       [INFO    ] Completed state [Get-AppxPackage Microsoft.MixedReality.Portal | Remove-AppxPackage -Allusers] at time 08:30:50.924013 (duration_in_ms=2249.989)
+       
+       [INFO    ] Running state [C:\Users\vagrant\AppData\Local\Temp\kitchen\srv\salt\win\repo-ng] at time 08:30:50.924013
+       
+       [INFO    ] Executing state archive.extracted for [C:\Users\vagrant\AppData\Local\Temp\kitchen\srv\salt\win\repo-ng]
+       
+       [INFO    ] {'directories_created': ['C:\\Users\\vagrant\\AppData\\Local\\Temp\\kitchen\\srv\\salt\\win\\repo-ng\\'], 'extracted_files': ['salt-winrepo-ng-master/', 'salt-winrepo-ng-master/.gitignore', 'salt-winrepo-ng-master/.travis.yml', 
+       'salt-winrepo-ng-master/.travis/', 'salt-winrepo-ng-master/.travis/requirements.txt', 'salt-winrepo-ng-master/.travis/tests.py', 'salt-winrepo-ng-master/7zip.sls', 'salt-winrepo-ng-master/LICENSE', 'salt-winrepo-ng-master/README.md', 
+       'salt-winrepo-ng-master/_config.yml', 'salt-winrepo-ng-master/activeperl_x64.sls', 'salt-winrepo-ng-master/activeperl_x86.sls', 'salt-winrepo-ng-master/adobeair.sls', 'salt-winrepo-ng-master/adobereader-dc-classic.sls', 
+       'salt-winrepo-ng-master/adobereader-xi.sls', 'salt-winrepo-ng-master/adobereader.sls', 'salt-winrepo-ng-master/adobeshockwaveplayer.sls', 'salt-winrepo-ng-master/adv-ip-scanner.sls', 'salt-winrepo-ng-master/adv-port-scanner.sls', 
+       'salt-winrepo-ng-master/advancedlogging.sls', 'salt-winrepo-ng-master/anydesk-msi.sls', 'salt-winrepo-ng-master/anydesk.sls', 'salt-winrepo-ng-master/applicationrequestrouting.sls', 'salt-winrepo-ng-master/aspnet-mvc1.sls', 
+       'salt-winrepo-ng-master/atom.sls', 'salt-winrepo-ng-master/audacity.sls', 'salt-winrepo-ng-master/auditbeat/', 'salt-winrepo-ng-master/auditbeat/init.sls', 'salt-winrepo-ng-master/auditbeat/install.cmd', 
+       'salt-winrepo-ng-master/auditbeat/install.ps1', 'salt-winrepo-ng-master/auditbeat/remove.cmd', 'salt-winrepo-ng-master/autohotkey.sls', 'salt-winrepo-ng-master/autoit.sls', 'salt-winrepo-ng-master/autopsy.sls', 'salt-winrepo-ng-master/awscli.sls', 
+       'salt-winrepo-ng-master/azuredatastudio.sls', 'salt-winrepo-ng-master/bandizip.sls', 'salt-winrepo-ng-master/belarc-advisor.sls', 'salt-winrepo-ng-master/bginfo4x.sls', 'salt-winrepo-ng-master/bitnami-nginxstack.sls', 
+       'salt-winrepo-ng-master/bitvise.sls', 'salt-winrepo-ng-master/blender.sls', 'salt-winrepo-ng-master/bootracer.sls', 'salt-winrepo-ng-master/bulk_extractor.sls', 'salt-winrepo-ng-master/bulkrenameutility.sls', 
+       'salt-winrepo-ng-master/ccleaner-slim.sls', 'salt-winrepo-ng-master/ccleaner.sls', 'salt-winrepo-ng-master/cdburnerxp.sls', 'salt-winrepo-ng-master/cdroller.sls', 'salt-winrepo-ng-master/check-mk-agent-msi.sls', 
+       'salt-winrepo-ng-master/check-mk-agent.sls', 'salt-winrepo-ng-master/chocolatey/', 'salt-winrepo-ng-master/chocolatey/init.sls', 'salt-winrepo-ng-master/chocolatey/install.cmd', 'salt-winrepo-ng-master/chocolatey/uninstall.cmd', 
+       'salt-winrepo-ng-master/chocolatey/uninstall.ps1', 'salt-winrepo-ng-master/chrome-rdp.sls', 'salt-winrepo-ng-master/chrome.sls', 'salt-winrepo-ng-master/clamav.sls', 'salt-winrepo-ng-master/clamwin.sls', 'salt-winrepo-ng-master/classicshell.sls', 
+       'salt-winrepo-ng-master/clink.sls', 'salt-winrepo-ng-master/conemu.sls', 'salt-winrepo-ng-master/cpu-z.sls', 'salt-winrepo-ng-master/curl.sls', 'salt-winrepo-ng-master/cyberduck-cli.sls', 'salt-winrepo-ng-master/cyberduck-msi.sls', 
+       'salt-winrepo-ng-master/cyberduck.sls', 'salt-winrepo-ng-master/defraggler.sls', 'salt-winrepo-ng-master/docs/', 'salt-winrepo-ng-master/docs/ReadMe.md', 'salt-winrepo-ng-master/dotnet.sls', 'salt-winrepo-ng-master/dropbox.sls', 
+       'salt-winrepo-ng-master/duplicati.sls', 'salt-winrepo-ng-master/dvdstyler.sls', 'salt-winrepo-ng-master/echo-desktop.sls', 'salt-winrepo-ng-master/eea.sls', 'salt-winrepo-ng-master/emet.sls', 'salt-winrepo-ng-master/emsisoft-anti-malware.sls', 
+       'salt-winrepo-ng-master/eraser.sls', 'salt-winrepo-ng-master/erlang/', 'salt-winrepo-ng-master/erlang/init.sls', 'salt-winrepo-ng-master/erlang/install.cmd', 'salt-winrepo-ng-master/evernote.sls', 'salt-winrepo-ng-master/fiddler.sls', 
+       'salt-winrepo-ng-master/filebeat/', 'salt-winrepo-ng-master/filebeat/init.sls', 'salt-winrepo-ng-master/filebeat/install.cmd', 'salt-winrepo-ng-master/filebeat/install.ps1', 'salt-winrepo-ng-master/filebeat/remove.cmd', 
+       'salt-winrepo-ng-master/filehippo-app-manager.sls', 'salt-winrepo-ng-master/filezilla.sls', 'salt-winrepo-ng-master/firefox-esr_x64.sls', 'salt-winrepo-ng-master/firefox-esr_x86.sls', 'salt-winrepo-ng-master/firefox_x64.sl
+       s', 'salt-winrepo-ng-master/firefox_x86.sls', 'salt-winrepo-ng-master/functionbeat/', 'salt-winrepo-ng-master/functionbeat/init.sls', 'salt-winrepo-ng-master/functionbeat/install.cmd', 'salt-winrepo-ng-master/functionbeat/install.ps1', 
+       'salt-winrepo-ng-master/functionbeat/remove.cmd', 'salt-winrepo-ng-master/gedit.sls', 'salt-winrepo-ng-master/gimp.sls', 'salt-winrepo-ng-master/git-extensions.sls', 'salt-winrepo-ng-master/git.sls', 
+       'salt-winrepo-ng-master/glarysoft-absolute-uninstaller.sls', 'salt-winrepo-ng-master/gnucash.sls', 'salt-winrepo-ng-master/golang.sls', 'salt-winrepo-ng-master/goodsync.sls', 'salt-winrepo-ng-master/gow.sls', 
+       'salt-winrepo-ng-master/gpg4win-light.sls', 'salt-winrepo-ng-master/gpg4win-vanilla.sls', 'salt-winrepo-ng-master/gpg4win/', 'salt-winrepo-ng-master/gpg4win/init.sls', 'salt-winrepo-ng-master/gpg4win/silent.ini', 
+       'salt-winrepo-ng-master/graylog-collector-sidecar.sls', 'salt-winrepo-ng-master/grepwin.sls', 'salt-winrepo-ng-master/gvim.sls', 'salt-winrepo-ng-master/handbrake.sls', 'salt-winrepo-ng-master/heartbeat/', 
+       'salt-winrepo-ng-master/heartbeat/.remove.ps1.swp', 'salt-winrepo-ng-master/heartbeat/init.sls', 'salt-winrepo-ng-master/heartbeat/install.cmd', 'salt-winrepo-ng-master/heartbeat/install.ps1', 'salt-winrepo-ng-master/heartbeat/remove.cmd', 
+       'salt-winrepo-ng-master/hipchat.sls', 'salt-winrepo-ng-master/hostsfileeditor.sls', 'salt-winrepo-ng-master/hwinfo.sls', 'salt-winrepo-ng-master/ice.sls', 'salt-winrepo-ng-master/icecast.sls', 'salt-winrepo-ng-master/icloud.sls', 
+       'salt-winrepo-ng-master/iismediaservices.sls', 'salt-winrepo-ng-master/influx-capacitor.sls', 'salt-winrepo-ng-master/inkscape.sls', 'salt-winrepo-ng-master/intellij-community.sls', 'salt-winrepo-ng-master/intellij-ultimate.sls', 
+       'salt-winrepo-ng-master/internet-evidence-finder.sls', 'salt-winrepo-ng-master/irfanview-plugins.sls', 'salt-winrepo-ng-master/irfanview.sls', 'salt-winrepo-ng-master/isapirewrite-lite.sls', 'salt-winrepo-ng-master/itunes.sls', 
+       'salt-winrepo-ng-master/jdk8.sls', 'salt-winrepo-ng-master/jre.sls', 'salt-winrepo-ng-master/jre8.sls', 'salt-winrepo-ng-master/jungledisk-server-management.sls', 'salt-winrepo-ng-master/jungledisk-server.sls', 
+       'salt-winrepo-ng-master/jungledisk-workgroup.sls', 'salt-winrepo-ng-master/kdiff3.sls', 'salt-winrepo-ng-master/keepass-2x.sls', 'salt-winrepo-ng-master/keepass.sls', 'salt-winrepo-ng-master/lastpass.sls', 'salt-winrepo-ng-master/lazarus.sls', 
+       'salt-winrepo-ng-master/libreoffice.sls', 'salt-winrepo-ng-master/logparser.sls', 'salt-winrepo-ng-master/maas360bootanalyzer.sls', 'salt-winrepo-ng-master/malwarebytes.sls', 'salt-winrepo-ng-master/mariadb.sls', 
+       'salt-winrepo-ng-master/mercurial.sls', 'salt-winrepo-ng-master/messageanalyzer.sls', 'salt-winrepo-ng-master/metricbeat/', 'salt-winrepo-ng-master/metricbeat/.remove.ps1.swp', 'salt-winrepo-ng-master/metricbeat/init.sls', 
+       'salt-winrepo-ng-master/metricbeat/install.cmd', 'salt-winrepo-ng-master/metricbeat/install.ps1', 'salt-winrepo-ng-master/metricbeat/remove.cmd', 'salt-winrepo-ng-master/microsoft-build-tools.sls', 'salt-winrepo-ng-master/mikogo.sls', 
+       'salt-winrepo-ng-master/miktex-basic.sls', 'salt-winrepo-ng-master/mongodb.sls', 'salt-winrepo-ng-master/ms-mbsa.sls', 'salt-winrepo-ng-master/ms-vcpp-2005-atl-redist_x64.sls', 'salt-winrepo-ng-master/ms-vcpp-2005-atl-redist_x86.sls', 
+       'salt-winrepo-ng-master/ms-vcpp-2005-redist_x64.sls', 'salt-winrepo-ng-master/ms-vcpp-2005-redist_x86.sls', 'salt-winrepo-ng-master/ms-vcpp-2005-sp1-mfc-redist_x64.sls', 'salt-winrepo-ng-master/ms-vcpp-2005-sp1-mfc-redist_x86.sls', 
+       'salt-winrepo-ng-master/ms-vcpp-2005-sp1-redist_x64.sls', 'salt-winrepo-ng-master/ms-vcpp-2005-sp1-redist_x86.sls', 'salt-winrepo-ng-master/ms-vcpp-2008-redist_x64.sls', 'salt-winrepo-ng-master/ms-vcpp-2008-redist_x86.sls', 
+       'salt-winrepo-ng-master/ms-vcpp-2008-sp1-atl-redist_x64.sls', 'salt-winrepo-ng-master/ms-vcpp-2008-sp1-atl-redist_x86.sls', 'salt-winrepo-ng-master/ms-vcpp-2008-sp1-mfc-redist_x64.sls', 'salt-winrepo-ng-master/ms-vcpp-2008-sp1-mfc-redist_x86.sls', 
+       'salt-winrepo-ng-master/ms-vcpp-2010-sp
+       1-mfc-redist_64.sls', 'salt-winrepo-ng-master/ms-vcpp-2010-sp1-mfc-redist_x86.sls', 'salt-winrepo-ng-master/ms-vcpp-2012-redist_x64.sls', 'salt-winrepo-ng-master/ms-vcpp-2012-redist_x86.sls', 'salt-winrepo-ng-master/ms-vcpp-2013-redist_x64.sls', 
+       'salt-winrepo-ng-master/ms-vcpp-2013-redist_x86.sls', 'salt-winrepo-ng-master/ms-vcpp-2015-build-tools.sls', 'salt-winrepo-ng-master/ms-vcpp-2015-redist_x64.sls', 'salt-winrepo-ng-master/ms-vcpp-2015-redist_x86.sls', 
+       'salt-winrepo-ng-master/ms-vcpp-2017-redist_x64.sls', 'salt-winrepo-ng-master/ms-vcpp-2017-redist_x86.sls', 'salt-winrepo-ng-master/mucommander.sls', 'salt-winrepo-ng-master/mysql-essential.sls', 
+       'salt-winrepo-ng-master/mysql-installer-community.sls', 'salt-winrepo-ng-master/mysql-workbench.sls', 'salt-winrepo-ng-master/never10.sls', 'salt-winrepo-ng-master/newrelic-infra.sls', 'salt-winrepo-ng-master/nextcloud-client.sls', 
+       'salt-winrepo-ng-master/nmap.sls', 'salt-winrepo-ng-master/node.js-lts.sls', 'salt-winrepo-ng-master/node.js.sls', 'salt-winrepo-ng-master/nomacs.sls', 'salt-winrepo-ng-master/npp.sls', 'salt-winrepo-ng-master/nsclient.sls', 
+       'salt-winrepo-ng-master/nsis.sls', 'salt-winrepo-ng-master/ntp.sls', 'salt-winrepo-ng-master/nunit-console.sls', 'salt-winrepo-ng-master/nxlog.sls', 'salt-winrepo-ng-master/octopus-tentacle.sls', 'salt-winrepo-ng-master/openlp.sls', 
+       'salt-winrepo-ng-master/openoffice.sls', 'salt-winrepo-ng-master/openvpn.sls', 'salt-winrepo-ng-master/osquery.sls', 'salt-winrepo-ng-master/ossec-agent.sls', 'salt-winrepo-ng-master/owncloud.sls', 'salt-winrepo-ng-master/packetbeat/', 
+       'salt-winrepo-ng-master/packetbeat/init.sls', 'salt-winrepo-ng-master/packetbeat/install.cmd', 'salt-winrepo-ng-master/packetbeat/install.ps1', 'salt-winrepo-ng-master/packetbeat/remove.cmd', 'salt-winrepo-ng-master/pandoc.sls', 
+       'salt-winrepo-ng-master/parallels-client-15.sls', 'salt-winrepo-ng-master/pass4win.sls', 'salt-winrepo-ng-master/passware-kit-agent.sls', 'salt-winrepo-ng-master/passware-kit-forensic.sls', 'salt-winrepo-ng-master/patchmypc-free.sls', 
+       'salt-winrepo-ng-master/pdf24creator.sls', 'salt-winrepo-ng-master/pdfcreator.sls', 'salt-winrepo-ng-master/peazip.sls', 'salt-winrepo-ng-master/pgadmin4.sls', 'salt-winrepo-ng-master/pgina.sls', 'salt-winrepo-ng-master/pidgin.sls', 
+       'salt-winrepo-ng-master/postgresql.sls', 'salt-winrepo-ng-master/powerbi-desktop.sls', 'salt-winrepo-ng-master/powershell-core.sls', 'salt-winrepo-ng-master/putty.sls', 'salt-winrepo-ng-master/pycharm-pro/', 
+       'salt-winrepo-ng-master/pycharm-pro/init.sls', 'salt-winrepo-ng-master/pycharm-pro/silent.config', 'salt-winrepo-ng-master/python2_x64.sls', 'salt-winrepo-ng-master/python2_x86.sls', 'salt-winrepo-ng-master/python3_x64.sls', 
+       'salt-winrepo-ng-master/python3_x86.sls', 'salt-winrepo-ng-master/qemu.sls', 'salt-winrepo-ng-master/queueexplorerpro.sls', 'salt-winrepo-ng-master/quicktime.sls', 'salt-winrepo-ng-master/rabbitmq.sls', 
+       'salt-winrepo-ng-master/rakudo-star-no-jit_x86.sls', 'salt-winrepo-ng-master/rakudo-star_x64.sls', 'salt-winrepo-ng-master/rasclient.sls', 'salt-winrepo-ng-master/rdcman.sls', 'salt-winrepo-ng-master/rocketchat.sls', 
+       'salt-winrepo-ng-master/rubyinstaller_x64.sls', 'salt-winrepo-ng-master/rubyinstaller_x86.sls', 'salt-winrepo-ng-master/salt-minion-py2.sls', 'salt-winrepo-ng-master/salt-minion-py3.sls', 'salt-winrepo-ng-master/sandboxie.sls', 
+       'salt-winrepo-ng-master/scaleout.sls', 'salt-winrepo-ng-master/secunia.psi.sls', 'salt-winrepo-ng-master/sensu.sls', 'salt-winrepo-ng-master/sharpdevelop.sls', 'salt-winrepo-ng-master/skitch.sls', 'salt-winrepo-ng-master/skype-msi.sls', 
+       'salt-winrepo-ng-master/skype.sls', 'salt-winrepo-ng-master/slack-machine-msi.sls', 'salt-winrepo-ng-master/slack-user-msi.sls', 'salt-winrepo-ng-master/slack.sls', 'salt-winrepo-ng-master/smartmontools.sls', 'salt-winrepo-ng-master/snmptools.sls', 
+       'salt-winrepo-ng-master/soapui.sls', 'salt-winrepo-ng-master/software-informer.sls', 'salt-winrepo-ng-master/sourcetree.sls', 'salt-winrepo-ng-master/spybot-anti-beacon.sls', 'salt-winrepo-ng-master/spybot.sls', 'salt-winrepo-ng-master/sscserv-fre
+       e.sls', 'salt-winrepo-ng-master/stayawake/', 'salt-winrepo-ng-master/stayawake/init.sls', 'salt-winrepo-ng-master/stayawake/install.cmd', 'salt-winrepo-ng-master/steam.sls', 'salt-winrepo-ng-master/stellarium.sls', 
+       'salt-winrepo-ng-master/strawberryperl_x64.sls', 'salt-winrepo-ng-master/strawberryperl_x86.sls', 'salt-winrepo-ng-master/stunnel.sls', 'salt-winrepo-ng-master/subinacl.sls', 'salt-winrepo-ng-master/sumatrapdf.sls', 
+       'salt-winrepo-ng-master/svn.sls', 'salt-winrepo-ng-master/teamviewer.sls', 'salt-winrepo-ng-master/teamviewer_host.sls', 'salt-winrepo-ng-master/teracopy.sls', 'salt-winrepo-ng-master/texmaker.sls', 'salt-winrepo-ng-master/texniccenter.sls', 
+       'salt-winrepo-ng-master/texstudio.sls', 'salt-winrepo-ng-master/texworks.sls', 'salt-winrepo-ng-master/thunderbird.sls', 'salt-winrepo-ng-master/tightvnc.sls', 'salt-winrepo-ng-master/todotxt.net.sls', 'salt-winrepo-ng-master/todour.sls', 
+       'salt-winrepo-ng-master/tortoise-bzr.sls', 'salt-winrepo-ng-master/tortoise-git.sls', 'salt-winrepo-ng-master/tortoise-hg.sls', 'salt-winrepo-ng-master/tortoise-svn.sls', 'salt-winrepo-ng-master/truecrypt.sls', 
+       'salt-winrepo-ng-master/ultradefrag.sls', 'salt-winrepo-ng-master/urlrewrite.sls', 'salt-winrepo-ng-master/usbdlm.sls', 'salt-winrepo-ng-master/vagrant.sls', 'salt-winrepo-ng-master/vcforpython27.sls', 'salt-winrepo-ng-master/vcxsrv.sls', 
+       'salt-winrepo-ng-master/verysleepy.sls', 'salt-winrepo-ng-master/veyon.sls', 'salt-winrepo-ng-master/virtualbox.sls', 'salt-winrepo-ng-master/viscosity.sls', 'salt-winrepo-ng-master/vivaldi.sls', 'salt-winrepo-ng-master/vlc.sls', 
+       'salt-winrepo-ng-master/vs-community.sls', 'salt-winrepo-ng-master/vs_remotetools_2017.sls', 'salt-winrepo-ng-master/vscode.sls', 'salt-winrepo-ng-master/vsee.sls', 'salt-winrepo-ng-master/wamp-server-3.sls', 
+       'salt-winrepo-ng-master/wamp-stack.sls', 'salt-winrepo-ng-master/webdeploy.sls', 'salt-winrepo-ng-master/webplatforminstaller.sls', 'salt-winrepo-ng-master/win-app-manager.sls', 'salt-winrepo-ng-master/windirstat.sls', 
+       'salt-winrepo-ng-master/winhttpcertcfg.sls', 'salt-winrepo-ng-master/winlogbeat/', 'salt-winrepo-ng-master/winlogbeat/init.sls', 'salt-winrepo-ng-master/winlogbeat/install.cmd', 'salt-winrepo-ng-master/winlogbeat/install.ps1', 
+       'salt-winrepo-ng-master/winlogbeat/remove.cmd', 'salt-winrepo-ng-master/winmerge.sls', 'salt-winrepo-ng-master/winmtr.sls', 'salt-winrepo-ng-master/winpcap.sls', 'salt-winrepo-ng-master/winrar.sls', 'salt-winrepo-ng-master/winscp.sls', 
+       'salt-winrepo-ng-master/wireshark.sls', 'salt-winrepo-ng-master/wmi_provider/', 'salt-winrepo-ng-master/wmi_provider/README.md', 'salt-winrepo-ng-master/wmi_provider/answer.txt', 'salt-winrepo-ng-master/wmi_provider/init.sls', 
+       'salt-winrepo-ng-master/wmi_provider/majsetup.reg', 'salt-winrepo-ng-master/wscc.sls', 'salt-winrepo-ng-master/wufuc.sls', 'salt-winrepo-ng-master/xampp.sls', 'salt-winrepo-ng-master/xming.sls', 'salt-winrepo-ng-master/yubikey-manager.sls', 
+       'salt-winrepo-ng-master/yubikey-personalization-tool.sls', 'salt-winrepo-ng-master/zabbix-agent.sls', 'salt-winrepo-ng-master/zipinstaller/', 'salt-winrepo-ng-master/zipinstaller/init.sls', 'salt-winrepo-ng-master/zipinstaller/~zipinst~_x64.zic', 
+       'salt-winrepo-ng-master/zipinstaller/~zipinst~_x86.zic', 'salt-winrepo-ng-master/zoom.sls']}
+       
+       
+       [INFO    ] Completed state [C:\Users\vagrant\AppData\Local\Temp\kitchen\srv\salt\win\repo-ng] at time 08:30:52.267931 (duration_in_ms=1343.918)
+       
+       [INFO    ] Running state [rename-extract] at time 08:30:52.267931
+       
+       [INFO    ] Executing state module.run for [rename-extract]
+       
+       [INFO    ] {'file.rename': True}
+       
+       [INFO    ] Completed state [rename-extract] at time 08:30:52.267931 (duration_in_ms=0.0)
+       [INFO    ] Running state [pkg.refresh_db] at time 08:30:52.267931
+       [INFO    ] Executing state module.run for [pkg.refresh_db]
+       [INFO    ] Removing all *.sls files under 'C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\files\base\win\repo-ng'
+       [INFO    ] Fetching *.sls files from salt://win/repo-ng/
+       [INFO    ] Caching directory 'win/repo-ng/' for environment 'base'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/7zip.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/activeperl_x64.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/activeperl_x86.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/adobeair.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/adobereader-dc-classic.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/adobereader-xi.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/adobereader.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/adobeshockwaveplayer.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/adv-ip-scanner.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/adv-port-scanner.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/advancedlogging.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/anydesk-msi.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/anydesk.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/applicationrequestrouting.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/aspnet-mvc1.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/atom.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/audacity.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/auditbeat/init.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/autohotkey.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/autoit.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/autopsy.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/awscli.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/azuredatastudio.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/bandizip.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/belarc-advisor.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/bginfo4x.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/bitnami-nginxstack.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/bitvise.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/blender.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/bootracer.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/bulk_extractor.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/bulkrenameutility.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ccleaner-slim.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ccleaner.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/cdburnerxp.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/cdroller.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/check-mk-agent-msi.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/check-mk-agent.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/chocolatey/init.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/chrome-rdp.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/chrome.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/clamav.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/clamwin.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/classicshell.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/clink.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/conemu.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/cpu-z.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/curl.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/cyberduck-cli.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/cyberduck-msi.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/cyberduck.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/defraggler.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/dotnet.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/dropbox.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/duplicati.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/dvdstyler.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/echo-desktop.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/eea.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/emet.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/emsisoft-anti-malware.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/eraser.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/erlang/init.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/evernote.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/fiddler.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/filebeat/init.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/filehippo-app-manager.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/filezilla.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/firefox-esr_x64.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/firefox-esr_x86.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/firefox_x64.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/firefox_x86.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/functionbeat/init.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/gedit.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/gimp.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/git-extensions.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/git.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/glarysoft-absolute-uninstaller.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/gnucash.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/golang.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/goodsync.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/gow.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/gpg4win-light.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/gpg4win-vanilla.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/gpg4win/init.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/graylog-collector-sidecar.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/grepwin.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/gvim.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/handbrake.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/heartbeat/init.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/hipchat.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/hostsfileeditor.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/hwinfo.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ice.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/icecast.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/icloud.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/iismediaservices.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/influx-capacitor.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/inkscape.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/intellij-community.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/intellij-ultimate.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/internet-evidence-finder.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/irfanview-plugins.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/irfanview.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/isapirewrite-lite.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/itunes.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/jdk8.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/jre.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/jre8.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/jungledisk-server-management.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/jungledisk-server.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/jungledisk-workgroup.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/kdiff3.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/keepass-2x.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/keepass.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/lastpass.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/lazarus.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/libreoffice.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/logparser.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/maas360bootanalyzer.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/malwarebytes.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/mariadb.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/mercurial.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/messageanalyzer.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/metricbeat/init.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/microsoft-build-tools.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/mikogo.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/miktex-basic.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/mongodb.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ms-mbsa.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ms-vcpp-2005-atl-redist_x64.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ms-vcpp-2005-atl-redist_x86.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ms-vcpp-2005-redist_x64.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ms-vcpp-2005-redist_x86.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ms-vcpp-2005-sp1-mfc-redist_x64.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ms-vcpp-2005-sp1-mfc-redist_x86.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ms-vcpp-2005-sp1-redist_x64.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ms-vcpp-2005-sp1-redist_x86.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ms-vcpp-2008-redist_x64.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ms-vcpp-2008-redist_x86.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ms-vcpp-2008-sp1-atl-redist_x64.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ms-vcpp-2008-sp1-atl-redist_x86.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ms-vcpp-2008-sp1-mfc-redist_x64.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ms-vcpp-2008-sp1-mfc-redist_x86.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ms-vcpp-2010-sp1-mfc-redist_64.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ms-vcpp-2010-sp1-mfc-redist_x86.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ms-vcpp-2012-redist_x64.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ms-vcpp-2012-redist_x86.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ms-vcpp-2013-redist_x64.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ms-vcpp-2013-redist_x86.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ms-vcpp-2015-build-tools.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ms-vcpp-2015-redist_x64.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ms-vcpp-2015-redist_x86.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ms-vcpp-2017-redist_x64.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ms-vcpp-2017-redist_x86.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/mucommander.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/mysql-essential.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/mysql-installer-community.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/mysql-workbench.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/never10.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/newrelic-infra.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/nextcloud-client.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/nmap.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/node.js-lts.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/node.js.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/nomacs.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/npp.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/nsclient.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/nsis.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ntp.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/nunit-console.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/nxlog.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/octopus-tentacle.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/openlp.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/openoffice.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/openvpn.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/osquery.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ossec-agent.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/owncloud.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/packetbeat/init.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/pandoc.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/parallels-client-15.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/pass4win.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/passware-kit-agent.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/passware-kit-forensic.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/patchmypc-free.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/pdf24creator.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/pdfcreator.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/peazip.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/pgadmin4.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/pgina.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/pidgin.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/postgresql.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/powerbi-desktop.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/powershell-core.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/putty.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/pycharm-pro/init.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/python2_x64.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/python2_x86.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/python3_x64.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/python3_x86.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/qemu.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/queueexplorerpro.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/quicktime.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/rabbitmq.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/rakudo-star-no-jit_x86.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/rakudo-star_x64.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/rasclient.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/rdcman.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/rocketchat.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/rubyinstaller_x64.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/rubyinstaller_x86.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/salt-minion-py2.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/salt-minion-py3.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/sandboxie.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/scaleout.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/secunia.psi.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/sensu.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/sharpdevelop.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/skitch.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/skype-msi.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/skype.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/slack-machine-msi.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/slack-user-msi.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/slack.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/smartmontools.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/snmptools.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/soapui.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/software-informer.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/sourcetree.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/spybot-anti-beacon.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/spybot.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/sscserv-free.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/stayawake/init.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/steam.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/stellarium.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/strawberryperl_x64.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/strawberryperl_x86.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/stunnel.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/subinacl.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/sumatrapdf.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/svn.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/teamviewer.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/teamviewer_host.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/teracopy.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/texmaker.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/texniccenter.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/texstudio.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/texworks.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/thunderbird.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/tightvnc.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/todotxt.net.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/todour.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/tortoise-bzr.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/tortoise-git.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/tortoise-hg.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/tortoise-svn.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/truecrypt.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/ultradefrag.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/urlrewrite.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/usbdlm.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/vagrant.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/vcforpython27.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/vcxsrv.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/verysleepy.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/veyon.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/virtualbox.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/viscosity.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/vivaldi.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/vlc.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/vs-community.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/vs_remotetools_2017.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/vscode.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/vsee.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/wamp-server-3.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/wamp-stack.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/webdeploy.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/webplatforminstaller.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/win-app-manager.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/windirstat.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/winhttpcertcfg.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/winlogbeat/init.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/winmerge.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/winmtr.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/winpcap.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/winrar.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/winscp.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/wireshark.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/wmi_provider/init.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/wscc.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/wufuc.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/xampp.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/xming.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/yubikey-manager.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/yubikey-personalization-tool.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/zabbix-agent.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/zipinstaller/init.sls'
+       
+       [INFO    ] Fetching file from saltenv 'base', ** done ** 'win/repo-ng/salt-winrepo-ng/zoom.sls'
+       
+       [INFO    ] Executing command 'dir C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\files\base\win\repo-ng\salt-winrepo-ng' in directory 'C:\Users\vagrant'
+       
+       [INFO    ] {'pkg.refresh_db': {'failed': 0, 'success': 297, 'total': 297}}
+       
+       [INFO    ] Completed state [pkg.refresh_db] at time 08:31:13.142614 (duration_in_ms=20874.683)
+       
+       [INFO    ] Running state [git] at time 08:31:13.173678
+       
+       [INFO    ] Executing state pkg.installed for [git]
+       
+       [INFO    ] Refresh skipped, age of winrepo metadata in seconds (14.218952178955078) is less than winrepo_cache_expire_min (1800)
+       
+       [INFO    ] Executing command '"C:\Windows\system32\cmd.exe" /s /c ""C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extrn_files\base\github.com\git-for-windows\git\releases\download\v2.23.0.windows.1\Git-2.23.0-64-bit.exe" 
+       /VERYSILENT /NORESTART /SP- /NOCANCEL /SUPPRESSMSGBOXES"' in directory 'C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extrn_files\base\github.com\git-for-windows\git\releases\download\v2.23.0.windows.1'
+       
+       [INFO    ] Made the following changes:
+       'git' changed from 'absent' to '2.23.0.windows.1'
+       
+       
+       [INFO    ] Loading fresh modules for state activity
+       
+       [INFO    ] Completed state [git] at time 08:31:49.374015 (duration_in_ms=36200.337)
+       
+       [INFO    ] Running state [7zip] at time 08:31:49.408057
+       
+       [INFO    ] Executing state pkg.installed for [7zip]
+       
+       [INFO    ] Refresh skipped, age of winrepo metadata in seconds (59.21895360946655) is less than winrepo_cache_expire_min (1800)
+       
+       [INFO    ] Executing command '"C:\Windows\system32\cmd.exe" /s /c ""msiexec" /I "C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extrn_files\base\d.7-zip.org\a\7z1806-x64.msi" ALLUSERS=1 /qn /norestart"' in directory 
+       'C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extrn_files\base\d.7-zip.org\a'
+       
+       [INFO    ] Made the following changes:
+       '7zip' changed from 'absent' to '18.06.00.0'
+       
+       
+       [INFO    ] Loading fresh modules for state activity
+       
+       [INFO    ] Completed state [7zip] at time 08:32:10.627419 (duration_in_ms=21219.362)
+       
+       [INFO    ] Running state [kdiff3] at time 08:32:10.627419
+       
+       [INFO    ] Executing state pkg.installed for [kdiff3]
+       
+       [INFO    ] Refresh skipped, age of winrepo metadata in seconds (78.70322108268738) is less than winrepo_cache_expire_min (1800)
+       
+       [INFO    ] Executing command '"C:\Windows\system32\cmd.exe" /s /c ""C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extrn_files\base\downloads.sourceforge.net\project\kdiff3\kdiff3\0.9.98\KDiff3-64bit-Setup_0.9.98-2.exe" /S"' in 
+       directory 'C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extrn_files\base\downloads.sourceforge.net\project\kdiff3\kdiff3\0.9.98'
+       
+       [INFO    ] Made the following changes:
+       'kdiff3' changed from 'absent' to 'Not Found'
+       
+       
+       [INFO    ] Loading fresh modules for state activity
+       
+       [INFO    ] Completed state [kdiff3] at time 08:32:36.924014 (duration_in_ms=26296.595)
+       
+       [INFO    ] Running state [windows_environment.refresh.path] at time 08:32:36.942202
+       
+       [INFO    ] Executing state module.run for [windows_environment.refresh.path]
+       
+       [INFO    ] Executing command 'reg query "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment"' in directory 'C:\Users\vagrant'
        
        [WARNING ] C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extmods\modules\windows_environment\__init__.py:46: DeprecationWarning: bad escape \W
          environ[key] = redata.sub(a, value)
        
+       
+       [WARNING ] C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extmods\modules\windows_environment\__init__.py:46: DeprecationWarning: bad escape \P
+         environ[key] = redata.sub(a, value)
+       
+       
+       [INFO    ] {'windows_environment.refresh': {'PATH': 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\salt;c:\\salt;C:\\Program Files\\Git\\cmd'}}
+       
+       [INFO    ] Completed state [windows_environment.refresh.path] at time 08:32:36.986520 (duration_in_ms=44.318)
+       
+       [INFO    ] Running state [chocolatey.bootstrap] at time 08:32:36.986520
+       
+       [INFO    ] Executing state module.run for [chocolatey.bootstrap]
+       
+       [INFO    ] Executing command ['git', '--version'] in directory 'C:\Users\vagrant'
+       
+       [INFO    ] Executing command 'where.exe chocolatey' in directory 'C:\Users\vagrant'
+       
+       [INFO    ] Executing command ['C:\\Users\\vagrant\\AppData\\Local\\Temp\\dotnet4.exe', '/q', '/norestart'] in directory 'C:\Users\vagrant'
+       
+       [INFO    ] Executing command 'C:\Windows\SYSTEM32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET 
+       PATH=%PATH%;%systemdrive%\chocolatey\bin' in directory 'C:\Users\vagrant'
+       
+       [INFO    ] {'chocolatey.bootstrap': "Getting latest version of the Chocolatey package for download.\r\nGetting Chocolatey from https://chocolatey.org/api/v2/package/chocolatey/0.10.15.\r\nDownloading 7-Zip commandline tool prior to 
+       extraction.\r\nExtracting C:\\Users\\vagrant\\AppData\\Local\\Temp\\chocolatey\\chocInstall\\chocolatey.zip to C:\\Users\\vagrant\\AppData\\Local\\Temp\\chocolatey\\chocInstall...\r\nInstalling chocolatey on this machine\r\nCreating 
+       ChocolateyInstall as an environment variable (targeting 'Machine') \n  Setting ChocolateyInstall to 'C:\\ProgramData\\chocolatey'\r\nWARNING: It's very likely you will need to close and reopen your shell \n  before you can use choco.\nRestricting 
+       write permissions to Administrators\r\nWe are setting up the Chocolatey package repository.\r\nThe packages themselves go to 'C:\\ProgramData\\chocolatey\\lib'\r\n  (i.e. C:\\ProgramData\\chocolatey\\lib\\yourPackageName).\r\nA shim file for the 
+       command line goes to 'C:\\ProgramData\\chocolatey\\bin'\r\n  and points to an executable in 'C:\\ProgramData\\chocolatey\\lib\\yourPackageName'.\r\n\r\nCreating Chocolatey folders if they do not already exist.\r\n\r\nWARNING: You can safely ignore 
+       errors related to missing log files when \n  upgrading from a version of Chocolatey less than 0.9.9. \n  'Batch file could not be found' is also safe to ignore. \n  'The system cannot find the file specified' - also safe.\nchocolatey.nupkg file not 
+       installed in lib.\n Attempting to locate it from bootstrapper.\r\nPATH environment variable does not have C:\\ProgramData\\chocolatey\\bin in it. Adding...\nWARNING: Not setting tab completion: Profile file does not exist at 
+       \r\n'C:\\Users\\vagrant\\Documents\\WindowsPowerShell\\Microsoft.PowerShell_profile.ps1'.\nChocolatey (choco.exe) is now ready.\r\nYou can call choco from anywhere, command line or powershell by typing choco.\r\nRun choco /? for a list of 
+       functions.\r\nYou may need to shut down and restart powershell and/or consoles\r\n first prior to using choco.\r\nEnsuring chocolatey commands are on the path\r\nEnsuring chocolatey.nupkg is in the lib folder"}
+       
+       [INFO    ] Completed state [chocolatey.bootstrap] at time 08:32:59.378667 (duration_in_ms=22392.147)
+       
+       [INFO    ] Running state [notepadplusplus] at time 08:32:59.378667
+       
+       [INFO    ] Executing state chocolatey.installed for [notepadplusplus]
+       
+       [INFO    ] Executing command ['C:\\ProgramData\\Chocolatey\\bin\\chocolatey.exe', 'list', '--local-only', '--limit-output'] in directory 'C:\Users\vagrant'
+       
+       [INFO    ] Executing command ['C:\\ProgramData\\Chocolatey\\bin\\chocolatey.exe', '-v'] in directory 'C:\Users\vagrant'
+       
+       [INFO    ] Executing command ['C:\\ProgramData\\Chocolatey\\bin\\chocolatey.exe', 'install', 'notepadplusplus', '--no-progress', '--yes'] in directory 'C:\Users\vagrant'
+       
+       [INFO    ] Executing command ['C:\\ProgramData\\Chocolatey\\bin\\chocolatey.exe', 'list', '--local-only', '--limit-output'] in directory 'C:\Users\vagrant'
+       
+       [INFO    ] Made the following changes:
+       'notepadplusplus' changed from 'absent' to '['7.8.4']'
+       'notepadplusplus.install' changed from 'absent' to '['7.8.4']'
+       
+       
+       [INFO    ] Completed state [notepadplusplus] at time 08:33:15.720473 (duration_in_ms=16341.806)
+       
+       [INFO    ] Running state [windirstat] at time 08:33:15.720473
+       
+       [INFO    ] Executing state chocolatey.installed for [windirstat]
+       
+       [INFO    ] Executing command ['C:\\ProgramData\\Chocolatey\\bin\\chocolatey.exe', 'list', '--local-only', '--limit-output'] in directory 'C:\Users\vagrant'
+       
+       [INFO    ] Executing command ['C:\\ProgramData\\Chocolatey\\bin\\chocolatey.exe', 'install', 'windirstat', '--version', '1.1.2.20161210', '--no-progress', '--yes'] in directory 'C:\Users\vagrant'
+       
+       [INFO    ] Executing command ['C:\\ProgramData\\Chocolatey\\bin\\chocolatey.exe', 'list', '--local-only', '--limit-output'] in directory 'C:\Users\vagrant'
+       
+       [INFO    ] Made the following changes:
+       'windirstat' changed from 'absent' to '['1.1.2.20161210']'
+       
+       
+       [INFO    ] Completed state [windirstat] at time 08:33:23.908432 (duration_in_ms=8187.959)
+       
+       [INFO    ] Running state [TelnetClient] at time 08:33:23.908432
+       
+       [INFO    ] Executing state dism.feature_installed for [TelnetClient]
+       
+       [INFO    ] Executing command 'powershell -command "if ((Get-WindowsOptionalFeature -online | Where-Object {($_.FeatureName -eq 'TelnetClient') -and ($_.State -eq 'Enabled')}) -ne $null) {exit 1}"' in directory 'C:\Users\vagrant'
+       
+       [INFO    ] Executing command ['C:\\Windows\\System32\\dism.exe', '/English', '/Online', '/Get-Features'] in directory 'C:\Users\vagrant'
+       
+       [INFO    ] Executing command ['C:\\Windows\\System32\\dism.exe', '/Quiet', '/Online', '/Enable-Feature', '/FeatureName:TelnetClient', '/NoRestart'] in directory 'C:\Users\vagrant'
+       
+       [INFO    ] Executing command ['C:\\Windows\\System32\\dism.exe', '/English', '/Online', '/Get-Features'] in directory 'C:\Users\vagrant'
+       
+       [INFO    ] {'feature': {'new': 'TelnetClient'}, 'retcode': 0, 'stderr': '', 'pid': 5148, 'stdout': ''}
+       
+       [INFO    ] Completed state [TelnetClient] at time 08:33:33.613663 (duration_in_ms=9705.231)
+       
+       [INFO    ] Running state [windows.module.system.reboot] at time 08:33:33.613663
+       
+       [INFO    ] Executing state module.run for [windows.module.system.reboot]
+       
+       [INFO    ] {'system.reboot': True}
+       
+       [INFO    ] Completed state [windows.module.system.reboot] at time 08:33:33.673831 (duration_in_ms=60.168)
        
        local:
        ----------
@@ -117,8 +1275,8 @@ Running test kitchen against py3-windows-10-1903.
         Name: saltstack1
              Result: True
             Comment: The current hostname is 'vagrant-10', but will be changed to 'saltstack1' on the next reboot
-            Started: 07:23:48.752822
-           Duration: 156.456 ms
+            Started: 08:30:32.267858
+           Duration: 140.532 ms
             Changes:   
               ----------
               hostname:
@@ -129,8 +1287,8 @@ Running test kitchen against py3-windows-10-1903.
         Name: Saltstack Computer Description
              Result: True
             Comment: Computer description successfully changed to 'Saltstack Computer Description'
-            Started: 07:23:48.909278
-           Duration: 3422.729 ms
+            Started: 08:30:32.408390
+           Duration: 3280.998 ms
             Changes:   
               ----------
               new:
@@ -142,8 +1300,8 @@ Running test kitchen against py3-windows-10-1903.
         Name: America/New_York
              Result: True
             Comment: Set timezone America/New_York
-            Started: 07:23:52.377829
-           Duration: 15.876 ms
+            Started: 08:30:35.721571
+           Duration: 30.593 ms
             Changes:   
               ----------
               timezone:
@@ -153,8 +1311,8 @@ Running test kitchen against py3-windows-10-1903.
            Function: module.run
              Result: True
             Comment: user.current: VAGRANT-10\vagrant
-            Started: 07:23:52.393705
-           Duration: 15.582 ms
+            Started: 08:30:35.767448
+           Duration: 31.666 ms
             Changes:   
               ----------
               user.current:
@@ -163,25 +1321,25 @@ Running test kitchen against py3-windows-10-1903.
           ID: windows.module.status.uptime
            Function: module.run
              Result: True
-            Comment: status.uptime: 0:01:35.457560
-            Started: 07:23:52.409287
-           Duration: 48.273 ms
+            Comment: status.uptime: 0:01:42.845553
+            Started: 08:30:35.799114
+           Duration: 46.439 ms
             Changes:   
               ----------
               status.uptime:
-                  0:01:35.457560
+                  0:01:42.845553
        ----------
           ID: windows.system.packages.appx.provisioned.uninstalled.Microsoft.MicrosoftSolitaireCollection
            Function: cmd.run
         Name: Get-AppxPackage Microsoft.MicrosoftSolitaireCollection | Remove-AppxPackage -Allusers
              Result: True
             Comment: Command "Get-AppxPackage Microsoft.MicrosoftSolitaireCollection | Remove-AppxPackage -Allusers" run
-            Started: 07:23:52.471958
-           Duration: 3954.624 ms
+            Started: 08:30:35.861483
+           Duration: 4171.728 ms
             Changes:   
               ----------
               pid:
-                  6172
+                  2652
               retcode:
                   0
               stderr:
@@ -192,12 +1350,12 @@ Running test kitchen against py3-windows-10-1903.
         Name: Get-AppxPackage Microsoft.Wallet | Remove-AppxPackage -Allusers
              Result: True
             Comment: Command "Get-AppxPackage Microsoft.Wallet | Remove-AppxPackage -Allusers" run
-            Started: 07:23:56.426582
-           Duration: 3404.194 ms
+            Started: 08:30:40.033211
+           Duration: 3172.428 ms
             Changes:   
               ----------
               pid:
-                  1904
+                  2796
               retcode:
                   0
               stderr:
@@ -208,12 +1366,12 @@ Running test kitchen against py3-windows-10-1903.
         Name: Get-AppxPackage Microsoft.ZuneMusic | Remove-AppxPackage -Allusers
              Result: True
             Comment: Command "Get-AppxPackage Microsoft.ZuneMusic | Remove-AppxPackage -Allusers" run
-            Started: 07:23:59.830776
-           Duration: 3484.499 ms
+            Started: 08:30:43.205639
+           Duration: 2562.049 ms
             Changes:   
               ----------
               pid:
-                  1596
+                  6236
               retcode:
                   0
               stderr:
@@ -224,12 +1382,12 @@ Running test kitchen against py3-windows-10-1903.
         Name: Get-AppxPackage Microsoft.ZuneVideo | Remove-AppxPackage -Allusers
              Result: True
             Comment: Command "Get-AppxPackage Microsoft.ZuneVideo | Remove-AppxPackage -Allusers" run
-            Started: 07:24:03.315275
-           Duration: 3390.672 ms
+            Started: 08:30:45.767688
+           Duration: 2906.336 ms
             Changes:   
               ----------
               pid:
-                  6764
+                  4904
               retcode:
                   0
               stderr:
@@ -240,12 +1398,12 @@ Running test kitchen against py3-windows-10-1903.
         Name: Get-AppxPackage Microsoft.MixedReality.Portal | Remove-AppxPackage -Allusers
              Result: True
             Comment: Command "Get-AppxPackage Microsoft.MixedReality.Portal | Remove-AppxPackage -Allusers" run
-            Started: 07:24:06.705947
-           Duration: 2876.194 ms
+            Started: 08:30:48.674024
+           Duration: 2249.989 ms
             Changes:   
               ----------
               pid:
-                  6920
+                  7148
               retcode:
                   0
               stderr:
@@ -256,8 +1414,8 @@ Running test kitchen against py3-windows-10-1903.
         Name: C:\Users\vagrant\AppData\Local\Temp\kitchen\srv\salt\win\repo-ng
              Result: True
             Comment: https://github.com/saltstack/salt-winrepo-ng/archive/master.zip extracted to C:\Users\vagrant\AppData\Local\Temp\kitchen\srv\salt\win\repo-ng\, due to absence of one or more files/dirs
-            Started: 07:24:09.596898
-           Duration: 1343.733 ms
+            Started: 08:30:50.924013
+           Duration: 1343.918 ms
             Changes:   
               ----------
               directories_created:
@@ -625,7 +1783,7 @@ Running test kitchen against py3-windows-10-1903.
            Function: module.run
              Result: True
             Comment: file.rename: True
-            Started: 07:24:10.940631
+            Started: 08:30:52.267931
            Duration: 0.0 ms
             Changes:   
               ----------
@@ -636,8 +1794,8 @@ Running test kitchen against py3-windows-10-1903.
            Function: module.run
              Result: True
             Comment: check_cmd determined the state succeeded
-            Started: 07:24:10.940631
-           Duration: 20875.145 ms
+            Started: 08:30:52.267931
+           Duration: 20874.683 ms
             Changes:   
               ----------
               pkg.refresh_db:
@@ -653,8 +1811,8 @@ Running test kitchen against py3-windows-10-1903.
            Function: pkg.installed
              Result: True
             Comment: The following packages were installed/updated: git
-            Started: 07:24:31.847534
-           Duration: 49687.079 ms
+            Started: 08:31:13.173678
+           Duration: 36200.337 ms
             Changes:   
               ----------
               git:
@@ -663,26 +1821,12 @@ Running test kitchen against py3-windows-10-1903.
                       2.23.0.windows.1
                   old:
        ----------
-          ID: kdiff3
-           Function: pkg.installed
-             Result: True
-            Comment: The following packages were installed/updated: kdiff3
-            Started: 07:25:21.550717
-           Duration: 14311.787 ms
-            Changes:   
-              ----------
-              kdiff3:
-                  ----------
-                  new:
-                      Not Found
-                  old:
-       ----------
           ID: 7zip
            Function: pkg.installed
              Result: True
             Comment: The following packages were installed/updated: 7zip=18.06.00.0
-            Started: 07:25:35.878060
-           Duration: 15046.64 ms
+            Started: 08:31:49.408057
+           Duration: 21219.362 ms
             Changes:   
               ----------
               7zip:
@@ -691,12 +1835,26 @@ Running test kitchen against py3-windows-10-1903.
                       18.06.00.0
                   old:
        ----------
+          ID: kdiff3
+           Function: pkg.installed
+             Result: True
+            Comment: The following packages were installed/updated: kdiff3
+            Started: 08:32:10.627419
+           Duration: 26296.595 ms
+            Changes:   
+              ----------
+              kdiff3:
+                  ----------
+                  new:
+                      Not Found
+                  old:
+       ----------
           ID: windows_environment.refresh.path
            Function: module.run
              Result: True
             Comment: windows_environment.refresh: Success
-            Started: 07:25:50.924700
-           Duration: 31.288 ms
+            Started: 08:32:36.942202
+           Duration: 44.318 ms
             Changes:   
               ----------
               windows_environment.refresh:
@@ -764,8 +1922,8 @@ Running test kitchen against py3-windows-10-1903.
               Ensuring chocolatey commands are on the path
        
               Ensuring chocolatey.nupkg is in the lib folder
-            Started: 07:25:50.955988
-           Duration: 25969.157 ms
+            Started: 08:32:36.986520
+           Duration: 22392.147 ms
             Changes:   
               ----------
               chocolatey.bootstrap:
@@ -809,8 +1967,8 @@ Running test kitchen against py3-windows-10-1903.
         Name: notepadplusplus
              Result: True
             Comment: 
-            Started: 07:26:16.925145
-           Duration: 15359.783 ms
+            Started: 08:32:59.378667
+           Duration: 16341.806 ms
             Changes:   
               ----------
               notepadplusplus:
@@ -829,8 +1987,8 @@ Running test kitchen against py3-windows-10-1903.
         Name: windirstat
              Result: True
             Comment: 
-            Started: 07:26:32.284928
-           Duration: 10858.538 ms
+            Started: 08:33:15.720473
+           Duration: 8187.959 ms
             Changes:   
               ----------
               windirstat:
@@ -844,8 +2002,8 @@ Running test kitchen against py3-windows-10-1903.
         Name: TelnetClient
              Result: True
             Comment: Installed TelnetClient
-            Started: 07:26:43.143466
-           Duration: 11922.393 ms
+            Started: 08:33:23.908432
+           Duration: 9705.231 ms
             Changes:   
               ----------
               feature:
@@ -853,7 +2011,7 @@ Running test kitchen against py3-windows-10-1903.
                   new:
                       TelnetClient
               pid:
-                  2600
+                  5148
               retcode:
                   0
               stderr:
@@ -863,8 +2021,8 @@ Running test kitchen against py3-windows-10-1903.
            Function: module.run
              Result: True
             Comment: system.reboot: True
-            Started: 07:26:55.065859
-           Duration: 63.715 ms
+            Started: 08:33:33.613663
+           Duration: 60.168 ms
             Changes:   
               ----------
               system.reboot:
@@ -876,9 +2034,9 @@ Running test kitchen against py3-windows-10-1903.
        Failed:     0
        -------------
        Total states run:     22
-       Total run time:  186.238 s
+       Total run time:  181.259 s
        Downloading files from <py3-windows-10-1903>
-       Finished converging <py3-windows-10-1903> (4m1.92s).
+       Finished converging <py3-windows-10-1903> (4m1.97s).
 -----> Setting up <py3-windows-10-1903>...
        Finished setting up <py3-windows-10-1903> (0m0.00s).
 -----> Verifying <py3-windows-10-1903>...
@@ -921,32 +2079,11 @@ Target:  winrm://vagrant@http://127.0.0.1:55985/wsman:3389
 
 Profile Summary: [38;5;41m9 successful controls[0m, 0 control failures, [38;5;247m1 control skipped[0m
 Test Summary: [38;5;41m18 successful[0m, 0 failures, [38;5;247m1 skipped[0m
-       Finished verifying <py3-windows-10-1903> (1m46.56s).
+       Finished verifying <py3-windows-10-1903> (1m27.78s).
 -----> Destroying <py3-windows-10-1903>...
        ==> default: Forcing shutdown of VM...
        ==> default: Destroying VM and associated drives...
        Vagrant instance <py3-windows-10-1903> destroyed.
-       Finished destroying <py3-windows-10-1903> (0m15.03s).
-       Finished testing <py3-windows-10-1903> (7m8.12s).
------> Test Kitchen is finished. (7m23.05s)
-git status:
-On branch master
-Your branch is ahead of 'origin/master' by 2 commits.
-  (use "git push" to publish your local commits)
-
-Changes not staged for commit:
-  (use "git add/rm <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-	modified:   docs/README.rst
-	deleted:    test/results/py3-windows-server-2016.log
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-	test/results/py3-windows-10-1903.json
-	test/results/py3-windows-10-1903.log
-	test/results/py3-windows-10-1903.txt
-	test/results/py3-windows-10-1903.xml
-
-no changes added to commit (use "git add" and/or "git commit -a")
+       Finished destroying <py3-windows-10-1903> (0m12.07s).
+       Finished testing <py3-windows-10-1903> (6m43.99s).
+-----> Test Kitchen is finished. (6m58.05s)
