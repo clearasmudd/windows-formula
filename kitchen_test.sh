@@ -9,7 +9,7 @@ echo "** Removing the following test kitchen results:"
 find test/results/ -type f -iregex '.*[json|txt|xml|log]'
 find test/results/ -type f -iregex '.*[json|txt|xml|log]' -delete
 
-echo "** Running test kitchen against Windows 10 locally"
+echo "** Starting `kitchen test`"
 for SERVER in $(kitchen list | awk '{if(NR>1)print $1}')
 do
   my_log="test/results/$SERVER.log"
@@ -17,9 +17,8 @@ do
     date | tee $my_log
     set -ex
     git log HEAD~2..HEAD | tee -a $my_log
-    # git status | tee -a $my_log
-    kitchen test $SERVER -l info | tee -a $my_log
     git status | tee -a $my_log
+    kitchen test $SERVER -l info | tee -a $my_log
   fi
   # git add test/results/*
   # git commit -m "test(kitchen): run local test kitchen."
