@@ -8,7 +8,7 @@
 # http://apealive.net/post/salt-formula-testing-kitchen-salt-1/
 driver:
   name: vagrant
-  log_level: warning
+  log_level: info
   communicator: winrm
   linked_clone: true
   provider: virtualbox
@@ -27,7 +27,7 @@ driver:
 
 provisioner:
   name: salt_solo
-  log_level: warning
+  log_level: info
   client_rb:
     add_formatter: min
   # Error message due to reboot during converge:
@@ -106,7 +106,7 @@ provisioner:
 
 verifier:
   name: inspec
-  log_level: warning
+  log_level: info
   windows: true
   # cli, documentation, html, progress, json, json-min, json-rspec, junit
   run_destructive: true
@@ -121,7 +121,7 @@ verifier:
 
 transport:
   name: winrm
-  log_level: warning
+  log_level: info
   username: Vagrant
   password: vagrant
   connection_retries: 20
