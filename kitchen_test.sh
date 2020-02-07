@@ -20,18 +20,17 @@ do
     git status | tee -a $my_log
     kitchen test $SERVER -l info | tee -a $my_log
   fi
-  # git add test/results/*
-  # git commit -m "test(kitchen): run local test kitchen."
-  read -p 'Commit test results and push to github? [y]' -n 1 -r
-  echo    # (optional) move to a new line
-  if [[ $REPLY =~ ^[Yy]$ ]]
-  then
-    git add -A test/results
-    git commit -m "test(local): local 'kitchen test' results"
-    git push
-  else 
-    echo "git add test/results/*"
-    echo "git commit -m \"test(local): local 'kitchen test' results\""
-    echo "git push"
-  fi
 done
+
+read -p 'Commit test results and push to github? [y]' -n 1 -r
+echo    # (optional) move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+  git add -A test/results
+  git commit -m "test(local): local 'kitchen test' results"
+  git push
+else 
+  echo "git add test/results/*"
+  echo "git commit -m \"test(local): local 'kitchen test' results\""
+  echo "git push"
+fi

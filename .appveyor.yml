@@ -57,7 +57,7 @@ for:
         - job_name: Lint Tests
     build_script:
       - sh: echo build_script for $APPVEYOR_JOB_NAME
-      - sh: git ls-files | xargs dos2unix
+      # - sh: git ls-files | xargs dos2unix
       - sh: pwd; ls -la; printenv
       # - if [[ -z "${APPVEYOR_PULL_REQUEST_NUMBER}" ]]; then export
       # TRAVIS_EVENT_TYPE='pull_request'; fi # for travis-cli
