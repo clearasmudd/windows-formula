@@ -128,8 +128,8 @@ for:
       - ps: |
           # upload results to AppVeyor
           $wc = New-Object 'System.Net.WebClient'
-          $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", \
-          (Resolve-Path .\test\results\TEST.xml))
+          $url = "https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)"
+          $wc.UploadFile($url, (Resolve-Path .\test\results\TEST.xml))
 
   -
     matrix:
@@ -140,14 +140,14 @@ for:
       - ps: $env:local_kitchen_results = "c:\projects\windows-formula\test\results"
       - ps: $env:local_kitchen_results_log = "$env:local_kitchen_results\$env:local_kitchen_suite_platform.log"
       - ps: $env:local_kitchen_results_xml = "$env:local_kitchen_results\$env:local_kitchen_suite_platform.xml"
-      - ps: >-
+      - ps: >
           if (Test-Path "$env:local_kitchen_results_log" -PathType Leaf)
           { Write-Host "OUTPUTTING ON PREMISE TEST KITCHEN RESULTS FOR $env:local_kitchen_suite_platform"}
           Else { Write-Host "NO LOCAL RESULTS INCLUDED" }
       - ps: >
           if (Test-Path "$env:local_kitchen_results_log" -PathType Leaf)
           { Get-Content "$env:local_kitchen_results_log" }
-      - ps: >-
+      - ps: >
           if (Test-Path "$env:local_kitchen_results_xml" -PathType Leaf)
           { Copy-Item "$env:local_kitchen_results_xml" "$env:local_kitchen_results\TEST.xml" }
     on_finish:
@@ -155,8 +155,8 @@ for:
       - ps: |
           # upload results to AppVeyor
           $wc = New-Object 'System.Net.WebClient'
-          $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", \
-          (Resolve-Path .\test\results\TEST.xml))
+          $url = "https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)"
+          $wc.UploadFile($url, (Resolve-Path .\test\results\TEST.xml))
   -
     matrix:
       only:
