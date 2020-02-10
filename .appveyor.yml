@@ -12,6 +12,7 @@ environment:
     # https://www.appveyor.com/docs/windows-images-software/
     - job_name: Chef Inspec Tests (Windows Server 2019)
       job_depends_on: Lint Tests
+      APPVEYOR_RDP_PASSWORD: lj$adf89ASD0098sdfwe
       job_group: Chef Inspec Tests
       appveyor_build_worker_image: Visual Studio 2019
 
