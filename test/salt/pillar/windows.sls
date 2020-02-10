@@ -56,7 +56,7 @@ windows:
         in_seconds: true
         only_on_pending_reboot: true
         wait_for_reboot: false
-        onlyif: if /I "%CI%" EQU "True" exit 1
+        onlyif: exit 1
         order: last
     user:
       enabled: true
