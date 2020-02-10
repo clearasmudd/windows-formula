@@ -27,7 +27,7 @@ driver:
 
 provisioner:
   name: salt_solo
-  log_level: debug
+  log_level: info
   max_retries: 4
   wait_for_retry: 30
   retry_on_exit_code: [35, 213, 995, 500, 1]
@@ -95,6 +95,8 @@ provisioner:
   salt_minion_extra_config:
     use_superseded:
       - module.run
+    log_file: $env:TEMP\salt_minion.log
+    log_level_logfile: debug
 
 verifier:
   name: inspec

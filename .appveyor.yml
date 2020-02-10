@@ -5,7 +5,7 @@ environment:
   matrix:
     # Linux job
     # https://www.appveyor.com/docs/linux-images-software/
-    - job_name: Lint Tests - salt-lint, yamllint, rubocop, shellcheck, commitlint
+    - job_name: Lint Tests (salt-lint, yamllint, rubocop, shellcheck and commitlint)
       job_group: Lint Tests
       appveyor_build_worker_image: Ubuntu
 
@@ -128,6 +128,8 @@ for:
     test_script:
       - ps: Write-Host "test_script for $env:APPVEYOR_JOB_NAME"
       - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen test
+    on_failure:
+      - ps: type $env:TEMP\salt_minion.log
     on_finish:
       - ps: Write-Host "on_finish for $env:APPVEYOR_JOB_NAME"
       # uncomment to debug
