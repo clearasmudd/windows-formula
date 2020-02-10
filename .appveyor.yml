@@ -57,6 +57,7 @@ for:
         - job_name: Lint Tests
     build_script:
       - sh: echo build_script for $APPVEYOR_JOB_NAME
+      - sh: date
       # - sh: git ls-files | xargs dos2unix
       - sh: pwd; ls -la; printenv
       # - if [[ -z "${APPVEYOR_PULL_REQUEST_NUMBER}" ]]; then export
@@ -105,7 +106,7 @@ for:
       - ps: $PSVersionTable
       - ps: >
           (& cmd /c); iex (irm https://omnitruck.chef.io/install.ps1);
-          Install-Project -Project chefdk -channel stable
+          Install-Project -Project chefdk -channel stable -version 4.7.73
       - c:\opscode\chefdk\bin\chef.bat exec ruby --version
       - ps: secedit /export /cfg $env:temp/export.cfg
       - ps: >
@@ -125,11 +126,12 @@ for:
       - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen test
     on_finish:
       - ps: Write-Host "on_finish for $env:APPVEYOR_JOB_NAME"
-      - ps: |
-          # upload results to AppVeyor
-          $wc = New-Object 'System.Net.WebClient'
-          $url = "https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)"
-          $wc.UploadFile($url, (Resolve-Path .\test\results\TEST.xml))
+      - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+      # - ps: |
+      #     # upload results to AppVeyor
+      #     $wc = New-Object 'System.Net.WebClient'
+      #     $url = "https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)"
+      #     $wc.UploadFile($url, (Resolve-Path .\test\results\TEST.xml))
 
   -
     matrix:
