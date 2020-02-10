@@ -126,7 +126,7 @@ for:
       - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen list
     test_script:
       - ps: Write-Host "test_script for $env:APPVEYOR_JOB_NAME"
-      - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen test
+      - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen test -l debug 
     on_finish:
       - ps: Write-Host "on_finish for $env:APPVEYOR_JOB_NAME"
       # uncomment to debug
@@ -164,7 +164,7 @@ for:
           # upload results to AppVeyor
           $wc = New-Object 'System.Net.WebClient'
           $url = "https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)"
-          $wc.UploadFile($url, (Resolve-Path .\test\results\TEST.xml))
+          $wc.UploadFile($url, (Resolve-Path .\test\results\$env:local_kitchen_suite_platform.xml))
   -
     matrix:
       only:

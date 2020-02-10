@@ -18,7 +18,7 @@ do
     set -ex
     git log HEAD~2..HEAD | tee -a "$my_log"
     git status | tee -a "$my_log"
-    kitchen test "$SERVER" -l info | tee -a "$my_log"
+    kitchen test "$SERVER" -l debug | tee -a "$my_log"
   fi
 done
 

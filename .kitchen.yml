@@ -113,7 +113,7 @@ verifier:
 transport:
   name: winrm
   log_level: info
-  username: Vagrant
+  username: vagrant
   password: vagrant
   connection_retries: 20
   connection_retry_sleep: 5
