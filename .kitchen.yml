@@ -56,7 +56,7 @@ provisioner:
     $AddedLocation ="c:\salt"
     $Reg = "Registry::HKLM\System\CurrentControlSet\Control\Session Manager\Environment"
     $OldPath = (Get-ItemProperty -Path "$Reg" -Name PATH).Path
-    $NewPath= $OldPath + ’;’ + $AddedLocation
+    $NewPath= $OldPath + ';' + $AddedLocation
     Set-ItemProperty -Path "$Reg" -Name PATH –Value $NewPath
   install_after_init_environment: false
   is_file_root: false
