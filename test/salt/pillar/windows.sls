@@ -3,7 +3,7 @@
 ---
 windows:
   states:
-    enabled: true
+    enabled: false
     system:
       computer_desc:
         id: description
@@ -56,7 +56,7 @@ windows:
         in_seconds: true
         only_on_pending_reboot: true
         wait_for_reboot: false
-        onlyif: powershell -command "if ($env:CI -imatch 'True') {throw 'Is CI environment'} else {exit 0}"
+        onlyif: if /I "%CI%" EQU "True" exit 1
         order: last
     user:
       enabled: true
@@ -70,7 +70,7 @@ windows:
         require:
           - windows.module.user.current
   system:
-    enabled: true
+    enabled: false
     reboot:
       enabled: false
       timeout_in_seconds: 10
