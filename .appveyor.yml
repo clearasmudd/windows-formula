@@ -118,7 +118,7 @@ for:
       # Need to test Git install using saltstack
       # - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git*" | Uninstall-Package
       - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen setup
-      - ps: if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode)  }
+      - ps: if ($LastExitCode -ne 0) { write-host "last exit code $LastExitCode"; $host.SetShouldExit($LastExitCode)  }
     test_script:
       - ps: Write-Host "test_script for $env:APPVEYOR_JOB_NAME"
       - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen verify
