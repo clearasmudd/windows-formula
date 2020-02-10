@@ -3,7 +3,7 @@
 ---
 windows:
   states:
-    enabled: false
+    enabled: true
     system:
       computer_desc:
         id: description
@@ -70,7 +70,7 @@ windows:
         require:
           - windows.module.user.current
   system:
-    enabled: false
+    enabled: true
     reboot:
       enabled: false
       timeout_in_seconds: 10
