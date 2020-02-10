@@ -12,7 +12,6 @@ environment:
     # https://www.appveyor.com/docs/windows-images-software/
     - job_name: Chef Inspec Tests (Windows Server 2019)
       job_depends_on: Lint Tests
-      APPVEYOR_RDP_PASSWORD: lj$adf89ASD0098sdfwe
       job_group: Chef Inspec Tests
       appveyor_build_worker_image: Visual Studio 2019
 
@@ -130,13 +129,15 @@ for:
       - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen test
     on_finish:
       - ps: Write-Host "on_finish for $env:APPVEYOR_JOB_NAME"
-      - ps: $dlstring = 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'
-      - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString($dlstring))
-      # - ps: |
-      #     # upload results to AppVeyor
-      #     $wc = New-Object 'System.Net.WebClient'
-      #     $url = "https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)"
-      #     $wc.UploadFile($url, (Resolve-Path .\test\results\TEST.xml))
+      # uncomment to debug
+      # - ps: $env:APPVEYOR_RDP_PASSWORD="lj$adf89ASD0098sdfwe"
+      # - ps: $dlstring = 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'
+      # - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString($dlstring))
+      - ps: |
+          # upload results to AppVeyor
+          $wc = New-Object 'System.Net.WebClient'
+          $url = "https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)"
+          $wc.UploadFile($url, (Resolve-Path .\test\results\TEST.xml))
 
   -
     matrix:

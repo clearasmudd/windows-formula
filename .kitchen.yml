@@ -106,7 +106,6 @@ verifier:
     - cli
     - documentation:test/results/%{suite}-%{platform}.txt
     - json:test/results/%{suite}-%{platform}.json
-    - junit:test/results/%{suite}-%{platform}.xml
   inspec_tests:
     - path: test/integration/default
     # - supermarket://dev-sec/windows-baseline
