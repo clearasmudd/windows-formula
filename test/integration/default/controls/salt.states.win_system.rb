@@ -30,6 +30,9 @@ control 'Windows Computer Hostname' do
   only_if ("hostname is defined in pillar and reboot is enabled") do
     !pillar_hostname.nil? and pillar.dig('windows', 'modules', 'system', 'reboot', 'enabled')
   end
+  only_if ("Not running in CI environment") do
+    ENV["CI"] != 'true'
+  end
   #require 'pry'; binding.pry;
   describe sys_info do
     its('hostname') { should cmp pillar_hostname }

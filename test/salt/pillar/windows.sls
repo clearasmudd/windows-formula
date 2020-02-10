@@ -56,6 +56,7 @@ windows:
         in_seconds: true
         only_on_pending_reboot: true
         wait_for_reboot: false
+        unless: $env:CI -imatch 'true'
         order: last
     user:
       enabled: true
