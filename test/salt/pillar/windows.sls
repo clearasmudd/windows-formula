@@ -56,7 +56,7 @@ windows:
         in_seconds: true
         only_on_pending_reboot: true
         wait_for_reboot: false
-        unless: powershell -command "if ($env:CI -imatch 'True') {exit 0} else {exit 1}"
+        unless: powershell -command "if ($env:CI -imatch 'False') {exit 0} else {exit 1}"
         order: last
     user:
       enabled: true

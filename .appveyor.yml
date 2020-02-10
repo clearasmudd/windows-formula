@@ -106,6 +106,7 @@ for:
       - ps: $env:CHEF_LICENSE="accept"
       - ps: >
           Get-ChildItem Env: | Sort Name
+      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller
       - ps: Get-CimInstance Win32_OperatingSystem | Format-List *
       - ps: $PSVersionTable
       - ps: >
@@ -130,10 +131,10 @@ for:
     test_script:
       - ps: Write-Host "test_script for $env:APPVEYOR_JOB_NAME"
       - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen verify
-    # on_failure:
-    #   - ps: >
-    #       if (Test-Path "c:\temp\salt_minion.log" -PathType Leaf)
-    #       { Get-Content "c:\temp\salt_minion.log" }
+    on_failure:
+      - ps: >
+          if (Test-Path "c:\temp\salt_minion.log" -PathType Leaf)
+          { Get-Content "c:\temp\salt_minion.log" }
     on_finish:
       - ps: Write-Host "on_finish for $env:APPVEYOR_JOB_NAME"
       # uncomment to debug
