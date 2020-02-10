@@ -1,6 +1,9 @@
 ---
 version: '1.0.{build}'
 
+platform:
+  - Any CPU
+
 environment:
   matrix:
     # Linux job
@@ -108,7 +111,7 @@ for:
       - ps: >
           (& cmd /c); iex (irm https://omnitruck.chef.io/install.ps1);
           Install-Project -Project chefdk -channel stable -version 4.7.73
-      - c:\opscode\chefdk\bin\chef.bat exec ruby --version
+      - ps: c:\opscode\chefdk\bin\chef.bat exec ruby --version
       - ps: secedit /export /cfg $env:temp/export.cfg
       - ps: >
           ((get-content $env:temp/export.cfg) -replace
