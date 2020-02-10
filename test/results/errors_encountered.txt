@@ -1,0 +1,7 @@
+  # Error message due to reboot during converge:
+  # [WinRM] 500 returned in cleanup with error: Bad HTTP response returned from server. Body(if present): (500).
+  # >>>>>>     Failed to complete #converge action: [[WSMAN ERROR CODE: 995]:
+  # <f:WSManFault Code='995' Machine='127.0.0.1' xmlns:f='http://schemas.microsoft.com/wbem/wsman/1/wsmanfault'>
+  # <f:Message>The I/O operation has been aborted because of either a thread exit or an application request.
+  # </f:Message></f:WSManFault>] on py3-windows-server-2019-1809"
+  

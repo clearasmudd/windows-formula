@@ -1,9 +1,6 @@
 ---
 version: '1.0.{build}'
 
-platform:
-  - Any CPU
-
 environment:
   matrix:
     # Linux job
@@ -102,10 +99,13 @@ for:
         - job_depends_on: Lint Tests
     build_script:
       - ps: Write-Host "build_script for $env:APPVEYOR_JOB_NAME"
+      # - ps: Add-Content -Path $Profile.CurrentUserAllHosts -Value '$Env:machine_userr = "vagrant"'
       - ps: $env:machine_user="vagrant"
       - ps: $env:machine_pass="vagrant"
       - ps: $env:KITCHEN_LOCAL_YAML=".kitchen.appveyor.yml"
       - ps: $env:CHEF_LICENSE="accept"
+      - ps: >
+          Get-ChildItem Env: | Sort Name
       - ps: Get-CimInstance Win32_OperatingSystem | Format-List *
       - ps: $PSVersionTable
       - ps: >

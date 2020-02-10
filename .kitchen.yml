@@ -28,14 +28,6 @@ driver:
 provisioner:
   name: salt_solo
   log_level: debug
-  client_rb:
-    add_formatter: min
-  # Error message due to reboot during converge:
-  # [WinRM] 500 returned in cleanup with error: Bad HTTP response returned from server. Body(if present): (500).
-  # >>>>>>     Failed to complete #converge action: [[WSMAN ERROR CODE: 995]:
-  # <f:WSManFault Code='995' Machine='127.0.0.1' xmlns:f='http://schemas.microsoft.com/wbem/wsman/1/wsmanfault'>
-  # <f:Message>The I/O operation has been aborted because of either a thread exit or an application request.
-  # </f:Message></f:WSManFault>] on py3-windows-server-2019-1809"
   max_retries: 4
   wait_for_retry: 30
   retry_on_exit_code: [35, 213, 995, 500, 1]
@@ -48,16 +40,16 @@ provisioner:
   #     reporter: json-file
   #     json_file:
   #       location: /test/fc-output.json
-  init_environment: |
-    Clear-Host
-    # write-host "RUNNING ME NOW"
-    # if ( Test-Path -Path $env:TEMP\..\kitchen\ -PathType Container )
-    # { Remove-Item "$env:TEMP\..\kitchen\" -Recurse -Force }
-    $AddedLocation ="c:\salt"
-    $Reg = "Registry::HKLM\System\CurrentControlSet\Control\Session Manager\Environment"
-    $OldPath = (Get-ItemProperty -Path "$Reg" -Name PATH).Path
-    $NewPath= $OldPath + ';' + $AddedLocation
-    Set-ItemProperty -Path "$Reg" -Name PATH –Value $NewPath
+  # init_environment: |
+  #   Clear-Host
+  #   # write-host "RUNNING ME NOW"
+  #   # if ( Test-Path -Path $env:TEMP\..\kitchen\ -PathType Container )
+  #   # { Remove-Item "$env:TEMP\..\kitchen\" -Recurse -Force }
+  #   $AddedLocation ="c:\salt"
+  #   $Reg = "Registry::HKLM\System\CurrentControlSet\Control\Session Manager\Environment"
+  #   $OldPath = (Get-ItemProperty -Path "$Reg" -Name PATH).Path
+  #   $NewPath= $OldPath + ';' + $AddedLocation
+  #   Set-ItemProperty -Path "$Reg" -Name PATH –Value $NewPath
   install_after_init_environment: false
   is_file_root: false
   require_chef: false
