@@ -125,6 +125,7 @@ for:
       - ps: c:\opscode\chefdk\bin\chef.bat shell-init powershell | iex; cmd /c c:\opscode\chefdk\bin\chef.bat --version
       - ps: c:\opscode\chefdk\bin\chef.bat exec bundle install
       - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen list
+      - ps: if ($env:CI -imatch 'True') {write-host 'IS CI'} else {write-host 'IS NOT CI'}
       - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen setup
     test_script:
       - ps: Write-Host "test_script for $env:APPVEYOR_JOB_NAME"
@@ -143,7 +144,9 @@ for:
           # upload results to AppVeyor
           $wc = New-Object 'System.Net.WebClient'
           $url = "https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)"
-          $wc.UploadFile($url, (Resolve-Path .\test\results\$env:local_kitchen_suite_platform.xml))
+      - ps: >
+          if (Test-Path ".\test\results\$env:local_kitchen_suite_platform.xml" -PathType Leaf)
+          { $wc.UploadFile($url, (Resolve-Path .\test\results\$env:local_kitchen_suite_platform.xml)) }
 
   -
     matrix:
@@ -170,7 +173,9 @@ for:
           # upload results to AppVeyor
           $wc = New-Object 'System.Net.WebClient'
           $url = "https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)"
-          $wc.UploadFile($url, (Resolve-Path .\test\results\$env:local_kitchen_suite_platform.xml))
+      - ps: >
+          if (Test-Path ".\test\results\$env:local_kitchen_suite_platform.xml" -PathType Leaf)
+          { $wc.UploadFile($url, (Resolve-Path .\test\results\$env:local_kitchen_suite_platform.xml)) }
   -
     matrix:
       only:
