@@ -59,27 +59,14 @@ for:
     build_script:
       - sh: echo build_script for $APPVEYOR_JOB_NAME
       - sh: date
-      # - sh: git ls-files | xargs dos2unix
       - sh: pwd; ls -la; printenv
-      # - if [[ -z "${APPVEYOR_PULL_REQUEST_NUMBER}" ]]; then export
-      # TRAVIS_EVENT_TYPE='pull_request'; fi # for travis-cli
       - sh: PATH=$PATH:/home/appveyor/.local/bin
       - sh: pip install --user salt-lint
-      # - sh: git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst' | xargs salt-lint
-      # Install and run `yamllint`
-      # Need at least `v1.17.0` for the `yaml-files` setting
       - sh: pip install --user yamllint>=1.17.0
-      # - sh: yamllint -s .
-      # Install and run `rubocop`
       - sh: gem install rubocop
-      # - sh: rubocop -d
-      # Run `shellcheck` (already pre-installed in Travis)
       - sh: sudo apt-get install shellcheck
       - sh: shellcheck --version
-      # - sh: git ls-files -- '*.sh' '*.bash' '*.ksh' | xargs shellcheck
-      # Install and run `commitlint`
       - sh: npm i -D @commitlint/config-conventional
-      # - sh: npx commitlint --from=HEAD~1
     test_script:
       - sh: echo test_script for $APPVEYOR_JOB_NAME
       - sh: echo SALT LINT
@@ -92,6 +79,7 @@ for:
       - sh: git ls-files -- '*.sh' '*.bash' '*.ksh' | xargs shellcheck
       - sh: echo COMMIT LINT
       - sh: npx commitlint --from=HEAD~1
+    deploy: off
 
   -
     matrix:
@@ -127,10 +115,14 @@ for:
       - ps: c:\opscode\chefdk\bin\chef.bat exec bundle install
       - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen list
       - ps: if ($env:CI -imatch 'True') {write-host 'IS CI'} else {write-host 'IS NOT CI'}
+      # Need to test Git install using saltstack
+      # - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git*" | Uninstall-Package
       - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen setup
+      - ps: if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode)  }
     test_script:
       - ps: Write-Host "test_script for $env:APPVEYOR_JOB_NAME"
       - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen verify
+    deploy: off
     on_failure:
       - ps: >
           if (Test-Path "c:\temp\salt_minion.log" -PathType Leaf)
@@ -168,6 +160,8 @@ for:
       - ps: >
           if (Test-Path "$env:local_kitchen_results_xml" -PathType Leaf)
           { Copy-Item "$env:local_kitchen_results_xml" "$env:local_kitchen_results\TEST.xml" }
+    test: off
+    deploy: off
     on_finish:
       - ps: Write-Host "on_finish for $env:APPVEYOR_JOB_NAME"
       - ps: |
@@ -177,6 +171,7 @@ for:
       - ps: >
           if (Test-Path ".\test\results\$env:local_kitchen_suite_platform.xml" -PathType Leaf)
           { $wc.UploadFile($url, (Resolve-Path .\test\results\$env:local_kitchen_suite_platform.xml)) }
+
   -
     matrix:
       only:
@@ -199,3 +194,5 @@ for:
       #   provider: Script
       #   sh: npx semantic-release@15.14
       #   # sh: if [ "$APPVEYOR_REPO_BRANCH" == "master" ]; then npx semantic-release@15.14; fi
+    test: off
+    deploy: off
