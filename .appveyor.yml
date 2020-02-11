@@ -123,10 +123,10 @@ for:
       - ps: Write-Host "test_script for $env:APPVEYOR_JOB_NAME"
       - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen test
     deploy: off
-    on_failure:
-      - ps: >
-          if (Test-Path "c:\temp\salt_minion.log" -PathType Leaf)
-          { Get-Content "c:\temp\salt_minion.log" }
+    # on_failure:
+    #   - ps: >
+    #       if (Test-Path "c:\temp\salt_minion.log" -PathType Leaf)
+    #       { Get-Content "c:\temp\salt_minion.log" }
     on_finish:
       - ps: Write-Host "on_finish for $env:APPVEYOR_JOB_NAME"
       # uncomment to debug

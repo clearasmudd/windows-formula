@@ -49,6 +49,10 @@ windows:
           - Important
   modules:
     enabled: true
+    environ:
+      has_value:
+        key: CI
+        value: True
     system:
       reboot:
         enabled: true
