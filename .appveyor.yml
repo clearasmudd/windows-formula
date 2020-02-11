@@ -55,7 +55,7 @@ for:
   -
     matrix:
       only:
-        - job_name: Lint Tests
+        - job_group: Lint Testss
     build_script:
       - sh: echo build_script for $APPVEYOR_JOB_NAME
       - sh: date

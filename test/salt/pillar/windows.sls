@@ -56,7 +56,7 @@ windows:
         in_seconds: true
         only_on_pending_reboot: true
         wait_for_reboot: false
-        onlyif: if /I "%CI%" == "True" (EXIT /b 1)
+        onlyif: if /I %CI% == True exit 1
         order: last
     user:
       enabled: true
