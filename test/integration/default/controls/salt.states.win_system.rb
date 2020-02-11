@@ -48,7 +48,7 @@ control 'Windows Computer Hostname' do
       its('hostname') { should cmp pillar_hostname }
     end
   # elsif (ActiveComputerName_value == pillar_hostname)
-    describe registry_key('HKLM\SYSTEM\CurrentControlSet\Control\ComputerName\ActiveComputerName') do
+    describe registry_key('HKLM\SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName') do
       its('ComputerName') { should cmp pillar_hostname }
     end 
   end
