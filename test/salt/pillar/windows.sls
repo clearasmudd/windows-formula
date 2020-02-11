@@ -118,7 +118,7 @@ windows:
           git:
             refresh_minion_env_path: true
           7zip:
-            version: '18.06.00.0'
+            version: '18.06'
             refresh_minion_env_path: false
           kdiff3:
       appx:
