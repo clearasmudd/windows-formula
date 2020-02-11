@@ -88,6 +88,7 @@ for:
     build_script:
       - ps: Write-Host "build_script for $env:APPVEYOR_JOB_NAME"
       - ps: $ErrorActionPreference = "Stop";
+      # Saltstack needs to see the CI environment variable when run through test kitchen proxy driver
       - ps: if (Test-Path env:CI) {[System.Environment]::SetEnvironmentVariable("CI", $Env:CI, "Machine")}
       - ps: $env:machine_user="vagrant"
       - ps: $env:machine_pass="vagrant"
@@ -100,6 +101,7 @@ for:
       - ps: $PSVersionTable
       # Need to uninstall git to test Git install using saltstack
       - ps: ./scripts/git-silent-uninstall.ps1
+      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git*"
       - ps: >
           (& cmd /c); iex (irm https://omnitruck.chef.io/install.ps1);
           Install-Project -Project chefdk -channel stable -version 4.7.73
@@ -133,9 +135,9 @@ for:
     on_finish:
       - ps: Write-Host "on_finish for $env:APPVEYOR_JOB_NAME"
       # uncomment to debug
-      - ps: $env:APPVEYOR_RDP_PASSWORD="lj=adf89ASD0098_sd!fwe!==HUI"
-      - ps: $dlstring = 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'
-      - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString($dlstring))
+      # - ps: $env:APPVEYOR_RDP_PASSWORD="lj=adf89ASD0098_sd!fwe!==HUI"
+      # - ps: $dlstring = 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'
+      # - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString($dlstring))
       - ps: |
           # upload results to AppVeyor
           $wc = New-Object 'System.Net.WebClient'
