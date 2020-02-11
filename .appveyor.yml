@@ -101,7 +101,7 @@ for:
       - ps: $PSVersionTable
       # Need to uninstall git to test Git install using saltstack
       - ps: ./scripts/git-silent-uninstall.ps1
-      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git*"
+      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git*" -ErrorAction SilentlyContinue
       - ps: >
           (& cmd /c); iex (irm https://omnitruck.chef.io/install.ps1);
           Install-Project -Project chefdk -channel stable -version 4.7.73
@@ -125,8 +125,8 @@ for:
     test_script:
       - ps: Write-Host "test_script for $env:APPVEYOR_JOB_NAME"
       - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen verify
-      - ps: >
-          write-host "Kitchen Test Exit Code: $LastExitCode"
+      # - ps: >
+      #     write-host "Kitchen Test Exit Code: $LastExitCode"
     deploy: off
     # on_failure:
     #   - ps: >
