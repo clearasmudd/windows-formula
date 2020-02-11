@@ -97,6 +97,12 @@ for:
       - ps: Get-Package -Provider Programs -IncludeWindowsInstaller
       - ps: Get-CimInstance Win32_OperatingSystem | Format-List *
       - ps: $PSVersionTable
+      # Need to test Git install using saltstack
+      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git version*"
+      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git LFS*"
+      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git version*" | Uninstall-Package
+      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git LFS*" | Uninstall-Package
+      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git*"
       - ps: >
           (& cmd /c); iex (irm https://omnitruck.chef.io/install.ps1);
           Install-Project -Project chefdk -channel stable -version 4.7.73
@@ -115,10 +121,7 @@ for:
       - ps: c:\opscode\chefdk\bin\chef.bat exec bundle install
       - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen list
       - ps: if ($env:CI -imatch 'True') {write-host 'IS CI'} else {write-host 'IS NOT CI'}
-      # Need to test Git install using saltstack
-      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git*"
-      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git*" | Uninstall-Package
-      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git*"
+
       # - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen setup
       # - ps: if ($LastExitCode -ne 0) {write-host "last exit code $LastExitCode"; $host.SetShouldExit($LastExitCode)}
     test_script:
