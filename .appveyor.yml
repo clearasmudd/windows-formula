@@ -151,7 +151,7 @@ for:
       # - ps: $dlstring = 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'
       # - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString($dlstring))
       - ps: $inspec_results = '.\test\results\appveyor-windows.xml'
-      # - ps:  ((Get-Content -path $inspec_results -Raw) -replace 'default','InSpec') | Set-Content -Path $inspec_results
+      - ps: ((Get-Content -path $inspec_results -Raw) -replace 'default','InSpec') | Set-Content -Path $inspec_results
       - ps: >
           if (Test-Path $inspec_results -PathType Leaf)
           {
