@@ -26,6 +26,8 @@ control 'Windows Computer Hostname' do
   title 'salt.states.win_system.hostname'
   tag 'hostname','saltstack','salt.states.win_system','salt.states.win_system.hostname','configuration management'
   ref 'salt.states.win_system.hostname', url: 'https://docs.saltstack.com/en/master/ref/states/all/salt.states.win_system.html#salt.states.win_system.hostname'
+  desc 'Check if hostname is set correctly.'
+  desc 'If not set correctly check if there is a pending rename to the correct hostname after reboot.'
   pillar_hostname = pillar.dig('windows', 'states', 'system', 'hostname', 'name')
   only_if ("hostname is defined in pillar") do
     !pillar_hostname.nil?
@@ -40,11 +42,12 @@ control 'Windows Computer Hostname' do
   ActiveComputerName_value = registry_key('HKLM\SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName')['ComputerName']
   # puts "ComputerName: #{computername_value}"
   # puts "ActiveComputerName: #{ActiveComputerName_value}"
-  if (computername_value == pillar_hostname)
+  describe.one do
+  # if (computername_value == pillar_hostname)
     describe sys_info do
       its('hostname') { should cmp pillar_hostname }
     end
-  elsif (ActiveComputerName_value == pillar_hostname)
+  # elsif (ActiveComputerName_value == pillar_hostname)
     describe registry_key('HKLM\SYSTEM\CurrentControlSet\Control\ComputerName\ActiveComputerName') do
       its('ComputerName') { should cmp pillar_hostname }
     end 

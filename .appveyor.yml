@@ -152,7 +152,7 @@ for:
           # upload results to AppVeyor
           $wc = New-Object 'System.Net.WebClient'
           $url = "https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)"
-          $wc.UploadFile($url, (Resolve-Path .\test\results\appveyor-windows.xml)
+          $wc.UploadFile($url, (Resolve-Path .\test\results\appveyor-windows.xml))
       # - ps: >
       #     if (Test-Path ".\test\results\appveyor-windows.xml" -PathType Leaf)
       #     { $wc.UploadFile($url, (Resolve-Path .\test\results\appveyor-windows.xml)) }
@@ -186,9 +186,10 @@ for:
           # upload results to AppVeyor
           $wc = New-Object 'System.Net.WebClient'
           $url = "https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)"
-      - ps: >
-          if (Test-Path ".\test\results\$env:local_kitchen_suite_platform.xml" -PathType Leaf)
-          { $wc.UploadFile($url, (Resolve-Path .\test\results\$env:local_kitchen_suite_platform.xml)) }
+          $wc.UploadFile($url, (Resolve-Path .\test\results\$env:local_kitchen_suite_platform.xml))
+      # - ps: >
+      #     if (Test-Path ".\test\results\$env:local_kitchen_suite_platform.xml" -PathType Leaf)
+      #     { $wc.UploadFile($url, (Resolve-Path .\test\results\$env:local_kitchen_suite_platform.xml)) }
 
   -
     matrix:
