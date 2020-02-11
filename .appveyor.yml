@@ -98,14 +98,9 @@ for:
           Get-ChildItem Env: | Sort Name
       - ps: Get-Package -Provider Programs -IncludeWindowsInstaller | Sort Name
       - ps: Get-CimInstance Win32_OperatingSystem | Format-List * | Out-String -Stream | Sort-Object
-      - ps: $PSVersionTable
+      - ps: $PSVersionTable | Sort Name
       # Need to uninstall git to test Git install using saltstack
       - ps: ./scripts/git-silent-uninstall.ps1
-      - ps: >
-          if (Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git*" -ErrorAction:SilentlyContinue)
-            { write-host "Git not uninstalled: $LastExitCode"; $host.SetShouldExit($LastExitCode) }
-          else
-            { write-host "Git successfully uninstalled" }
       - ps: >
           (& cmd /c); iex (irm https://omnitruck.chef.io/install.ps1);
           Install-Project -Project chefdk -channel stable -version 4.7.73
@@ -128,6 +123,7 @@ for:
       # - ps: if ($LastExitCode -ne 0) {write-host "last exit code $LastExitCode"; $host.SetShouldExit($LastExitCode)}
     test_script:
       - ps: Write-Host "test_script for $env:APPVEYOR_JOB_NAME"
+      - ps: $ErrorActionPreference = "Continue";
       - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen test
       # - ps: >
       #     write-host "Kitchen Test Exit Code: $LastExitCode"
