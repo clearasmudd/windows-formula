@@ -122,6 +122,8 @@ for:
     test_script:
       - ps: Write-Host "test_script for $env:APPVEYOR_JOB_NAME"
       - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen test
+      - ps: >
+          write-host "Kitchen Test Exit Code: $LastExitCode"
     deploy: off
     # on_failure:
     #   - ps: >

@@ -53,7 +53,6 @@ windows:
       get:
         id: ENVIRON_CI
         key: CI
-    environ:
       get:
         id: ENVIRON_PATH
         key: PATH
