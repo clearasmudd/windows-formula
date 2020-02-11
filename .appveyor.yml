@@ -96,8 +96,8 @@ for:
       - ps: $env:CHEF_LICENSE="accept"
       - ps: >
           Get-ChildItem Env: | Sort Name
-      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller
-      - ps: Get-CimInstance Win32_OperatingSystem | Format-List *
+      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller | Sort Name
+      - ps: Get-CimInstance Win32_OperatingSystem | Format-List * | Out-String -Stream | Sort-Object
       - ps: $PSVersionTable
       # Need to uninstall git to test Git install using saltstack
       - ps: ./scripts/git-silent-uninstall.ps1
@@ -124,11 +124,11 @@ for:
       - ps: c:\opscode\chefdk\bin\chef.bat exec bundle install
       - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen list
       # - ps: if ($env:CI -imatch 'True') {write-host 'IS CI'} else {write-host 'IS NOT CI'}
-      - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen setup
+      # - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen setup
       # - ps: if ($LastExitCode -ne 0) {write-host "last exit code $LastExitCode"; $host.SetShouldExit($LastExitCode)}
     test_script:
       - ps: Write-Host "test_script for $env:APPVEYOR_JOB_NAME"
-      - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen verify
+      - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen test
       # - ps: >
       #     write-host "Kitchen Test Exit Code: $LastExitCode"
     deploy: off
