@@ -116,9 +116,11 @@ for:
       - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen list
       - ps: if ($env:CI -imatch 'True') {write-host 'IS CI'} else {write-host 'IS NOT CI'}
       # Need to test Git install using saltstack
+      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git*"
       - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git*" | Uninstall-Package
+      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git*"
       # - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen setup
-      # - ps: if ($LastExitCode -ne 0) { write-host "last exit code $LastExitCode"; $host.SetShouldExit($LastExitCode)  }
+      # - ps: if ($LastExitCode -ne 0) {write-host "last exit code $LastExitCode"; $host.SetShouldExit($LastExitCode)}
     test_script:
       - ps: Write-Host "test_script for $env:APPVEYOR_JOB_NAME"
       - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen test
@@ -132,9 +134,9 @@ for:
     on_finish:
       - ps: Write-Host "on_finish for $env:APPVEYOR_JOB_NAME"
       # uncomment to debug
-      # - ps: $env:APPVEYOR_RDP_PASSWORD="lj$adf89ASD0098sdfwe"
-      # - ps: $dlstring = 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'
-      # - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString($dlstring))
+      - ps: $env:APPVEYOR_RDP_PASSWORD="lj$adf89ASD0098sdfwe"
+      - ps: $dlstring = 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'
+      - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString($dlstring))
       - ps: |
           # upload results to AppVeyor
           $wc = New-Object 'System.Net.WebClient'
