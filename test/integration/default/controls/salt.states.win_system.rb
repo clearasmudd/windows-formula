@@ -28,14 +28,25 @@ control 'Windows Computer Hostname' do
   ref 'salt.states.win_system.hostname', url: 'https://docs.saltstack.com/en/master/ref/states/all/salt.states.win_system.html#salt.states.win_system.hostname'
   pillar_hostname = pillar.dig('windows', 'states', 'system', 'hostname', 'name')
   only_if ("hostname is defined in pillar and reboot is enabled") do
-    !pillar_hostname.nil? and pillar.dig('windows', 'modules', 'system', 'reboot', 'enabled')
+    !pillar_hostname.nil? 
+    #and pillar.dig('windows', 'modules', 'system', 'reboot', 'enabled')
   end
-  only_if ("Not running in CI environment") do
-    ENV["CI"] != 'true'
+  only_if ("Running in CI environment, not able to reboot, skipping test.") do
+    ENV["CI"] != 'True'
   end
-  #require 'pry'; binding.pry;
-  describe sys_info do
-    its('hostname') { should cmp pillar_hostname }
+  #require 'pry'; binding.pry;\
+  computername_value = registry_key('HKLM\SYSTEM\CurrentControlSet\Control\ComputerName')['ComputerName']
+  ActiveComputerName_value = registry_key('HKLM\SYSTEM\CurrentControlSet\Control\ComputerName')['ActiveComputerName']
+  puts "ComputerName: #{computername_value}"
+  puts "ActiveComputerName: #{ActiveComputerName_value}"
+  if (ActiveComputerName_value == pillar_hostname)
+    describe sys_info do
+      its('hostname') { should cmp pillar_hostname }
+    end
+  elsif (computername_value == pillar_hostname)
+    describe registry_key('HKLM\SYSTEM\CurrentControlSet\Control\ComputerName') do
+      its('ComputerName') { should cmp pillar_hostname }
+    end 
   end
 end
 

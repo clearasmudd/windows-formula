@@ -97,6 +97,7 @@ provisioner:
       - module.run
     log_file: c:\temp\salt_minion.log
     log_level_logfile: debug
+    state_output: full
 
 verifier:
   name: inspec
