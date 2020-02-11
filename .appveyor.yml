@@ -100,8 +100,8 @@ for:
       # Need to test Git install using saltstack
       - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git version*"
       - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git LFS*"
-      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git version*" | Uninstall-Package
-      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git LFS*" | Uninstall-Package
+      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git version*" | Uninstall-Package -AllVersions -Force
+      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git LFS*" | Uninstall-Package -AllVersions -Force
       - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git*"
       - ps: >
           (& cmd /c); iex (irm https://omnitruck.chef.io/install.ps1);
