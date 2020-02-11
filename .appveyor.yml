@@ -121,7 +121,7 @@ for:
       # - ps: if ($LastExitCode -ne 0) { write-host "last exit code $LastExitCode"; $host.SetShouldExit($LastExitCode)  }
     test_script:
       - ps: Write-Host "test_script for $env:APPVEYOR_JOB_NAME"
-      - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen test
+      - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen test -l debug
     deploy: off
     # on_failure:
     #   - ps: >

@@ -50,9 +50,8 @@ windows:
   modules:
     enabled: true
     environ:
-      has_value:
+      get:
         key: CI
-        value: True
     system:
       reboot:
         enabled: true
