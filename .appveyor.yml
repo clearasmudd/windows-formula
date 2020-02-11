@@ -87,7 +87,7 @@ for:
         - job_depends_on: Lint Tests
     build_script:
       - ps: Write-Host "build_script for $env:APPVEYOR_JOB_NAME"
-      - ps: if (Test-Path env:CI) { Add-Content -Path $Profile.AllUsersAllHosts -Value '$Env:CI = $Env:CI' }
+      - ps: if (Test-Path env:CI) {[System.Environment]::SetEnvironmentVariable("CI", $Env:CI, "Machine")}
       - ps: $env:machine_user="vagrant"
       - ps: $env:machine_pass="vagrant"
       - ps: $env:KITCHEN_LOCAL_YAML=".kitchen.appveyor.yml"
