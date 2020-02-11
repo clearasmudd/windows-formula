@@ -1,4 +1,14 @@
 #!/bin/bash
+# run from root of project
+if [ ! -d "./windows" ]
+then
+  if  [ -d "../windows" ] 
+  then
+    cd ..
+  else
+    echo "Please run from the root of the project."
+  fi
+fi
 echo "** DOS2UNIX"
 git ls-files | xargs dos2unix
 git ls-files '*.sln' '*.bat' | xargs unix2dos

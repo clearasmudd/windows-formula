@@ -87,6 +87,7 @@ for:
         - job_depends_on: Lint Tests
     build_script:
       - ps: Write-Host "build_script for $env:APPVEYOR_JOB_NAME"
+      - ps: $ErrorActionPreference = "Stop";
       - ps: if (Test-Path env:CI) {[System.Environment]::SetEnvironmentVariable("CI", $Env:CI, "Machine")}
       - ps: $env:machine_user="vagrant"
       - ps: $env:machine_pass="vagrant"
@@ -97,15 +98,8 @@ for:
       - ps: Get-Package -Provider Programs -IncludeWindowsInstaller
       - ps: Get-CimInstance Win32_OperatingSystem | Format-List *
       - ps: $PSVersionTable
-      # Need to test Git install using saltstack
-      - ps: C:\Program Files\Git\unins000.exe
-      - ps: C:\Program Files\Git LFS\unins000.exe
-      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git version*" -AllVersions
-      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git LFS*" -AllVersions
-      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git version*" -AllVersions | Uninstall-Package -AllVersions -Force
-      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git LFS*" -AllVersions | Uninstall-Package -AllVersions -Force
-      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git*"
-      - ps: throw "exit please"
+      # Need to uninstall git to test Git install using saltstack
+      - ps: ./scripts/git-silent-uninstall.ps1
       - ps: >
           (& cmd /c); iex (irm https://omnitruck.chef.io/install.ps1);
           Install-Project -Project chefdk -channel stable -version 4.7.73
@@ -120,16 +114,15 @@ for:
       - ps: secedit /configure /db $env:windir/security/new.sdb /cfg $env:temp/export.cfg /areas SECURITYPOLICY
       - ps: net user /add $env:machine_user $env:machine_pass
       - ps: net localgroup administrators $env:machine_user /add
-      - ps: c:\opscode\chefdk\bin\chef.bat shell-init powershell | iex; cmd /c c:\opscode\chefdk\bin\chef.bat --version
+      # - ps: c:\opscode\chefdk\bin\chef.bat shell-init powershell | iex; cmd /c c:\opscode\chefdk\bin\chef.bat --version
       - ps: c:\opscode\chefdk\bin\chef.bat exec bundle install
       - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen list
-      - ps: if ($env:CI -imatch 'True') {write-host 'IS CI'} else {write-host 'IS NOT CI'}
-
-      # - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen setup
+      # - ps: if ($env:CI -imatch 'True') {write-host 'IS CI'} else {write-host 'IS NOT CI'}
+      - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen setup
       # - ps: if ($LastExitCode -ne 0) {write-host "last exit code $LastExitCode"; $host.SetShouldExit($LastExitCode)}
     test_script:
       - ps: Write-Host "test_script for $env:APPVEYOR_JOB_NAME"
-      - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen test
+      - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen verify
       - ps: >
           write-host "Kitchen Test Exit Code: $LastExitCode"
     deploy: off
@@ -157,6 +150,7 @@ for:
         - job_depends_on: Chef Inspec Tests
     build_script:
       - ps: Write-Host "build_script for $env:APPVEYOR_JOB_NAME"
+      - ps: $ErrorActionPreference = "Stop";
       - ps: $env:local_kitchen_results = "c:\projects\windows-formula\test\results"
       - ps: $env:local_kitchen_results_log = "$env:local_kitchen_results\$env:local_kitchen_suite_platform.log"
       - ps: $env:local_kitchen_results_xml = "$env:local_kitchen_results\$env:local_kitchen_suite_platform.xml"

@@ -3,7 +3,17 @@
 
 git diff-index --quiet HEAD -- || { echo "Exiting, you have uncommitted git changes."; git status; exit 1; } 
 
-./lint.sh
+if [ -f "./lint.sh" ]
+then
+  ./lint.sh
+else
+  if [ -f "./scripts/lint.sh" ]
+  then
+    ./scripts/lint.sh
+  else
+    echo "Please run from root of project"
+  fi
+fi
 set +e
 echo "** Removing the following test kitchen results:"
 find test/results/ -type f -iregex '.*[json|txt|xml|log]'
