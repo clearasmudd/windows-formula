@@ -74,7 +74,8 @@ def try_get_pillar
   # pillar_from_minion = get_pillar_from_minion
   pillar_from_minion = ingest_from_minion('yaml', 'c:\salt\salt-call.bat --config-dir=C:\Users\vagrant\AppData\Local\Temp\kitchen\etc\salt pillar.items --retcode-passthrough | Select-String -Pattern "----------" -NotMatch')
   unless !defined?(pillar_from_minion) || pillar_from_minion == []
-    Inspec::Log.info('Got pillar from the target minion using WinRM.')
+    # Inspec::Log.info('Got pillar from the target minion using WinRM.')
+    puts 'Got pillar from the target minion using WinRM.'
     return pillar_from_minion['local']
   end
 
