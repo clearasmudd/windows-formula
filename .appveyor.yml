@@ -69,7 +69,10 @@ for:
       - sh: npm i -D @commitlint/config-conventional
     test_script:
       - sh: echo test_script for $APPVEYOR_JOB_NAME
-      - sh: echo SALT LINT
+      # capture stdout, stderr and return code
+      # - sh: >
+      #   eval "$({ berr=$({ bout=$(git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst' |
+      #   xargs salt-lint); bret=$?; } 2>&1; declare -p bout bret >&2); declare -p berr; } 2>&1)"
       - sh: git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst' | xargs salt-lint
       - sh: echo YAML LINT
       - sh: yamllint -s .
@@ -149,8 +152,8 @@ for:
           $wc = New-Object 'System.Net.WebClient'
           $url = "https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)"
       - ps: >
-          if (Test-Path ".\test\results\$env:local_kitchen_suite_platform.xml" -PathType Leaf)
-          { $wc.UploadFile($url, (Resolve-Path .\test\results\$env:local_kitchen_suite_platform.xml)) }
+          if (Test-Path ".test\results\appveyor-windows.xml" -PathType Leaf)
+          { $wc.UploadFile($url, (Resolve-Path .test\results\appveyor-windows.xml)) }
 
   -
     matrix:
