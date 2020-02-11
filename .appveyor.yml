@@ -98,10 +98,10 @@ for:
       - ps: Get-CimInstance Win32_OperatingSystem | Format-List *
       - ps: $PSVersionTable
       # Need to test Git install using saltstack
-      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git version*"
-      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git LFS*"
-      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git version*" | Uninstall-Package -AllVersions -Force
-      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git LFS*" | Uninstall-Package -AllVersions -Force
+      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git version*" -AllVersions
+      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git LFS*" -AllVersions
+      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git version*" -AllVersions | Uninstall-Package -AllVersions -Force -InputObject
+      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git LFS*" -AllVersions | Uninstall-Package -AllVersions -Force -InputObject
       - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git*"
       - ps: >
           (& cmd /c); iex (irm https://omnitruck.chef.io/install.ps1);
