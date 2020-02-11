@@ -102,7 +102,7 @@ for:
       # Need to uninstall git to test Git install using saltstack
       - ps: ./scripts/git-silent-uninstall.ps1
       - ps: >
-          if (Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git*")
+          if (Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git*" -ErrorAction:Continue)
             { write-host "Git not uninstalled: $LastExitCode"; $host.SetShouldExit($LastExitCode) }
           else
             { write-host "Git successfully uninstalled" }
