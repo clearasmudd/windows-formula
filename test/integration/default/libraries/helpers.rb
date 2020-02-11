@@ -67,7 +67,8 @@ def try_get_pillar
   # REMOVE THIS
   # return get_pillar_from_inspec_pillar_file
   unless input('pillar').is_a?(Inspec::Input::NO_VALUE_SET)
-    Inspec::Log.info('Got pillar from kitchen input.')
+    # Inspec::Log.info('Got pillar from kitchen input.')
+    puts 'INFO: Got pillar from kitchen input.'
     return input('pillar')
   end
 
@@ -75,13 +76,14 @@ def try_get_pillar
   pillar_from_minion = ingest_from_minion('yaml', 'c:\salt\salt-call.bat --config-dir=C:\Users\vagrant\AppData\Local\Temp\kitchen\etc\salt pillar.items --retcode-passthrough | Select-String -Pattern "----------" -NotMatch')
   unless !defined?(pillar_from_minion) || pillar_from_minion == []
     # Inspec::Log.info('Got pillar from the target minion using WinRM.')
-    puts 'Got pillar from the target minion using WinRM.'
+    puts 'INFO: Got pillar from the target minion using WinRM.'
     return pillar_from_minion['local']
   end
 
   pillar_from_inspec_pillar_file = get_pillar_from_inspec_pillar_file
   unless !defined?(pillar_from_inspec_pillar_file) || pillar_from_inspec_pillar_file == []
-    Inspec::Log.info('Got pillar from the inspec pillar file.')
+    # Inspec::Log.info('Got pillar from the inspec pillar file.')
+    puts 'INFO: Got pillar from the inspec pillar file.'
     return pillar_from_inspec_pillar_file
   end
   raise 'Unable to get pillar.'

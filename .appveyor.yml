@@ -1,6 +1,6 @@
 ---
 version: '1.0.{build}'
-
+# output messages and test results https://www.appveyor.com/docs/build-worker-api/
 environment:
   matrix:
     # Linux job
@@ -151,9 +151,10 @@ for:
           # upload results to AppVeyor
           $wc = New-Object 'System.Net.WebClient'
           $url = "https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)"
-      - ps: >
-          if (Test-Path ".test\results\appveyor-windows.xml" -PathType Leaf)
-          { $wc.UploadFile($url, (Resolve-Path .test\results\appveyor-windows.xml)) }
+          $wc.UploadFile($url, (Resolve-Path .\test\results\appveyor-windows.xml
+      # - ps: >
+      #     if (Test-Path ".\test\results\appveyor-windows.xml" -PathType Leaf)
+      #     { $wc.UploadFile($url, (Resolve-Path .\test\results\appveyor-windows.xml)) }
 
   -
     matrix:
