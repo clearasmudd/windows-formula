@@ -116,7 +116,7 @@ for:
       - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen list
       - ps: if ($env:CI -imatch 'True') {write-host 'IS CI'} else {write-host 'IS NOT CI'}
       # Need to test Git install using saltstack
-      # - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git*" | Uninstall-Package
+      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git*" | Uninstall-Package
       # - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen setup
       # - ps: if ($LastExitCode -ne 0) { write-host "last exit code $LastExitCode"; $host.SetShouldExit($LastExitCode)  }
     test_script:

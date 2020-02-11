@@ -59,7 +59,7 @@ windows:
         in_seconds: true
         only_on_pending_reboot: true
         wait_for_reboot: false
-        onlyif: powershell -command "if ($env:CI -imatch 'True') {throw 'Is CI environment';exit 999} else {exit 0}" -ErrorAction:Stop
+        onlyif: powershell -command "if ($env:CI -imatch 'True') {throw 'Is CI environment'} else {exit 0}"
         order: last
     user:
       enabled: true
@@ -93,7 +93,7 @@ windows:
         Guest:
           disable: true
     packages:
-      enabled: false
+      enabled: true
       always_install_latest_version: false
       always_upgrade_to_latest_version: false
       providers:
