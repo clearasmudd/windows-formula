@@ -87,6 +87,9 @@ for:
         - job_depends_on: Lint Tests
     build_script:
       - ps: Write-Host "build_script for $env:APPVEYOR_JOB_NAME"
+      - ps: $env:APPVEYOR_RDP_PASSWORD="lj=adf89ASD0098_sd!fwe!==HUI"
+      - ps: $dlstring = 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'
+      - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString($dlstring))
       - ps: $ErrorActionPreference = "Stop";
       # Saltstack needs to see the CI environment variable when run through test kitchen proxy driver
       - ps: if (Test-Path env:CI) {[System.Environment]::SetEnvironmentVariable("CI", $Env:CI, "Machine")}
