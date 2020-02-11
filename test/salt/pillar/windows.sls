@@ -56,7 +56,7 @@ windows:
         in_seconds: true
         only_on_pending_reboot: true
         wait_for_reboot: false
-        onlyif: if /I %CI% == True exit 1
+        onlyif: powershell -command "if ($env:CI -imatch 'True') {throw 'Is CI environment';exit 999} else {exit 0}" -ErrorAction:Stop
         order: last
     user:
       enabled: true
