@@ -32,20 +32,20 @@ control 'Windows Computer Hostname' do
     # and reboot is enabled
     #and pillar.dig('windows', 'modules', 'system', 'reboot', 'enabled')
   end
-  only_if ("Running in CI environment, not able to reboot, skipping test.") do
-    ENV["CI"] != 'True'
-  end
+  # only_if ("Running in CI environment, not able to reboot, skipping test.") do
+  #   ENV["CI"] != 'True'
+  # end
   #require 'pry'; binding.pry;\
   computername_value = registry_key('HKLM\SYSTEM\CurrentControlSet\Control\ComputerName\ActiveComputerName')['ComputerName']
   ActiveComputerName_value = registry_key('HKLM\SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName')['ComputerName']
-  puts "ComputerName: #{computername_value}"
-  puts "ActiveComputerName: #{ActiveComputerName_value}"
-  if (ActiveComputerName_value == pillar_hostname)
+  # puts "ComputerName: #{computername_value}"
+  # puts "ActiveComputerName: #{ActiveComputerName_value}"
+  if (computername_value == pillar_hostname)
     describe sys_info do
       its('hostname') { should cmp pillar_hostname }
     end
-  elsif (computername_value == pillar_hostname)
-    describe registry_key('HKLM\SYSTEM\CurrentControlSet\Control\ComputerName') do
+  elsif (ActiveComputerName_value == pillar_hostname)
+    describe registry_key('HKLM\SYSTEM\CurrentControlSet\Control\ComputerName\ActiveComputerName') do
       its('ComputerName') { should cmp pillar_hostname }
     end 
   end
