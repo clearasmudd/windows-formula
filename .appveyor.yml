@@ -101,7 +101,11 @@ for:
       - ps: $PSVersionTable
       # Need to uninstall git to test Git install using saltstack
       - ps: ./scripts/git-silent-uninstall.ps1
-      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git*" -ErrorAction:Continue
+      - ps: >
+          if (Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git*")
+            { write-host "Git not uninstalled: $LastExitCode"; $host.SetShouldExit($LastExitCode) }
+          else
+            { write-host "Git successfully uninstalled" }
       - ps: >
           (& cmd /c); iex (irm https://omnitruck.chef.io/install.ps1);
           Install-Project -Project chefdk -channel stable -version 4.7.73
