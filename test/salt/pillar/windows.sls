@@ -56,7 +56,7 @@ windows:
         in_seconds: true
         only_on_pending_reboot: true
         wait_for_reboot: false
-        onlyif: if /I "%CI%" EQU "True" exit 1
+        onlyif: if /I "%CI%" == "True" (EXIT /b 1)
         order: last
     user:
       enabled: true
@@ -90,7 +90,7 @@ windows:
         Guest:
           disable: true
     packages:
-      enabled: true
+      enabled: false
       always_install_latest_version: false
       always_upgrade_to_latest_version: false
       providers:
