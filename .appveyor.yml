@@ -100,9 +100,10 @@ for:
       # Need to test Git install using saltstack
       - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git version*" -AllVersions
       - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git LFS*" -AllVersions
-      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git version*" -AllVersions | Uninstall-Package -AllVersions -Force -InputObject
-      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git LFS*" -AllVersions | Uninstall-Package -AllVersions -Force -InputObject
+      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git version*" -AllVersions | Uninstall-Package -AllVersions -Force
+      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git LFS*" -AllVersions | Uninstall-Package -AllVersions -Force
       - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git*"
+      - ps: throw "exit please"
       - ps: >
           (& cmd /c); iex (irm https://omnitruck.chef.io/install.ps1);
           Install-Project -Project chefdk -channel stable -version 4.7.73
@@ -137,7 +138,7 @@ for:
     on_finish:
       - ps: Write-Host "on_finish for $env:APPVEYOR_JOB_NAME"
       # uncomment to debug
-      - ps: $env:APPVEYOR_RDP_PASSWORD="lj$adf89ASD0098sdfwe"
+      - ps: $env:APPVEYOR_RDP_PASSWORD="lj=adf89ASD0098_sd!fwe!==HUI"
       - ps: $dlstring = 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'
       - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString($dlstring))
       - ps: |
