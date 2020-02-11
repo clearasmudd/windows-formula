@@ -102,8 +102,9 @@ for:
       - ps: Get-Package -Provider Programs -IncludeWindowsInstaller | Sort Name
       - ps: Get-CimInstance Win32_OperatingSystem | Format-List * | Out-String -Stream | Sort-Object
       - ps: $PSVersionTable | Sort Name
-      # Need to uninstall git to test Git install using saltstack
+      # Need to uninstall git and 7-zip to test installation using saltstack
       - ps: ./scripts/git-silent-uninstall.ps1
+      - ps: start-process -FilePath "C:\Program Files\7-Zip\Uninstall.exe" -ArgumentList "/S"
       - ps: >
           (& cmd /c); iex (irm https://omnitruck.chef.io/install.ps1);
           Install-Project -Project chefdk -channel stable -version 4.7.73
