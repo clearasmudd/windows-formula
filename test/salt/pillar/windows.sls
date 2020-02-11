@@ -50,9 +50,8 @@ windows:
   modules:
     enabled: true
     environ:
-      # get:
-      #   id: ENVIRON_CI
-      #   key: CI
+      items:
+        enabled: true
       get:
         id: ENVIRON_PATH
         key: PATH
