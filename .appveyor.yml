@@ -98,8 +98,8 @@ for:
       - ps: Get-CimInstance Win32_OperatingSystem | Format-List *
       - ps: $PSVersionTable
       # Need to test Git install using saltstack
-      - ps: C:\Program Files\Git\unins000.exe�
-      - ps: C:\Program Files\Git LFS\unins000.exe�
+      - ps: C:\Program Files\Git\unins000.exe
+      - ps: C:\Program Files\Git LFS\unins000.exe
       - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git version*" -AllVersions
       - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git LFS*" -AllVersions
       - ps: Get-Package -Provider Programs -IncludeWindowsInstaller -Name "Git version*" -AllVersions | Uninstall-Package -AllVersions -Force
@@ -142,8 +142,7 @@ for:
       # uncomment to debug
       - ps: $env:APPVEYOR_RDP_PASSWORD="lj=adf89ASD0098_sd!fwe!==HUI"
       - ps: $dlstring = 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'
-      #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString($dlstring))
-      - ps: iex ((new-object net.webclient).DownloadString($dlstring))
+      - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString($dlstring))
       - ps: |
           # upload results to AppVeyor
           $wc = New-Object 'System.Net.WebClient'
