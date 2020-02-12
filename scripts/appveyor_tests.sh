@@ -37,15 +37,19 @@ function start_test {
   echo $add_test
   $add_test
   local start=`date +%s`
-  eval "$({ cerr=$({ cout=$(${APPVEYOR_TEST[command]}); cret=$?; } 2>&1; declare -p cout cret >&2); declare -p cerr; } 2>&1)"
+  echo ${APPVEYOR_TEST[command]}
+  local full_command = "$({ cerr=$({ cout=$(${APPVEYOR_TEST[command]}); cret=$?; } 2>&1; declare -p cout cret >&2); declare -p cerr; } 2>&1)"
+  echo $full_command
+  eval $full_command
   local end=`date +%s`
   APPVEYOR_TEST[cruntime]=$((end-start))
+  echo ${APPVEYOR_TEST[cruntime]}
   APPVEYOR_TEST[cret_arg]="${cret:-''}"
   if [[ -z cout ]]; then APPVEYOR_TEST[cout_arg]="-StdOut $cout"; else cout_arg=''; fi
   if [[ -z cerr ]]; then APPVEYOR_TEST[cerr_arg]="-StdErr $cerr"; else APPVEYOR_TEST[cerr_arg]=''; fi
-  echo "cret_arg $cret_arg"
-  echo "cout_arg $cout_arg"
-  echo "cerr_arg $cerr_arg"
+  echo "cret_arg ${APPVEYOR_TEST[cret_arg]}g"
+  echo "cout_arg ${APPVEYOR_TEST[cout_arg]}"
+  echo "cerr_arg ${APPVEYOR_TEST[cerr_arg]}"
 }
 
 # Update-AppveyorTest -Name "Test A" -Framework NUnit -FileName a.exe -Outcome Failed -Duration $cruntime
@@ -57,7 +61,7 @@ function start_test {
 
 function end_test {
   echo "end_test"
-  update_test_common = "appveyor UpdateTest -Name ${APPVEYOR_TEST[name]} -Framework ${APPVEYOR_TEST[framework]} -Filename ${APPVEYOR_TEST[filename]} -Duration ${APPVEYOR_TEST[cruntime]}"
+  update_test_common="appveyor UpdateTest -Name ${APPVEYOR_TEST[name]} -Framework ${APPVEYOR_TEST[framework]} -Filename ${APPVEYOR_TEST[filename]} -Duration ${APPVEYOR_TEST[cruntime]}"
   if [[ ${APPVEYOR_TEST[cret_arg]} -eq 0 ]]; then
     updatetest="$update_test_common -Outcome Passed ${APPVEYOR_TEST[cout_arg]}"
   else
