@@ -42,14 +42,14 @@ function start_test {
   APPVEYOR_TEST[cruntime]=$((end-start))
   # echo ${APPVEYOR_TEST[cruntime]}
   APPVEYOR_TEST[cret_arg]="${cret:-''}"
-  if [[ -z cout ]]; then
-    APPVEYOR_TEST[cout_arg]="-StdOut $cout"
+  if [ ! -z "$cout" ]; then
+    APPVEYOR_TEST[cout_arg]="-StdOut \"$cout\""
     echo "$cout"
   else
     cout_arg=''
   fi
-  if [[ -z cerr ]]; then
-    APPVEYOR_TEST[cerr_arg]="-StdErr $cerr"
+  if [ ! -z "$cerr" ]; then
+    APPVEYOR_TEST[cerr_arg]="-StdErr \"$cerr\""
     echo "$cerr"
   else
     APPVEYOR_TEST[cerr_arg]=''
@@ -67,16 +67,15 @@ function start_test {
 #      [-StdOut <string>] [-StdErr <string>]
 
 function end_test {
-  echo "end_test"
   update_test_common="appveyor UpdateTest -Name ${APPVEYOR_TEST[name]} -Framework ${APPVEYOR_TEST[framework]} -Filename ${APPVEYOR_TEST[filename]} -Duration ${APPVEYOR_TEST[cruntime]}"
   if [[ ${APPVEYOR_TEST[cret_arg]} -eq 0 ]]; then
     echo "${APPVEYOR_TEST[name]} completed successfully!"
     updatetest="$update_test_common -Outcome Passed ${APPVEYOR_TEST[cout_arg]}"
   else
     echo "${APPVEYOR_TEST[name]} did not complete successfully!  Check the 'Tests' tab in appveyor for additional information."
-    updatetest="$update_test_common -Outcome Failed -ErrorMessage \"${APPVEYOR_TEST[name]} did not complete successfully: ${APPVEYOR_TEST[cret_arg]}\" ${APPVEYOR_TEST[cout_arg]} ${APPVEYOR_TEST[cerr_arg]}"
+    updatetest="$update_test_common -Outcome Failed -ErrorMessage \"${APPVEYOR_TEST[name]} return code: ${APPVEYOR_TEST[cret_arg]}\" ${APPVEYOR_TEST[cout_arg]} ${APPVEYOR_TEST[cerr_arg]}"
   fi
-  echo $updatetest
+  # echo $updatetest
   $updatetest
 }
 
