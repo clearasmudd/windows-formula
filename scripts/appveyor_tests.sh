@@ -72,11 +72,11 @@ function end_test {
 if [ ! -z "$iflag" ]; then
     echo "Installing linting tools"
     pip install --user salt-lint
-    pip install --user yamllint>=1.17.0
-    gem install rubocop
-    sudo apt-get install shellcheck
-    shellcheck --version
-    npm i -D @commitlint/config-conventional
+    # pip install --user yamllint>=1.17.0
+    # gem install rubocop
+    # sudo apt-get install shellcheck
+    # shellcheck --version
+    # npm i -D @commitlint/config-conventional
 fi
 
 if [ ! -z "$tflag" ]; then
