@@ -38,7 +38,7 @@ function start_test {
   $add_test
   local start=`date +%s`
   echo ${APPVEYOR_TEST[command]}
-  local full_command = "$({ cerr=$({ cout=$(${APPVEYOR_TEST[command]}); cret=$?; } 2>&1; declare -p cout cret >&2); declare -p cerr; } 2>&1)"
+  local full_command="$({ cerr=$({ cout=$(${APPVEYOR_TEST[command]}); cret=$?; } 2>&1; declare -p cout cret >&2); declare -p cerr; } 2>&1)"
   echo $full_command
   eval $full_command
   local end=`date +%s`
