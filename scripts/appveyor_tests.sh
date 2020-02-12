@@ -21,6 +21,7 @@ fi
 
 declare -A APPVEYOR_TEST
 APPVEYOR_TEST[framework]=junit
+dqt='"'
 
 while getopts t:i option
 do
@@ -43,14 +44,14 @@ function start_test {
   APPVEYOR_TEST[cret_arg]="${cret:-''}"
   echo "${APPVEYOR_TEST[name]} finished in $cruntime with return code: $cret"
   if [ ! -z "$cout" ]; then
-    APPVEYOR_TEST[cout_arg]="-StdOut \x22$cout\x22"
+    APPVEYOR_TEST[cout_arg]="-StdOut ${dqt}$cout${dqt}"
     echo "${APPVEYOR_TEST[name]} StdOut:"
     echo "$cout"
   else
     cout_arg=''
   fi
   if [ ! -z "$cerr" ]; then
-    APPVEYOR_TEST[cerr_arg]="-StdErr \x22$cerr\x22"
+    APPVEYOR_TEST[cerr_arg]="-StdErr ${dqt}$cerr${dqt}"
     echo "${APPVEYOR_TEST[name]} StdErr:"
     echo "$cerr"
   else
@@ -75,7 +76,7 @@ function end_test {
     updatetest="$update_test_common -Outcome Passed ${APPVEYOR_TEST[cout_arg]}"
   else
     echo "${APPVEYOR_TEST[name]} did not complete successfully!  Check the 'Tests' tab in appveyor for additional information."
-    updatetest="$update_test_common -Outcome Failed -ErrorMessage \x22${APPVEYOR_TEST[name]} return code: ${APPVEYOR_TEST[cret_arg]}\x22 ${APPVEYOR_TEST[cout_arg]} ${APPVEYOR_TEST[cerr_arg]}"
+    updatetest="$update_test_common -Outcome Failed -ErrorMessage ${dqt}${APPVEYOR_TEST[name]} return code: ${APPVEYOR_TEST[cret_arg]}${dqt} ${APPVEYOR_TEST[cout_arg]} ${APPVEYOR_TEST[cerr_arg]}"
   fi
   echo $updatetest
   $updatetest

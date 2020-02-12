@@ -62,6 +62,7 @@ for:
       - sh: pwd; ls -la; printenv
       - sh: PATH=$PATH:/home/appveyor/.local/bin
       - sh: bash --version
+      - sh: sudo apt-get remove -y --purge man-db
       - sh: ./scripts/appveyor_tests.sh -i
       # - sh: pip install --user salt-lint
       # - sh: pip install --user yamllint>=1.17.0
