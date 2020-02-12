@@ -5,9 +5,9 @@ environment:
   matrix:
     # Linux job
     # https://www.appveyor.com/docs/linux-images-software/
-    # - job_name: Lint Tests (salt-lint, yamllint, rubocop, shellcheck and commitlint)
-    #   job_group: Lint Tests
-    #   appveyor_build_worker_image: Ubuntu
+    - job_name: Lint Tests (salt-lint, yamllint, rubocop, shellcheck and commitlint)
+      job_group: Lint Tests
+      appveyor_build_worker_image: Ubuntu
 
     # Windows jobs
     # https://www.appveyor.com/docs/windows-images-software/
@@ -62,26 +62,28 @@ for:
       - sh: pwd; ls -la; printenv
       - sh: PATH=$PATH:/home/appveyor/.local/bin
       - sh: pip install --user salt-lint
-      - sh: pip install --user yamllint>=1.17.0
-      - sh: gem install rubocop
-      - sh: sudo apt-get install shellcheck
-      - sh: shellcheck --version
-      - sh: npm i -D @commitlint/config-conventional
+      # - sh: pip install --user yamllint>=1.17.0
+      # - sh: gem install rubocop
+      # - sh: sudo apt-get install shellcheck
+      # - sh: shellcheck --version
+      # - sh: npm i -D @commitlint/config-conventional
     test_script:
       - sh: echo test_script for $APPVEYOR_JOB_NAME
       # capture stdout, stderr and return code
       # - sh: >
       #   eval "$({ berr=$({ bout=$(git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst' |
       #   xargs salt-lint); bret=$?; } 2>&1; declare -p bout bret >&2); declare -p berr; } 2>&1)"
-      - sh: git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst' | xargs salt-lint
-      - sh: echo YAML LINT
-      - sh: yamllint -s .
-      - sh: echo RUBOCOP
-      - sh: rubocop -d
-      - sh: echo SHELL CHECK
-      - sh: git ls-files -- '*.sh' '*.bash' '*.ksh' | xargs shellcheck
-      - sh: echo COMMIT LINT
-      - sh: npx commitlint --from=HEAD~1
+      # - sh: Add-AppveyorTest -Name "Test A" -Framework NUnit -Filename a.exe -Outcome Passed -Duration 1000 # in milliseconds
+      - sh: ./scripts/run_test.sh salt-lint
+      # - sh: git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst' | xargs salt-lint
+      # - sh: echo YAML LINT
+      # - sh: yamllint -s .
+      # - sh: echo RUBOCOP
+      # - sh: rubocop -d
+      # - sh: echo SHELL CHECK
+      # - sh: git ls-files -- '*.sh' '*.bash' '*.ksh' | xargs shellcheck
+      # - sh: echo COMMIT LINT
+      # - sh: npx commitlint --from=HEAD~1
     deploy: off
 
   -
