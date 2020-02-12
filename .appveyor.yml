@@ -81,12 +81,14 @@ for:
       - sh: eval "$({ cerr=$({ cout=$($test_command); cret=$?; } 2>&1; declare -p cout cret >&2); declare -p cerr; } 2>&1)"
       - sh: end=`date +%s`
       - sh: cruntime=$((end-start))
-      - sh: if [[ -v cout ]]; then cout_safe = "-StdOut $cout"; else  cout_safe = ''
+      - sh: if [[ -v cout ]]; then cout_safe = "-StdOut $cout"; else  cout_safe = ''; fi
+      - sh: if [[ -v cerr ]]; then cerr_safe = "-StdErr $cerr"; else  cerr_safe = ''; fi
+      - sh: if [[ -v cret ]]; then cret_safe = "$cret"; else  cret_safe = ''; fi
       - sh: >
           if [[ "$bret" -eq 0 ]]; then
             appveyor UpdateTest -Name $test_name -Framework junit -Filename salt-lint -Outcome Passed -Duration $cruntime $cout_safe
           else
-            appveyor UpdateTest -Name $test_name -Framework junit -Filename salt-lint -Outcome Failed -Duration $cruntime -ErrorMessage "$test_name did not complete successfully" -StdOut $cout -StdErr $cerr
+            appveyor UpdateTest -Name $test_name -Framework junit -Filename salt-lint -Outcome Failed -Duration $cruntime -ErrorMessage "$test_name did not complete successfully: $cret_safe" -StdOut $cout -StdErr $cerr
           fi
       # - sh: ./scripts/run_test.sh salt-lint
       # - sh: git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst' | xargs salt-lint
