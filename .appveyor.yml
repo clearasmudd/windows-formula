@@ -75,7 +75,7 @@ for:
       #   xargs salt-lint); bret=$?; } 2>&1; declare -p bout bret >&2); declare -p berr; } 2>&1)"
       # - sh: Add-AppveyorTest -Name "Test A" -Framework NUnit -Filename a.exe -Outcome Passed -Duration 1000 # in milliseconds
       - sh: test_name="salt-lint"
-      - sh: appveyor AddTest $test_name -Framework junit -Filename salt-lint -Outcome Running
+      - sh: appveyor AddTest $test_name -Framework junit -Filename "*.sls *.jinja *.j2 *.tmpl *.tst" -Outcome Running
       - sh: test_command="git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst' | xargs salt-lint"
       - sh: start=`date +%s`
       - sh: eval "$({ cerr=$({ cout=$($test_command); cret=$?; } 2>&1; declare -p cout cret >&2); declare -p cerr; } 2>&1)"
@@ -86,9 +86,9 @@ for:
       - sh: if [[ -v cret ]]; then cret_safe="$cret"; else  cret_safe=''; fi
       - sh: >
           if [[ "$bret" -eq 0 ]]; then
-            appveyor UpdateTest -Name $test_name -Framework junit -Filename salt-lint -Outcome Passed -Duration $cruntime $cout_safe
+            appveyor UpdateTest -Name $test_name -Framework junit -Filename "*.sls *.jinja *.j2 *.tmpl *.tst" -Outcome Passed -Duration $cruntime $cout_safe
           else
-            appveyor UpdateTest -Name $test_name -Framework junit -Filename salt-lint -Outcome Failed -Duration $cruntime -ErrorMessage "$test_name did not complete successfully: $cret_safe" -StdOut $cout -StdErr $cerr
+            appveyor UpdateTest -Name $test_name -Framework junit -Filename "*.sls *.jinja *.j2 *.tmpl *.tst" -Outcome Failed -Duration $cruntime -ErrorMessage "$test_name did not complete successfully: $cret_safe" -StdOut $cout_safe -StdErr $cerr_safe
           fi
       # - sh: ./scripts/run_test.sh salt-lint
       # - sh: git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst' | xargs salt-lint
