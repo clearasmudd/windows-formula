@@ -74,7 +74,21 @@ for:
       #   eval "$({ berr=$({ bout=$(git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst' |
       #   xargs salt-lint); bret=$?; } 2>&1; declare -p bout bret >&2); declare -p berr; } 2>&1)"
       # - sh: Add-AppveyorTest -Name "Test A" -Framework NUnit -Filename a.exe -Outcome Passed -Duration 1000 # in milliseconds
-      - sh: ./scripts/run_test.sh salt-lint
+      - sh: test_name="salt-lint"
+      - sh: appveyor AddTest $test_name -Framework junit -Outcome Running
+      - sh: test_command="git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst' | xargs salt-lint"
+      - sh: start=`date +%s`
+      - sh: eval "$({ cerr=$({ cout=$($test_command); cret=$?; } 2>&1; declare -p cout cret >&2); declare -p cerr; } 2>&1)"
+      - sh: end=`date +%s`
+      - sh: cruntime=$((end-start))
+      - sh: >
+        if [[ "$bret" -eq 0 ]]; then
+          appveyor UpdateTest -Name $test_name -Framework junit -Outcome Passed -Duration $cruntime -StdOut $cout
+        else
+          appveyor UpdateTest -Name $test_name -Framework junit -Outcome Failed -Duration $cruntime -ErrorMessage "$test_name did not complete successfully" -StdOut $cout -StdErr $cerr
+        fi
+
+      # - sh: ./scripts/run_test.sh salt-lint
       # - sh: git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst' | xargs salt-lint
       # - sh: echo YAML LINT
       # - sh: yamllint -s .
@@ -161,7 +175,7 @@ for:
             $wc = New-Object 'System.Net.WebClient'
             $url = "https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)"
             $wc.UploadFile($url, (Resolve-Path $inspec_results))
-            Get-Content -path $inspec_results
+            # Get-Content -path $inspec_results
           }
           else
           {
