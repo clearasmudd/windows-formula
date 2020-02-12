@@ -1,9 +1,10 @@
 #!/bin/bash
 # https://www.appveyor.com/docs/build-worker-api/
 
+usage="appveyor_tests [-t salt-lint | yamllint | rubocop | shellcheck | commitlint] [-i]"
 if [ $# -eq 0 ]
   then
-    echo "appveyor_tests [-t salt-lint | yamllint | rubocop | shellcheck | commitlint] [-i]"
+    echo $usage
     exit 1
 fi
 
@@ -24,7 +25,7 @@ APPVEYOR_TEST[framework]=junit
 while getopts t:i option
 do
   case "${option}" in
-  t) APPVEYOR_TEST[name]=${OPTARG};;
+  t) tflag=1;APPVEYOR_TEST[name]=${OPTARG};;
   i) iflag=1;;
   esac
 done
@@ -76,10 +77,11 @@ if [ ! -z "$iflag" ]; then
     npm i -D @commitlint/config-conventional
 fi
 
+if [ ! -z "$tflag" ]; then
+  echo "Running ${APPVEYOR_TEST[name]}"
+fi
+
 case ${APPVEYOR_TEST[name]} in
-  *)
-    echo "Running ${APPVEYOR_TEST[name]}"
-    ;;
 
   salt-lint)
     echo "in salt-lint"
@@ -115,5 +117,9 @@ case ${APPVEYOR_TEST[name]} in
     APPVEYOR_TEST[command]="npx commitlint --from=HEAD~1"
     start_test
     end_test
+    ;;
+
+  *)
+    echo $usage
     ;;
 esac
