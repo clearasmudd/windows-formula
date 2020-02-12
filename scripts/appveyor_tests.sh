@@ -19,7 +19,7 @@ then
 fi
 
 declare -A APPVEYOR_TEST
-APPVEYOR_TEST[framework] = junit
+APPVEYOR_TEST[framework] = "junit"
 
 while getopts t: option
 do
