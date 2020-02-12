@@ -81,9 +81,10 @@ for:
       - sh: eval "$({ cerr=$({ cout=$($test_command); cret=$?; } 2>&1; declare -p cout cret >&2); declare -p cerr; } 2>&1)"
       - sh: end=`date +%s`
       - sh: cruntime=$((end-start))
+      - sh: if [[ -v cout ]]; then cout_safe = "-StdOut $cout"; else  cout_safe = ''
       - sh: >
           if [[ "$bret" -eq 0 ]]; then
-            appveyor UpdateTest -Name $test_name -Framework junit -Filename salt-lint -Outcome Passed -Duration $cruntime -StdOut $cout
+            appveyor UpdateTest -Name $test_name -Framework junit -Filename salt-lint -Outcome Passed -Duration $cruntime $cout_safe
           else
             appveyor UpdateTest -Name $test_name -Framework junit -Filename salt-lint -Outcome Failed -Duration $cruntime -ErrorMessage "$test_name did not complete successfully" -StdOut $cout -StdErr $cerr
           fi
