@@ -32,7 +32,7 @@ done
 
 function start_test {
   : "${APPVEYOR_TEST[filename]:=APPVEYOR_TEST[name]}"
-  add_test='appveyor AddTest ${APPVEYOR_TEST[name]} -Framework ${APPVEYOR_TEST[framework]} -Filename ${APPVEYOR_TEST[filename]} -Outcome Running'
+  add_test="appveyor AddTest ${APPVEYOR_TEST[name]} -Framework ${APPVEYOR_TEST[framework]} -Filename ${APPVEYOR_TEST[filename]} -Outcome Running"
   # echo $add_test
   $add_test
   local start=`date +%s`
@@ -43,14 +43,14 @@ function start_test {
   APPVEYOR_TEST[cret_arg]="${cret:-''}"
   echo "${APPVEYOR_TEST[name]} finished in $cruntime with return code: $cret"
   if [ ! -z "$cout" ]; then
-    APPVEYOR_TEST[cout_arg]='-StdOut "$cout"'
+    APPVEYOR_TEST[cout_arg]="-StdOut \x22$cout\x22"
     echo "${APPVEYOR_TEST[name]} StdOut:"
     echo "$cout"
   else
     cout_arg=''
   fi
   if [ ! -z "$cerr" ]; then
-    APPVEYOR_TEST[cerr_arg]='-StdErr "$cerr"'
+    APPVEYOR_TEST[cerr_arg]="-StdErr \x22$cerr\x22"
     echo "${APPVEYOR_TEST[name]} StdErr:"
     echo "$cerr"
   else
@@ -69,13 +69,13 @@ function start_test {
 #      [-StdOut <string>] [-StdErr <string>]
 
 function end_test {
-  update_test_common='appveyor UpdateTest -Name ${APPVEYOR_TEST[name]} -Framework ${APPVEYOR_TEST[framework]} -Filename ${APPVEYOR_TEST[filename]} -Duration ${APPVEYOR_TEST[cruntime]}'
+  update_test_common="appveyor UpdateTest -Name ${APPVEYOR_TEST[name]} -Framework ${APPVEYOR_TEST[framework]} -Filename ${APPVEYOR_TEST[filename]} -Duration ${APPVEYOR_TEST[cruntime]}"
   if [[ ${APPVEYOR_TEST[cret_arg]} -eq 0 ]]; then
     echo "${APPVEYOR_TEST[name]} completed successfully!"
-    updatetest='$update_test_common -Outcome Passed ${APPVEYOR_TEST[cout_arg]}'
+    updatetest="$update_test_common -Outcome Passed ${APPVEYOR_TEST[cout_arg]}"
   else
     echo "${APPVEYOR_TEST[name]} did not complete successfully!  Check the 'Tests' tab in appveyor for additional information."
-    updatetest='$update_test_common -Outcome Failed -ErrorMessage "${APPVEYOR_TEST[name]} return code: ${APPVEYOR_TEST[cret_arg]}" ${APPVEYOR_TEST[cout_arg]} ${APPVEYOR_TEST[cerr_arg]}'
+    updatetest="$update_test_common -Outcome Failed -ErrorMessage \x22${APPVEYOR_TEST[name]} return code: ${APPVEYOR_TEST[cret_arg]}\x22 ${APPVEYOR_TEST[cout_arg]} ${APPVEYOR_TEST[cerr_arg]}"
   fi
   echo $updatetest
   $updatetest
@@ -133,7 +133,7 @@ case ${APPVEYOR_TEST[name]} in
     end_test
     ;;
 
-  *)
-    echo $usage
-    ;;
+  # *)
+  #   echo $usage
+  #   ;;
 esac
