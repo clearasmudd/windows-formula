@@ -109,10 +109,10 @@ for:
       - ps: ./scripts/git-silent-uninstall.ps1
       # - ps: Get-ChildItem -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall | Get-ItemProperty |
       # Where-Object {$_.DisplayName -match "7-Zip"} | Select-Object -Property DisplayName, UninstallString
-      - ps: >
-          if (Test-Path "C:\Program Files\7-Zip\Uninstall.exe" -PathType Leaf)
-          { write-host "Removing 7-Zip from C:\Program Files\7-Zip\";
-          start-process -FilePath "C:\Program Files\7-Zip\Uninstall.exe" -ArgumentList "/S" }
+      # - ps: >
+      #     if (Test-Path "C:\Program Files\7-Zip\Uninstall.exe" -PathType Leaf)
+      #     { write-host "Removing 7-Zip from C:\Program Files\7-Zip\";
+      #     start-process -FilePath "C:\Program Files\7-Zip\Uninstall.exe" -ArgumentList "/S" }
       - ps: >
           (& cmd /c); iex (irm https://omnitruck.chef.io/install.ps1);
           Install-Project -Project chefdk -channel stable -version 4.7.73
@@ -151,23 +151,20 @@ for:
       # - ps: $dlstring = 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'
       # - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString($dlstring))
       - ps: $inspec_results = '.\test\results\appveyor-windows.xml'
-      - ps: ((Get-Content -path $inspec_results -Raw) -replace 'default','InSpec') | Set-Content -Path $inspec_results
       - ps: >
           if (Test-Path $inspec_results -PathType Leaf)
           {
+            ((Get-Content -path $inspec_results -Raw) -replace 'default','InSpec') | Set-Content -Path $inspec_results
             # upload results to AppVeyor
             $wc = New-Object 'System.Net.WebClient'
             $url = "https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)"
             $wc.UploadFile($url, (Resolve-Path $inspec_results))
+            Get-Content -path $inspec_results
           }
           else
           {
             dir c:\projects\windows-formula\test\results
           }
-      # - ps: |
-      # - ps: >
-      #     if (Test-Path ".\test\results\appveyor-windows.xml" -PathType Leaf)
-      #     { $wc.UploadFile($url, (Resolve-Path .\test\results\appveyor-windows.xml)) }
 
   -
     matrix:
