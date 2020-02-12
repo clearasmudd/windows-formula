@@ -88,7 +88,7 @@ for:
           if [[ "$bret" -eq 0 ]]; then
             appveyor UpdateTest -Name $test_name -Framework junit -Filename "*.sls *.jinja *.j2 *.tmpl *.tst" -Outcome Passed -Duration $cruntime $cout_safe
           else
-            appveyor UpdateTest -Name $test_name -Framework junit -Filename "*.sls *.jinja *.j2 *.tmpl *.tst" -Outcome Failed -Duration $cruntime -ErrorMessage "$test_name did not complete successfully: $cret_safe" -StdOut $cout_safe -StdErr $cerr_safe
+            appveyor UpdateTest -Name $test_name -Framework junit -Filename "*.sls *.jinja *.j2 *.tmpl *.tst" -Outcome Failed -Duration $cruntime -ErrorMessage "$test_name did not complete successfully: $cret_safe" $cout_safe $cerr_safe
           fi
       # - sh: ./scripts/run_test.sh salt-lint
       # - sh: git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst' | xargs salt-lint
