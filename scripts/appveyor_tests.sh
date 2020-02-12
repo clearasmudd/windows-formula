@@ -19,9 +19,9 @@ then
 fi
 
 declare -A APPVEYOR_TEST
-APPVEYOR_TEST[framework] = "junit"
+APPVEYOR_TEST[framework]=junit
 
-while getopts t: option
+while getopts t:i option
 do
   case "${option}" in
   t) APPVEYOR_TEST[name]=${OPTARG};;
@@ -52,7 +52,7 @@ function start_test {
 #      [-StdOut <string>] [-StdErr <string>]
 
 function end_test {
-  if [[ APPVEYOR_TEST[cret_arg] -eq 0 ]]; then
+  if [[ ${APPVEYOR_TEST[cret_arg]} -eq 0 ]]; then
     appveyor UpdateTest -Name ${APPVEYOR_TEST[name]} -Outcome Passed -Framework ${APPVEYOR_TEST[framework]} -Filename ${APPVEYOR_TEST[filename]} -Duration ${APPVEYOR_TEST[cruntime]} ${APPVEYOR_TEST[cout_arg]}
   else
     appveyor UpdateTest -Name ${APPVEYOR_TEST[name]} -Outcome Failed -Framework ${APPVEYOR_TEST[framework]} -Filename ${APPVEYOR_TEST[filename]} -Duration ${APPVEYOR_TEST[cruntime]} -ErrorMessage "${APPVEYOR_TEST[name]} did not complete successfully: ${APPVEYOR_TEST[cret_arg]}" ${APPVEYOR_TEST[cout_arg]} ${APPVEYOR_TEST[cerr_arg]}
