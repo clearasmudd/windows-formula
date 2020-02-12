@@ -30,8 +30,11 @@ do
 done
 
 function start_test {
+  echo "start_test"
   : "${APPVEYOR_TEST[filename]:=APPVEYOR_TEST[name]}"
-  appveyor AddTest ${APPVEYOR_TEST[name]} -Framework ${APPVEYOR_TEST[framework]} -Filename ${APPVEYOR_TEST[filename]} -Outcome Running
+  add_test="appveyor AddTest ${APPVEYOR_TEST[name]} -Framework ${APPVEYOR_TEST[framework]} -Filename ${APPVEYOR_TEST[filename]} -Outcome Running"
+  echo $add_test
+  $add_test
   local start=`date +%s`
   eval "$({ cerr=$({ cout=$(${APPVEYOR_TEST[command]}); cret=$?; } 2>&1; declare -p cout cret >&2); declare -p cerr; } 2>&1)"
   local end=`date +%s`
@@ -52,11 +55,15 @@ function start_test {
 #      [-StdOut <string>] [-StdErr <string>]
 
 function end_test {
+  echo "end_test"
+  update_test_common = "appveyor UpdateTest -Name ${APPVEYOR_TEST[name]} -Framework ${APPVEYOR_TEST[framework]} -Filename ${APPVEYOR_TEST[filename]} -Duration ${APPVEYOR_TEST[cruntime]}"
   if [[ ${APPVEYOR_TEST[cret_arg]} -eq 0 ]]; then
-    appveyor UpdateTest -Name ${APPVEYOR_TEST[name]} -Outcome Passed -Framework ${APPVEYOR_TEST[framework]} -Filename ${APPVEYOR_TEST[filename]} -Duration ${APPVEYOR_TEST[cruntime]} ${APPVEYOR_TEST[cout_arg]}
+    updatetest="$update_test_common -Outcome Passed ${APPVEYOR_TEST[cout_arg]}"
   else
-    appveyor UpdateTest -Name ${APPVEYOR_TEST[name]} -Outcome Failed -Framework ${APPVEYOR_TEST[framework]} -Filename ${APPVEYOR_TEST[filename]} -Duration ${APPVEYOR_TEST[cruntime]} -ErrorMessage "${APPVEYOR_TEST[name]} did not complete successfully: ${APPVEYOR_TEST[cret_arg]}" ${APPVEYOR_TEST[cout_arg]} ${APPVEYOR_TEST[cerr_arg]}
+    updatetest="$update_test_common -Outcome Failed -ErrorMessage \"${APPVEYOR_TEST[name]} did not complete successfully: ${APPVEYOR_TEST[cret_arg]}\" ${APPVEYOR_TEST[cout_arg]} ${APPVEYOR_TEST[cerr_arg]}"
   fi
+  echo $updatetest
+  $updatetest
 }
 
 if [ ! -z "$iflag" ]; then
@@ -75,6 +82,7 @@ case ${APPVEYOR_TEST[name]} in
     ;;
 
   salt-lint)
+    echo "in salt-lint"
     APPVEYOR_TEST[filename]="*.sls *.jinja *.j2 *.tmpl *.tst"
     APPVEYOR_TEST[command]="git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst' | xargs salt-lint"
     start_test

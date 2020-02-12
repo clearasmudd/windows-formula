@@ -9,12 +9,12 @@ environment:
       job_group: Lint Tests
       appveyor_build_worker_image: Ubuntu
 
-    # Windows jobs
-    # https://www.appveyor.com/docs/windows-images-software/
-    - job_name: Chef Inspec Tests (Windows Server 2019)
-      job_depends_on: Lint Tests
-      job_group: Chef Inspec Tests
-      appveyor_build_worker_image: Visual Studio 2019
+    # # Windows jobs
+    # # https://www.appveyor.com/docs/windows-images-software/
+    # - job_name: Chef Inspec Tests (Windows Server 2019)
+    #   job_depends_on: Lint Tests
+    #   job_group: Chef Inspec Tests
+    #   appveyor_build_worker_image: Visual Studio 2019
 
     # - job_name: Chef Inspec Tests (Windows Server 2016)
     #   job_depends_on: Lint Tests
@@ -77,10 +77,10 @@ for:
       #   xargs salt-lint); bret=$?; } 2>&1; declare -p bout bret >&2); declare -p berr; } 2>&1)"
       # - sh: Add-AppveyorTest -Name "Test A" -Framework NUnit -Filename a.exe -Outcome Passed -Duration 1000 # in milliseconds
       - sh: ./scripts/appveyor_tests.sh -t salt-lint
-      - sh: ./scripts/appveyor_tests.sh -t yamllint
-      - sh: ./scripts/appveyor_tests.sh -t rubocop
-      - sh: ./scripts/appveyor_tests.sh -t shellcheck
-      - sh: ./scripts/appveyor_tests.sh -t commitlint
+      # - sh: ./scripts/appveyor_tests.sh -t yamllint
+      # - sh: ./scripts/appveyor_tests.sh -t rubocop
+      # - sh: ./scripts/appveyor_tests.sh -t shellcheck
+      # - sh: ./scripts/appveyor_tests.sh -t commitlint
       # - sh: test_name="salt-lint"
       # - sh: appveyor AddTest $test_name -Framework junit -Filename "*.sls *.jinja *.j2 *.tmpl *.tst" -Outcome Running
       # - sh: test_command="git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst' | xargs salt-lint"
