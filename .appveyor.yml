@@ -84,9 +84,9 @@ for:
       - sh: if [[ -v cout ]]; then cout_safe="-StdOut $cout"; else cout_safe=''; fi
       - sh: if [[ -v cerr ]]; then cerr_safe="-StdErr $cerr"; else cerr_safe=''; fi
       - sh: if [[ -v cret ]]; then cret_safe="$cret"; else cret_safe=''; fi
-      - sh: echo "cout_safe: $cout_safe"
-      - sh: echo "cerr_safe: $cerr_safe"
-      - sh: echo "cret_safe: $cret_safe"
+      - sh: echo "cout_safe $cout_safe"
+      - sh: echo "cerr_safe $cerr_safe"
+      - sh: echo "cret_safe $cret_safe"
       - sh: >
           if [[ "$bret" -eq 0 ]]; then
             appveyor UpdateTest -Name $test_name -Framework junit -Filename "*.sls *.jinja *.j2 *.tmpl *.tst" -Outcome Passed -Duration $cruntime $cout_safe

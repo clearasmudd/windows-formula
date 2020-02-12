@@ -1,0 +1,72 @@
+
+windows_server_2019_datacenter_evaluation
+[32m  should include "windows"[0m
+
+Windows AppX Provisioned Package `Microsoft.MicrosoftSolitaireCollection`
+[32m  should not be installed[0m
+
+Windows AppX Provisioned Package `Microsoft.Wallet`
+[32m  should not be installed[0m
+
+Windows AppX Provisioned Package `Microsoft.ZuneMusic`
+[32m  should not be installed[0m
+
+Windows AppX Provisioned Package `Microsoft.ZuneVideo`
+[32m  should not be installed[0m
+
+Windows AppX Provisioned Package `Microsoft.MixedReality.Portal`
+[32m  should not be installed[0m
+
+Chocolatey package notepadplusplus
+[32m  should be installed[0m
+
+Chocolatey package windirstat
+[32m  should be installed[0m
+  version
+[32m    should cmp == "1.1.2.20161210"[0m
+
+Windows Feature 'telnet-client'
+[32m  should be installed[0m
+
+Command: `choco`
+[32m  should exist[0m
+
+`Eastern Standard Time` timezone (converted from America/New_York)
+[32m  should be set[0m
+
+Windows Optional Feature: `TelnetClient`
+[33m  The `windows_optional_feature` resource is not supported on server OSs, use `windows_feature` instead. (PENDING: Not yet implemented)[0m
+
+System Information
+  hostname
+[32m    should cmp == "saltstack1"[0m
+
+Registry Key HKLM\SYSTEM\CurrentControlSet\Control\ComputerName\ActiveComputerName
+  ComputerName
+[32m    should cmp == "saltstack1"[0m
+
+Powershell
+  stdout
+[32m    should match "Saltstack Computer Description"[0m
+
+System Package Git
+[32m  should be installed[0m
+
+System Package 7-Zip
+[32m  should be installed[0m
+  version
+[32m    should cmp == "18.06.00.0"[0m
+
+System Package KDiff3
+[32m  should be installed[0m
+
+Pending: (Failures listed here are expected and do not affect your suite's status)
+[33m
+  1) Windows Optional Feature: `TelnetClient` The `windows_optional_feature` resource is not supported on server OSs, use `windows_feature` instead.[0m
+     [36m# Not yet implemented[0m
+[36m     # 
+[0m
+
+Finished in 4.05 seconds (files took 24.37 seconds to load)
+[33m20 examples, 0 failures, 1 pending[0m
+
