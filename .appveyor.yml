@@ -75,7 +75,7 @@ for:
       - sh: >
           if [ $error ] then
             echo "One of the lint tests failed, making sure appveyor lint job fails."
-            $host.SetShouldExit(1)
+            # $host.SetShouldExit(1)
             exit 1
           fi
     deploy: off
