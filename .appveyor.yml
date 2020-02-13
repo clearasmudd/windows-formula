@@ -63,10 +63,10 @@ for:
       - sh: pwd; ls -la; printenv
       - sh: PATH=$PATH:/home/appveyor/.local/bin
       - sh: bash --version
-      - sh: pwsh -Command {Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted}
-      - pwsh: Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
-      - pwsh: Install-Module -Name PSScriptAnalyzer -Repository PSGallery -Force
-      - pwsh: Get-Module -ListAvailable
+      # - sh: pwsh -Command {Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted}
+      # - pwsh: Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
+      # - pwsh: Install-Module -Name PSScriptAnalyzer -Repository PSGallery -Force
+      # - pwsh: Get-Module -ListAvailable
       - sh: ./scripts/appveyor_tests.sh -i
     test_script:
       - sh: echo test_script for $APPVEYOR_JOB_NAME
