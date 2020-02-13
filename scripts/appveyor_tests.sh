@@ -42,7 +42,7 @@ function start_test {
   APPVEYOR_TEST[cret]=$cret
   APPVEYOR_TEST[cout]="$cout"
   APPVEYOR_TEST[cerr]="$cerr"
-  if [ "${APPVEYOR_TEST[name]}" == "shellcheck" ] then
+  if [ "${APPVEYOR_TEST[name]}" == "shellcheck" ]; then
     echo "{APPVEYOR_TEST[name]}: ${APPVEYOR_TEST[name]}"
     echo "{APPVEYOR_TEST[cret]}: ${APPVEYOR_TEST[cret]}"
     echo "{APPVEYOR_TEST[cout]}: ${APPVEYOR_TEST[cout]}"
