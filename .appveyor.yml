@@ -70,7 +70,7 @@ for:
       - sh: ./scripts/appveyor_tests.sh -i
     test_script:
       - sh: echo test_script for $APPVEYOR_JOB_NAME
-      - pwsh: Invoke-ScriptAnalyzer -Path ./scripts/ -Recurse
+      - pwsh: Invoke-ScriptAnalyzer -Path ./scripts/ -Recurse -Settings ./PSScriptAnalyzerSettings.psd1
       - sh: ./scripts/appveyor_tests.sh -t salt-lint || error=true
       - sh: ./scripts/appveyor_tests.sh -t yamllint || error=true
       - sh: ./scripts/appveyor_tests.sh -t rubocop || error=true

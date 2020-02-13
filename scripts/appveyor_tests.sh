@@ -74,9 +74,9 @@ if [ ! -z "$iflag" ]; then
     pip install --user salt-lint
     pip install --user yamllint
     gem install rubocop
+    npm i -D @commitlint/config-conventional </dev/null
     sudo apt-get install shellcheck
     shellcheck --version
-    npm i -D @commitlint/config-conventional </dev/null
 fi
 
 if [ ! -z "$tflag" ]; then
@@ -130,5 +130,5 @@ case ${APPVEYOR_TEST[name]} in
   #   echo $usage
   #   ;;
 esac
-
-exit "${APPVEYOR_TEST[cret]}"
+echo ${APPVEYOR_TEST[cret]}
+exit ${APPVEYOR_TEST[cret]}
