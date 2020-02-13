@@ -77,6 +77,9 @@ if [ ! -z "$iflag" ]; then
     npm i -D @commitlint/config-conventional </dev/null
     sudo apt-get install shellcheck
     shellcheck --version
+    pwsh -Command "& {Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted}"
+    pwsh -Command "& {Install-Module -Name PSScriptAnalyzer -Repository PSGallery -Force}"
+    pwsh -Command "& {Get-Module -ListAvailable}"
 fi
 
 if [ ! -z "$tflag" ]; then
