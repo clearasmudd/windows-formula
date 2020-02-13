@@ -41,7 +41,7 @@ function run_test {
   # shellcheck disable=SC2030
   eval "$({ cerr=$({ cout=$(${APPVEYOR_TEST[command]}); cret=$?; } 2>&1; declare -p cout cret >&2); declare -p cerr; } 2>&1)"
   APPVEYOR_TEST[cruntime]=$((($(date +%s%N) - $ts)/1000000))
-  APPVEYOR_TEST[cruntimesec]=$(${APPVEYOR_TEST[cruntime]}/1000)
+  APPVEYOR_TEST[cruntimesec]=$(echo "scale=4;${APPVEYOR_TEST[cruntime]}/1000" | bc)
   # end=$(date +%s)
   # command substitution strips newline echo -n "$(echo -n 'a\nb')" vs echo -n  $(echo -n 'a\nb')
   echo "$cout"
@@ -61,10 +61,10 @@ function run_test {
 
 function end_test {
   if [[ ${APPVEYOR_TEST[cret]} -eq 0 ]]; then
-    echo "${APPVEYOR_TEST[name]} ran for ${APPVEYOR_TEST[cruntimesec]} seconds and completed successfully with return code: ${APPVEYOR_TEST[cret]}!"
+    echo "${APPVEYOR_TEST[name]} ran for ${APPVEYOR_TEST[cruntimesec]} milliseconds and completed successfully with return code: ${APPVEYOR_TEST[cret]}!"
     appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Passed -StdOut "${APPVEYOR_TEST[cout]}"
   else
-    echo "${APPVEYOR_TEST[name]} ran for ${APPVEYOR_TEST[cruntimesec]} seconds and did not complete successfully with return code: ${APPVEYOR_TEST[cret]}!"
+    echo "${APPVEYOR_TEST[name]} ran for ${APPVEYOR_TEST[cruntimesec]} milliseconds and did not complete successfully with return code: ${APPVEYOR_TEST[cret]}!"
     echo "Check the 'Tests' tab in appveyor for additional information."
     appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Failed -ErrorMessage "return code: ${APPVEYOR_TEST[cret]}" -StdOut "${APPVEYOR_TEST[cout]}" -StdErr "${APPVEYOR_TEST[cerr]}"
   fi
