@@ -126,9 +126,18 @@ case ${APPVEYOR_TEST[name]} in
     end_test
     ;;
 
+    powershell)
+    APPVEYOR_TEST[filename]='*.ps*'
+    APPVEYOR_TEST[command]='./scripts/lint-powershell.sh'
+    run_test
+    end_test
+    ;;
+
   # *)
   #   echo $usage
   #   ;;
 esac
-echo ${APPVEYOR_TEST[cret]}
+
+echo "${APPVEYOR_TEST[cret]}"
+# shellcheck disable=SC2086
 exit ${APPVEYOR_TEST[cret]}

@@ -22,4 +22,6 @@ rubocop -d
 echo "** SHELLCHECK"
 shellcheck --version
 git ls-files -- '*.sh' '*.bash' '*.ksh' | xargs shellcheck
+echo "** PowerShell Script Analyzer"
+pwsh -Command "& {Invoke-ScriptAnalyzer -Path ./scripts/ -Recurse -Settings ./PSScriptAnalyzerSettings.psd1}"
 echo "** Linting completed successfully"
