@@ -71,13 +71,9 @@ for:
       - sh: ./scripts/appveyor_tests.sh -t rubocop || error=true
       - sh: ./scripts/appveyor_tests.sh -t shellcheck || error=true
       - sh: ./scripts/appveyor_tests.sh -t commitlint || error=true
-      - sh: sleep 30
-      - sh: >
-          if [ $error ] then
-            echo "One of the lint tests failed, making sure appveyor lint job fails."
-            # $host.SetShouldExit(1)
-            exit 1
-          fi
+      # - sh: if [ $error ]; then echo "One of the lint tests failed, making sure appveyor lint job fails."; fi
+      - sh: if [ $error ]; then exit 1; fi
+      # $host.SetShouldExit(1)
     deploy: off
 
   -
