@@ -9,12 +9,12 @@ environment:
       job_group: Lint Tests
       appveyor_build_worker_image: Ubuntu
 
-    # # Windows jobs
-    # # https://www.appveyor.com/docs/windows-images-software/
-    # - job_name: Chef Inspec Tests (Windows Server 2019)
-    #   job_depends_on: Lint Tests
-    #   job_group: Chef Inspec Tests
-    #   appveyor_build_worker_image: Visual Studio 2019
+      # # Windows jobs
+      # # https://www.appveyor.com/docs/windows-images-software/
+      # - job_name: Chef Inspec Tests (Windows Server 2019)
+      #   job_depends_on: Lint Tests
+      #   job_group: Chef Inspec Tests
+      #   appveyor_build_worker_image: Visual Studio 2019
 
       # - job_name: Chef Inspec Tests (Windows Server 2016)
       #   job_depends_on: Lint Tests
@@ -62,6 +62,7 @@ for:
       - sh: pwd; ls -la; printenv
       - sh: PATH=$PATH:/home/appveyor/.local/bin
       - sh: bash --version
+      - sh: sudo powershell -Command {Install-Module -Name PSScriptAnalyzer}
       - sh: ./scripts/appveyor_tests.sh -i
     test_script:
       - sh: echo test_script for $APPVEYOR_JOB_NAME
@@ -69,26 +70,8 @@ for:
       - sh: ./scripts/appveyor_tests.sh -t yamllint || error=true
       - sh: ./scripts/appveyor_tests.sh -t rubocop || error=true
       - sh: ./scripts/appveyor_tests.sh -t shellcheck || error=true
-      # - sh: git ls-files -- '*.sh' '*.bash' '*.ksh' | xargs shellcheck
-      - sh: git config --global user.email "you@example.com"
-      - sh: git config --global user.name "Your Name"
-      - sh: echo "testing insert" >> ./scripts/newfile.sh
-      - sh: git status
-      - sh: git add -A
-      - sh: git status
-      - sh: git commit -m "should cause failure of commitlint"
       - sh: ./scripts/appveyor_tests.sh -t commitlint </dev/null || error=true
-      - sh: sleep 5
-      # - sh: if [ $error ]; then $host.SetShouldExit(1); fi
-      - sh: if [ $error ]; then exit 1; fi
-    # after_test:
-    #   - sh: echo after_test for $APPVEYOR_JOB_NAME
-    #   # - sh: if [ $error ]; then echo "One of the lint tests failed, making sure appveyor lint job fails."; fi
-    #   - sh: >
-    #       echo "I can't figure out how to stop all the following errors.
-    #       /opt/appveyor/build-agent/bash-shell.sh: line 36: read: read error: 0: Resource temporarily unavailable.
-    #       I've seen this: https://github.com/appveyor/ci/issues/3002."
-    #   - sh: if [ $error ]; then $host.SetShouldExit(1); fi
+      - sh: if [ $error ]; then exit 1; fi  # $host.SetShouldExit(1)
     deploy: off
 
   -
@@ -112,10 +95,8 @@ for:
       - ps: Get-Package -Provider Programs -IncludeWindowsInstaller | Sort Name
       - ps: Get-CimInstance Win32_OperatingSystem | Format-List * | Out-String -Stream | Sort-Object
       - ps: $PSVersionTable | Sort Name
-      # Need to uninstall git and 7-zip to test installation using saltstack
-      - ps: ./scripts/git-silent-uninstall.ps1
-      # - ps: Get-ChildItem -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall | Get-ItemProperty |
-      # Where-Object {$_.DisplayName -match "7-Zip"} | Select-Object -Property DisplayName, UninstallString
+      - ps: ./scripts/uninstall_apps_for_saltstack.ps1
+
       # - ps: >
       #     if (Test-Path "C:\Program Files\7-Zip\Uninstall.exe" -PathType Leaf)
       #     { write-host "Removing 7-Zip from C:\Program Files\7-Zip\";

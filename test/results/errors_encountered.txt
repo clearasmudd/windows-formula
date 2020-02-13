@@ -9,4 +9,4 @@
   Appveyor: appveyor_tests.sh
   #/opt/appveyor/build-agent/bash-shell.sh: line 36: read: read error: 0: Resource temporarily unavailable. 
   #       I've seen this: https://github.com/appveyor/ci/issues/3002."
-  # fix: npm i -D @commitlint/config-conventional </dev/null
+  # fix: ./scripts/appveyor_tests.sh -t commitlint </dev/null

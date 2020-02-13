@@ -1,10 +1,11 @@
 #!/bin/bash
+# shellcheck disable=SC2031
 # https://www.appveyor.com/docs/build-worker-api/
 
 usage='appveyor_tests [-t salt-lint | yamllint | rubocop | shellcheck | commitlint] [-i]'
 if [ $# -eq 0 ]
   then
-    echo $usage
+    echo "$usage"
     exit 1
 fi
 
@@ -21,7 +22,6 @@ fi
 
 declare -A APPVEYOR_TEST
 APPVEYOR_TEST[framework]=junit
-dqt='"'
 
 while getopts t:i option
 do
@@ -33,13 +33,17 @@ done
 
 function run_test {
   : "${APPVEYOR_TEST[filename]:=APPVEYOR_TEST[name]}"
-  appveyor AddTest ${APPVEYOR_TEST[name]} -Framework ${APPVEYOR_TEST[framework]} -Filename "${APPVEYOR_TEST[filename]}" -Outcome Running
-  local start=`date +%s`
+  appveyor AddTest "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Outcome Running
+  local start
+  local end
+  start=$(date +%s)
   echo "${APPVEYOR_TEST[command]}"
+  # shellcheck disable=SC2030
   eval "$({ cerr=$({ cout=$(${APPVEYOR_TEST[command]}); cret=$?; } 2>&1; declare -p cout cret >&2); declare -p cerr; } 2>&1)"
-  local end=`date +%s`
+  end=$(date +%s)
   # command substitution strips newline echo -n "$(echo -n 'a\nb')" vs echo -n  $(echo -n 'a\nb')
   echo "$cout"
+  echo "$cerr"
   APPVEYOR_TEST[cruntime]=$((end-start))
   APPVEYOR_TEST[cret]=$cret
   APPVEYOR_TEST[cout]="$cout"
@@ -117,7 +121,7 @@ case ${APPVEYOR_TEST[name]} in
     APPVEYOR_TEST[command]='npx commitlint --from=HEAD~1'
     run_test
     if [[ "${APPVEYOR_TEST[cret]}" != "0" ]]; then
-      APPVEYOR_TEST[cout]+=$'\n'$'\n''GIT COMMIT:'$'\n'"`git log -1`"
+      APPVEYOR_TEST[cout]+=$'\n'$'\n''GIT COMMIT:'$'\n'"$(git log -1)"
     fi
     end_test
     ;;
@@ -127,4 +131,4 @@ case ${APPVEYOR_TEST[name]} in
   #   ;;
 esac
 
-exit ${APPVEYOR_TEST[cret]}
+exit "${APPVEYOR_TEST[cret]}"
