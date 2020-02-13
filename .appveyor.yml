@@ -77,7 +77,7 @@ for:
       #   eval "$({ berr=$({ bout=$(git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst' |
       #   xargs salt-lint); bret=$?; } 2>&1; declare -p bout bret >&2); declare -p berr; } 2>&1)"
       # - sh: Add-AppveyorTest -Name "Test A" -Framework NUnit -Filename a.exe -Outcome Passed -Duration 1000 # in milliseconds
-      - sh: if $(./scripts/appveyor_tests.sh -t salt-lint)
+      - sh: ./scripts/appveyor_tests.sh -t salt-lint || error=true
       - sh: ./scripts/appveyor_tests.sh -t yamllint || error=true
       - sh: ./scripts/appveyor_tests.sh -t rubocop || error=true
       - sh: ./scripts/appveyor_tests.sh -t shellcheck || error=true
