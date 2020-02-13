@@ -66,7 +66,7 @@ function end_test {
     # appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Passed `if [[ ! -z "${APPVEYOR_TEST[cout]}" ]]; then echo "-StdOut"; fi` "$(if [[ ! -z \"${APPVEYOR_TEST[cout]}\" ]]; then echo \"${cout}\"; fi)"
     # echo "${$(if [[ ! -z "$cout" ]]; then echo "${cout}"; fi)%x}"
     if [[ ! -z "$cout" ]]; then 
-    appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Passed echo "-StdOut ${cout}"
+    appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Passed -StdOut "${cout}"
     else
     appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Passed
     fi
