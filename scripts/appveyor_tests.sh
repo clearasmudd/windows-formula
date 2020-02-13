@@ -60,7 +60,7 @@ function end_test {
     # cout_arg=$(if [ ${APPVEYOR_TEST[cout]} ]; then echo -StdOut "${APPVEYOR_TEST[cout]}"; fi)
     # updatetest="appveyor UpdateTest -Name ${APPVEYOR_TEST[name]} -Framework ${APPVEYOR_TEST[framework]} -Filename ${APPVEYOR_TEST[filename]} -Duration ${APPVEYOR_TEST[cruntime]} -Outcome Passed ${APPVEYOR_TEST[cout_arg]}"
     # `if [ ${APPVEYOR_TEST[cout]} ]; then echo "-StdOut ${APPVEYOR_TEST[cout]}"; fi`
-    $cout="${APPVEYOR_TEST[cout]}"
+    cout="${APPVEYOR_TEST[cout]}"
     echo "ZZZZZZZZZZZ"
     echo "${APPVEYOR_TEST[cout]}"
     echo "YYYYYYYYYYY"
