@@ -1,3 +1,4 @@
+  Test Kitchen
   # Error message due to reboot during converge:
   # [WinRM] 500 returned in cleanup with error: Bad HTTP response returned from server. Body(if present): (500).
   # >>>>>>     Failed to complete #converge action: [[WSMAN ERROR CODE: 995]:
@@ -5,3 +6,7 @@
   # <f:Message>The I/O operation has been aborted because of either a thread exit or an application request.
   # </f:Message></f:WSManFault>] on py3-windows-server-2019-1809"
   
+  Appveyor: appveyor_tests.sh
+  #/opt/appveyor/build-agent/bash-shell.sh: line 36: read: read error: 0: Resource temporarily unavailable. 
+  #       I've seen this: https://github.com/appveyor/ci/issues/3002."
+  # fix: npm i -D @commitlint/config-conventional </dev/null

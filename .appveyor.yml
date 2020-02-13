@@ -1,7 +1,6 @@
 ---
 version: '1.0.{build}'
 skip_tags: true
-# output messages and test results https://www.appveyor.com/docs/build-worker-api/
 environment:
   matrix:
     # Linux job
@@ -71,7 +70,8 @@ for:
       - sh: ./scripts/appveyor_tests.sh -t rubocop || error=true
       - sh: ./scripts/appveyor_tests.sh -t commitlint || error=true
       - sh: ./scripts/appveyor_tests.sh -t shellcheck || error=true
-      # - sh: sleep 10
+      # - sh: if [ $error ]; then $host.SetShouldExit(1); fi
+      - sh: if [ $error ]; then exit 1; fi
     # after_test:
     #   - sh: echo after_test for $APPVEYOR_JOB_NAME
     #   # - sh: if [ $error ]; then echo "One of the lint tests failed, making sure appveyor lint job fails."; fi
