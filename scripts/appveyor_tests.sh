@@ -41,25 +41,10 @@ function start_test {
   eval "$({ cerr=$({ cout=$(${APPVEYOR_TEST[command]}); cret=$?; } 2>&1; declare -p cout cret >&2); declare -p cerr; } 2>&1)"
   local end=`date +%s`
   APPVEYOR_TEST[cruntime]=$((end-start))
-  APPVEYOR_TEST[cret_arg]="${cret:-''}"
+  APPVEYOR_TEST[cret]="${cret:-''}"
+  APPVEYOR_TEST[cout]="${cout:-''}"
+  APPVEYOR_TEST[cerr]="${cerr:-''}"
   echo "${APPVEYOR_TEST[name]} finished in ${APPVEYOR_TEST[cruntime]} with return code: ${APPVEYOR_TEST[cret_arg]}"
-  if [ ! -z "$cout" ]; then
-    APPVEYOR_TEST[cout_arg]="-StdOut ${dqt}$cout${dqt}"
-    echo "${APPVEYOR_TEST[name]} StdOut:"
-    echo "$cout"
-  else
-    cout_arg=''
-  fi
-  if [ ! -z "$cerr" ]; then
-    APPVEYOR_TEST[cerr_arg]="-StdErr ${dqt}$cerr${dqt}"
-    echo "${APPVEYOR_TEST[name]} StdErr:"
-    echo "$cerr"
-  else
-    APPVEYOR_TEST[cerr_arg]=''
-  fi
-  # echo "cret_arg ${APPVEYOR_TEST[cret_arg]}"
-  # echo "cout_arg ${APPVEYOR_TEST[cout_arg]}"
-  # echo "cerr_arg ${APPVEYOR_TEST[cerr_arg]}"
 }
 
 # Update-AppveyorTest -Name "Test A" -Framework NUnit -FileName a.exe -Outcome Failed -Duration $cruntime
@@ -74,11 +59,11 @@ function end_test {
   if [[ ${APPVEYOR_TEST[cret_arg]} -eq 0 ]]; then
     echo "${APPVEYOR_TEST[name]} completed successfully!"
     # updatetest="appveyor UpdateTest -Name ${APPVEYOR_TEST[name]} -Framework ${APPVEYOR_TEST[framework]} -Filename ${APPVEYOR_TEST[filename]} -Duration ${APPVEYOR_TEST[cruntime]} -Outcome Passed ${APPVEYOR_TEST[cout_arg]}"
-    appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Passed "${APPVEYOR_TEST[cout_arg]}"
+    appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Passed -StdOut "${APPVEYOR_TEST[cout]}"
   else
     echo "${APPVEYOR_TEST[name]} did not complete successfully!  Check the 'Tests' tab in appveyor for additional information."
     # updatetest="appveyor UpdateTest -Name ${APPVEYOR_TEST[name]} -Framework ${APPVEYOR_TEST[framework]} -Filename ${APPVEYOR_TEST[filename]} -Duration ${APPVEYOR_TEST[cruntime]} -Outcome Failed -ErrorMessage ${dqt}${APPVEYOR_TEST[name]} return code: ${APPVEYOR_TEST[cret_arg]}${dqt} ${APPVEYOR_TEST[cout_arg]} ${APPVEYOR_TEST[cerr_arg]}"
-    appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Failed -ErrorMessage "${APPVEYOR_TEST[name]} return code: ${APPVEYOR_TEST[cret_arg]}" "${APPVEYOR_TEST[cout_arg]}" "${APPVEYOR_TEST[cerr_arg]}"
+    appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Failed -ErrorMessage "${APPVEYOR_TEST[name]} return code: ${APPVEYOR_TEST[cret]}" -StdOut "${APPVEYOR_TEST[cout]}" -StdErr "${APPVEYOR_TEST[cerr]}"
   fi
   # echo $updatetest
   # $updatetest
