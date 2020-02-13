@@ -40,7 +40,7 @@ function start_test {
   local end=`date +%s`
   APPVEYOR_TEST[cruntime]=$((end-start))
   APPVEYOR_TEST[cret]=$cret
-  # APPVEYOR_TEST[cout]="${cout:-''}"
+  APPVEYOR_TEST[cout]=$cout
   echo "cout: $cout"
   APPVEYOR_TEST[cerr]="${cerr:-''}"
   echo "${APPVEYOR_TEST[name]} finished in ${APPVEYOR_TEST[cruntime]} seconds with return code: ${APPVEYOR_TEST[cret]}"
@@ -60,8 +60,14 @@ function end_test {
     # cout_arg=$(if [ ${APPVEYOR_TEST[cout]} ]; then echo -StdOut "${APPVEYOR_TEST[cout]}"; fi)
     # updatetest="appveyor UpdateTest -Name ${APPVEYOR_TEST[name]} -Framework ${APPVEYOR_TEST[framework]} -Filename ${APPVEYOR_TEST[filename]} -Duration ${APPVEYOR_TEST[cruntime]} -Outcome Passed ${APPVEYOR_TEST[cout_arg]}"
     # `if [ ${APPVEYOR_TEST[cout]} ]; then echo "-StdOut ${APPVEYOR_TEST[cout]}"; fi`
+    echo "ZZZZZZZZZZZ"
+    echo "${APPVEYOR_TEST[cout]}"
+    echo "YYYYYYYYYYY"
+    echo "$cout"
     echo "XXXXXXXXXXX"
     echo `if [ "$cout" != '' ]; then echo "-StdOut $cout"; fi`
+    echo "TTTTTTTTTTT"
+    echo `if [ "${APPVEYOR_TEST[cout]}" != '' ]; then echo "-StdOut ${APPVEYOR_TEST[cout]}"; fi`
     appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Passed `if [ "$cout" != '' ]; then echo "-StdOut $cout"; fi`
   else
     echo "${APPVEYOR_TEST[name]} did not complete successfully!  Check the 'Tests' tab in appveyor for additional information."
