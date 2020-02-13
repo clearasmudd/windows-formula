@@ -41,6 +41,7 @@ function start_test {
   APPVEYOR_TEST[cruntime]=$((end-start))
   APPVEYOR_TEST[cret]=$cret
   # APPVEYOR_TEST[cout]="${cout:-''}"
+  echo "cout: $cout"
   APPVEYOR_TEST[cerr]="${cerr:-''}"
   echo "${APPVEYOR_TEST[name]} finished in ${APPVEYOR_TEST[cruntime]} seconds with return code: ${APPVEYOR_TEST[cret]}"
 }
