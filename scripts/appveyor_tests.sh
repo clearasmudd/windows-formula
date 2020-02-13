@@ -79,8 +79,6 @@ function end_test {
   # $updatetest
 }
 
-prepend() { [ -d "$2" ] && eval $1=\"$2':'\$$1\" && export $1; }
-
 if [ ! -z "$iflag" ]; then
     echo 'Installing linting tools'
     sudo apt-get remove -y --purge man-db
