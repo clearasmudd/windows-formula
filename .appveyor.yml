@@ -66,15 +66,12 @@ for:
     test_script:
       - sh: echo test_script for $APPVEYOR_JOB_NAME
       - sh: ./scripts/appveyor_tests.sh -t salt-lint || error=true
-      - sh: sleep 10
       - sh: ./scripts/appveyor_tests.sh -t yamllint || error=true
-      - sh: sleep 10
       - sh: ./scripts/appveyor_tests.sh -t rubocop || error=true
-      - sh: sleep 10
-      - sh: ./scripts/appveyor_tests.sh -t commitlint || error=true
-      - sh: sleep 10
       - sh: ./scripts/appveyor_tests.sh -t shellcheck || error=true
-      - sh: sleep 30
+      - sh: sleep 20
+      - sh: ./scripts/appveyor_tests.sh -t commitlint </dev/null || error=true
+      - sh: sleep 20
       # - sh: if [ $error ]; then $host.SetShouldExit(1); fi
       - sh: if [ $error ]; then exit 1; fi
     # after_test:
