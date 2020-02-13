@@ -42,11 +42,11 @@ else
 {
   if ($installPath -like '*Git*')
   {
-    program_name = 'Git'
+    $program_name = 'Git'
   }
   elseif ($installPath -like '*7-Zip*')
   {
-    program_name = '7-Zip'
+    $program_name = '7-Zip'
   }
   $confirmation = Get-Package -Provider Programs -IncludeWindowsInstaller -Name "$program_name*" -ErrorAction:SilentlyContinue
   if ($confirmation)
