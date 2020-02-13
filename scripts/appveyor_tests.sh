@@ -2,7 +2,7 @@
 # shellcheck disable=SC2031
 # https://www.appveyor.com/docs/build-worker-api/
 
-usage='appveyor_tests [-t salt-lint | yamllint | rubocop | shellcheck | commitlint] [-i]'
+usage='appveyor_tests [-t salt-lint | yamllint | rubocop | shellcheck | commitlint | PowerShellScriptAnalyzer] [-i]'
 if [ $# -eq 0 ]
   then
     echo "$usage"
@@ -129,7 +129,7 @@ case ${APPVEYOR_TEST[name]} in
     end_test
     ;;
 
-    powershell)
+    PowerShellScriptAnalyzer)
     APPVEYOR_TEST[filename]='*.ps*'
     APPVEYOR_TEST[command]='./scripts/lint-powershell.sh'
     run_test

@@ -70,9 +70,9 @@ for:
       - sh: ./scripts/appveyor_tests.sh -i
     test_script:
       - sh: echo test_script for $APPVEYOR_JOB_NAME
-      - pwsh: 
-      - sh: ./scripts/appveyor_tests.sh -t salt-lint || error=true
       - sh: ./scripts/appveyor_tests.sh -t yamllint || error=true
+      - sh: ./scripts/appveyor_tests.sh -t salt-lint || error=true
+      - sh: ./scripts/appveyor_tests.sh -t PowerShellScriptAnalyzer || error=true
       - sh: ./scripts/appveyor_tests.sh -t rubocop || error=true
       - sh: ./scripts/appveyor_tests.sh -t shellcheck || error=true
       - sh: ./scripts/appveyor_tests.sh -t commitlint </dev/null || error=true
