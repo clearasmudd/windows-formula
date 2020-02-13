@@ -34,10 +34,10 @@ done
 function run_test {
   : "${APPVEYOR_TEST[filename]:=APPVEYOR_TEST[name]}"
   appveyor AddTest "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Outcome Running
-  local start
-  local end
+  local ts
   # ts=$(date +%s%N) ; $@ ; tt=$((($(date +%s%N) - $ts)/1000000)) ; echo "Time taken: $tt milliseconds"
   echo "${APPVEYOR_TEST[command]}"
+  ts=$(date +%s%N)
   # shellcheck disable=SC2030
   eval "$({ cerr=$({ cout=$(${APPVEYOR_TEST[command]}); cret=$?; } 2>&1; declare -p cout cret >&2); declare -p cerr; } 2>&1)"
   APPVEYOR_TEST[cruntime]=$((($(date +%s%N) - $ts)/1000000))
