@@ -31,14 +31,15 @@ do
   esac
 done
 
-function start_test {
+function run_test {
   : "${APPVEYOR_TEST[filename]:=APPVEYOR_TEST[name]}"
   appveyor AddTest ${APPVEYOR_TEST[name]} -Framework ${APPVEYOR_TEST[framework]} -Filename "${APPVEYOR_TEST[filename]}" -Outcome Running
   local start=`date +%s`
   echo "${APPVEYOR_TEST[command]}"
   eval "$({ cerr=$({ cout=$(${APPVEYOR_TEST[command]}); cret=$?; } 2>&1; declare -p cout cret >&2); declare -p cerr; } 2>&1)"
   local end=`date +%s`
-  echo $cout
+  # command substitution strips newline echo -n "$(echo -n 'a\nb')" vs echo -n  $(echo -n 'a\nb')
+  echo "$cout"
   APPVEYOR_TEST[cruntime]=$((end-start))
   APPVEYOR_TEST[cret]=$cret
   APPVEYOR_TEST[cout]="$cout"
@@ -84,7 +85,7 @@ case ${APPVEYOR_TEST[name]} in
     # echo "in salt-lint"
     APPVEYOR_TEST[filename]='*.sls *.jinja *.j2 *.tmpl *.tst'
     APPVEYOR_TEST[command]="./scripts/lint-salt-lint.sh"
-    start_test
+    run_test
     APPVEYOR_TEST[cout]=$(echo "${APPVEYOR_TEST[cout]}" | sed '/Examining/d')
     end_test
     ;;
@@ -92,14 +93,14 @@ case ${APPVEYOR_TEST[name]} in
   yamllint)
     APPVEYOR_TEST[filename]='*.yml *.yaml'
     APPVEYOR_TEST[command]='yamllint -s .'
-    start_test
+    run_test
     end_test
     ;;
 
   rubocop)
     APPVEYOR_TEST[filename]="*.rb and '#!/usr/bin/env ruby'"
     APPVEYOR_TEST[command]='rubocop -d -E'
-    start_test
+    run_test
     end_test
     ;;
 
@@ -107,14 +108,14 @@ case ${APPVEYOR_TEST[name]} in
     APPVEYOR_TEST[filename]='*.sh *.bash *.ksh'
     # APPVEYOR_TEST[command]="git ls-files *.sh *.bash *.ksh | xargs shellcheck"
     APPVEYOR_TEST[command]="./scripts/lint-shellcheck.sh"
-    start_test
+    run_test
     end_test
     ;;
 
   commitlint)
     APPVEYOR_TEST[filename]='git commit message'
     APPVEYOR_TEST[command]='npx commitlint --from=HEAD~1'
-    start_test
+    run_test
     if [[ "${APPVEYOR_TEST[cret]}" != "0" ]]; then
       APPVEYOR_TEST[cout]+=$'\n'$'\n''GIT COMMIT:'$'\n'"`git log -1`"
     fi
