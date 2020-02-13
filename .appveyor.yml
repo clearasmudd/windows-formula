@@ -9,28 +9,28 @@ environment:
       job_group: Lint Tests
       appveyor_build_worker_image: Ubuntu
 
-    # # Windows jobs
-    # # https://www.appveyor.com/docs/windows-images-software/
-    # - job_name: Chef Inspec Tests (Windows Server 2019)
-    #   job_depends_on: Lint Tests
-    #   job_group: Chef Inspec Tests
-    #   appveyor_build_worker_image: Visual Studio 2019
+      # # Windows jobs
+      # # https://www.appveyor.com/docs/windows-images-software/
+      # - job_name: Chef Inspec Tests (Windows Server 2019)
+      #   job_depends_on: Lint Tests
+      #   job_group: Chef Inspec Tests
+      #   appveyor_build_worker_image: Visual Studio 2019
 
-    # - job_name: Chef Inspec Tests (Windows Server 2016)
-    #   job_depends_on: Lint Tests
-    #   job_group: Chef Inspec Tests
-    #   appveyor_build_worker_image: Visual Studio 2017
+      # - job_name: Chef Inspec Tests (Windows Server 2016)
+      #   job_depends_on: Lint Tests
+      #   job_group: Chef Inspec Tests
+      #   appveyor_build_worker_image: Visual Studio 2017
 
-    # - job_name: Chef Inspec Tests (Windows Server 2012 R2)
-    #   job_depends_on: Lint Tests
-    #   job_group: Chef Inspec Tests
-    #   appveyor_build_worker_image: Visual Studio 2015
+      # - job_name: Chef Inspec Tests (Windows Server 2012 R2)
+      #   job_depends_on: Lint Tests
+      #   job_group: Chef Inspec Tests
+      #   appveyor_build_worker_image: Visual Studio 2015
 
-    # - job_name: On-Premise Chef Inspec Test Results (Windows 10 Build 1903)
-    #   local_kitchen_suite_platform: py3-windows-10-1903
-    #   job_depends_on: Chef Inspec Tests
-    #   job_group: Mock Chef Inspec Tests
-    #   appveyor_build_worker_image: Visual Studio 2019
+      # - job_name: On-Premise Chef Inspec Test Results (Windows 10 Build 1903)
+      #   local_kitchen_suite_platform: py3-windows-10-1903
+      #   job_depends_on: Chef Inspec Tests
+      #   job_group: Mock Chef Inspec Tests
+      #   appveyor_build_worker_image: Visual Studio 2019
       # - job_name: On-Premise Chef Inspec Test Results (Windows 10 Build 1809)
       #   local_kitchen_suite_platform: py3-windows-10-1809
       #   job_depends_on: Chef Inspec Tests
@@ -43,10 +43,10 @@ environment:
       #   job_group: Mock Chef Inspec Tests
       #   appveyor_build_worker_image: Visual Studio 2019
 
-    # - job_name: Release
-    #   appveyor_build_worker_image: Ubuntu
-    #   job_depends_on: Lint Tests, Chef Inspec Tests, Mock Chef Inspec Tests
-    #   MAINTAINER_TOKEN: ${GH_TOKEN}
+      # - job_name: Release
+      #   appveyor_build_worker_image: Ubuntu
+      #   job_depends_on: Lint Tests, Chef Inspec Tests, Mock Chef Inspec Tests
+      #   MAINTAINER_TOKEN: ${GH_TOKEN}
 
 matrix:
   fast_finish: true
@@ -71,7 +71,11 @@ for:
       - sh: ./scripts/appveyor_tests.sh -t shellcheck || error=true
       - sh: git config --global user.email "you@example.com"
       - sh: git config --global user.name "Your Name"
-      - sh: echo "testing insert" >> ./scripts/newfile.sh; git status; git add .; git commit -m "should cause failure of commitlint"
+      - sh: echo "testing insert" >> ./scripts/newfile.sh
+      - sh: git status
+      - sh: git add -A
+      - sh: git status
+      - sh: git commit -m "should cause failure of commitlint"
       - sh: ./scripts/appveyor_tests.sh -t commitlint </dev/null || error=true
       - sh: sleep 5
       # - sh: if [ $error ]; then $host.SetShouldExit(1); fi
@@ -81,7 +85,7 @@ for:
     #   # - sh: if [ $error ]; then echo "One of the lint tests failed, making sure appveyor lint job fails."; fi
     #   - sh: >
     #       echo "I can't figure out how to stop all the following errors.
-    #       /opt/appveyor/build-agent/bash-shell.sh: line 36: read: read error: 0: Resource temporarily unavailable. 
+    #       /opt/appveyor/build-agent/bash-shell.sh: line 36: read: read error: 0: Resource temporarily unavailable.
     #       I've seen this: https://github.com/appveyor/ci/issues/3002."
     #   - sh: if [ $error ]; then $host.SetShouldExit(1); fi
     deploy: off
@@ -129,7 +133,8 @@ for:
       - ps: secedit /configure /db $env:windir/security/new.sdb /cfg $env:temp/export.cfg /areas SECURITYPOLICY
       - ps: net user /add $env:machine_user $env:machine_pass
       - ps: net localgroup administrators $env:machine_user /add
-      # - ps: c:\opscode\chefdk\bin\chef.bat shell-init powershell | iex; cmd /c c:\opscode\chefdk\bin\chef.bat --version
+      # - ps: c:\opscode\chefdk\bin\chef.bat shell-init powershell | iex;
+      # cmd /c c:\opscode\chefdk\bin\chef.bat --version
       - ps: c:\opscode\chefdk\bin\chef.bat exec bundle install
       - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen list
       # - ps: if ($env:CI -imatch 'True') {write-host 'IS CI'} else {write-host 'IS NOT CI'}
