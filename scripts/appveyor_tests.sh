@@ -62,11 +62,10 @@ function end_test {
     # echo `if [ "${APPVEYOR_TEST[cout]}" != '' ]; then echo "-StdOut \"${APPVEYOR_TEST[cout]}\""; fi`
     # echo "APPVEYOR_TEST[cerr]: ${APPVEYOR_TEST[cerr]}"
     # echo "APPVEYOR_TEST[cout]: ${APPVEYOR_TEST[cout]%x*}"
-    cout=${APPVEYOR_TEST[cout]}
     # The inline bash command substitution is stripping all the newlines in StdOut and StdErr so I'm using this second 
     # appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Passed `if [[ ! -z "${APPVEYOR_TEST[cout]}" ]]; then echo "-StdOut"; fi` "$(if [[ ! -z \"${APPVEYOR_TEST[cout]}\" ]]; then echo \"${cout}\"; fi)"
     # echo "${$(if [[ ! -z "$cout" ]]; then echo "${cout}"; fi)%x}"
-    appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Passed -StdOut "${cout}"
+    appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Passed -StdOut "${APPVEYOR_TEST[cout]}"
     # if [[ ! -z "$cout" ]]; then 
     # appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Passed -StdOut "${cout}"
     # else
@@ -130,6 +129,9 @@ case ${APPVEYOR_TEST[name]} in
     APPVEYOR_TEST[filename]='git commit message'
     APPVEYOR_TEST[command]='npx commitlint --from=HEAD~1'
     start_test
+    if [[ ! ${APPVEYOR_TEST[cret]} -eq 0 ]]; then
+      ${APPVEYOR_TEST[cout]}+=`git log -1`
+    fi
     end_test
     ;;
 
