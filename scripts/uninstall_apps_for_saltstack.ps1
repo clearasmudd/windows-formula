@@ -1,5 +1,5 @@
 # Need to uninstall git and 7-zip to test installation using saltstack
-
+#
 # section sourced from: https://github.com/Limech/git-powershell-silent-install/blob/master/git-silent-uninstall.ps1
 ## There can be many places where git could have been installed.  Check likely places.
 ### List of likely places where Git could be
