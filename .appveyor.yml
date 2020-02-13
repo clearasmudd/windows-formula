@@ -69,9 +69,10 @@ for:
       - sh: ./scripts/appveyor_tests.sh -t yamllint || error=true
       - sh: ./scripts/appveyor_tests.sh -t rubocop || error=true
       - sh: ./scripts/appveyor_tests.sh -t shellcheck || error=true
-      - sh: sleep 20
+      - sh: sleep 5
+      - sh: touch ./scripts/appveyor_tests.sh; git add .; git commit -m "should cause failure of commitlint"
       - sh: ./scripts/appveyor_tests.sh -t commitlint </dev/null || error=true
-      - sh: sleep 20
+      - sh: sleep 5
       # - sh: if [ $error ]; then $host.SetShouldExit(1); fi
       - sh: if [ $error ]; then exit 1; fi
     # after_test:
