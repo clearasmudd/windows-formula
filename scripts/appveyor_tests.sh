@@ -42,6 +42,12 @@ function start_test {
   APPVEYOR_TEST[cret]=$cret
   APPVEYOR_TEST[cout]="$cout"
   APPVEYOR_TEST[cerr]="$cerr"
+  if [ "${APPVEYOR_TEST[name]}" == "shellcheck" ] then
+    echo "{APPVEYOR_TEST[name]}: ${APPVEYOR_TEST[name]}"
+    echo "{APPVEYOR_TEST[cret]}: ${APPVEYOR_TEST[cret]}"
+    echo "{APPVEYOR_TEST[cout]}: ${APPVEYOR_TEST[cout]}"
+    echo "{APPVEYOR_TEST[cerr]}: ${APPVEYOR_TEST[cerr]}"
+  fi
   echo "${APPVEYOR_TEST[name]} finished in ${APPVEYOR_TEST[cruntime]} seconds with return code: ${APPVEYOR_TEST[cret]}"
 }
 
@@ -99,7 +105,8 @@ case ${APPVEYOR_TEST[name]} in
   salt-lint)
     # echo "in salt-lint"
     APPVEYOR_TEST[filename]='*.sls *.jinja *.j2 *.tmpl *.tst'
-    APPVEYOR_TEST[command]="git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst' | xargs salt-lint"
+    # APPVEYOR_TEST[command]="git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst' | xargs salt-lint"
+    APPVEYOR_TEST[command]="git ls-files *.sls *.jinja *.j2 *.tmpl *.tst | xargs salt-lint"
     start_test
     end_test
     ;;
@@ -120,7 +127,7 @@ case ${APPVEYOR_TEST[name]} in
 
   shellcheck)
     APPVEYOR_TEST[filename]='*.sh *.bash *.ksh'
-    APPVEYOR_TEST[command]="git ls-files -- '*.sh' '*.bash' '*.ksh' | xargs shellcheck"
+    APPVEYOR_TEST[command]="git ls-files *.sh *.bash *.ksh | xargs shellcheck"
     start_test
     end_test
     ;;
@@ -130,7 +137,7 @@ case ${APPVEYOR_TEST[name]} in
     APPVEYOR_TEST[command]='npx commitlint --from=HEAD~1'
     start_test
     if [[ "${APPVEYOR_TEST[cret]}" != "0" ]]; then
-      APPVEYOR_TEST[cout]+='\n\nGIT COMMIT:\n'"`git log -1`"
+      APPVEYOR_TEST[cout]+=$'\n'$'\n''GIT COMMIT:'$'\n'"`git log -1`"
     fi
     end_test
     ;;
