@@ -36,7 +36,7 @@ function start_test {
   appveyor AddTest ${APPVEYOR_TEST[name]} -Framework ${APPVEYOR_TEST[framework]} -Filename "${APPVEYOR_TEST[filename]}" -Outcome Running
   local start=`date +%s`
   echo "${APPVEYOR_TEST[command]}"
-  eval "$({ cerr=$({ cout=$(${APPVEYOR_TEST[command]}); cret=$?; } 2>&1; declare -p cout cret >&2); declare -p cerr; } 2>&1)"
+  eval "$({ cerr=$({ cout=$("${APPVEYOR_TEST[command]}"); cret=$?; } 2>&1; declare -p cout cret >&2); declare -p cerr; } 2>&1)"
   local end=`date +%s`
   APPVEYOR_TEST[cruntime]=$((end-start))
   APPVEYOR_TEST[cret]=$cret
