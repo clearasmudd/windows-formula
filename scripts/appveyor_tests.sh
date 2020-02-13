@@ -64,8 +64,8 @@ function end_test {
     echo "APPVEYOR_TEST[cout]: ${APPVEYOR_TEST[cout]%x*}"
     cout=${APPVEYOR_TEST[cout]}
     if [[ ! -z "$cout" ]]; then echo "XXXXXXXXXXX -StdOut"; fi
-    echo $(if [[ ! -z "$cout" ]]; then echo "${cout%x*}"; fi)
-    appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Passed `if [[ ! -z "${APPVEYOR_TEST[cout]}" ]]; then echo "-StdOut"; fi` $(if [[ ! -z "${APPVEYOR_TEST[cout]}" ]]; then echo "${cout%x*}"; fi)
+    echo "${$(if [[ ! -z "$cout" ]]; then echo "${cout}"; fi)%x}"
+    appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Passed `if [[ ! -z "${APPVEYOR_TEST[cout]}" ]]; then echo "-StdOut"; fi` "$(if [[ ! -z \"${APPVEYOR_TEST[cout]}\" ]]; then echo \"${cout}\"; fi)"
   else
     echo "${APPVEYOR_TEST[name]} did not complete successfully!  Check the 'Tests' tab in appveyor for additional information."
     appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Failed -ErrorMessage "return code: ${APPVEYOR_TEST[cret]}" -StdOut "${APPVEYOR_TEST[cout]}" -StdErr "${APPVEYOR_TEST[cerr]}"
