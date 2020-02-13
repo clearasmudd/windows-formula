@@ -129,7 +129,7 @@ case ${APPVEYOR_TEST[name]} in
     end_test
     ;;
 
-    PowerShellScriptAnalyzer)
+  PowerShellScriptAnalyzer)
     APPVEYOR_TEST[filename]='*.ps*'
     APPVEYOR_TEST[command]='./scripts/lint-powershell.sh'
     run_test
