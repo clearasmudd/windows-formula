@@ -69,8 +69,8 @@ for:
       - sh: ./scripts/appveyor_tests.sh -t salt-lint || error=true
       - sh: ./scripts/appveyor_tests.sh -t yamllint || error=true
       - sh: ./scripts/appveyor_tests.sh -t rubocop || error=true
-      - sh: ./scripts/appveyor_tests.sh -t shellcheck || error=true
       - sh: ./scripts/appveyor_tests.sh -t commitlint || error=true
+      - sh: ./scripts/appveyor_tests.sh -t shellcheck || error=true
       - sh: sleep 10
     after_test:
       - sh: echo after_test for $APPVEYOR_JOB_NAME
