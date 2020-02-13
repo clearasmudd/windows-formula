@@ -70,6 +70,8 @@ for:
       - sh: ./scripts/appveyor_tests.sh -t rubocop || error=true
       - sh: ./scripts/appveyor_tests.sh -t shellcheck || error=true
       - sh: sleep 5
+      - sh: git config --global user.email "you@example.com"
+      - sh: git config --global user.name "Your Name"
       - sh: touch ./scripts/appveyor_tests.sh; git add .; git commit -m "should cause failure of commitlint"
       - sh: ./scripts/appveyor_tests.sh -t commitlint </dev/null || error=true
       - sh: sleep 5
