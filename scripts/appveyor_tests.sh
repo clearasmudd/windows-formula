@@ -133,7 +133,7 @@ case ${APPVEYOR_TEST[name]} in
     APPVEYOR_TEST[filename]='*.ps*'
     APPVEYOR_TEST[command]='./scripts/lint-powershell.sh'
     run_test
-    if [[ "${APPVEYOR_TEST[cout]}" == *"rule violations found"* ]]; then
+    if [[ "${APPVEYOR_TEST[cout]}" == *"rule violation found"* ]] || [[ "${APPVEYOR_TEST[cout]}" == *"rule violations found"* ]]; then
       APPVEYOR_TEST[cret]=1
     fi
     end_test
