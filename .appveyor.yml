@@ -64,54 +64,18 @@ for:
       - sh: bash --version
       - sh: sudo apt-get remove -y --purge man-db
       - sh: ./scripts/appveyor_tests.sh -i
-      # - sh: pip install --user salt-lint
-      # - sh: pip install --user yamllint>=1.17.0
-      # - sh: gem install rubocop
-      # - sh: sudo apt-get install shellcheck
-      # - sh: shellcheck --version
-      # - sh: npm i -D @commitlint/config-conventional
     test_script:
       - sh: echo test_script for $APPVEYOR_JOB_NAME
-      # capture stdout, stderr and return code
-      # - sh: >
-      #   eval "$({ berr=$({ bout=$(git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst' |
-      #   xargs salt-lint); bret=$?; } 2>&1; declare -p bout bret >&2); declare -p berr; } 2>&1)"
-      # - sh: Add-AppveyorTest -Name "Test A" -Framework NUnit -Filename a.exe -Outcome Passed -Duration 1000 # in milliseconds
       - sh: ./scripts/appveyor_tests.sh -t salt-lint || error=true
       - sh: ./scripts/appveyor_tests.sh -t yamllint || error=true
       - sh: ./scripts/appveyor_tests.sh -t rubocop || error=true
       - sh: ./scripts/appveyor_tests.sh -t shellcheck || error=true
       - sh: ./scripts/appveyor_tests.sh -t commitlint || error=true
-      - sh: if ("$error" == "true") {$host.SetShouldExit(1)}
-      # - sh: test_name="salt-lint"
-      # - sh: appveyor AddTest $test_name -Framework junit -Filename "*.sls *.jinja *.j2 *.tmpl *.tst" -Outcome Running
-      # - sh: test_command="git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst' | xargs salt-lint"
-      # - sh: start=`date +%s`
-      # - sh: eval "$({ cerr=$({ cout=$($test_command); cret=$?; } 2>&1; declare -p cout cret >&2); declare -p cerr; } 2>&1)"
-      # - sh: end=`date +%s`
-      # - sh: cruntime=$((end-start))
-      # - sh: if [[ -z cout ]]; then cout_safe="-StdOut $cout"; else cout_safe=''; fi
-      # - sh: if [[ -z cerr ]]; then cerr_safe="-StdErr $cerr"; else cerr_safe=''; fi
-      # - sh: if [[ -z cret ]]; then cret_safe="$cret"; else cret_safe=''; fi
-      # - sh: echo "cout_safe $cout_safe"
-      # - sh: echo "cerr_safe $cerr_safe"
-      # - sh: echo "cret_safe $cret_safe"
-      # - sh: >
-      #     if [[ "$bret" -eq 0 ]]; then
-      #       appveyor UpdateTest -Name $test_name -Framework junit -Filename "*.sls *.jinja *.j2 *.tmpl *.tst" -Outcome Passed -Duration $cruntime $cout_safe
-      #     else
-      #       appveyor UpdateTest -Name $test_name -Framework junit -Filename "*.sls *.jinja *.j2 *.tmpl *.tst" -Outcome Failed -Duration $cruntime -ErrorMessage "$test_name did not complete successfully: $cret_safe" $cout_safe $cerr_safe
-      #     fi
-      # - sh: ./scripts/run_test.sh salt-lint
-      # - sh: git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst' | xargs salt-lint
-      # - sh: echo YAML LINT
-      # - sh: yamllint -s .
-      # - sh: echo RUBOCOP
-      # - sh: rubocop -d
-      # - sh: echo SHELL CHECK
-      # - sh: git ls-files -- '*.sh' '*.bash' '*.ksh' | xargs shellcheck
-      # - sh: echo COMMIT LINT
-      # - sh: npx commitlint --from=HEAD~1
+      - sh: >
+          if [ $error ] then
+            echo "One of the lint tests failed, making sure appveyor lint job fails."
+            $host.SetShouldExit(1)
+          fi
     deploy: off
 
   -
