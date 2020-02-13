@@ -40,8 +40,8 @@ function start_test {
   local end=`date +%s`
   APPVEYOR_TEST[cruntime]=$((end-start))
   APPVEYOR_TEST[cret]=$cret
-  APPVEYOR_TEST[cout]="${cout:-''}"
-  APPVEYOR_TEST[cerr]="${cerr:-''}"
+  APPVEYOR_TEST[cout]="${cout:-'false'}"
+  APPVEYOR_TEST[cerr]="${cerr:-'false'}"
   echo "${APPVEYOR_TEST[name]} finished in ${APPVEYOR_TEST[cruntime]} seconds with return code: ${APPVEYOR_TEST[cret]}"
 }
 
@@ -60,9 +60,9 @@ function end_test {
     # updatetest="appveyor UpdateTest -Name ${APPVEYOR_TEST[name]} -Framework ${APPVEYOR_TEST[framework]} -Filename ${APPVEYOR_TEST[filename]} -Duration ${APPVEYOR_TEST[cruntime]} -Outcome Passed ${APPVEYOR_TEST[cout_arg]}"
     # `if [ ${APPVEYOR_TEST[cout]} ]; then echo "-StdOut ${APPVEYOR_TEST[cout]}"; fi`
     # echo `if [ "${APPVEYOR_TEST[cout]}" != '' ]; then echo "-StdOut \"${APPVEYOR_TEST[cout]}\""; fi`
-    if [ "${APPVEYOR_TEST[cout]}" != "" ]; then echo "XXXXXXXXXXX -StdOut"; fi
-    echo "$(if [ \"${APPVEYOR_TEST[cout]}\" != \"\" ]; then echo \"${APPVEYOR_TEST[cout]}\"; fi)"
-    appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Passed `if [ "${APPVEYOR_TEST[cout]}" != "" ]; then echo "-StdOut"; fi` "$(if [ \"${APPVEYOR_TEST[cout]}\" != \"\" ]; then echo \"${APPVEYOR_TEST[cout]}\"; fi)"
+    if [ "${APPVEYOR_TEST[cout]}" != 'false' ]; then echo "XXXXXXXXXXX -StdOut"; fi
+    echo "$(if [ \"${APPVEYOR_TEST[cout]}\" != 'false' ]; then echo \"${APPVEYOR_TEST[cout]}\"; fi)"
+    appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Passed `if [ "${APPVEYOR_TEST[cout]}" != 'false' ]; then echo "-StdOut"; fi` "$(if [ \"${APPVEYOR_TEST[cout]}\" != 'false' ]; then echo \"${APPVEYOR_TEST[cout]}\"; fi)"
   else
     echo "${APPVEYOR_TEST[name]} did not complete successfully!  Check the 'Tests' tab in appveyor for additional information."
     appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Failed -ErrorMessage "return code: ${APPVEYOR_TEST[cret]}" -StdOut "${APPVEYOR_TEST[cout]}" -StdErr "${APPVEYOR_TEST[cerr]}"
@@ -73,12 +73,12 @@ function end_test {
 
 if [ ! -z "$iflag" ]; then
     echo 'Installing linting tools'
-    pip install --user salt-lint
-    pip install --user yamllint
+    # pip install --user salt-lint
+    # pip install --user yamllint
     gem install rubocop
     sudo apt-get install shellcheck
-    shellcheck --version
-    npm i -D @commitlint/config-conventional
+    # shellcheck --version
+    # npm i -D @commitlint/config-conventional
 fi
 
 if [ ! -z "$tflag" ]; then
