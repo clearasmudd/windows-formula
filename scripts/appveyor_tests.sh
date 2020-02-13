@@ -33,9 +33,7 @@ done
 
 function start_test {
   : "${APPVEYOR_TEST[filename]:=APPVEYOR_TEST[name]}"
-  add_test="appveyor AddTest ${APPVEYOR_TEST[name]} -Framework ${APPVEYOR_TEST[framework]} -Filename ${APPVEYOR_TEST[filename]} -Outcome Running"
-  # echo $add_test
-  $add_test
+  appveyor AddTest ${APPVEYOR_TEST[name]} -Framework ${APPVEYOR_TEST[framework]} -Filename "${APPVEYOR_TEST[filename]}" -Outcome Running
   local start=`date +%s`
   echo "${APPVEYOR_TEST[command]}"
   eval "$({ cerr=$({ cout=$(${APPVEYOR_TEST[command]}); cret=$?; } 2>&1; declare -p cout cret >&2); declare -p cerr; } 2>&1)"
