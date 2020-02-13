@@ -38,6 +38,7 @@ function start_test {
   echo "${APPVEYOR_TEST[command]}"
   eval "$({ cerr=$({ cout=$(${APPVEYOR_TEST[command]}); cret=$?; } 2>&1; declare -p cout cret >&2); declare -p cerr; } 2>&1)"
   local end=`date +%s`
+  echo $cout
   APPVEYOR_TEST[cruntime]=$((end-start))
   APPVEYOR_TEST[cret]=$cret
   APPVEYOR_TEST[cout]="$cout"
@@ -82,9 +83,9 @@ case ${APPVEYOR_TEST[name]} in
   salt-lint)
     # echo "in salt-lint"
     APPVEYOR_TEST[filename]='*.sls *.jinja *.j2 *.tmpl *.tst'
-    # APPVEYOR_TEST[command]="git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst' | xargs salt-lint"
     APPVEYOR_TEST[command]="./scripts/lint-salt-lint.sh"
     start_test
+    APPVEYOR_TEST[cout]=$(echo "${APPVEYOR_TEST[cout]}" | sed '/Examining/d')
     end_test
     ;;
 
