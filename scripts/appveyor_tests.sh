@@ -48,7 +48,6 @@ function run_test {
   APPVEYOR_TEST[cret]=$cret
   APPVEYOR_TEST[cout]="$cout"
   APPVEYOR_TEST[cerr]="$cerr"
-  echo "${APPVEYOR_TEST[name]} finished in ${APPVEYOR_TEST[cruntime]} seconds with return code: ${APPVEYOR_TEST[cret]}"
 }
 
 # Update-AppveyorTest -Name "Test A" -Framework NUnit -FileName a.exe -Outcome Failed -Duration $cruntime
@@ -60,10 +59,11 @@ function run_test {
 
 function end_test {
   if [[ ${APPVEYOR_TEST[cret]} -eq 0 ]]; then
-    echo "${APPVEYOR_TEST[name]} completed successfully!"
+    echo "${APPVEYOR_TEST[name]} ran for ${APPVEYOR_TEST[cruntime]} seconds and completed successfully with return code: ${APPVEYOR_TEST[cret]}!"
     appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Passed -StdOut "${APPVEYOR_TEST[cout]}"
   else
-    echo "${APPVEYOR_TEST[name]} did not complete successfully!  Check the 'Tests' tab in appveyor for additional information."
+    echo "${APPVEYOR_TEST[name]} ran for ${APPVEYOR_TEST[cruntime]} seconds and did not complete successfully with return code: ${APPVEYOR_TEST[cret]}!"
+    echo "Check the 'Tests' tab in appveyor for additional information."
     appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Failed -ErrorMessage "return code: ${APPVEYOR_TEST[cret]}" -StdOut "${APPVEYOR_TEST[cout]}" -StdErr "${APPVEYOR_TEST[cerr]}"
   fi
 }

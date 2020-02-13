@@ -5,7 +5,7 @@ environment:
   matrix:
     # Linux job
     # https://www.appveyor.com/docs/linux-images-software/
-    - job_name: Lint Tests (salt-lint, yamllint, rubocop, shellcheck and commitlint)
+    - job_name: Lint Tests (salt-lint, yamllint, rubocop, shellcheck, PowerShellScriptAnalyzer and commitlint)
       job_group: Lint Tests
       appveyor_build_worker_image: Ubuntu
 
