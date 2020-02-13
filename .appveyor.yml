@@ -69,6 +69,7 @@ for:
       - sh: ./scripts/appveyor_tests.sh -t yamllint || error=true
       - sh: ./scripts/appveyor_tests.sh -t rubocop || error=true
       - sh: ./scripts/appveyor_tests.sh -t shellcheck || error=true
+      - sh: git ls-files -- '*.sh' '*.bash' '*.ksh' | xargs shellcheck
       - sh: git config --global user.email "you@example.com"
       - sh: git config --global user.name "Your Name"
       - sh: echo "testing insert" >> ./scripts/newfile.sh
