@@ -42,12 +42,12 @@ function start_test {
   APPVEYOR_TEST[cret]=$cret
   APPVEYOR_TEST[cout]="$cout"
   APPVEYOR_TEST[cerr]="$cerr"
-  if [ "${APPVEYOR_TEST[name]}" == "shellcheck" ]; then
-    echo "{APPVEYOR_TEST[name]}: ${APPVEYOR_TEST[name]}"
-    echo "{APPVEYOR_TEST[cret]}: ${APPVEYOR_TEST[cret]}"
-    echo "{APPVEYOR_TEST[cout]}: ${APPVEYOR_TEST[cout]}"
-    echo "{APPVEYOR_TEST[cerr]}: ${APPVEYOR_TEST[cerr]}"
-  fi
+  # if [ "${APPVEYOR_TEST[name]}" == "shellcheck" ]; then
+  #   echo "{APPVEYOR_TEST[name]}: ${APPVEYOR_TEST[name]}"
+  #   echo "{APPVEYOR_TEST[cret]}: ${APPVEYOR_TEST[cret]}"
+  #   echo "{APPVEYOR_TEST[cout]}: ${APPVEYOR_TEST[cout]}"
+  #   echo "{APPVEYOR_TEST[cerr]}: ${APPVEYOR_TEST[cerr]}"
+  # fi
   echo "${APPVEYOR_TEST[name]} finished in ${APPVEYOR_TEST[cruntime]} seconds with return code: ${APPVEYOR_TEST[cret]}"
 }
 
@@ -106,7 +106,7 @@ case ${APPVEYOR_TEST[name]} in
     # echo "in salt-lint"
     APPVEYOR_TEST[filename]='*.sls *.jinja *.j2 *.tmpl *.tst'
     # APPVEYOR_TEST[command]="git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst' | xargs salt-lint"
-    APPVEYOR_TEST[command]="(git ls-files *.sls *.jinja *.j2 *.tmpl *.tst | xargs salt-lint)"
+    APPVEYOR_TEST[command]="lint-salt-lint.sh"
     start_test
     end_test
     ;;
@@ -127,7 +127,8 @@ case ${APPVEYOR_TEST[name]} in
 
   shellcheck)
     APPVEYOR_TEST[filename]='*.sh *.bash *.ksh'
-    APPVEYOR_TEST[command]="(git ls-files *.sh *.bash *.ksh | xargs shellcheck)"
+    # APPVEYOR_TEST[command]="git ls-files *.sh *.bash *.ksh | xargs shellcheck"
+    APPVEYOR_TEST[command]="lint-shellcheck.sh"
     start_test
     end_test
     ;;
