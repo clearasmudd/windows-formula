@@ -59,30 +59,13 @@ function start_test {
 #      [-StdOut <string>] [-StdErr <string>]
 
 function end_test {
-  # update_test_common="appveyor UpdateTest -Name ${APPVEYOR_TEST[name]} -Framework ${APPVEYOR_TEST[framework]} -Filename ${APPVEYOR_TEST[filename]} -Duration ${APPVEYOR_TEST[cruntime]}"
   if [[ ${APPVEYOR_TEST[cret]} -eq 0 ]]; then
     echo "${APPVEYOR_TEST[name]} completed successfully!"
-    # cout_arg=$(if [ ${APPVEYOR_TEST[cout]} ]; then echo -StdOut "${APPVEYOR_TEST[cout]}"; fi)
-    # updatetest="appveyor UpdateTest -Name ${APPVEYOR_TEST[name]} -Framework ${APPVEYOR_TEST[framework]} -Filename ${APPVEYOR_TEST[filename]} -Duration ${APPVEYOR_TEST[cruntime]} -Outcome Passed ${APPVEYOR_TEST[cout_arg]}"
-    # `if [ ${APPVEYOR_TEST[cout]} ]; then echo "-StdOut ${APPVEYOR_TEST[cout]}"; fi`
-    # echo `if [ "${APPVEYOR_TEST[cout]}" != '' ]; then echo "-StdOut \"${APPVEYOR_TEST[cout]}\""; fi`
-    # echo "APPVEYOR_TEST[cerr]: ${APPVEYOR_TEST[cerr]}"
-    # echo "APPVEYOR_TEST[cout]: ${APPVEYOR_TEST[cout]%x*}"
-    # The inline bash command substitution is stripping all the newlines in StdOut and StdErr so I'm using this second 
-    # appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Passed `if [[ ! -z "${APPVEYOR_TEST[cout]}" ]]; then echo "-StdOut"; fi` "$(if [[ ! -z \"${APPVEYOR_TEST[cout]}\" ]]; then echo \"${cout}\"; fi)"
-    # echo "${$(if [[ ! -z "$cout" ]]; then echo "${cout}"; fi)%x}"
     appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Passed -StdOut "${APPVEYOR_TEST[cout]}"
-    # if [[ ! -z "$cout" ]]; then 
-    # appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Passed -StdOut "${cout}"
-    # else
-    # appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Passed
-    # fi
   else
     echo "${APPVEYOR_TEST[name]} did not complete successfully!  Check the 'Tests' tab in appveyor for additional information."
     appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Failed -ErrorMessage "return code: ${APPVEYOR_TEST[cret]}" -StdOut "${APPVEYOR_TEST[cout]}" -StdErr "${APPVEYOR_TEST[cerr]}"
   fi
-  # echo $updatetest
-  # $updatetest
 }
 
 if [ ! -z "$iflag" ]; then
@@ -106,7 +89,7 @@ case ${APPVEYOR_TEST[name]} in
     # echo "in salt-lint"
     APPVEYOR_TEST[filename]='*.sls *.jinja *.j2 *.tmpl *.tst'
     # APPVEYOR_TEST[command]="git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst' | xargs salt-lint"
-    APPVEYOR_TEST[command]="lint-salt-lint.sh"
+    APPVEYOR_TEST[command]="./scripts/lint-salt-lint.sh"
     start_test
     end_test
     ;;
@@ -128,7 +111,7 @@ case ${APPVEYOR_TEST[name]} in
   shellcheck)
     APPVEYOR_TEST[filename]='*.sh *.bash *.ksh'
     # APPVEYOR_TEST[command]="git ls-files *.sh *.bash *.ksh | xargs shellcheck"
-    APPVEYOR_TEST[command]="lint-shellcheck.sh"
+    APPVEYOR_TEST[command]="./scripts/lint-shellcheck.sh"
     start_test
     end_test
     ;;
