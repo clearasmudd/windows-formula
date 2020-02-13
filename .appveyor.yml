@@ -77,11 +77,12 @@ for:
       #   eval "$({ berr=$({ bout=$(git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst' |
       #   xargs salt-lint); bret=$?; } 2>&1; declare -p bout bret >&2); declare -p berr; } 2>&1)"
       # - sh: Add-AppveyorTest -Name "Test A" -Framework NUnit -Filename a.exe -Outcome Passed -Duration 1000 # in milliseconds
-      - sh: ./scripts/appveyor_tests.sh -t salt-lint
-      - sh: ./scripts/appveyor_tests.sh -t yamllint
-      - sh: ./scripts/appveyor_tests.sh -t rubocop
-      - sh: ./scripts/appveyor_tests.sh -t shellcheck
-      - sh: ./scripts/appveyor_tests.sh -t commitlint
+      - sh: if $(./scripts/appveyor_tests.sh -t salt-lint)
+      - sh: ./scripts/appveyor_tests.sh -t yamllint || error=true
+      - sh: ./scripts/appveyor_tests.sh -t rubocop || error=true
+      - sh: ./scripts/appveyor_tests.sh -t shellcheck || error=true
+      - sh: ./scripts/appveyor_tests.sh -t commitlint || error=true
+      - sh: if ("$error" == "true") {$host.SetShouldExit(1)}
       # - sh: test_name="salt-lint"
       # - sh: appveyor AddTest $test_name -Framework junit -Filename "*.sls *.jinja *.j2 *.tmpl *.tst" -Outcome Running
       # - sh: test_command="git ls-files -- '*.sls' '*.jinja' '*.j2' '*.tmpl' '*.tst' | xargs salt-lint"
