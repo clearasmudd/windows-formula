@@ -72,14 +72,14 @@ for:
       - sh: ./scripts/appveyor_tests.sh -t commitlint || error=true
       - sh: ./scripts/appveyor_tests.sh -t shellcheck || error=true
       - sh: sleep 10
-    after_test:
-      - sh: echo after_test for $APPVEYOR_JOB_NAME
-      # - sh: if [ $error ]; then echo "One of the lint tests failed, making sure appveyor lint job fails."; fi
-      - sh: >
-          echo "I can't figure out how to stop all the following errors.
-          /opt/appveyor/build-agent/bash-shell.sh: line 36: read: read error: 0: Resource temporarily unavailable. 
-          I've seen this: https://github.com/appveyor/ci/issues/3002."
-      - sh: if [ $error ]; then $host.SetShouldExit(1); fi
+    # after_test:
+    #   - sh: echo after_test for $APPVEYOR_JOB_NAME
+    #   # - sh: if [ $error ]; then echo "One of the lint tests failed, making sure appveyor lint job fails."; fi
+    #   - sh: >
+    #       echo "I can't figure out how to stop all the following errors.
+    #       /opt/appveyor/build-agent/bash-shell.sh: line 36: read: read error: 0: Resource temporarily unavailable. 
+    #       I've seen this: https://github.com/appveyor/ci/issues/3002."
+    #   - sh: if [ $error ]; then $host.SetShouldExit(1); fi
     deploy: off
 
   -
