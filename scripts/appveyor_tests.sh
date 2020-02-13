@@ -40,7 +40,7 @@ function run_test {
   ts=$(date +%s%N)
   # shellcheck disable=SC2030
   eval "$({ cerr=$({ cout=$(${APPVEYOR_TEST[command]}); cret=$?; } 2>&1; declare -p cout cret >&2); declare -p cerr; } 2>&1)"
-  APPVEYOR_TEST[cruntime]=$((($(date +%s%N) - $ts)/1000000))
+  APPVEYOR_TEST[cruntime]=$((($(date +%s%N) - ts)/1000000))
   APPVEYOR_TEST[cruntimesec]=$(echo "scale=4;${APPVEYOR_TEST[cruntime]}/1000" | bc)
   # end=$(date +%s)
   # command substitution strips newline echo -n "$(echo -n 'a\nb')" vs echo -n  $(echo -n 'a\nb')

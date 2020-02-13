@@ -57,7 +57,7 @@ else
   }
   else
   {
-    Write-Host "All $program_name instances successfully uninstalled"
+    Write-Information "All $program_name instances successfully uninstalled"
   }
 }
 
