@@ -72,6 +72,7 @@ function end_test {
 
 if [ ! -z "$iflag" ]; then
     echo 'Installing linting tools'
+    sudo apt-get install bc -y
     sudo apt-get remove -y --purge man-db
     pip install --user salt-lint
     pip install --user yamllint
