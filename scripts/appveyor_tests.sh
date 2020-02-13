@@ -36,19 +36,21 @@ function run_test {
   appveyor AddTest "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Outcome Running
   local start
   local end
-  start=$(date +%s)
+  # ts=$(date +%s%N) ; $@ ; tt=$((($(date +%s%N) - $ts)/1000000)) ; echo "Time taken: $tt milliseconds"
   echo "${APPVEYOR_TEST[command]}"
   # shellcheck disable=SC2030
   eval "$({ cerr=$({ cout=$(${APPVEYOR_TEST[command]}); cret=$?; } 2>&1; declare -p cout cret >&2); declare -p cerr; } 2>&1)"
-  end=$(date +%s)
+  APPVEYOR_TEST[cruntime]=$((($(date +%s%N) - $ts)/1000000))
+  APPVEYOR_TEST[cruntimesec]=$(${APPVEYOR_TEST[cruntime]}/1000)
+  # end=$(date +%s)
   # command substitution strips newline echo -n "$(echo -n 'a\nb')" vs echo -n  $(echo -n 'a\nb')
   echo "$cout"
   echo "$cerr"
-  APPVEYOR_TEST[cruntime]=$((end-start))
+  # APPVEYOR_TEST[cruntime]=$((end-start))
   APPVEYOR_TEST[cret]=$cret
   APPVEYOR_TEST[cout]="$cout"
   APPVEYOR_TEST[cerr]="$cerr"
-}
+} 
 
 # Update-AppveyorTest -Name "Test A" -Framework NUnit -FileName a.exe -Outcome Failed -Duration $cruntime
 # Update-AppveyorTest -Name <string> -Framework <string> -FileName <string>
@@ -59,10 +61,10 @@ function run_test {
 
 function end_test {
   if [[ ${APPVEYOR_TEST[cret]} -eq 0 ]]; then
-    echo "${APPVEYOR_TEST[name]} ran for ${APPVEYOR_TEST[cruntime]} seconds and completed successfully with return code: ${APPVEYOR_TEST[cret]}!"
+    echo "${APPVEYOR_TEST[name]} ran for ${APPVEYOR_TEST[cruntimesec]} seconds and completed successfully with return code: ${APPVEYOR_TEST[cret]}!"
     appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Passed -StdOut "${APPVEYOR_TEST[cout]}"
   else
-    echo "${APPVEYOR_TEST[name]} ran for ${APPVEYOR_TEST[cruntime]} seconds and did not complete successfully with return code: ${APPVEYOR_TEST[cret]}!"
+    echo "${APPVEYOR_TEST[name]} ran for ${APPVEYOR_TEST[cruntimesec]} seconds and did not complete successfully with return code: ${APPVEYOR_TEST[cret]}!"
     echo "Check the 'Tests' tab in appveyor for additional information."
     appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Failed -ErrorMessage "return code: ${APPVEYOR_TEST[cret]}" -StdOut "${APPVEYOR_TEST[cout]}" -StdErr "${APPVEYOR_TEST[cerr]}"
   fi
