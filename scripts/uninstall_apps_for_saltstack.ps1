@@ -1,4 +1,4 @@
-﻿# Need to uninstall git and 7-zip to test installation using saltstack
+# Need to uninstall git and 7-zip to test installation using saltstack
 
 # section sourced from: https://github.com/Limech/git-powershell-silent-install/blob/master/git-silent-uninstall.ps1
 ## There can be many places where git could have been installed.  Check likely places.
@@ -16,7 +16,7 @@ foreach ($installPath in $possibleInstalledPaths)
     Stop-Process -processname Bash -erroraction 'silentlycontinue'
     Stop-Process -processname Putty* -erroraction 'silentlycontinue'
     $foundAnInstallation = $true
-    Write-Host "Removing Git from " $installPath
+    Write-Information "Removing Git from " $installPath
     ### Find if there's an uninstaller in the folder.
     $uninstallers = Get-ChildItem $installPath"\unins*.exe"
     ### In reality, there should only be just one that matches.
@@ -36,7 +36,7 @@ foreach ($installPath in $possibleInstalledPaths)
 # Add confirmation
 if (!($foundAnInstallation))
 {
-   Write-Host "No installation found. Nothing to uninstall"
+   Write-Information "No installation found. Nothing to uninstall"
 }
 else
 {
@@ -52,12 +52,12 @@ else
   if ($confirmation)
   {
     $host.SetShouldExit($LastExitCode)
-    write-host $confirmation
+    Write-Information $confirmation
     throw "$program_name not uninstalled"
   }
   else
   {
-    write-host "All $program_name instances successfully uninstalled"
+    Write-Host "All $program_name instances successfully uninstalled"
   }
 }
 
