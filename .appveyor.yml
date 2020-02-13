@@ -56,13 +56,14 @@ for:
     matrix:
       only:
         - job_group: Lint Tests
+    before_build:
     build_script:
       - sh: echo build_script for $APPVEYOR_JOB_NAME
       - sh: date
       - sh: pwd; ls -la; printenv
       - sh: PATH=$PATH:/home/appveyor/.local/bin
       - sh: bash --version
-      - sh: sudo powershell -Command {Install-Module -Name PSScriptAnalyzer}
+      - pwsh: Install-Module -Name PSScriptAnalyzer
       - sh: ./scripts/appveyor_tests.sh -i
     test_script:
       - sh: echo test_script for $APPVEYOR_JOB_NAME
