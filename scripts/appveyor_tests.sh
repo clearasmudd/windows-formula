@@ -130,7 +130,7 @@ case ${APPVEYOR_TEST[name]} in
     APPVEYOR_TEST[command]='npx commitlint --from=HEAD~1'
     start_test
     if [[ ! ${APPVEYOR_TEST[cret]} -eq 0 ]]; then
-      ${APPVEYOR_TEST[cout]}+=`git log -1`
+      ${APPVEYOR_TEST[cout]}+='\n'"`git log -1`"
     fi
     end_test
     ;;
