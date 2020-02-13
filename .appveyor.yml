@@ -66,12 +66,12 @@ for:
       - sh: ./scripts/appveyor_tests.sh -i
     test_script:
       - sh: echo test_script for $APPVEYOR_JOB_NAME
-      # - sh: ./scripts/appveyor_tests.sh -t salt-lint || error=true
-      # - sh: ./scripts/appveyor_tests.sh -t yamllint || error=true
+      - sh: ./scripts/appveyor_tests.sh -t salt-lint || error=true
+      - sh: ./scripts/appveyor_tests.sh -t yamllint || error=true
       - sh: ./scripts/appveyor_tests.sh -t rubocop || error=true
       - sh: ./scripts/appveyor_tests.sh -t shellcheck || error=true
-      # - sh: ./scripts/appveyor_tests.sh -t commitlint || error=true
-      # - sh: if [ $error ]; then echo "One of the lint tests failed, making sure appveyor lint job fails."; fi
+      - sh: ./scripts/appveyor_tests.sh -t commitlint || error=true
+      - sh: if [ $error ]; then echo "One of the lint tests failed, making sure appveyor lint job fails."; fi
       - sh: if [ $error ]; then exit 1; fi
       # $host.SetShouldExit(1)
     deploy: off
