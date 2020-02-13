@@ -82,10 +82,10 @@ function end_test {
 
 if [ ! -z "$iflag" ]; then
     echo 'Installing linting tools'
-    # sudo apt-get remove -y --purge man-db
-    # pip install --user salt-lint
-    # pip install --user yamllint
-    # gem install rubocop
+    sudo apt-get remove -y --purge man-db
+    pip install --user salt-lint
+    pip install --user yamllint
+    gem install rubocop
     sudo apt-get install shellcheck
     shellcheck --version
     npm i -D @commitlint/config-conventional </dev/null
