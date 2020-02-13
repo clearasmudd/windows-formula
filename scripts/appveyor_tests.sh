@@ -68,7 +68,7 @@ function end_test {
     echo `if [ "$cout" != '' ]; then echo "-StdOut $cout"; fi`
     echo "TTTTTTTTTTT"
     echo `if [ "${APPVEYOR_TEST[cout]}" != '' ]; then echo "-StdOut ${APPVEYOR_TEST[cout]}"; fi`
-    appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Passed `if [ "${APPVEYOR_TEST[cout]}" != '' ]; then echo "-StdOut ${APPVEYOR_TEST[cout]}"; fi`
+    appveyor UpdateTest -Name "${APPVEYOR_TEST[name]}" -Framework "${APPVEYOR_TEST[framework]}" -Filename "${APPVEYOR_TEST[filename]}" -Duration "${APPVEYOR_TEST[cruntime]}" -Outcome Passed `if [ "${APPVEYOR_TEST[cout]}" != '' ]; then echo "-StdOut ${dqt}${APPVEYOR_TEST[cout]}${dqt}"; fi`
   else
     echo "${APPVEYOR_TEST[name]} did not complete successfully!  Check the 'Tests' tab in appveyor for additional information."
     # updatetest="appveyor UpdateTest -Name ${APPVEYOR_TEST[name]} -Framework ${APPVEYOR_TEST[framework]} -Filename ${APPVEYOR_TEST[filename]} -Duration ${APPVEYOR_TEST[cruntime]} -Outcome Failed -ErrorMessage ${dqt}${APPVEYOR_TEST[name]} return code: ${APPVEYOR_TEST[cret_arg]}${dqt} ${APPVEYOR_TEST[cout_arg]} ${APPVEYOR_TEST[cerr_arg]}"
