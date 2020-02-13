@@ -40,8 +40,8 @@ function start_test {
   local end=`date +%s`
   APPVEYOR_TEST[cruntime]=$((end-start))
   APPVEYOR_TEST[cret]=$cret
-  APPVEYOR_TEST[cout]="${cout:-'false'}"
-  APPVEYOR_TEST[cerr]="${cerr:-'false'}"
+  APPVEYOR_TEST[cout]="${cout:-false}"
+  APPVEYOR_TEST[cerr]="${cerr:-false}"
   echo "${APPVEYOR_TEST[name]} finished in ${APPVEYOR_TEST[cruntime]} seconds with return code: ${APPVEYOR_TEST[cret]}"
 }
 
