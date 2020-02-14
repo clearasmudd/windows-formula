@@ -69,7 +69,8 @@ for:
       - sh: ./scripts/appveyor_tools.sh -f test -t rubocop || error=true
       - sh: ./scripts/appveyor_tools.sh -f test -t shellcheck || error=true
       - sh: ./scripts/appveyor_tools.sh -f test -t commitlint </dev/null || error=true
-      - sh: if [ $error ]; then exit 1; fi  # $host.SetShouldExit(1)
+      - sh: if [ $error ]; then exit 1; fi 
+      # $host.SetShouldExit(1)
     deploy: off
     on_finish:
       # - sh: ./scripts/appveyor_tools.sh -f output-sysinfo
