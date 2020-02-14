@@ -21,7 +21,7 @@ foreach ($installPath in $possibleInstalledPaths)
   {
     $program_name = '7-Zip'
   }
-  $allPrograms.Add($program_name)
+  $allPrograms.Add($program_name) 
   if (Test-Path($installPath))
   {
     # # - ps: Get-ChildItem -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall | Get-ItemProperty |
@@ -55,7 +55,7 @@ foreach ($installPath in $possibleInstalledPaths)
   }
 }
 # Add confirmation
-
+Invoke-Expression "Get-Process"
 foreach ($program in $allPrograms)
 {
   if ($program in (set(allPrograms).difference(allProgramsInstallers))))
