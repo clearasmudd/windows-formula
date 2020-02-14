@@ -1,4 +1,8 @@
 
+[System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingInvokeExpression', '', Scope='Function', Target='install_chefdk')]
+[System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingInvokeExpression', '', Scope='Function', Target='run_rdp_script')]
+[System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', '', Scope='Function', Target='run_rdp_script')]
+
 Param(
     [Parameter(Mandatory=$true,
     ParameterSetName="Functions")]
@@ -14,7 +18,6 @@ Param(
     ParameterSetName="Installers")]
     [String[]]
     $results
-
 
     # [Parameter(Mandatory=$false, ParameterSetName="Installers")]
     # # [Parameter(Mandatory=$false, ParameterSetName="User")]
@@ -70,11 +73,16 @@ switch ($function)
     {
       test_kitchen
       {
+        function install_chefdk
+        {
+          (& cmd /c); iex (irm https://omnitruck.chef.io/install.ps1); Install-Project -Project chefdk -channel stable -version 4.7.73
+        }
+
         $env:machine_user="vagrant"
         $env:machine_pass="vagrant"
         $env:KITCHEN_LOCAL_YAML=".kitchen.appveyor.yml"
         $env:CHEF_LICENSE="accept"
-        (& cmd /c); iex (irm https://omnitruck.chef.io/install.ps1); Install-Project -Project chefdk -channel stable -version 4.7.73
+        install_chefdk
         c:\opscode\chefdk\bin\chef.bat exec ruby --version
         secedit /export /cfg $env:temp/export.cfg
         ((get-content $env:temp/export.cfg) -replace ('PasswordComplexity = 1', 'PasswordComplexity = 0')) |
@@ -86,11 +94,17 @@ switch ($function)
         net localgroup administrators $env:machine_user /add
         ; Break
       }
+
       rdp
       {
+        function run_rdp_script
+        {
+          $blockRdp = $true
+          iex ((new-object net.webclient).DownloadString($dlstring))
+        }
         $env:APPVEYOR_RDP_PASSWORD="lj=adf89ASD0098_sd!fwe!==HUI"
         $dlstring = 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'
-        $blockRdp = $true; iex ((new-object net.webclient).DownloadString($dlstring))
+        run_rdp_script
         ; Break
       }
     }
@@ -129,7 +143,7 @@ switch ($function)
         $allProgramsUninstallers.Add($program_name)
         write-output "Current set of uninstallers: $allProgramsUninstallers"
         ## Some Git stuff might be running.. kill them.
-        if ($program_name == 'Git')
+        if ($program_name -eq 'Git')
         {
           Stop-Process -processname Bash -erroraction 'silentlycontinue'
           Stop-Process -processname Putty* -erroraction 'silentlycontinue'
