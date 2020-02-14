@@ -28,7 +28,7 @@ function appveyor_message
 {
   info=$($1)
   # if [ $(echo $info | wc -l) < 30 ]; then
-  appveyor AddMessage "$1" -Category "Information" -Details "$(echo $info | head -29)"
+  appveyor AddMessage "$1" -Category "Information" -Details "$(echo "$info" | head -29)"
   echo "system information ($1):" >> $sysinfo_filename
   echo "$info" >> $sysinfo_filename
   # Add-AppveyorMessage -Message <string>
@@ -177,7 +177,7 @@ case "${FUNCTION}" in
     appveyor_message "uptime"
     appveyor_message "/bin/uname -a"
     appveyor_message "cat /proc/version"
-    appveyor_message "echo Terminal Dimensions: "$(tput cols)" columns x "$(tput lines)" rows"
+    appveyor_message "echo Terminal Dimensions: \"$(tput cols)\" columns x \"$(tput lines)\" rows"
     appveyor_message "sudo lshw"
     appveyor_message "pwd"
     appveyor_message "ls -la"
@@ -202,7 +202,8 @@ case "${FUNCTION}" in
       cat $sysinfo_filename
     else
       echo "unable to get sysinfo"
-    
+    fi
+    ;;
 
   lint)
     # need to wrap commands with pipes for appveyor_tests.sh
@@ -226,4 +227,5 @@ case "${FUNCTION}" in
         git ls-files -- '*.sh' '*.bash' '*.ksh' | xargs shellcheck
         ;;
     esac
+    ;;
 esac
