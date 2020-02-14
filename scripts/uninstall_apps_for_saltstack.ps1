@@ -56,7 +56,7 @@ foreach ($installPath in $possibleInstalledPaths)
 # Add confirmation
 foreach ($program in $allPrograms)
 {
-  if ($program in (set(allPrograms).difference(allProgramsInstallers))))
+  if ($program in (set(allPrograms).difference(allProgramsInstallers)))
   {
    Write-Output "No uninstallers found for $program."
   }
