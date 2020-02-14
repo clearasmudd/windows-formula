@@ -97,7 +97,7 @@ case "${FUNCTION}" in
       salt-lint)
         # echo "in salt-lint"
         APPVEYOR_TEST[filename]='*.sls *.jinja *.j2 *.tmpl *.tst'
-        APPVEYOR_TEST[command]="./scripts/appveyor_tools -f lint -l salt-lint"
+        APPVEYOR_TEST[command]="./scripts/appveyor_tools.sh -f lint -l salt-lint"
         run_test
         APPVEYOR_TEST[cout]=$(echo "${APPVEYOR_TEST[cout]}" | sed '/Examining/d')
         end_test
@@ -120,7 +120,7 @@ case "${FUNCTION}" in
       shellcheck)
         APPVEYOR_TEST[filename]='*.sh *.bash *.ksh'
         # APPVEYOR_TEST[command]="git ls-files *.sh *.bash *.ksh | xargs shellcheck"
-        APPVEYOR_TEST[command]="./scripts/appveyor_tools -f lint -l shellcheck.sh"
+        APPVEYOR_TEST[command]="./scripts/appveyor_tools.sh -f lint -l shellcheck.sh"
         run_test
         end_test
         ;;
@@ -137,7 +137,7 @@ case "${FUNCTION}" in
 
       powershell-script-analyzer)
         APPVEYOR_TEST[filename]='*.ps*'
-        APPVEYOR_TEST[command]='./scripts/appveyor_tools -f lint -l powershell'
+        APPVEYOR_TEST[command]='./scripts/appveyor_tools.sh -f lint -l powershell'
         run_test
         if [[ ! "${APPVEYOR_TEST[cout]}" == *"0 rule violations found"* ]]; then
           APPVEYOR_TEST[cret]=1
@@ -158,21 +158,21 @@ case "${FUNCTION}" in
     set -x
     date
     uptime
+    /bin/uname -a
+    cat /proc/version
     echo Terminal Dimensions: "$(tput cols)" columns x "$(tput lines)" rows
     sudo lshw
     pwd
     ls -la
     cat /etc/*-release
-    /bin/uname -a
     bash --version
-    which pwsh
-    cat /proc/version
     printenv
     route -n
     grep -v "#" < /etc/fstab
     df -h
     ps -ef
     sudo dpkg-query -l
+    # /usr/bin/pwsh
     pwsh -command "& {Get-Module -ListAvailable}"
     ;;
 

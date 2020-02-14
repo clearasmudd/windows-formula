@@ -59,7 +59,6 @@ for:
     build_script:
       - sh: echo build_script for $APPVEYOR_JOB_NAME
       - sh: ./scripts/appveyor_tools.sh -f sysinfo
-      - pwsh: ./scripts/system_information.ps1
       - sh: PATH=$PATH:/home/appveyor/.local/bin
       - sh: ./scripts/appveyor_tools.sh -f test -i
     test_script:
