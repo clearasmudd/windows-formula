@@ -37,7 +37,7 @@ function appveyor_message
   #   [-Details <string>]
 }
 
-while getopts f:t:i option
+while getopts f:t:l:i option
 do
   case "${option}" in
   f) FUNCTION=${OPTARG};;
