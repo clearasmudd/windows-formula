@@ -29,7 +29,7 @@ function appveyor_message
   info=$($1)
   # if [ $(echo $info | wc -l) < 30 ]; then
   echo "working on $1"
-  appveyor AddMessage "$1" -Category "Information" -Details "$(echo "$info" | tail -n +1 | head -40)"
+  appveyor AddMessage "$1" -Category "Information" -Details "$(echo "$info" 2>/dev/null | head -40)"
   echo "system information ($1):" >> $sysinfo_filename
   echo "$info" >> $sysinfo_filename
   # Add-AppveyorMessage -Message <string>
