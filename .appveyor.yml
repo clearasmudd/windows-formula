@@ -71,10 +71,9 @@ for:
       - sh: ./scripts/appveyor_tools.sh -f test -t commitlint </dev/null || error=true
       - sh: if [ $error ]; then exit 1; fi  # $host.SetShouldExit(1)
     deploy: off
-    on_failure:
-      - sh: ./scripts/appveyor_tools.sh -f output-sysinfo
     on_finish:
-      - sh: ./scripts/appveyor_tools.sh -f output-sysinfo
+      # - sh: ./scripts/appveyor_tools.sh -f output-sysinfo
+      - sh: cat /tmp/sysinfo.txt
 
   -
     matrix:
