@@ -5,14 +5,15 @@
 ### List of likely places where Git could be
 #
 $possibleInstalledPaths = @("C:\Program Files\Git\", "C:\Program Files (x64)\Git\", "c:\git\", "C:\Program Files\Git LFS\", "C:\Program Files\7-Zip\")
-$allPrograms = New-Object System.Collections.Generic.HashSet[int]
-$allProgramsInstallers = New-Object System.Collections.Generic.HashSet[int]
+$allPrograms = New-Object System.Collections.Generic.HashSet[String]
+$allProgramsUninstallers = New-Object System.Collections.Generic.HashSet[String]
 
 # $foundAnInstallation = $false
 ### For all places where Git "could" be.
 foreach ($installPath in $possibleInstalledPaths)
 {
   ### If the path where Git could be exists
+  write-output "Working on installPath $installPath"
   if ($installPath -like '*Git*')
   {
     $program_name = 'Git'
@@ -22,8 +23,10 @@ foreach ($installPath in $possibleInstalledPaths)
     $program_name = '7-Zip'
   }
   $allPrograms.Add($program_name)
+  write-output "Current set of all programs: $allPrograms"
   if (Test-Path($installPath))
   {
+    Write-Output "Found $installPath"
     # # - ps: Get-ChildItem -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall | Get-ItemProperty |
     # # Where-Object {$_.DisplayName -match "7-Zip"} | Select-Object -Property DisplayName, UninstallString
     # if (Test-Path "C:\Program Files\7-Zip\Uninstall.exe" -PathType Leaf)
@@ -31,10 +34,11 @@ foreach ($installPath in $possibleInstalledPaths)
     #   write-host "Removing 7-Zip from C:\Program Files\7-Zip\";
     #   start-process -FilePath "C:\Program Files\7-Zip\Uninstall.exe" -ArgumentList "/S"
     # }
-    $allProgramsInstallers.Add($program_name)
+    $allProgramsUninstallers.Add($program_name)
+    write-output "Current set of uninstallers: $allProgramsUninstallers"
     ## Some Git stuff might be running.. kill them.
-    Stop-Process -processname Bash -erroraction 'silentlycontinue'
-    Stop-Process -processname Putty* -erroraction 'silentlycontinue'
+    # Stop-Process -processname Bash -erroraction 'silentlycontinue'
+    # Stop-Process -processname Putty* -erroraction 'silentlycontinue'
 
     Write-Output "Removing $program_name from " $installPath
     ### Find if there's an uninstaller in the folder.
@@ -53,13 +57,21 @@ foreach ($installPath in $possibleInstalledPaths)
     }
   }
 }
-# Add confirmation
+# Add confirmation [string]::IsNullOrEmpty(
+write-output "XXXX"
+write-output "Current set of uninstallers: $allProgramsUninstallers"
+write-output "Current set of all programs: $allPrograms"
+$allProgramsUninstallers.SymmetricExceptWith($allPrograms)
+write-output "Missing installers: $allProgramsUninstallers"
+write-output "Current set of uninstallers: $allProgramsUninstallers"
+write-output "Current set of all programs: $allPrograms"
+foreach ($program in $allProgramsUninstallers)
+{
+  write-Output "No uninstallers found for $program."
+}
+
 foreach ($program in $allPrograms)
 {
-  if ($program in (set(allPrograms).difference(allProgramsInstallers)))
-  {
-   Write-Output "No uninstallers found for $program."
-  }
   $confirmation = Get-Package -Provider Programs -IncludeWindowsInstaller -Name "$program*" -ErrorAction:SilentlyContinue
   if ($confirmation)
   {
