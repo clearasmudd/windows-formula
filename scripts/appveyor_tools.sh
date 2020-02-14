@@ -23,6 +23,14 @@ fi
 declare -A APPVEYOR_TEST
 APPVEYOR_TEST[framework]=junit
 
+function appveyor_message
+{
+  appveyor AddMessage "$1" -Category "Information" -Details "$($1)"
+  # Add-AppveyorMessage -Message <string>
+  #   [-Category <category> {Information | Warning | Error}]
+  #   [-Details <string>]
+}
+
 while getopts f:t:i option
 do
   case "${option}" in
@@ -155,25 +163,26 @@ case "${FUNCTION}" in
     ;;
 
   sysinfo)
-    set -x
-    date
-    uptime
-    /bin/uname -a
-    cat /proc/version
-    echo Terminal Dimensions: "$(tput cols)" columns x "$(tput lines)" rows
-    sudo lshw
-    pwd
-    ls -la
-    cat /etc/*-release
-    bash --version
-    printenv
-    route -n
-    grep -v "#" < /etc/fstab
-    df -h
-    ps -ef
-    sudo dpkg-query -l
+    # set -x
+    echo "Gathering System Information -> Sending to Appveyor Messages Tab"
+    appveyor_message "date"
+    appveyor_message "uptime"
+    appveyor_message "/bin/uname -a"
+    appveyor_message "/proc/version"
+    appveyor_message "echo Terminal Dimensions: "$(tput cols)" columns x "$(tput lines)" rows"
+    appveyor_message "sudo lshw"
+    appveyor_message "pwd"
+    appveyor_message "ls -la"
+    appveyor_message "cat /etc/*-release"
+    appveyor_message "bash --version"
+    appveyor_message "printenv"
+    appveyor_message "route -n"
+    appveyor_message "grep -v "#" < /etc/fstab"
+    appveyor_message "df -h"
+    appveyor_message "ps -ef"
+    appveyor_message "sudo dpkg-query -l"
     # /usr/bin/pwsh
-    pwsh -command "& {Get-Module -ListAvailable}"
+    appveyor_message "pwsh -command \"& {Get-Module -ListAvailable}\""
     ;;
 
   lint)
