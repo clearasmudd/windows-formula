@@ -1,5 +1,5 @@
 # Need to uninstall git and 7-zip to test installation using saltstack
-
+#
 # section sourced from: https://github.com/Limech/git-powershell-silent-install/blob/master/git-silent-uninstall.ps1
 ## There can be many places where git could have been installed.  Check likely places.
 ### List of likely places where Git could be
@@ -42,11 +42,11 @@ else
 {
   if ($installPath -like '*Git*')
   {
-    program_name = 'Git'
+    $program_name = 'Git'
   }
   elseif ($installPath -like '*7-Zip*')
   {
-    program_name = '7-Zip'
+    $program_name = '7-Zip'
   }
   $confirmation = Get-Package -Provider Programs -IncludeWindowsInstaller -Name "$program_name*" -ErrorAction:SilentlyContinue
   if ($confirmation)
