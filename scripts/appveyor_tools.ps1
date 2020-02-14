@@ -6,16 +6,21 @@ Param(
     $function,
 
     [Parameter(Mandatory=$false,
-    ParameterSetName="User")]
+    ParameterSetName="Installers")]
     [String[]]
-    $UserName,
+    $program
 
-    [Parameter(Mandatory=$false, ParameterSetName="Computer")]
-    [Parameter(Mandatory=$false, ParameterSetName="User")]
-    [Switch]
-    $Summary
+    [Parameter(Mandatory=$false,
+    ParameterSetName="Installers")]
+    [String[]]
+    $results
+
+
+    # [Parameter(Mandatory=$false, ParameterSetName="Installers")]
+    # # [Parameter(Mandatory=$false, ParameterSetName="User")]
+    # [Switch]
+    # $program
 )
-
 
 switch ($function)
 {
@@ -25,7 +30,70 @@ switch ($function)
     [System.Windows.Forms.Screen]::AllScreens
     [System.Windows.Forms.SystemInformation]::ScreenOrientation
     [System.Windows.Forms.SystemInformation]::PrimaryMonitorSize
-      
+    Get-ChildItem Env: | Sort Name
+    Get-Package -Provider Programs -IncludeWindowsInstaller | Sort Name
+    Get-CimInstance Win32_OperatingSystem | Format-List * | Out-String -Stream | Sort-Object
+    $PSVersionTable | Sort Name
+    ; Break
+  }
+  submit
+  {
+    switch ($results)
+    {
+      inspec_tests
+      {
+        $inspec_results = '.\test\results\appveyor-windows.xml'
+        # $wc = New-Object 'System.Net.WebClient'
+        # $url = "https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)"
+        # $wc.UploadFile($url, (Resolve-Path .\test\results\$env:local_kitchen_suite_platform.xml))
+          if (Test-Path $inspec_results -PathType Leaf)
+          {
+            ((Get-Content -path $inspec_results -Raw) -replace 'default','InSpec') | Set-Content -Path $inspec_results
+            # upload results to AppVeyor
+            $wc = New-Object 'System.Net.WebClient'
+            $url = "https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)"
+            $wc.UploadFile($url, (Resolve-Path $inspec_results))
+            # Get-Content -path $inspec_results
+          }
+          else
+          {
+            # dir c:\projects\windows-formula\test\results
+            dir .\test\results\
+          }
+        ; Break
+      }
+    }
+  }
+  setup
+  {
+    switch ($program)
+    {
+      test_kitchen
+      {
+        $env:machine_user="vagrant"
+        $env:machine_pass="vagrant"
+        $env:KITCHEN_LOCAL_YAML=".kitchen.appveyor.yml"
+        $env:CHEF_LICENSE="accept"
+        (& cmd /c); iex (irm https://omnitruck.chef.io/install.ps1); Install-Project -Project chefdk -channel stable -version 4.7.73
+        c:\opscode\chefdk\bin\chef.bat exec ruby --version
+        secedit /export /cfg $env:temp/export.cfg
+        ((get-content $env:temp/export.cfg) -replace ('PasswordComplexity = 1', 'PasswordComplexity = 0')) |
+          Out-File $env:temp/export.cfg
+        ((get-content $env:temp/export.cfg) -replace ('MinimumPasswordLength = 8', 'MinimumPasswordLength = 0')) |
+          Out-File $env:temp/export.cfg
+        secedit /configure /db $env:windir/security/new.sdb /cfg $env:temp/export.cfg /areas SECURITYPOLICY
+        net user /add $env:machine_user $env:machine_pass
+        net localgroup administrators $env:machine_user /add
+        ; Break
+      }
+      rdp
+      {
+        $env:APPVEYOR_RDP_PASSWORD="lj=adf89ASD0098_sd!fwe!==HUI"
+        $dlstring = 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'
+        $blockRdp = $true; iex ((new-object net.webclient).DownloadString($dlstring))
+        ; Break
+      }
+    }
     ; Break
   }
 

@@ -80,32 +80,81 @@ for:
         - job_depends_on: Lint Tests
     build_script:
       - ps: Write-Host "build_script for $env:APPVEYOR_JOB_NAME"
+      - ps: ./scripts/system_information.ps1
+      # - ps: $env:APPVEYOR_RDP_PASSWORD="lj=adf89ASD0098_sd!fwe!==HUI"
+      # - ps: $dlstring = 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'
+      # - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString($dlstring))
+      # - ps: $ErrorActionPreference = "Stop";
       # Saltstack needs to see the CI environment variable when run through test kitchen proxy driver
       - ps: if (Test-Path env:CI) {[System.Environment]::SetEnvironmentVariable("CI", $Env:CI, "Machine")}
-      # - ps: if ($env:CI -imatch 'True') {write-host 'IS CI'} else {write-host 'IS NOT CI'}
-      - ps: ./scripts/appveyor_tools.ps1 -function sysinfo
-      - ps: $ErrorActionPreference = "Stop";
-      - ps: ./scripts/appveyor_tools.ps1 -function setup -program test_kitchen
-      - ps: ./scripts/appveyor_tools.ps1 -function uninstall-apps-for-saltstack-testing
+      - ps: $env:machine_user="vagrant"
+      - ps: $env:machine_pass="vagrant"
+      - ps: $env:KITCHEN_LOCAL_YAML=".kitchen.appveyor.yml"
+      - ps: $env:CHEF_LICENSE="accept"
+      - ps: >
+          Get-ChildItem Env: | Sort Name
+      - ps: Get-Package -Provider Programs -IncludeWindowsInstaller | Sort Name
+      - ps: Get-CimInstance Win32_OperatingSystem | Format-List * | Out-String -Stream | Sort-Object
+      - ps: $PSVersionTable | Sort Name
+      - ps: ./scripts/uninstall_apps_for_saltstack.ps1
+
+      # - ps: >
+      #     if (Test-Path "C:\Program Files\7-Zip\Uninstall.exe" -PathType Leaf)
+      #     { write-host "Removing 7-Zip from C:\Program Files\7-Zip\";
+      #     start-process -FilePath "C:\Program Files\7-Zip\Uninstall.exe" -ArgumentList "/S" }
+      - ps: >
+          (& cmd /c); iex (irm https://omnitruck.chef.io/install.ps1);
+          Install-Project -Project chefdk -channel stable -version 4.7.73
+      - ps: c:\opscode\chefdk\bin\chef.bat exec ruby --version
+      - ps: secedit /export /cfg $env:temp/export.cfg
+      - ps: >
+          ((get-content $env:temp/export.cfg) -replace
+          ('PasswordComplexity = 1', 'PasswordComplexity = 0')) | Out-File $env:temp/export.cfg
+      - ps: >
+          ((get-content $env:temp/export.cfg) -replace ('MinimumPasswordLength = 8', 'MinimumPasswordLength = 0')) |
+          Out-File $env:temp/export.cfg
+      - ps: secedit /configure /db $env:windir/security/new.sdb /cfg $env:temp/export.cfg /areas SECURITYPOLICY
+      - ps: net user /add $env:machine_user $env:machine_pass
+      - ps: net localgroup administrators $env:machine_user /add
+      # - ps: c:\opscode\chefdk\bin\chef.bat shell-init powershell | iex;
+      # cmd /c c:\opscode\chefdk\bin\chef.bat --version
       - ps: c:\opscode\chefdk\bin\chef.bat exec bundle install
       - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen list
-      - ps: $ErrorActionPreference = "Continue";
+      # - ps: if ($env:CI -imatch 'True') {write-host 'IS CI'} else {write-host 'IS NOT CI'}
+      # - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen setup
       # - ps: if ($LastExitCode -ne 0) {write-host "last exit code $LastExitCode"; $host.SetShouldExit($LastExitCode)}
-
     test_script:
       - ps: Write-Host "test_script for $env:APPVEYOR_JOB_NAME"
+      - ps: $ErrorActionPreference = "Continue";
       - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen test
-
+      # - ps: >
+      #     write-host "Kitchen Test Exit Code: $LastExitCode"
     deploy: off
-    on_failure:
-      - ps: >
-          if (Test-Path "c:\temp\salt_minion.log" -PathType Leaf)
-          { Get-Content "c:\temp\salt_minion.log" }
+    # on_failure:
+    #   - ps: >
+    #       if (Test-Path "c:\temp\salt_minion.log" -PathType Leaf)
+    #       { Get-Content "c:\temp\salt_minion.log" }
     on_finish:
       - ps: Write-Host "on_finish for $env:APPVEYOR_JOB_NAME"
       # uncomment to debug
-      # - ps: ./scripts/appveyor_tools.ps1 -function setup -program rdp
-      - ps: ./scripts/appveyor_tools.ps1 -function submit -results inspec_tests
+      # - ps: $env:APPVEYOR_RDP_PASSWORD="lj=adf89ASD0098_sd!fwe!==HUI"
+      # - ps: $dlstring = 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'
+      # - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString($dlstring))
+      - ps: $inspec_results = '.\test\results\appveyor-windows.xml'
+      - ps: >
+          if (Test-Path $inspec_results -PathType Leaf)
+          {
+            ((Get-Content -path $inspec_results -Raw) -replace 'default','InSpec') | Set-Content -Path $inspec_results
+            # upload results to AppVeyor
+            $wc = New-Object 'System.Net.WebClient'
+            $url = "https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)"
+            $wc.UploadFile($url, (Resolve-Path $inspec_results))
+            # Get-Content -path $inspec_results
+          }
+          else
+          {
+            dir c:\projects\windows-formula\test\results
+          }
 
   -
     matrix:
@@ -131,9 +180,15 @@ for:
     deploy: off
     on_finish:
       - ps: Write-Host "on_finish for $env:APPVEYOR_JOB_NAME"
-      # uncomment to debug
-      # - ps: ./scripts/appveyor_tools.ps1 -function setup -program rdp
-      - ps: ./scripts/appveyor_tools.ps1 -function submit -results inspec_tests
+      - ps: dir c:\projects\windows-formula\test\results
+      - ps: |
+          # upload results to AppVeyor
+          $wc = New-Object 'System.Net.WebClient'
+          $url = "https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)"
+          $wc.UploadFile($url, (Resolve-Path .\test\results\$env:local_kitchen_suite_platform.xml))
+      # - ps: >
+      #     if (Test-Path ".\test\results\$env:local_kitchen_suite_platform.xml" -PathType Leaf)
+      #     { $wc.UploadFile($url, (Resolve-Path .\test\results\$env:local_kitchen_suite_platform.xml)) }
 
   -
     matrix:
