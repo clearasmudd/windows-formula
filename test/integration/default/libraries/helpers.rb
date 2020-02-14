@@ -86,7 +86,7 @@ def try_get_pillar
     puts 'INFO: Got pillar from the inspec pillar file.'
     return pillar_from_inspec_pillar_file
   end
-  raise 'Unable to get pillar.'
+  raise 'Unable to get pillar from input, minion or local inspec pillar file.'
 end
 
 def get_pillar_from_inspec_pillar_file
@@ -98,11 +98,11 @@ def get_pillar_from_inspec_pillar_file
   begin
     @cache_pillar_from_inspec_pillar_file = YAML.safe_load(File.read(pillar_file)) if File.exist?(pillar_file)
   rescue StandardError => e
-    Inspec::Log.error('[get_pillar_from_inspec_pillar_file] ' + e.message)
+    Inspec::Log.warn('[get_pillar_from_inspec_pillar_file] ' + e.message)
     return []
   end
   if defined?(@cache_pillar_from_inspec_pillar_file)
-    Inspec::Log.debug('[get_pillar_from_inspec_pillar_file]  success, got the pillar from the inspec file.  Cached result.')
+    Inspec::Log.debug('[get_pillar_from_inspec_pillar_file] success, got the pillar from the inspec file.  Cached result.')
     @cache_pillar_from_inspec_pillar_file
   end
 end
@@ -125,7 +125,7 @@ def ingest_from_minion(type, ps_cmd, max_retries = 20, sec_timeout = 10)
     Inspec::Log.debug("Ingested #{type} content successfully.")
     @my_result
   else
-    Inspec::Log.error('Failed to get content.')
+    Inspec::Log.warn('Failed to get content from minion.')
     []
   end
 end

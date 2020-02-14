@@ -8,7 +8,7 @@ $possibleInstalledPaths = @("C:\Program Files\Git\", "C:\Program Files (x64)\Git
 $allPrograms = New-Object System.Collections.Generic.HashSet[int]
 $allProgramsInstallers = New-Object System.Collections.Generic.HashSet[int]
 
-$foundAnInstallation = $false
+# $foundAnInstallation = $false
 ### For all places where Git "could" be.
 foreach ($installPath in $possibleInstalledPaths)
 {
@@ -35,7 +35,7 @@ foreach ($installPath in $possibleInstalledPaths)
     ## Some Git stuff might be running.. kill them.
     Stop-Process -processname Bash -erroraction 'silentlycontinue'
     Stop-Process -processname Putty* -erroraction 'silentlycontinue'
-    # $foundAnInstallation = $true
+    $foundAnInstallation = $true
 
     Write-Output "Removing $program_name from " $installPath
     ### Find if there's an uninstaller in the folder.
