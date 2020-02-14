@@ -58,7 +58,7 @@ for:
         - job_group: Lint Tests
     build_script:
       - sh: echo build_script for $APPVEYOR_JOB_NAME
-      - sh: ./scripts/appveyor_tools.sh -f sysinfo
+      - sh: ./scripts/appveyor_tools.sh -f get-sysinfo
       - sh: PATH=$PATH:/home/appveyor/.local/bin
       - sh: ./scripts/appveyor_tools.sh -f test -i
     test_script:
@@ -71,6 +71,8 @@ for:
       - sh: ./scripts/appveyor_tools.sh -f test -t commitlint </dev/null || error=true
       - sh: if [ $error ]; then exit 1; fi  # $host.SetShouldExit(1)
     deploy: off
+    on_finish:
+      - sh: ./scripts/appveyor_tools.sh -f output-sysinfo
 
   -
     matrix:

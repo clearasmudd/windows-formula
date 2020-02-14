@@ -22,10 +22,15 @@ fi
 
 declare -A APPVEYOR_TEST
 APPVEYOR_TEST[framework]=junit
+sysinfo_filename=${env_sysinfo_filename:="/tmp/sysinfo.txt"}
 
 function appveyor_message
 {
-  appveyor AddMessage "$1" -Category "Information" -Details "$($1)"
+  info=$($1)
+  # if [ $(echo $info | wc -l) < 30 ]; then
+  appveyor AddMessage "$1" -Category "Information" -Details "$(echo $info | head -29)"
+  echo "system information ($1):" >> $sysinfo_filename
+  echo "$info" >> $sysinfo_filename
   # Add-AppveyorMessage -Message <string>
   #   [-Category <category> {Information | Warning | Error}]
   #   [-Details <string>]
@@ -128,7 +133,7 @@ case "${FUNCTION}" in
       shellcheck)
         APPVEYOR_TEST[filename]='*.sh *.bash *.ksh'
         # APPVEYOR_TEST[command]="git ls-files *.sh *.bash *.ksh | xargs shellcheck"
-        APPVEYOR_TEST[command]="./scripts/appveyor_tools.sh -f lint -l shellcheck.sh"
+        APPVEYOR_TEST[command]="./scripts/appveyor_tools.sh -f lint -l shellcheck"
         run_test
         end_test
         ;;
@@ -162,13 +167,16 @@ case "${FUNCTION}" in
     exit ${APPVEYOR_TEST[cret]}
     ;;
 
-  sysinfo)
+  get-sysinfo)
     # set -x
-    echo "Gathering System Information -> Sending to Appveyor Messages Tab"
+    echo "Gathering System Information..."
+    echo "  - The first 29 lines will be available in the Appveyor Messages Tab"
+    echo "  - The full content will be output at the end of the build process"
+    sysinfo_filename="/tmp/sysinfo.txt"
     appveyor_message "date"
     appveyor_message "uptime"
     appveyor_message "/bin/uname -a"
-    appveyor_message "/proc/version"
+    appveyor_message "cat /proc/version"
     appveyor_message "echo Terminal Dimensions: "$(tput cols)" columns x "$(tput lines)" rows"
     appveyor_message "sudo lshw"
     appveyor_message "pwd"
@@ -177,13 +185,24 @@ case "${FUNCTION}" in
     appveyor_message "bash --version"
     appveyor_message "printenv"
     appveyor_message "route -n"
-    appveyor_message "grep -v "#" < /etc/fstab"
+    appveyor_message "grep -v '#' < /etc/fstab"
     appveyor_message "df -h"
     appveyor_message "ps -ef"
     appveyor_message "sudo dpkg-query -l"
     # /usr/bin/pwsh
-    appveyor_message "pwsh -command \"& {Get-Module -ListAvailable}\""
+    appveyor_message 'pwsh -command \"& {Get-Module -ListAvailable}\"'
     ;;
+
+  output-sysinfo)
+    if [ ! -f "$sysinfo_filename" ]; then
+      ./scripts/appveyor_tools.sh -f get-sysinfo
+    fi
+    
+    if [ -f "$sysinfo_filename" ]; then
+      cat $sysinfo_filename
+    else
+      echo "unable to get sysinfo"
+    
 
   lint)
     # need to wrap commands with pipes for appveyor_tests.sh
