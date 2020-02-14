@@ -100,7 +100,6 @@ case "${FUNCTION}" in
         shellcheck --version
         pwsh -Command "& {Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted}"
         pwsh -Command "& {Install-Module -Name PSScriptAnalyzer -Repository PSGallery -Force}"
-        pwsh -Command "& {Get-Module -ListAvailable}"
     fi
 
     if [ ! -z "$tflag" ]; then
@@ -191,13 +190,14 @@ case "${FUNCTION}" in
     appveyor_message "ps -ef"
     appveyor_message "sudo dpkg-query -l"
     # /usr/bin/pwsh
-    appveyor_message 'pwsh -command \"& {Get-Module -ListAvailable}\"'
+    appveyor_message 'pwsh -Command "& {Get-Module -ListAvailable}"'
+
     ;;
 
   output-sysinfo)
-    if [ ! -f "$sysinfo_filename" ]; then
-      ./scripts/appveyor_tools.sh -f get-sysinfo
-    fi
+    # if [ ! -f "$sysinfo_filename" ]; then
+    #   ./scripts/appveyor_tools.sh -f get-sysinfo
+    # fi
     
     if [ -f "$sysinfo_filename" ]; then
       cat $sysinfo_filename

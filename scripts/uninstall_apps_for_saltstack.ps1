@@ -21,7 +21,7 @@ foreach ($installPath in $possibleInstalledPaths)
   {
     $program_name = '7-Zip'
   }
-  $allPrograms.Add($program_name) 
+  $allPrograms.Add($program_name)
   if (Test-Path($installPath))
   {
     # # - ps: Get-ChildItem -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall | Get-ItemProperty |
@@ -35,7 +35,6 @@ foreach ($installPath in $possibleInstalledPaths)
     ## Some Git stuff might be running.. kill them.
     Stop-Process -processname Bash -erroraction 'silentlycontinue'
     Stop-Process -processname Putty* -erroraction 'silentlycontinue'
-    $foundAnInstallation = $true
 
     Write-Output "Removing $program_name from " $installPath
     ### Find if there's an uninstaller in the folder.
@@ -55,7 +54,6 @@ foreach ($installPath in $possibleInstalledPaths)
   }
 }
 # Add confirmation
-Invoke-Expression "Get-Process"
 foreach ($program in $allPrograms)
 {
   if ($program in (set(allPrograms).difference(allProgramsInstallers))))
