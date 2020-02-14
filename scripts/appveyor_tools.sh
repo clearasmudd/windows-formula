@@ -28,7 +28,8 @@ function appveyor_message
 {
   info=$($1)
   # if [ $(echo $info | wc -l) < 30 ]; then
-  appveyor AddMessage "$1" -Category "Information" -Details "$(echo "$info" | head -29)"
+  echo "working on $1"
+  appveyor AddMessage "$1" -Category "Information" -Details "$(echo "$info" | head -40)"
   echo "system information ($1):" >> $sysinfo_filename
   echo "$info" >> $sysinfo_filename
   # Add-AppveyorMessage -Message <string>
@@ -170,7 +171,7 @@ case "${FUNCTION}" in
   get-sysinfo)
     # set -x
     echo "Gathering System Information..."
-    echo "  - The first 29 lines will be available in the Appveyor Messages Tab"
+    echo "  - Truncated output will be available in the Appveyor Messages Tab"
     echo "  - The full content will be output at the end of the build process"
     sysinfo_filename="/tmp/sysinfo.txt"
     appveyor_message "date"
