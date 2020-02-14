@@ -56,27 +56,20 @@ for:
     matrix:
       only:
         - job_group: Lint Tests
-    before_build:
     build_script:
       - sh: echo build_script for $APPVEYOR_JOB_NAME
-      - sh: tput cols
-      - sh: date
-      - sh: pwd; ls -la; printenv
+      - sh: ./scripts/appveyor_tools.sh -f sysinfo
+      - pwsh: ./scripts/system_information.ps1
       - sh: PATH=$PATH:/home/appveyor/.local/bin
-      - sh: bash --version
-      # - sh: pwsh -Command {Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted}
-      # - pwsh: Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
-      # - pwsh: Install-Module -Name PSScriptAnalyzer -Repository PSGallery -Force
-      # - pwsh: Get-Module -ListAvailable
-      - sh: ./scripts/appveyor_tests.sh -i
+      - sh: ./scripts/appveyor_tools.sh -f test -i
     test_script:
       - sh: echo test_script for $APPVEYOR_JOB_NAME
-      - sh: ./scripts/appveyor_tests.sh -t yamllint || error=true
-      - sh: ./scripts/appveyor_tests.sh -t salt-lint || error=true
-      - sh: ./scripts/appveyor_tests.sh -t PowerShellScriptAnalyzer || error=true
-      - sh: ./scripts/appveyor_tests.sh -t rubocop || error=true
-      - sh: ./scripts/appveyor_tests.sh -t shellcheck || error=true
-      - sh: ./scripts/appveyor_tests.sh -t commitlint </dev/null || error=true
+      - sh: ./scripts/appveyor_tools.sh -f test -t yamllint || error=true
+      - sh: ./scripts/appveyor_tools.sh -f test -t salt-lint || error=true
+      - sh: ./scripts/appveyor_tools.sh -f test -t powershell-script-analyzer || error=true
+      - sh: ./scripts/appveyor_tools.sh -f test -t rubocop || error=true
+      - sh: ./scripts/appveyor_tools.sh -f test -t shellcheck || error=true
+      - sh: ./scripts/appveyor_tools.sh -f test -t commitlint </dev/null || error=true
       - sh: if [ $error ]; then exit 1; fi  # $host.SetShouldExit(1)
     deploy: off
 
@@ -86,9 +79,7 @@ for:
         - job_depends_on: Lint Tests
     build_script:
       - ps: Write-Host "build_script for $env:APPVEYOR_JOB_NAME"
-      - ps: Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.Screen]::AllScreens
-      - ps: [System.Windows.Forms.SystemInformation]::ScreenOrientation
-      - ps: [System.Windows.Forms.SystemInformation]::PrimaryMonitorSize
+      - ps: ./scripts/system_information.ps1
       # - ps: $env:APPVEYOR_RDP_PASSWORD="lj=adf89ASD0098_sd!fwe!==HUI"
       # - ps: $dlstring = 'https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'
       # - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString($dlstring))
