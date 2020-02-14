@@ -29,7 +29,7 @@ function appveyor_message
   info=$($1)
   # if [ $(echo $info | wc -l) < 30 ]; then
   echo "working on $1"
-  appveyor AddMessage "$1" -Category "Information" -Details "$(echo "$info" | head -40)"
+  appveyor AddMessage "$1" -Category "Information" -Details "$(echo "$info" | tail -n +1 | head -40)"
   echo "system information ($1):" >> $sysinfo_filename
   echo "$info" >> $sysinfo_filename
   # Add-AppveyorMessage -Message <string>
@@ -151,7 +151,7 @@ case "${FUNCTION}" in
 
       powershell-script-analyzer)
         APPVEYOR_TEST[filename]='*.ps*'
-        APPVEYOR_TEST[command]='./scripts/appveyor_tools.sh -f lint -l powershell'
+        APPVEYOR_TEST[command]="./scripts/appveyor_tools.sh -f lint -l powershell"
         run_test
         if [[ ! "${APPVEYOR_TEST[cout]}" == *"0 rule violations found"* ]]; then
           APPVEYOR_TEST[cret]=1
