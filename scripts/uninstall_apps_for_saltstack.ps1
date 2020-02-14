@@ -3,7 +3,7 @@
 # section sourced from: https://github.com/Limech/git-powershell-silent-install/blob/master/git-silent-uninstall.ps1
 ## There can be many places where git could have been installed.  Check likely places.
 ### List of likely places where Git could be
-$possibleInstalledPaths = @("C:\Program Files\Git\", "C:\Program Files (x64)\Git\", "c:\git\", "C:\Program Files\Git LFS", "C:\Program Files\7-Zip\")
+$possibleInstalledPaths = @("C:\Program Files\Git\", "C:\Program Files (x64)\Git\", "c:\git\", "C:\Program Files\Git LFS\", "C:\Program Files\7-Zip\")
 
 $foundAnInstallation = $false
 ### For all places where Git "could" be.
@@ -16,7 +16,7 @@ foreach ($installPath in $possibleInstalledPaths)
     Stop-Process -processname Bash -erroraction 'silentlycontinue'
     Stop-Process -processname Putty* -erroraction 'silentlycontinue'
     $foundAnInstallation = $true
-    Write-Information "Removing Git from " $installPath
+    Write-Output "Removing Git from " $installPath
     ### Find if there's an uninstaller in the folder.
     $uninstallers = Get-ChildItem $installPath"\unins*.exe"
     ### In reality, there should only be just one that matches.
@@ -36,7 +36,7 @@ foreach ($installPath in $possibleInstalledPaths)
 # Add confirmation
 if (!($foundAnInstallation))
 {
-   Write-Information "No installation found. Nothing to uninstall"
+   Write-Output "No installation found. Nothing to uninstall"
 }
 else
 {
@@ -52,12 +52,12 @@ else
   if ($confirmation)
   {
     $host.SetShouldExit($LastExitCode)
-    Write-Information $confirmation
+    Write-Output $confirmation
     throw "$program_name not uninstalled"
   }
   else
   {
-    Write-Information "All $program_name instances successfully uninstalled"
+    Write-Output "All $program_name instances successfully uninstalled"
   }
 }
 
