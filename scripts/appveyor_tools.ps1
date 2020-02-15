@@ -12,7 +12,7 @@ Param(
     [Parameter(Mandatory=$false,
     ParameterSetName="Installers")]
     [String[]]
-    $program
+    $program,
 
     [Parameter(Mandatory=$false,
     ParameterSetName="Installers")]
