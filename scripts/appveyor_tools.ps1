@@ -6,16 +6,19 @@
 Param(
     [Parameter(Mandatory=$true,
     ParameterSetName="Functions")]
+    [ValidateSet("sysinfo", "submit", "setup", "uninstall-apps-for-saltstack-testing")]
     [String[]]
     $function,
 
     [Parameter(Mandatory=$false,
-    ParameterSetName="Installers")]
+    ParameterSetName="Programs")]
+    [ValidateSet("test-kitchen", "rdp")]
     [String[]]
     $program,
 
     [Parameter(Mandatory=$false,
-    ParameterSetName="Installers")]
+    ParameterSetName="Results")]
+    [ValidateSet("inspec_tests")]
     [String[]]
     $results
 
