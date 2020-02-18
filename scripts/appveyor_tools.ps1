@@ -4,12 +4,12 @@
 
 Param(
     [Parameter(Mandatory=$true, ValueFromPipeline=$true)]
-    [ValidateSet("sysinfo", "submit", "setup", "uninstall-apps-for-saltstack-testing")]
+    [ValidateSet("sysinfo", "submit", "setup", "uninstall")]
     [String[]]
     $function,
 
     [Parameter(Mandatory=$false, ValueFromPipeline=$true)]
-    [ValidateSet("test-kitchen", "rdp")]
+    [ValidateSet("test-kitchen", "rdp", "apps-saltstack-will-install")]
     [String[]]
     $program,
 
@@ -108,78 +108,85 @@ switch ($function)
     }
     ; Break
   }
-  "uninstall-apps-for-saltstack-testing"
+  uninstall
   {
-    # Need to uninstall git and 7-zip to test installation using saltstack
-    #
-    # section sourced from: https://github.com/Limech/git-powershell-silent-install/blob/master/git-silent-uninstall.ps1
-
-    $allPrograms = New-Object System.Collections.Generic.HashSet[String]
-    $allProgramsUninstallers = New-Object System.Collections.Generic.HashSet[String]
-    $possibleInstalledPaths = @(
-      "C:\Program Files\Git\",
-      "C:\Program Files (x64)\Git\",
-      "c:\git\",
-      "C:\Program Files\Git LFS\",
-      "C:\Program Files\7-Zip\")
-
-    foreach ($installPath in $possibleInstalledPaths)
+    switch ($program)
     {
-      if ($installPath -like '*Git*'| Out-Null)
+      apps-saltstack-will-install
       {
-        $program_name = 'Git'
-      }
-      elseif ($installPath -like '*7-Zip*'| Out-Null)
-      {
-        $program_name = '7-Zip'
-      }
-      $allPrograms.Add($program_name)
+        # Need to uninstall git and 7-zip to test installation using saltstack
+        #
+        # section sourced from: https://github.com/Limech/git-powershell-silent-install/blob/master/git-silent-uninstall.ps1
 
-      if (Test-Path($installPath)| Out-Null)
-      {
-        $allProgramsUninstallers.Add($program_name)
-        # write-output "Current set of uninstallers: $allProgramsUninstallers"
-        ## Some Git stuff might be running.. kill them.
-        if ($program_name -eq 'Git'| Out-Null)
+        $allPrograms = New-Object System.Collections.Generic.HashSet[String]
+        $allProgramsUninstallers = New-Object System.Collections.Generic.HashSet[String]
+        $possibleInstalledPaths = @(
+          "C:\Program Files\Git\",
+          "C:\Program Files (x64)\Git\",
+          "c:\git\",
+          "C:\Program Files\Git LFS\",
+          "C:\Program Files\7-Zip\")
+
+        foreach ($installPath in $possibleInstalledPaths)
         {
-          Stop-Process -processname Bash -erroraction 'silentlycontinue'
-          Stop-Process -processname Putty* -erroraction 'silentlycontinue'
+          if ($installPath -like '*Git*'| Out-Null)
+          {
+            $program_name = 'Git'
+          }
+          elseif ($installPath -like '*7-Zip*'| Out-Null)
+          {
+            $program_name = '7-Zip'
+          }
+          $allPrograms.Add($program_name)
+
+          if (Test-Path($installPath)| Out-Null)
+          {
+            $allProgramsUninstallers.Add($program_name)
+            # write-output "Current set of uninstallers: $allProgramsUninstallers"
+            ## Some Git stuff might be running.. kill them.
+            if ($program_name -eq 'Git'| Out-Null)
+            {
+              Stop-Process -processname Bash -erroraction 'silentlycontinue'
+              Stop-Process -processname Putty* -erroraction 'silentlycontinue'
+            }
+
+            $uninstallers = Get-ChildItem $installPath"\unins*.exe"
+            foreach ($uninstaller in $uninstallers)
+            {
+              $uninstallerCommandLineOptions = "/SP- /VERYSILENT /SUPPRESSMSGBOXES /FORCECLOSEAPPLICATIONS /S"
+              Start-Process -Wait -FilePath $uninstaller -ArgumentList $uninstallerCommandLineOptions
+            }
+
+            if (Test-Path($installPath)| Out-Null)
+            {
+              Remove-Item -Recurse -Force $installPath
+            }
+          }
         }
 
-        $uninstallers = Get-ChildItem $installPath"\unins*.exe"
-        foreach ($uninstaller in $uninstallers)
+        $allProgramsUninstallers.SymmetricExceptWith($allPrograms)
+        foreach ($installed_program in $allProgramsUninstallers)
         {
-          $uninstallerCommandLineOptions = "/SP- /VERYSILENT /SUPPRESSMSGBOXES /FORCECLOSEAPPLICATIONS /S"
-          Start-Process -Wait -FilePath $uninstaller -ArgumentList $uninstallerCommandLineOptions
+          write-Output "No uninstallers found for $installed_program."
         }
 
-        if (Test-Path($installPath)| Out-Null)
+        foreach ($installed_program in $allPrograms)
         {
-          Remove-Item -Recurse -Force $installPath
+          $confirmation = Get-Package -Provider Programs -IncludeWindowsInstaller -Name "$installed_program*" -ErrorAction:SilentlyContinue
+          if ($confirmation| Out-Null)
+          {
+            $host.SetShouldExit($LastExitCode)
+            Write-Output $confirmation
+            throw "$installed_program not uninstalled"
+          }
+          else
+          {
+            Write-Output "All $installed_program instances successfully uninstalled"
+          }
         }
+        ; Break
       }
+      ; Break
     }
-
-    $allProgramsUninstallers.SymmetricExceptWith($allPrograms)
-    foreach ($installed_program in $allProgramsUninstallers)
-    {
-      write-Output "No uninstallers found for $installed_program."
-    }
-
-    foreach ($installed_program in $allPrograms)
-    {
-      $confirmation = Get-Package -Provider Programs -IncludeWindowsInstaller -Name "$installed_program*" -ErrorAction:SilentlyContinue
-      if ($confirmation| Out-Null)
-      {
-        $host.SetShouldExit($LastExitCode)
-        Write-Output $confirmation
-        throw "$installed_program not uninstalled"
-      }
-      else
-      {
-        Write-Output "All $installed_program instances successfully uninstalled"
-      }
-    }
-    ; Break
   }
 }

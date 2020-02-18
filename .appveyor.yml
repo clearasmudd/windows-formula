@@ -86,7 +86,7 @@ for:
       # - ps: ./scripts/appveyor_tools.ps1 -function sysinfo
       - ps: $ErrorActionPreference = "Stop";
       - ps: ./scripts/appveyor_tools.ps1 -function setup -program test-kitchen
-      - ps: ./scripts/appveyor_tools.ps1 -function uninstall-apps-for-saltstack-testing
+      - ps: ./scripts/appveyor_tools.ps1 -function uninstall -program apps-saltstack-will-install
       - ps: c:\opscode\chefdk\bin\chef.bat exec bundle install
       - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen list
       - ps: $ErrorActionPreference = "Continue";
