@@ -5,9 +5,9 @@ environment:
   matrix:
     # Linux job
     # https://www.appveyor.com/docs/linux-images-software/
-    - job_name: Lint Tests (salt-lint, yamllint, rubocop, shellcheck, powershell-script-analyzer and commitlint)
-      job_group: Lint Tests
-      appveyor_build_worker_image: Ubuntu
+    # - job_name: Lint Tests (salt-lint, yamllint, rubocop, shellcheck, powershell-script-analyzer and commitlint)
+    #   job_group: Lint Tests
+    #   appveyor_build_worker_image: Ubuntu
 
     # Windows jobs
     # https://www.appveyor.com/docs/windows-images-software/
@@ -86,7 +86,7 @@ for:
       # - ps: ./scripts/appveyor_tools.ps1 -function sysinfo
       - ps: $ErrorActionPreference = "Stop";
       - ps: ./scripts/appveyor_tools.ps1 -function setup -program test-kitchen
-      - ps: ./scripts/appveyor_tools.ps1 -function uninstall -program apps-saltstack-will-install
+      - ps: ./scripts/appveyor_tools.ps1 -function uninstall -program apps-saltstack-will-install | Select-String -Pattern 'True', 'False'  -NotMatch
       - ps: c:\opscode\chefdk\bin\chef.bat exec bundle install
       - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen list
       - ps: $ErrorActionPreference = "Continue";
