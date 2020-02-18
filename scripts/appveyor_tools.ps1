@@ -125,22 +125,22 @@ switch ($function)
 
     foreach ($installPath in $possibleInstalledPaths)
     {
-      if ($installPath -like '*Git*')
+      if ($installPath -like '*Git*'| Out-Null)
       {
         $program_name = 'Git'
       }
-      elseif ($installPath -like '*7-Zip*')
+      elseif ($installPath -like '*7-Zip*'| Out-Null)
       {
         $program_name = '7-Zip'
       }
       $allPrograms.Add($program_name)
 
-      if (Test-Path($installPath))
+      if (Test-Path($installPath)| Out-Null)
       {
         $allProgramsUninstallers.Add($program_name)
-        write-output "Current set of uninstallers: $allProgramsUninstallers"
+        # write-output "Current set of uninstallers: $allProgramsUninstallers"
         ## Some Git stuff might be running.. kill them.
-        if ($program_name -eq 'Git')
+        if ($program_name -eq 'Git'| Out-Null)
         {
           Stop-Process -processname Bash -erroraction 'silentlycontinue'
           Stop-Process -processname Putty* -erroraction 'silentlycontinue'
@@ -153,7 +153,7 @@ switch ($function)
           Start-Process -Wait -FilePath $uninstaller -ArgumentList $uninstallerCommandLineOptions
         }
 
-        if (Test-Path($installPath))
+        if (Test-Path($installPath)| Out-Null)
         {
           Remove-Item -Recurse -Force $installPath
         }
@@ -169,7 +169,7 @@ switch ($function)
     foreach ($installed_program in $allPrograms)
     {
       $confirmation = Get-Package -Provider Programs -IncludeWindowsInstaller -Name "$installed_program*" -ErrorAction:SilentlyContinue
-      if ($confirmation)
+      if ($confirmation| Out-Null)
       {
         $host.SetShouldExit($LastExitCode)
         Write-Output $confirmation
