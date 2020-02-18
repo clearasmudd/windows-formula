@@ -24,7 +24,6 @@ Param(
     # [Switch]
     # $program
 )
-
 switch ($function)
 {
   sysinfo
@@ -110,8 +109,7 @@ switch ($function)
     }
     ; Break
   }
-
-  uninstall-apps-for-saltstack-testing
+  "uninstall-apps-for-saltstack-testing"
   {
     # Need to uninstall git and 7-zip to test installation using saltstack
     #

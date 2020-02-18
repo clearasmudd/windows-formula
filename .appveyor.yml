@@ -3,11 +3,11 @@ version: '1.0.{build}'
 skip_tags: true
 environment:
   matrix:
-    # Linux job
-    # https://www.appveyor.com/docs/linux-images-software/
-    - job_name: Lint Tests (salt-lint, yamllint, rubocop, shellcheck, powershell-script-analyzer and commitlint)
-      job_group: Lint Tests
-      appveyor_build_worker_image: Ubuntu
+    # # Linux job
+    # # https://www.appveyor.com/docs/linux-images-software/
+    # - job_name: Lint Tests (salt-lint, yamllint, rubocop, shellcheck, powershell-script-analyzer and commitlint)
+    #   job_group: Lint Tests
+    #   appveyor_build_worker_image: Ubuntu
 
       # Windows jobs
       # https://www.appveyor.com/docs/windows-images-software/
@@ -85,8 +85,8 @@ for:
       # - ps: if ($env:CI -imatch 'True') {write-host 'IS CI'} else {write-host 'IS NOT CI'}
       # - ps: ./scripts/appveyor_tools.ps1 -function sysinfo
       - ps: $ErrorActionPreference = "Stop";
-      - ps: ./scripts/appveyor_tools.ps1 -function setup -program test_kitchen
       - ps: ./scripts/appveyor_tools.ps1 -function uninstall-apps-for-saltstack-testing
+      - ps: ./scripts/appveyor_tools.ps1 -function setup -program test_kitchen
       - ps: c:\opscode\chefdk\bin\chef.bat exec bundle install
       - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen list
       - ps: $ErrorActionPreference = "Continue";
