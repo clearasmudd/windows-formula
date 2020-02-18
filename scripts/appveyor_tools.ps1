@@ -129,31 +129,31 @@ switch ($function)
 
         foreach ($installPath in $possibleInstalledPaths)
         {
-          $get_boolean = $installPath -like '*Git*'
+          $get_boolean = ($installPath -like '*Git*')
           if ($get_boolean)
           {
             $program_name = 'Git'
           }
-          $get_boolean = installPath -like '*7-Zip*'
+          $get_boolean = ($installPath -like '*7-Zip*')
           elseif ($get_boolean)
           {
             $program_name = '7-Zip'
           }
           $allPrograms.Add($program_name)
-          $get_boolean = Test-Path($installPath)
+          $get_boolean = (Test-Path($installPath))
           if ($get_boolean)
           {
             $allProgramsUninstallers.Add($program_name)
             # write-output "Current set of uninstallers: $allProgramsUninstallers"
             ## Some Git stuff might be running.. kill them.
-            $get_boolean = program_name -eq 'Git'
+            $get_boolean = ($program_name -eq 'Git')
             if ($get_boolean)
             {
               Stop-Process -processname Bash -erroraction 'silentlycontinue'
               Stop-Process -processname Putty* -erroraction 'silentlycontinue'
             }
 
-            $uninstallers = Get-ChildItem $installPath"\unins*.exe"
+            $uninstallers = (Get-ChildItem $installPath"\unins*.exe")
             foreach ($uninstaller in $uninstallers)
             {
               $uninstallerCommandLineOptions = "/SP- /VERYSILENT /SUPPRESSMSGBOXES /FORCECLOSEAPPLICATIONS /S"
