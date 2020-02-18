@@ -186,7 +186,7 @@ switch ($function)
         }
         ; Break
       }
-      ; Break
     }
+    ; Break
   }
 }

@@ -3,14 +3,14 @@ version: '1.0.{build}'
 skip_tags: true
 environment:
   matrix:
-    # # Linux job
-    # # https://www.appveyor.com/docs/linux-images-software/
-    # - job_name: Lint Tests (salt-lint, yamllint, rubocop, shellcheck, powershell-script-analyzer and commitlint)
-    #   job_group: Lint Tests
-    #   appveyor_build_worker_image: Ubuntu
+    # Linux job
+    # https://www.appveyor.com/docs/linux-images-software/
+    - job_name: Lint Tests (salt-lint, yamllint, rubocop, shellcheck, powershell-script-analyzer and commitlint)
+      job_group: Lint Tests
+      appveyor_build_worker_image: Ubuntu
 
-      # Windows jobs
-      # https://www.appveyor.com/docs/windows-images-software/
+    # Windows jobs
+    # https://www.appveyor.com/docs/windows-images-software/
     - job_name: Chef Inspec Tests (Windows Server 2019)
       job_depends_on: Lint Tests
       job_group: Chef Inspec Tests
