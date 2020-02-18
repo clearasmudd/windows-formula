@@ -70,7 +70,7 @@ switch ($function)
   {
     switch ($program)
     {
-      test_kitchen
+      test-kitchen
       {
         function install_chefdk
         {
