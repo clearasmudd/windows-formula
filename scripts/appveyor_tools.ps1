@@ -1,23 +1,19 @@
-
 [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingInvokeExpression', '', Scope='Function', Target='install_chefdk')]
 [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingInvokeExpression', '', Scope='Function', Target='run_rdp_script')]
 [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', '', Scope='Function', Target='run_rdp_script')]
 
 Param(
-    [Parameter(Mandatory=$true,
-    ParameterSetName="Functions")]
+    [Parameter(Mandatory=$true, ValueFromPipeline=$true)]
     [ValidateSet("sysinfo", "submit", "setup", "uninstall-apps-for-saltstack-testing")]
     [String[]]
     $function,
 
-    [Parameter(Mandatory=$false,
-    ParameterSetName="Programs")]
+    [Parameter(Mandatory=$false, ValueFromPipeline=$true)]
     [ValidateSet("test-kitchen", "rdp")]
     [String[]]
     $program,
 
-    [Parameter(Mandatory=$false,
-    ParameterSetName="Results")]
+    [Parameter(Mandatory=$false, ValueFromPipeline=$true)]
     [ValidateSet("inspec_tests")]
     [String[]]
     $results
