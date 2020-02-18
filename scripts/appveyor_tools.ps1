@@ -161,23 +161,23 @@ switch ($function)
     }
 
     $allProgramsUninstallers.SymmetricExceptWith($allPrograms)
-    foreach ($program in $allProgramsUninstallers)
+    foreach ($installed_program in $allProgramsUninstallers)
     {
-      write-Output "No uninstallers found for $program."
+      write-Output "No uninstallers found for $installed_program."
     }
 
-    foreach ($program in $allPrograms)
+    foreach ($installed_program in $allPrograms)
     {
-      $confirmation = Get-Package -Provider Programs -IncludeWindowsInstaller -Name "$program*" -ErrorAction:SilentlyContinue
+      $confirmation = Get-Package -Provider Programs -IncludeWindowsInstaller -Name "$installed_program*" -ErrorAction:SilentlyContinue
       if ($confirmation)
       {
         $host.SetShouldExit($LastExitCode)
         Write-Output $confirmation
-        throw "$program not uninstalled"
+        throw "$installed_program not uninstalled"
       }
       else
       {
-        Write-Output "All $program instances successfully uninstalled"
+        Write-Output "All $installed_program instances successfully uninstalled"
       }
     }
     ; Break

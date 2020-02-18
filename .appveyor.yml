@@ -84,7 +84,7 @@ for:
       - ps: if (Test-Path env:CI) {[System.Environment]::SetEnvironmentVariable("CI", $Env:CI, "Machine")}
       # - ps: if ($env:CI -imatch 'True') {write-host 'IS CI'} else {write-host 'IS NOT CI'}
       # - ps: ./scripts/appveyor_tools.ps1 -function sysinfo
-      # - ps: $ErrorActionPreference = "Stop";
+      - ps: $ErrorActionPreference = "Stop";
       - ps: ./scripts/appveyor_tools.ps1 -function setup -program test-kitchen
       - ps: ./scripts/appveyor_tools.ps1 -function uninstall-apps-for-saltstack-testing
       - ps: c:\opscode\chefdk\bin\chef.bat exec bundle install
