@@ -129,22 +129,25 @@ switch ($function)
 
         foreach ($installPath in $possibleInstalledPaths)
         {
-          if ($installPath -like '*Git*'| Out-Null)
+          $get_boolean = $installPath -like '*Git*'
+          if ($get_boolean)
           {
             $program_name = 'Git'
           }
-          elseif ($installPath -like '*7-Zip*'| Out-Null)
+          $get_boolean = installPath -like '*7-Zip*'
+          elseif ($get_boolean)
           {
             $program_name = '7-Zip'
           }
           $allPrograms.Add($program_name)
-
-          if (Test-Path($installPath)| Out-Null)
+          $get_boolean = Test-Path($installPath)
+          if ($get_boolean)
           {
             $allProgramsUninstallers.Add($program_name)
             # write-output "Current set of uninstallers: $allProgramsUninstallers"
             ## Some Git stuff might be running.. kill them.
-            if ($program_name -eq 'Git'| Out-Null)
+            $get_boolean = program_name -eq 'Git'
+            if ($get_boolean)
             {
               Stop-Process -processname Bash -erroraction 'silentlycontinue'
               Stop-Process -processname Putty* -erroraction 'silentlycontinue'
@@ -156,8 +159,8 @@ switch ($function)
               $uninstallerCommandLineOptions = "/SP- /VERYSILENT /SUPPRESSMSGBOXES /FORCECLOSEAPPLICATIONS /S"
               Start-Process -Wait -FilePath $uninstaller -ArgumentList $uninstallerCommandLineOptions
             }
-
-            if (Test-Path($installPath)| Out-Null)
+            $get_boolean = Test-Path($installPath)
+            if ($get_boolean)
             {
               Remove-Item -Recurse -Force $installPath
             }
@@ -173,7 +176,7 @@ switch ($function)
         foreach ($installed_program in $allPrograms)
         {
           $confirmation = Get-Package -Provider Programs -IncludeWindowsInstaller -Name "$installed_program*" -ErrorAction:SilentlyContinue
-          if ($confirmation| Out-Null)
+          if ($confirmation)
           {
             $host.SetShouldExit($LastExitCode)
             Write-Output $confirmation
