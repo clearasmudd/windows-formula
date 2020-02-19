@@ -73,7 +73,8 @@ switch ($function)
       {
         function install_chefdk
         {
-          (& cmd /c); iex (irm https://omnitruck.chef.io/install.ps1); Install-Project -Project chefdk -channel stable -version 4.7.73
+          (& cmd /c); iex (irm https://omnitruck.chef.io/install.ps1); Install-Project -Project chefdk -channel stable -version 4.7.113
+          # 4.7.73
         }
 
         $env:machine_user="vagrant"
@@ -176,7 +177,7 @@ switch ($function)
           if ($confirmation)
           {
             $host.SetShouldExit($LastExitCode)
-            Write-Output $confirmation
+            # Write-Output $confirmation
             throw "$installed_program not uninstalled"
           }
           else
