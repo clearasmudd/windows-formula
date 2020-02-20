@@ -1,9 +1,7 @@
 #!/bin/bash
 # run from root of project
-if [ ! -d "./windows" ]
-then
-  if  [ -d "../windows" ] 
-  then
+if [ ! -d "./windows" ]; then
+  if [ -d "../windows" ]; then
     cd ..
   else
     echo "Please run from the root of the project."

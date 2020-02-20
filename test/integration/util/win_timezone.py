@@ -292,7 +292,8 @@ def set_zone(timezone):
 
     else:
         # Raise error because it's neither key nor value
-        raise CommandExecutionError('Invalid timezone passed: {0}'.format(timezone))
+        raise CommandExecutionError(
+            'Invalid timezone passed: {0}'.format(timezone))
 
     # Set the value
     cmd = ['tzutil', '/s', win_zone]

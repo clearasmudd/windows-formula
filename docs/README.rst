@@ -19,6 +19,7 @@ A SaltStack formula for Windows operating systems inspired by `salt-formula-linu
 
 Tested Windows Operating Systems:
 
+* Windows 10, version 1909
 * Windows 10, version 1903
 * Windows 10, version 1809
 * Windows 10, version 1803
@@ -219,6 +220,8 @@ Requirements
 
 * Ruby
 * Docker
+* Vagrant 2.2.7
+* Virtualbox 6.1
 
 .. code-block:: bash
 

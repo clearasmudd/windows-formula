@@ -67,7 +67,7 @@ def try_get_pillar
   # REMOVE THIS
   # return get_pillar_from_inspec_pillar_file
   unless input('pillar').is_a?(Inspec::Input::NO_VALUE_SET)
-    # Inspec::Log.info('Got pillar from kitchen input.')
+    Inspec::Log.debug('Got pillar from kitchen input.')
     puts 'INFO: Got pillar from kitchen input.'
     return input('pillar')
   end
@@ -75,14 +75,14 @@ def try_get_pillar
   # pillar_from_minion = get_pillar_from_minion
   pillar_from_minion = ingest_from_minion('yaml', 'c:\salt\salt-call.bat --config-dir=C:\Users\vagrant\AppData\Local\Temp\kitchen\etc\salt pillar.items --retcode-passthrough | Select-String -Pattern "----------" -NotMatch')
   unless !defined?(pillar_from_minion) || pillar_from_minion == []
-    # Inspec::Log.info('Got pillar from the target minion using WinRM.')
+    Inspec::Log.debug('Got pillar from the target minion using WinRM.')
     puts 'INFO: Got pillar from the target minion using WinRM.'
     return pillar_from_minion['local']
   end
 
   pillar_from_inspec_pillar_file = get_pillar_from_inspec_pillar_file
   unless !defined?(pillar_from_inspec_pillar_file) || pillar_from_inspec_pillar_file == []
-    # Inspec::Log.info('Got pillar from the inspec pillar file.')
+    Inspec::Log.debug('Got pillar from the inspec pillar file.')
     puts 'INFO: Got pillar from the inspec pillar file.'
     return pillar_from_inspec_pillar_file
   end
@@ -108,8 +108,18 @@ def get_pillar_from_inspec_pillar_file
 end
 
 def ingest_from_minion(type, ps_cmd, max_retries = 20, sec_timeout = 10)
+  # grep "WinRM address:" $(ls -t .kitchen/logs/*.log | head -n2 | tail -n1) | sed 's/^.*: //'
+  # Test port open: nc -z -w1 localhost 55985;echo $?
+  # nc -z -w1 $(sed -n -e 's/^.*WinRM address: //p' $(ls -t .kitchen/logs/*.log | sed -n '2p') | cut -f1 -d:) $(sed -n -e 's/^.*WinRM address: //p' $(ls -t .kitchen/logs/*.log | sed -n '2p') | cut -f2 -d:); echo $? 
+  # cd .kitchen/kitchen-vagrant/{instance name}; vagrant winrm --command whoami
+  # cd .kitchen/kitchen-vagrant/{instance name}; vagrant winrm-config
+  # cmd ="nc -z -w1 $(sed -n -e 's/^.*WinRM address: //p' $(ls -t .kitchen/logs/*.log | sed -n '2p') | cut -f1 -d:) $(sed -n -e 's/^.*WinRM address: //p' $(ls -t .kitchen/logs/*.log | sed -n '2p') | cut -f2 -d:); echo $?"
+
+    
+
   retries ||= 0
   Inspec::Log.debug("Ingesting #{type} content using `#{ps_cmd}` with timout of #{sec_timeout} and a max of #{max_retries} retries.")
+  # require 'pry'; binding.pry
   begin
     # https://www.rubydoc.info/gems/train/0.14.1/Train%2FTransports%2FLocal%2FConnection:run_command
     # Train.Plugins.Transport.Connection train.connection.run_command
@@ -119,13 +129,29 @@ def ingest_from_minion(type, ps_cmd, max_retries = 20, sec_timeout = 10)
     end
   rescue => e
     Inspec::Log.warn("`#{e.message}`, target may be rebooting after highstate. Remaining retries: #{max_retries - retries}")
-    retry if (retries += 1) < max_retries
+    if (retries += 1) < max_retries
+      retry
+    else
+      begin
+        backend::backend.run_command('whoami').stdout
+      rescue => e
+        Inspec::Log.warn("Unable to get whoami from backend::backend.run_command: #{e.message}")
+      end
+      cmd = "cd .kitchen/kitchen-vagrant/$(ls -t .kitchen/logs/*.log | grep -v .kitchen/logs/kitchen.log | head -n1 | cut -f3 -d/ | awk -F. '{print $1}'); vagrant winrm"
+      if system( cmd )
+        Inspec::Log.info('Successfully connected via `vagrant winrm`')
+      else
+        msg = 'Failed to connect via `vagrant winrm`'
+        Inspec::Log.info(msg)
+        # abort msg
+      end
+    end
   end
   if defined?(@my_result)
-    Inspec::Log.debug("Ingested #{type} content successfully.")
+    Inspec::Log.debug("Ingested #{type} content successfully from minion using Train.Plugins.Transport.Connection.")
     @my_result
   else
-    Inspec::Log.warn('Failed to get content from minion.')
+    Inspec::Log.warn('Failed to get content from minion using Train.Plugins.Transport.Connection.')
     []
   end
 end

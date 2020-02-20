@@ -75,18 +75,18 @@ provisioner:
       dest: srv/pillar/
   state_top:
     base:
-      '*':
+      "*":
         - windows
   pillars:
     top.sls:
       base:
-        '*':
+        "*":
           - windows
   salt_copy_filter:
     - .kitchen
     - .git
     - __pycache__
-    - '*.pyc'
+    - "*.pyc"
     - .bundle
     - .tox
     - .nox
@@ -122,6 +122,12 @@ transport:
   connection_retry_sleep: 5
 
 platforms:
+  # Windows 10, version 1909 (OS Build: 18362.592)
+  - name: windows-10-1909
+    driver:
+      box: StefanScherer/windows_10
+      box_version: 2020.02.12
+
   # Windows 10, version 1903 (OS Build: 18362.592)
   - name: windows-10-1903
     driver:
@@ -150,7 +156,8 @@ platforms:
   - name: windows-server-2019-1809
     driver:
       box: StefanScherer/windows_2019
-      box_version: 2020.01.15
+      box_version: 2020.02.12
+      # box_version: 2020.01.15
 
   # windows server 1803 (OS Build: 17763.864) missing
 
@@ -171,7 +178,6 @@ platforms:
       #   driver:
       #     box: mwrock/Windows8.1-amd64
       #     box_version: 0.1.0
-
       # # Windows 7 Enterprise
       # - name: windows-7
       #   driver:

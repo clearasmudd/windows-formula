@@ -19,7 +19,7 @@ Layout/ArgumentAlignment:
 Layout/LineLength:
   # Increase from default of `80`
   # Based on https://github.com/PyCQA/flake8-bugbear#opinionated-warnings (`B950`)
-  Max: 150
+  Max: 120
 
 # Too short methods lead to extraction of single-use methods, which can make
 # the code easier to read (by naming things), but can also clutter the class
