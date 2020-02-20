@@ -1,5 +1,5 @@
 ---
-version: '1.0.{build}'
+version: "1.0.{build}"
 skip_tags: true
 environment:
   matrix:
@@ -52,8 +52,7 @@ matrix:
   fast_finish: true
 
 for:
-  -
-    matrix:
+  - matrix:
       only:
         - job_group: Lint Tests
     build_script:
@@ -74,8 +73,7 @@ for:
       # $host.SetShouldExit(1)
     deploy: off
 
-  -
-    matrix:
+  - matrix:
       only:
         - job_depends_on: Lint Tests
     build_script:
@@ -107,8 +105,7 @@ for:
       # - ps: ./scripts/appveyor_tools.ps1 -function setup -program rdp
       - ps: ./scripts/appveyor_tools.ps1 -function submit -results inspec_tests
 
-  -
-    matrix:
+  - matrix:
       only:
         - job_depends_on: Chef Inspec Tests
     build_script:
@@ -135,8 +132,7 @@ for:
       # - ps: ./scripts/appveyor_tools.ps1 -function setup -program rdp
       - ps: ./scripts/appveyor_tools.ps1 -function submit -results inspec_tests
 
-  -
-    matrix:
+  - matrix:
       only:
         - job_name: Release
     branches:
