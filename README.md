@@ -1,0 +1,2 @@
+# windows-formula
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/cb2d57d173014f1ba3230d71cf3d2116)](https://app.codacy.com/gh/clearasmudd/windows-formula?utm_source=github.com&utm_medium=referral&utm_content=clearasmudd/windows-formula&utm_campaign=Badge_Grade_Settings)
