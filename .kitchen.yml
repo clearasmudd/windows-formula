@@ -1,0 +1,165 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+# c:\salt\salt-call.bat  --state-output=changes --config-dir=C:\Users\vagrant\AppData\Local\Temp\kitchen\etc\salt
+# state.highstate --retcode-passthrough
+# kitchen exec py3-windows-10-1903 -c "rm -Path C:\\Users\\vagrant\\AppData\\Local\\Temp\\kitchen -Force -Recurse"
+# http://apealive.net/post/salt-formula-testing-kitchen-salt-1/
+---
+driver:
+  name: vagrant
+  log_level: info
+  communicator: winrm
+  linked_clone: true
+  provider: virtualbox
+  customize:
+    memory: 3072
+    cpus: 2
+  # provider: hyperv
+  # network:
+  # - ['private_network', bridge: 'Default Switch']
+  gui: false
+  vagrantfiles:
+    # stop virtualbox guest additions update
+    - test/vagrant_vb_guest.rb
+  synced_folders:
+    - ["/mnt/c/tmp/results", "/results"]
+
+provisioner:
+  name: salt_solo
+  log_level: warning
+  max_retries: 4
+  wait_for_retry: 30
+  retry_on_exit_code: [35, 213, 995, 500, 1]
+  salt_install: bootstrap
+  dry_run: false
+  install_after_init_environment: false
+  is_file_root: false
+  require_chef: false
+  formula: windows
+  pillars-from-files:
+    windows.sls: pillar.example
+  pillars:
+    top.sls:
+      base:
+        "*":
+          - windows
+  # pillars_from_directories:
+  #   - source: test/salt/pillar/
+  #     dest: srv/pillar/
+  salt_file_root: /srv/salt
+  state_top:
+    base:
+      "*":
+        - windows
+  salt_copy_filter:
+    - .kitchen
+    - .git
+    - __pycache__
+    - "*.pyc"
+    - .bundle
+    - .tox
+    - .nox
+    - artifacts
+    - Gemfile.lock
+  salt_minion_extra_config:
+    use_superseded:
+      - module.run
+    log_file: c:\results\salt_minion_debug.log
+    log_level_logfile: debug
+    state_output: full
+
+verifier:
+  name: inspec
+  log_level: info
+  color: false
+  # color: <%= !ENV.include?('CI') %>
+  windows: true
+  run_destructive: true
+  reporter:
+    - cli
+    - documentation:test/results/%{suite}-%{platform}.inspec.results.txt
+    - json:test/results/%{suite}-%{platform}.inspec.results.json
+    - junit:test/results/%{suite}-%{platform}.inspec.results.xml
+  inspec_tests:
+    - path: test/integration/default
+    # - supermarket://dev-sec/windows-baseline
+
+transport:
+  name: winrm
+  log_level: warning
+  username: vagrant
+  password: vagrant
+  connection_retries: 20
+  connection_retry_sleep: 5
+
+platforms:
+  # Windows 10, version 1909 (OS Build: 18363.657)
+  - name: windows-10-1909
+    driver:
+      box: StefanScherer/windows_10
+      box_version: 2020.02.12
+
+  # Windows 10, version 1903 (OS Build: 18362.592)
+  - name: windows-10-1903
+    driver:
+      box: StefanScherer/windows_10
+      box_version: 2020.01.15
+
+  # Windows 10, version 1809 (OS Build: 17763.503)
+  - name: windows-10-1809
+    driver:
+      box: StefanScherer/windows_10
+      box_version: 2019.05.15
+
+  # Windows 10, version 1803 (OS Build: 17134.285)
+  - name: windows-10-1803
+    driver:
+      box: StefanScherer/windows_10
+      box_version: 2018.09.12
+
+  # Windows 10, version 1709 (OS Build: 16299.309)
+  - name: windows-10-1709
+    driver:
+      box: StefanScherer/windows_10
+      box_version: 2018.03.14
+
+  # Windows Server 2019, version 1809 (OS Build: 17763.864)
+  - name: windows-server-2019-1809
+    driver:
+      box: StefanScherer/windows_2019
+      box_version: 2020.02.12
+      # box_version: 2020.01.15
+
+  # Windows Server 2016, version 1607 (OS Build: 14393.2791)
+  - name: windows-server-2016
+    driver:
+      box: StefanScherer/windows_2016
+      box_version: 2019.02.14
+
+      # # Windows Server 2012 R2 (OS Build: 9600)
+      # - name: windows-server-2012r2
+      #   driver:
+      #     box: mwrock/Windows2012R2
+      #     box_version: 0.6.1
+      # # Windows 8.1 Enterprise
+      # - name: windows-8.1
+      #   driver:
+      #     box: mwrock/Windows8.1-amd64
+      #     box_version: 0.1.0
+      # # Windows 7 Enterprise
+      # - name: windows-7
+      #   driver:
+      #     box: opentable/win-7-enterprise-amd64-nocm
+      #     box_version: 1.0.0
+
+suites:
+  - name: py3
+    provisioner:
+      salt_bootstrap_options: "-version 2019.2.3 -pythonVersion 3"
+      # salt_version: latest
+      # - name: py3-3000
+      #   provisioner:
+      #     salt_bootstrap_options: "-version 3000 -pythonVersion 3"
+      # - name: py2
+      #   provisioner:
+      #     salt_bootstrap_options: "-version 2019.2.3 -pythonVersion 2"

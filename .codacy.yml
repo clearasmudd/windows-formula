@@ -1,0 +1,36 @@
+---
+# engines:
+#  rubocop:
+#    enabled: true
+#    exclude_paths:
+#      - config/engines.yml
+#  duplication:
+#    enabled: true
+#    exclude_paths:
+#      - config/engines.yml
+#  metric:
+#    enabled: true
+#    exclude_paths:
+#      - config/engines.yml
+#  coverage:
+#    enabled: true
+#    exclude_paths:
+#      - config/engines.yml
+# languages:
+#   css:
+#     extensions:
+#       - '-css.resource'
+exclude_paths:
+  - "AUTHORS.md"
+  - "CHANGELOG.md"
+  - ".github/**"
+  - "test/integration/default/**"
+  - "docs/_static/css/custom.css"
+  - "docs/conf.py"
+#   - 'spec/**/*'
+#   - 'benchmarks/**/*'
+#   - '**.min.js'
+#   - '**/tests/**'
+#  pylint:
+#    enabled: true
+#    python_version: 2

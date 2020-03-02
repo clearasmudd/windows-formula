@@ -1,0 +1,60 @@
+# -*- coding: utf-8 -*-
+# vim: ft=jinja
+{%- set tplroot = tpldir.split('/')[0] %}
+{%- from tplroot ~ "/map.jinja" import windows with context %}
+
+{%- set masterless_minion = (opts['file_client'] == 'local') %}
+
+{%- if salt['pkg.version']('git') %}
+  {% set git_installed = True %}
+{%- else %}
+  {% set git_installed = False %}
+{%- endif %}
+
+{#
+# sls: {{ sls }} {{ sls.split('.')[0] }} {{ sls.split('.')[-1] }}
+# slspath: {{ slspath }} {{ slspath.split('/')[0] }} {{ slspath.split('/')[-1] }}
+# sls: os_windows.desktop.features os_windows features
+# slspath: os_windows/desktop os_windows desktop
+
+{%- for key, value in dictionary.items() recursive %}                       
+  <li>{{ key }}                                                             
+    {%- if value %}                                                         
+      Recursive {{ key }}, {{value}}                                        
+      <ul>{{ loop(value.items())}}</ul>                                     
+    {%- endif %}                                                            
+  </li>                                                                     
+{%- endfor %}                                                               
+""")
+
+    {% for key in dictionary recursive %}
+
+        <li>{{ key }}
+        {% if dictionary[key] %}
+            <ul>{{ loop(dictionary[key].keys()) }}</ul>
+        {% endif %}
+        </li>
+
+    {% endfor %}
+
+{% for key, item in category recursive %}
+        {% if item.children %}
+                <category name="{{key}}">
+                        {{ loop(item) }}
+                </category>
+        {% else %}
+                <item name="{{ key }}" value="{{ item }}" />
+        {% endif %}
+{% endfor %}
+
+`
+  {%- set working_path = [] %}
+    {% working_path.append(level) %}
+    
+{%- if windows.system.enabled and windows.system.server.enabled and windows.system.server.features.enabled and 'Server' in grains['osfinger'] %}
+{%- macro is_enabled(path) %}
+    {%- for level in path recursive %}
+        {%- if level.enabled is defined %}
+    {%- endfor %}
+{%- endmacro %}
+#}

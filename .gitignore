@@ -105,7 +105,6 @@ ENV/
 .mypy_cache/
 
 # Bundler
-.bundle/
 Gemfile.lock
 
 # copied `.md` files used for conversion to `.rst` using `m2r`
@@ -121,3 +120,5 @@ docs/*.md
 Dockerfile.*_*
 ignore/
 tmp/
+node_modules/
+package-lock.json

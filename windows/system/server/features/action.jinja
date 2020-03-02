@@ -1,0 +1,6 @@
+{%- set tplroot = tpldir.split('/')[0] %}
+{%- from tplroot ~ "/map.jinja" import windows with context %}
+{%- if windows.system.enabled and windows.system.server.enabled and windows.system.server.features.enabled and 'Server' in grains['osfinger'] %}
+  {%- set action = sls.split('.')[-1] %}
+  {%- include slspath + "/features.jinja" %}
+{%- endif %}

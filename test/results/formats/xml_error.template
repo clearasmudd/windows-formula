@@ -1,0 +1,10 @@
+<?xml version='1.0'?>
+<testsuites>
+  <testsuite name='default' tests='1' errors='1' failed='0' failures='0'>
+    <testcase name='Chef Inspec' classname='Test Failure' time='1'>
+     <error message="The on-premise Chef Inspec tests failed to run see the console log or the log files in test/results/ for additional details."
+	     type="no results"
+	     ></error>
+    </testcase>
+  </testsuite>
+</testsuites>

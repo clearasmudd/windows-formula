@@ -1,0 +1,6 @@
+sphinx
+sphinx-rtd-theme
+recommonmark
+docutils-python3
+docutils
+doc8

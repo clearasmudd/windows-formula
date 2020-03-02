@@ -1,0 +1,36 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+windows:
+  system:
+    enabled: False
+    computer:
+      hostname: "hostname"
+      description: "description"
+    reboot:
+      allow: False
+      timeout_in_seconds: 60
+      only_on_pending_reboot: True
+    users:
+      enabled: False
+      disable:
+        Administrator:
+          disable: false
+        Guest:
+          disable: true
+    packages:
+      ignore_package_version: False
+      always_upgrade_to_latest_version: False
+      chocolatey:
+        enabled: False
+        installed:
+          notepadplusplus:
+          windirstat:
+            version: "1.1.2.20161210"
+      saltstack:
+        enabled: False
+        installed:
+          git:
+            refresh_minion_env_path: true
+          7zip:
+            version: "19.00.00.0"

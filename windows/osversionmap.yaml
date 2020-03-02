@@ -1,0 +1,182 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+#
+# Setup variables using grains['os'] based logic.
+# You just need to add the key:values for an `os` that differ
+# from `defaults.yaml` + `osarch.yaml` + `os_family.yaml`.
+# Only add an `os` which is/will be supported by the formula.
+#
+# If you do not need to provide defaults via the `osversion` grain,
+# you will need to provide at least an empty dict in this file, e.g.
+# osversionmap: {}
+# https://docs.microsoft.com/en-us/windows/release-information/
+# updated: 2019-12-19
+---
+10.0.18363:
+  release:
+    version: 1909
+    os-build: 18363.535
+    servicing-options:
+      channel:
+        semi-annual:
+          availability: 2019-11-12
+          latest-revision: 2019-12-10
+          end-of-service:
+            home: 2021-05-11
+            pro: 2021-05-11
+            pro-education: 2021-05-11
+            pro-for-workstations: 2021-05-11
+            iot-core: 2021-05-11
+            enterprise: 2022-05-10
+            education: 2022-05-10
+            iot-enterprise: 2022-05-10
+10.0.18362:
+  release:
+    version: 1903
+    os-build: 18362.535
+    servicing-options:
+      channel:
+        semi-annual:
+          availability: 2019-05-21
+          latest-revision: 2019-12-10
+          end-of-service:
+            home: 2020-12-08
+            pro: 2020-12-08
+            pro-education: 2020-12-08
+            pro-for-workstations: 2020-12-08
+            iot-core: 2020-12-08
+            enterprise: 2020-12-08
+            education: 2020-12-08
+            iot-enterprise: 2020-12-08
+10.0.17763:
+  release:
+    version: 1809
+    os-build: 17763.914
+    servicing-options:
+      channel:
+        semi-annual:
+          availability: 2019-03-28
+          latest-revision: 2019-12-10
+          end-of-service:
+            home: 2020-05-12
+            pro: 2020-05-12
+            pro-education: 2020-05-12
+            pro-for-workstations: 2020-05-12
+            iot-core: 2020-05-12
+            enterprise: 2021-05-11
+            education: 2021-05-11
+            iot-enterprise: 2021-05-11
+        semi-annual-targeted:
+          availability: 2018-11-13
+          latest-revision: 2019-12-10
+          end-of-service:
+            home: 2020-05-12
+            pro: 2020-05-12
+            pro-education: 2020-05-12
+            pro-for-workstations: 2020-05-12
+            iot-core: 2020-05-12
+            enterprise: 2021-05-11
+            education: 2021-05-11
+            iot-enterprise: 2021-05-11
+        ltsb:
+          availability: 2018-11-13
+          latest-revision: 2019-12-10
+          end-of-service:
+            enterprise:
+              mainstream-support: 2024-01-09
+              extended-support: 2029-01-09
+            iot-enterprise:
+              mainstream-support: 2024-01-09
+              extended-support: 2029-01-09
+10.0.17134:
+  release:
+    version: 1803
+    os-build: 17134.1184
+    servicing-options:
+      channel:
+        semi-annual:
+          availability: 2018-07-10
+          latest-revision: 2019-12-10
+          end-of-service:
+            home: End of service
+            pro: End of service
+            pro-education: End of service
+            pro-for-workstations: End of service
+            iot-core: End of service
+            enterprise: 2020-11-10
+            education: 2020-11-10
+            iot-enterprise: 2020-11-10
+          semi-annual-targeted:
+            availability: 2018-04-30
+            latest-revision: 2019-12-10
+            end-of-service:
+              home: End of service
+              pro: End of service
+              pro-education: End of service
+              pro-for-workstations: End of service
+              iot-core: End of service
+              enterprise: 2020-11-10
+              education: 2020-11-10
+              iot-enterprise: 2020-11-10
+10.0.16299:
+  release:
+    version: 1709
+    os-build: 16299.1565
+    servicing-options:
+      channel:
+        semi-annual:
+          availability: 2018-01-18
+          latest-revision: 2019-12-10
+          end-of-service:
+            home: End of service
+            pro: End of service
+            pro-education: End of service
+            pro-for-workstations: End of service
+            iot-core: End of service
+            enterprise: 2020-04-14
+            education: 2020-04-14
+            iot-enterprise: 2020-04-14
+        semi-annual-targeted:
+          availability: 2017-10-17
+          latest-revision: 2019-12-10
+          end-of-service:
+            home: End of service
+            pro: End of service
+            pro-education: End of service
+            pro-for-workstations: End of service
+            iot-core: End of service
+            enterprise: 2020-04-14
+            education: 2020-04-14
+            iot-enterprise: 2020-04-14
+10.0.14393:
+  release:
+    version: 1607
+    os-build: 14393.3384
+    servicing-options:
+      channel:
+        ltsb:
+          availability: 2016-08-02
+          latest-revision: 2019-12-10
+          end-of-service:
+            enterprise:
+              mainstream-support: 2021-10-12
+              extended-support: 2026-10-13
+            iot-enterprise:
+              mainstream-support: 2021-10-12
+              extended-support: 2026-10-13
+10.0.10240:
+  release:
+    version: 1507
+    os-build: 10240.18427
+    servicing-options:
+      channel:
+        ltsb:
+          availability: 2015-07-29
+          latest-revision: 2019-12-10
+          end-of-service:
+            enterprise:
+              mainstream-support: 2020-10-13
+              extended-support: 2025-10-14
+            iot-enterprise:
+              mainstream-support: 2020-10-13
+              extended-support: 2025-10-14

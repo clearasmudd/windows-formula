@@ -1,0 +1,213 @@
+---
+version: "1.0.{build}"
+skip_tags: true
+environment:
+  matrix:
+    # Linux job
+    # https://www.appveyor.com/docs/linux-images-software/
+    - job_name: Lint Tests (salt-lint, yamllint, rubocop, shellcheck, powershell-script-analyzer and commitlint)
+      job_group: Lint Tests
+      appveyor_build_worker_image: Ubuntu
+
+    # Windows jobs
+    # https://www.appveyor.com/docs/windows-images-software/
+    - job_name: Chef Inspec Tests (Windows Server 2019)
+      job_depends_on: Lint Tests
+      job_group: Chef Inspec Tests
+      appveyor_build_worker_image: Visual Studio 2019
+
+    - job_name: Chef Inspec Tests (Windows Server 2016)
+      job_depends_on: Lint Tests
+      job_group: Chef Inspec Tests
+      appveyor_build_worker_image: Visual Studio 2017
+
+    - job_name: Chef Inspec Tests (Windows Server 2012 R2)
+      job_depends_on: Lint Tests
+      job_group: Chef Inspec Tests
+      appveyor_build_worker_image: Visual Studio 2015
+
+    - job_name: On-Premise Chef Inspec Test Results (Windows 10 Build 1909)
+      local_kitchen_suite_platform: py3-windows-10-1909
+      job_depends_on: Chef Inspec Tests
+      job_group: Mock Chef Inspec Tests
+      appveyor_build_worker_image: Visual Studio 2019
+
+    - job_name: On-Premise Chef Inspec Test Results (Windows 10 Build 1903)
+      local_kitchen_suite_platform: py3-windows-10-1903
+      job_depends_on: Chef Inspec Tests
+      job_group: Mock Chef Inspec Tests
+      appveyor_build_worker_image: Visual Studio 2019
+
+    - job_name: On-Premise Chef Inspec Test Results (Windows 10 Build 1809)
+      local_kitchen_suite_platform: py3-windows-10-1809
+      job_depends_on: Chef Inspec Tests
+      job_group: Mock Chef Inspec Tests
+      appveyor_build_worker_image: Visual Studio 2019
+
+    - job_name: On-Premise Chef Inspec Test Results (Windows 10 Build 1803)
+      local_kitchen_suite_platform: py3-windows-10-1803
+      job_depends_on: Chef Inspec Tests
+      job_group: Mock Chef Inspec Tests
+
+    - job_name: On-Premise Chef Inspec Test Results (Windows 10 Build 1709)
+      local_kitchen_suite_platform: py3-windows-10-1709
+      job_depends_on: Chef Inspec Tests
+      job_group: Mock Chef Inspec Tests
+      appveyor_build_worker_image: Visual Studio 2019
+
+    - job_name: Release
+      appveyor_build_worker_image: Ubuntu
+      job_depends_on: Lint Tests, Chef Inspec Tests, Mock Chef Inspec Tests
+      MAINTAINER_TOKEN: ${GH_TOKEN}
+
+matrix:
+  fast_finish: true
+
+for:
+  - matrix:
+      only:
+        - job_group: Lint Tests
+    build_script:
+      - sh: echo build_script for $APPVEYOR_JOB_NAME
+      - sh: ./scripts/appveyor_tools.sh -f get-sysinfo
+      - sh: PATH=$PATH:/home/appveyor/.local/bin
+      - sh: ./scripts/appveyor_tools.sh -f test -i
+    test_script:
+      - sh: echo test_script for $APPVEYOR_JOB_NAME
+      - sh: ./scripts/appveyor_tools.sh -f test -t yamllint || error=true
+      - sh: ./scripts/appveyor_tools.sh -f test -t salt-lint || error=true
+      - sh: ./scripts/appveyor_tools.sh -f test -t powershell-script-analyzer || error=true
+      - sh: ./scripts/appveyor_tools.sh -f test -t rubocop || error=true
+      - sh: ./scripts/appveyor_tools.sh -f test -t shellcheck || error=true
+      - sh: ./scripts/appveyor_tools.sh -f test -t commitlint </dev/null || error=true
+      - sh: ./scripts/appveyor_tools.sh -f output-sysinfo
+      - sh: if [ $error ]; then exit 1; fi
+      # $host.SetShouldExit(1)
+    deploy: off
+
+  - matrix:
+      only:
+        - job_depends_on: Lint Tests
+    build_script:
+      - ps: Write-Host "build_script for $env:APPVEYOR_JOB_NAME"
+      # Saltstack needs to see the CI environment variable when run through test kitchen proxy driver
+      - ps: if (Test-Path env:CI) {[System.Environment]::SetEnvironmentVariable("CI", $Env:CI, "Machine")}
+      - ps: >
+          if (Test-Path env:WIN10DSC_USER_ADMIN_PASSWORD)
+          {[System.Environment]::SetEnvironmentVariable("WIN10DSC_USER_ADMIN_PASSWORD",
+          $Env:WIN10DSC_USER_ADMIN_PASSWORD, "Machine")}
+      # - ps: if ($env:CI -imatch 'True') {write-host 'IS CI'} else {write-host 'IS NOT CI'}
+      # - ps: ./scripts/appveyor_tools.ps1 -function sysinfo
+      - ps: $ErrorActionPreference = "Stop";
+      - ps: ./scripts/appveyor_tools.ps1 -function setup -program test-kitchen
+      - ps: >
+          ./scripts/appveyor_tools.ps1 -function uninstall -program apps-saltstack-will-install |
+          Select-String -Pattern 'True', 'False'  -NotMatch
+      - ps: c:\opscode\chefdk\bin\chef.bat exec bundle install
+      - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen list
+      - ps: $ErrorActionPreference = "Continue";
+      - ps: mkdir c:\results
+      # - ps: if ($LastExitCode -ne 0) {write-host "last exit code $LastExitCode"; $host.SetShouldExit($LastExitCode)}
+
+    test_script:
+      - ps: Write-Host "test_script for $env:APPVEYOR_JOB_NAME"
+      - ps: c:\opscode\chefdk\bin\chef.bat exec kitchen test
+
+    deploy: off
+    on_failure:
+      - ps: >
+          if (Test-Path "c:\results\salt_minion.log" -PathType Leaf)
+          { Get-Content "c:\results\salt_minion.log" }
+      - ps: >
+          if (Test-Path ".kitchen/logs/py3-windows.log" -PathType Leaf)
+          { Get-Content ".kitchen/logs/py3-windows.log" }
+    on_finish:
+      - ps: Write-Host "on_finish for $env:APPVEYOR_JOB_NAME"
+      # uncomment to debug
+      # - ps: ./scripts/appveyor_tools.ps1 -function setup -program rdp
+      - ps: ./scripts/appveyor_tools.ps1 -function submit -results inspec_tests
+
+  - matrix:
+      only:
+        - job_depends_on: Chef Inspec Tests
+    build_script:
+      - ps: Write-Host "build_script for $env:APPVEYOR_JOB_NAME"
+      - ps: $ErrorActionPreference = "Stop";
+      - ps: $env:local_kitchen_results = "c:\projects\windows-formula\test\results"
+      - ps: $env:local_kitchen_results_log = "$env:local_kitchen_results\$env:local_kitchen_suite_platform.log"
+      - ps: >
+          $env:local_kitchen_results_xml =
+          "$env:local_kitchen_results\$env:local_kitchen_suite_platform.inspec.results.xml"
+      # git rev-list --left-right --count  $(git rev-parse --abbrev-ref HEAD)...
+      # b8624e80f282c0c06e7d069d6395414cd1abefd7 | awk '{print "Behind "$1" - Ahead "$2""}'
+      - ps: >
+          $test_results_commit_id = get-content $env:local_kitchen_results_log |
+          Select-String 'CURRENT BRANCH COMMIT ID' -Context 0,1 | ForEach-Object { Write-Output $_.Context.PostContext}
+      - ps: >
+          $test_results_exit_code = get-content $env:local_kitchen_results_log |
+          Select-String 'KITCHEN TEST EXIT CODE' -Context 0,1 | ForEach-Object { Write-Output $_.Context.PostContext}
+      - ps: $current_branch = $(git rev-parse --abbrev-ref HEAD)
+      - ps: >
+          $behind = git rev-list --left-right --count  $current_branch...$test_results_commit_id | %{ $_.Split()[0]; }
+      - ps: >
+          if ($behind -gt 1) {write-output "THESE TEST RESULTS MAY BE OUT OF DATE.  THEY ARE FROM COMMIT ID
+          $test_results_commit_id WHICH IS $behind COMMITS BEHIND THE HEAD OF THE CURRENT BRANCH $current_branch"}
+      - ps: >
+          if (Test-Path "$env:local_kitchen_results_log" -PathType Leaf)
+          {
+            Write-Host "OUTPUTTING ON PREMISE TEST KITCHEN RESULTS FOR $env:local_kitchen_suite_platform"
+            Get-Content "$env:local_kitchen_results_log"
+          }
+          Else { Write-Host "NO LOCAL RESULTS.  $env:local_kitchen_results_log DOES NOT EXIST." }
+      - ps: >
+          if (Test-Path "$env:local_kitchen_results_xml" -PathType Leaf)
+          { Copy-Item "$env:local_kitchen_results_xml" "$env:local_kitchen_results\appveyor-windows.xml" }
+          else
+          { Copy-Item "$env:local_kitchen_results\formats\xml_error.template"
+          "$env:local_kitchen_results\appveyor-windows.xml" }
+    test: off
+    deploy: off
+    on_finish:
+      - ps: Write-Host "on_finish for $env:APPVEYOR_JOB_NAME"
+      # uncomment to debug
+      # - ps: ./scripts/appveyor_tools.ps1 -function setup -program rdp
+      - ps: ./scripts/appveyor_tools.ps1 -function submit -results inspec_tests
+      - ps: >
+          if (Get-Variable 'test_results_exit_code' -Scope Global -ErrorAction 'Ignore')
+          {
+            write-output "last exit code $test_results_exit_code";
+            if ($test_results_exit_code -ne 0)
+            {
+              write-output "test failed"
+              # $host.SetShouldExit($test_results_exit_code -as [int])
+              exit ($test_results_exit_code -as [int])
+            }
+          }
+
+  - matrix:
+      only:
+        - job_name: Release
+        - job_depends_on: Lint Tests, Chef Inspec Tests, Mock Chef Inspec Tests
+    branches:
+      only:
+        - master
+    build_script:
+      - sh: echo build_script for $APPVEYOR_JOB_NAME on branch $APPVEYOR_REPO_BRANCH
+      - sh: go get github.com/myii/maintainer
+      - sh: nvm use stable
+      - sh: >
+          npm i -D semantic-release/changelog>=@5.0.0
+          semantic-release/exec>=@5.0.0 semantic-release/git>=@9.0.0
+    deploy_script:
+      # - sh: if [ "$APPVEYOR_REPO_BRANCH" == "master" ]; then npx semantic-release>=@17.0; fi
+      - sh: maintainer contributor
+      - sh: npx semantic-release
+      # - sh: npm i -D @semantic-release/changelog@3 @semantic-release/exec@3
+      # @semantic-release/git@7 semantic-release@>=15.8.0
+      # - sh: npx semantic-release@15.14
+      # - sh: npm i
+      # deploy:
+      #   provider: Script
+      #   sh: npx semantic-release
+      #   # sh: if [ "$APPVEYOR_REPO_BRANCH" == "master" ]; then npx semantic-release@15.14; fi
+    test: off

@@ -1,14 +1,15 @@
+# pylint: disable=locally-disabled, invalid-name, redefined-builtin, import-error, unused-import
 # -*- coding: utf-8 -*-
-"""Configuration file for the Sphinx documentation builder.
+"""
+Configuration file for the Sphinx documentation builder.
 
 This file does only contain a selection of the most common options. For a
 full list see the documentation:
 
 * http://www.sphinx-doc.org/en/stable/config
-
 """
-
-from __future__ import division, print_function, unicode_literals
+import sphinx_rtd_theme
+# from __future__ import division, print_function, unicode_literals
 
 # from datetime import datetime
 
@@ -16,21 +17,19 @@ from recommonmark.parser import CommonMarkParser
 
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
-__author__     = 'Imran Iqbal'                                     # noqa: E221
-__copyright__  = 'Copyright (C) 2019, MYII'                        # noqa: E221
-__license__    = 'Apache-2.0'                                      # noqa: E221
-__version__    = 'latest'                                          # noqa: E221
-__maintainer__ = 'Imran Iqbal'                                     # noqa: E221
-
+__author__ = 'Peter Mudd'                                     # noqa: E221
+__copyright__ = 'Copyright (C), Peter Mudd'                        # noqa: E221
+__license__ = 'Apache-2.0'                                      # noqa: E221
+__version__ = 'latest'                                          # noqa: E221
+__maintainer__ = 'Peter Mudd'                                     # noqa: E221
 
 # -- Project information -----------------------------------------------------
 
-project = 'template-formula'
-copyright = __copyright__.replace('Copyright (C) ', '')  # noqa: A001
+project = 'windows-formula'
+copyright = __copyright__.replace('Copyright (C)', '2020')  # noqa: A001
 author = __author__
 version = __version__
 release = __version__
-
 
 # -- General configuration ---------------------------------------------------
 
@@ -41,15 +40,20 @@ release = __version__
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = []
+extensions = [
+    'sphinx.ext.githubpages',
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.ifconfig',
+    'sphinx_rtd_theme'
+]
 
-# Add any paths that contain templates here, relative to this directory.
-templates_path = ['templates', '_templates', '.templates']
+# Add any paths that contain windowss here, relative to this directory.
+# windowss_path = ['windowss', '_windowss', '.windowss']
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 #
-source_suffix = ['.rst', '.md']
+# source_suffix = ['.rst', '.md']
 
 # The master toctree document.
 master_doc = 'index'
@@ -69,11 +73,9 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
 
-
 # -- Options for the reStructuredText parser ---------------------------------
 
 file_insertion_enabled = False
-
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -93,29 +95,26 @@ html_theme = 'sphinx_rtd_theme'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
-# Custom sidebar templates, must be a dictionary that maps document names
-# to template names.
+# Custom sidebar windowss, must be a dictionary that maps document names
+# to windows names.
 #
 # The default sidebars (for documents that don't match any pattern) are
-# defined by theme itself.  Builtin themes are using these templates by
+# defined by theme itself.  Builtin themes are using these windowss by
 # default: ``['localtoc.html', 'relations.html', 'sourcelink.html',
 # 'searchbox.html']``.
 #
 # html_sidebars = {}
 
-
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'template-formula'
-
+htmlhelp_basename = 'windows-formula'
 
 # -- Options for Markdown output ---------------------------------------------
 
 source_parsers = {
     '.md': CommonMarkParser,
 }
-
 
 # -- Options for LaTeX output ------------------------------------------------
 
@@ -143,15 +142,15 @@ latex_elements = {
 latex_documents = [
     (
         'index',
-        'template-formula.tex',
-        u'template-formula Documentation',
+        'windows-formula.tex',
+        u'windows-formula Documentation',
         u'',
         'manual',
     ),
 ]
 
-
 # -- Functions: `setup`, docstring preprocessing, etc. -----------------------
+
 
 def setup(app):
     """Prepare the Sphinx application object.

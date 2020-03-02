@@ -1,14 +1,148 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
 ---
+AllCops:
+  RubyInterpreters:
+    - ruby
+    - macruby
+    - rake
+    - jruby
+    - rbx
+  # Include common Ruby source files.
+  Include:
+    - "**/*.rb"
+    - "**/*.arb"
+    - "**/*.axlsx"
+    - "**/*.builder"
+    - "**/*.fcgi"
+    - "**/*.gemfile"
+    - "**/*.gemspec"
+    - "**/*.god"
+    - "**/*.jb"
+    - "**/*.jbuilder"
+    - "**/*.mspec"
+    - "**/*.opal"
+    - "**/*.pluginspec"
+    - "**/*.podspec"
+    - "**/*.rabl"
+    - "**/*.rake"
+    - "**/*.rbuild"
+    - "**/*.rbw"
+    - "**/*.rbx"
+    - "**/*.ru"
+    - "**/*.ruby"
+    - "**/*.spec"
+    - "**/*.thor"
+    - "**/*.watchr"
+    - "**/.irbrc"
+    - "**/.pryrc"
+    - "**/buildfile"
+    - "**/Appraisals"
+    - "**/Berksfile"
+    - "**/Brewfile"
+    - "**/Buildfile"
+    - "**/Capfile"
+    - "**/Cheffile"
+    - "**/Dangerfile"
+    - "**/Deliverfile"
+    - "**/Fastfile"
+    - "**/*Fastfile"
+    - "**/Gemfile"
+    - "**/Guardfile"
+    - "**/Jarfile"
+    - "**/Mavenfile"
+    - "**/Podfile"
+    - "**/Puppetfile"
+    - "**/Rakefile"
+    - "**/Snapfile"
+    - "**/Steepfile"
+    - "**/Thorfile"
+    - "**/Vagabondfile"
+    - "**/Vagrantfile"
+  Exclude:
+    - "node_modules/**/*"
+    - "tmp/**/*"
+    - "vendor/**/*"
+    - ".git/**/*"
+    - "test/kitchen/**/*"
+    - "test/integration/**/*.rb"
+    - "test/fixtures/profiles/**/*.rb"
+    - "test/fixtures/config_dirs/**/*.rb"
+    - "lib/plugins/inspec-init/templates/plugins/inspec-plugin-template/**/*"
+    - "examples/**/controls/*.rb"
+    - "vendor/bundle/**/*"
+# DisplayCopNames: true
+# DisplayStyleGuide: true
+# ExtraDetails: true
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_first_argument
 # General overrides used across formulas in the org
 Layout/LineLength:
   # Increase from default of `80`
   # Based on https://github.com/PyCQA/flake8-bugbear#opinionated-warnings (`B950`)
-  Max: 88
+  Max: 120
 
-# Any offenses that should be fixed, e.g. collected via. `rubocop --auto-gen-config`
-# <REMOVEME
+# Too short methods lead to extraction of single-use methods, which can make
+# the code easier to read (by naming things), but can also clutter the class
+Metrics/MethodLength:
+  Max: 20
+
+# The guiding principle of classes is SRP, SRP can't be accurately measured by LoC
+Metrics/ClassLength:
+  Max: 1500
+
 Metrics/BlockLength:
-  Max: 36
-# REMOVEME>
+  Description: "Avoid long blocks with many lines."
+  Enabled: true
+  CountComments: false
+  # count full line comments?
+  Max: 35
+  ExcludedMethods:
+    # default, exclude the `#refine` method, as it tends to have larger
+    # associated blocks.
+    - refine
+  Exclude:
+    - "**/*.gemspec"
+# Any offenses that should be fixed, e.g. collected via. `rubocop --auto-gen-config`
+#################### Security ##############################
+
+Security/Eval:
+  Description: "The use of eval represents a serious security risk."
+  Enabled: true
+  VersionAdded: "0.47"
+
+Security/JSONLoad:
+  Description: >-
+    Prefer usage of `JSON.parse` over `JSON.load` due to potential
+    security issues. See reference for more information.
+  Reference: "https://ruby-doc.org/stdlib-2.3.0/libdoc/json/rdoc/JSON.html#method-i-load"
+  Enabled: true
+  VersionAdded: "0.43"
+  VersionChanged: "0.44"
+  # Autocorrect here will change to a method that may cause crashes depending
+  # on the value of the argument.
+  AutoCorrect: false
+  SafeAutoCorrect: false
+
+Security/MarshalLoad:
+  Description: >-
+    Avoid using of `Marshal.load` or `Marshal.restore` due to potential
+    security issues. See reference for more information.
+  Reference: "https://ruby-doc.org/core-2.3.3/Marshal.html#module-Marshal-label-Security+considerations"
+  Enabled: true
+  VersionAdded: "0.47"
+
+Security/Open:
+  Description: "The use of Kernel#open represents a serious security risk."
+  Enabled: true
+  VersionAdded: "0.53"
+  Safe: false
+
+Security/YAMLLoad:
+  Description: >-
+    Prefer usage of `YAML.safe_load` over `YAML.load` due to potential
+    security issues. See reference for more information.
+  Reference: "https://ruby-doc.org/stdlib-2.3.3/libdoc/yaml/rdoc/YAML.html#module-YAML-label-Security"
+  Enabled: true
+  VersionAdded: "0.47"
+  SafeAutoCorrect: false

@@ -1,0 +1,6 @@
+{%- set tplroot = tpldir.split('/')[0] %}
+{%- from tplroot ~ "/map.jinja" import windows with context %}
+{%- if windows.system.enabled and windows.system.users.enabled %}
+  {%- set action = sls.split('.')[-1] %}
+  {%- include slspath + "/add.jinja" %}
+{%- endif %}

@@ -1,0 +1,6 @@
+# Don't suggest using -n in [ $var ]
+#disable=SC2244
+
+# Allow using `which` since it gives full paths and is common enough
+#disable=SC2230
+#disable=SC2004

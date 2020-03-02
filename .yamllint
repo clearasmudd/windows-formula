@@ -25,12 +25,14 @@ yaml-files:
 
 rules:
   empty-values:
-    forbid-in-block-mappings: true
+    forbid-in-block-mappings: false
     forbid-in-flow-mappings: true
   line-length:
     # Increase from default of `80`
     # Based on https://github.com/PyCQA/flake8-bugbear#opinionated-warnings (`B950`)
-    max: 88
+    # max: 160
+    max: 120
   octal-values:
     forbid-implicit-octal: true
     forbid-explicit-octal: true
+  truthy: disable
