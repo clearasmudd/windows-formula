@@ -53,7 +53,7 @@ function log_test_kitchen_test() {
     git rev-parse HEAD | tee -a "$my_log"
     echo "CURRENT RELEASE TAG" | tee -a "$my_log"
     git tag --sort=committerdate | tail -1 | tee -a "$my_log"
-    kitchen test "$SERVER" --no-color --destroy passing | tee -a "$my_log"
+    kitchen test "$SERVER" --no-color --destroy always | tee -a "$my_log"
     return_code=${PIPESTATUS[0]}
     if [ ! "$return_code" -eq 0 ]; then
       echo "KITCHEN TEST DID NOT COMPLETE SUCCESSFULLY." | tee -a "$my_log"
@@ -87,15 +87,13 @@ if [ ${#failures_array[@]} -eq 0 ]; then
   dos2unix test/results/*
   read -p 'Commit test results and push to github? [y]' -n 1 -r REPLY
   echo
-  commit_message="test: on premise windows 10 and windows server \'kitchen test\' results"
+  commit_message="test: on premise windows 10 and windows server `kitchen test` results"
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     git add -A test/results
     git commit -m "$commit_message"
-    git push
   else
     echo git add test/results/*
-    echo git commit -m \""$commit_message"\"
-    echo git push
+    echo git commit -m "$commit_message"
   fi
 else
   for failure in "${!failures[@]}"; do
