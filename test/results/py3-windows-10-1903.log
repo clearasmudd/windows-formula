@@ -1,15 +1,13 @@
-Wed Mar  4 14:53:21 EST 2020
-commit 83df63b728d6440d0a2e75a16942f0c1d8916fb0
+Fri Mar  6 12:53:03 EST 2020
+commit 52abd5e1e609560fb2d7cf5f23a532e0fe0bbd0e
 Author: Peter Mudd <muddman@users.noreply.github.com>
-Date:   Mon Mar 2 12:13:52 2020 -0500
+Date:   Fri Mar 6 12:43:24 2020 -0500
 
-    feat: convert `template-formula` to `windows-formula`
-    
-    BREAKING CHANGE: changed all state names and ids
+    feat: support saltstack 3000
 CURRENT BRANCH COMMIT ID
-83df63b728d6440d0a2e75a16942f0c1d8916fb0
+52abd5e1e609560fb2d7cf5f23a532e0fe0bbd0e
 CURRENT RELEASE TAG
-v1.0.1
+v1.0.0
 -----> Starting Test Kitchen (v2.3.4)
 -----> Cleaning up any prior instances of <py3-windows-10-1903>
 -----> Destroying <py3-windows-10-1903>...
@@ -20,7 +18,7 @@ v1.0.1
        ==> default: Cloning VM...
        [K==> default: Matching MAC address for NAT networking...
        ==> default: Checking if box 'StefanScherer/windows_10' version '2020.01.15' is up to date...
-       ==> default: Setting the name of the VM: kitchen-windows-formula-py3-windows-10-1903-e7944924-3788-4321-9739-cc0a6445a1d9
+       ==> default: Setting the name of the VM: kitchen-windows-formula-py3-windows-10-1903-6b2e3604-b707-400e-ae5a-98681f818615
        ==> default: Clearing any previously set network interfaces...
        ==> default: Preparing network interfaces based on configuration...
            default: Adapter 1: nat
@@ -53,7 +51,7 @@ v1.0.1
        [WinRM] Established
        
        Vagrant instance <py3-windows-10-1903> created.
-       Finished creating <py3-windows-10-1903> (1m1.87s).
+       Finished creating <py3-windows-10-1903> (1m0.65s).
 -----> Converging <py3-windows-10-1903>...
        Preparing files for transfer
        Preparing salt-minion
@@ -69,12 +67,12 @@ v1.0.1
        
        Mode                LastWriteTime         Length Name                                                                                                                                                                                                    
        ----                -------------         ------ ----                                                                                                                                                                                                    
-       d-----         3/4/2020  11:54 AM                temp                                                                                                                                                                                                    
-       Downloading Salt minion installer Salt-Minion-2019.2.3-Py3-AMD64-Setup.exe
+       d-----         3/6/2020   9:54 AM                temp                                                                                                                                                                                                    
+       Downloading Salt minion installer Salt-Minion-3000-Py3-AMD64-Setup.exe
        Installing Salt minion
        Starting the Salt minion service
        Salt minion successfully installed
-       You asked for latest and you have 2019.2.3 installed, sweet!
+       You asked for latest and you have 3000 installed, sweet!
        
        
        
@@ -84,7 +82,7 @@ v1.0.1
        
        Mode                LastWriteTime         Length Name                                                                                                                                                                                                    
        ----                -------------         ------ ----                                                                                                                                                                                                    
-       d-----         3/4/2020  11:55 AM                kitchen                                                                                                                                                                                                 
+       d-----         3/6/2020   9:54 AM                kitchen                                                                                                                                                                                                 
        
        
        Transferring files to <py3-windows-10-1903>
@@ -97,13 +95,13 @@ v1.0.1
         
        
        Traceback (most recent call last):
-         File "C:\salt\bin\lib\site-packages\salt\utils\win_dacl.py", line 1180, in get_name
+         File "C:\salt\bin\lib\site-packages\salt-3000-py3.5.egg\salt\utils\win_dacl.py", line 1180, in get_name
            return win32security.LookupAccountSid(None, sid_obj)[0]
        pywintypes.error: (1332, 'LookupAccountSid', 'No mapping between account names and security IDs was done.')
        
        [ERROR   ] Error resolving "S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681": No mapping between account names and security IDs was done.
        Traceback (most recent call last):
-         File "C:\salt\bin\lib\site-packages\salt\utils\win_dacl.py", line 1180, in get_name
+         File "C:\salt\bin\lib\site-packages\salt-3000-py3.5.egg\salt\utils\win_dacl.py", line 1180, in get_name
            return win32security.LookupAccountSid(None, sid_obj)[0]
        pywintypes.error: (1332, 'LookupAccountSid', 'No mapping between account names and security IDs was done.')
        
@@ -122,8 +120,8 @@ v1.0.1
         Name: saltstack1
              Result: True
             Comment: The current hostname is 'vagrant-10', but will be changed to 'saltstack1' on the next reboot
-            Started: 11:55:19.833229
-           Duration: 91.817 ms
+            Started: 09:55:01.584554
+           Duration: 92.406 ms
             Changes:   
               ----------
               hostname:
@@ -134,8 +132,8 @@ v1.0.1
         Name: Saltstack Computer Description
              Result: True
             Comment: Computer description successfully changed to 'Saltstack Computer Description'
-            Started: 11:55:19.925046
-           Duration: 2702.172 ms
+            Started: 09:55:01.676960
+           Duration: 2703.133 ms
             Changes:   
               ----------
               new:
@@ -147,8 +145,8 @@ v1.0.1
         Name: America/New_York
              Result: True
             Comment: Set timezone America/New_York
-            Started: 11:55:22.644276
-           Duration: 15.194 ms
+            Started: 09:55:04.411278
+           Duration: 16.146 ms
             Changes:   
               ----------
               timezone:
@@ -158,7 +156,7 @@ v1.0.1
            Function: module.run
              Result: True
             Comment: environ.items: Success
-            Started: 11:55:22.675113
+            Started: 09:55:04.442912
            Duration: 0.0 ms
             Changes:   
               ----------
@@ -249,8 +247,8 @@ v1.0.1
            Function: module.run
              Result: True
             Comment: user.current: VAGRANT-10\vagrant
-            Started: 11:55:22.675113
-           Duration: 15.442 ms
+            Started: 09:55:04.442912
+           Duration: 46.439 ms
             Changes:   
               ----------
               user.current:
@@ -259,25 +257,25 @@ v1.0.1
           ID: windows.module.status.uptime
            Function: module.run
              Result: True
-            Comment: status.uptime: 0:01:20.740518
-            Started: 11:55:22.690555
-           Duration: 49.963 ms
+            Comment: status.uptime: 0:01:20.504924
+            Started: 09:55:04.489351
+           Duration: 15.573 ms
             Changes:   
               ----------
               status.uptime:
-                  0:01:20.740518
+                  0:01:20.504924
        ----------
           ID: windows.system.packages.appx.provisioned.uninstalled.Microsoft.MicrosoftSolitaireCollection
            Function: cmd.run
         Name: Get-AppxPackage Microsoft.MicrosoftSolitaireCollection | Remove-AppxPackage -Allusers
              Result: True
             Comment: Command "Get-AppxPackage Microsoft.MicrosoftSolitaireCollection | Remove-AppxPackage -Allusers" run
-            Started: 11:55:22.753995
-           Duration: 2093.483 ms
+            Started: 09:55:04.520557
+           Duration: 2062.348 ms
             Changes:   
               ----------
               pid:
-                  6712
+                  2584
               retcode:
                   0
               stderr:
@@ -288,12 +286,12 @@ v1.0.1
         Name: Get-AppxPackage Microsoft.Wallet | Remove-AppxPackage -Allusers
              Result: True
             Comment: Command "Get-AppxPackage Microsoft.Wallet | Remove-AppxPackage -Allusers" run
-            Started: 11:55:24.862291
-           Duration: 1859.384 ms
+            Started: 09:55:06.582905
+           Duration: 1656.409 ms
             Changes:   
               ----------
               pid:
-                  3492
+                  1184
               retcode:
                   0
               stderr:
@@ -304,12 +302,12 @@ v1.0.1
         Name: Get-AppxPackage Microsoft.ZuneMusic | Remove-AppxPackage -Allusers
              Result: True
             Comment: Command "Get-AppxPackage Microsoft.ZuneMusic | Remove-AppxPackage -Allusers" run
-            Started: 11:55:26.721675
-           Duration: 1546.842 ms
+            Started: 09:55:08.239314
+           Duration: 1547.052 ms
             Changes:   
               ----------
               pid:
-                  1864
+                  2624
               retcode:
                   0
               stderr:
@@ -320,12 +318,12 @@ v1.0.1
         Name: Get-AppxPackage Microsoft.ZuneVideo | Remove-AppxPackage -Allusers
              Result: True
             Comment: Command "Get-AppxPackage Microsoft.ZuneVideo | Remove-AppxPackage -Allusers" run
-            Started: 11:55:28.268517
-           Duration: 1546.941 ms
+            Started: 09:55:09.786366
+           Duration: 1703.034 ms
             Changes:   
               ----------
               pid:
-                  3244
+                  7004
               retcode:
                   0
               stderr:
@@ -336,12 +334,12 @@ v1.0.1
         Name: Get-AppxPackage Microsoft.MixedReality.Portal | Remove-AppxPackage -Allusers
              Result: True
             Comment: Command "Get-AppxPackage Microsoft.MixedReality.Portal | Remove-AppxPackage -Allusers" run
-            Started: 11:55:29.815458
-           Duration: 1547.048 ms
+            Started: 09:55:11.489400
+           Duration: 1453.314 ms
             Changes:   
               ----------
               pid:
-                  6044
+                  1200
               retcode:
                   0
               stderr:
@@ -352,8 +350,8 @@ v1.0.1
         Name: HKLM\SOFTWARE\Microsoft\.NETFramework\v4.0.30319
              Result: True
             Comment: Added HKLM\SOFTWARE\Microsoft\.NETFramework\v4.0.30319 to HKLM\SOFTWARE\Microsoft\.NETFramework\v4.0.30319
-            Started: 11:55:31.362506
-           Duration: 8187.4 ms
+            Started: 09:55:12.942714
+           Duration: 11718.532 ms
             Changes:   
               ----------
               reg:
@@ -382,8 +380,8 @@ v1.0.1
         Name: HKLM\SOFTWARE\Microsoft\.NETFramework\v4.0.30319
              Result: True
             Comment: Added HKLM\SOFTWARE\Microsoft\.NETFramework\v4.0.30319 to HKLM\SOFTWARE\Microsoft\.NETFramework\v4.0.30319
-            Started: 11:55:39.549906
-           Duration: 219.213 ms
+            Started: 09:55:24.661246
+           Duration: 218.496 ms
             Changes:   
               ----------
               reg:
@@ -412,8 +410,8 @@ v1.0.1
         Name: C:\Users\vagrant\AppData\Local\Temp\kitchen\srv\salt\win\repo-ng
              Result: True
             Comment: https://github.com/saltstack/salt-winrepo-ng/archive/master.zip extracted to C:\Users\vagrant\AppData\Local\Temp\kitchen\srv\salt\win\repo-ng\, due to absence of one or more files/dirs
-            Started: 11:55:39.769119
-           Duration: 814.194 ms
+            Started: 09:55:24.879742
+           Duration: 750.859 ms
             Changes:   
               ----------
               directories_created:
@@ -782,8 +780,8 @@ v1.0.1
            Function: module.run
              Result: True
             Comment: file.rename: True
-            Started: 11:55:40.583313
-           Duration: 14.773 ms
+            Started: 09:55:25.630601
+           Duration: 0.0 ms
             Changes:   
               ----------
               file.rename:
@@ -793,8 +791,8 @@ v1.0.1
            Function: module.run
              Result: True
             Comment: check_cmd determined the state succeeded
-            Started: 11:55:40.598086
-           Duration: 7436.119 ms
+            Started: 09:55:25.630601
+           Duration: 6327.533 ms
             Changes:   
               ----------
               pkg.refresh_db:
@@ -810,8 +808,8 @@ v1.0.1
            Function: pkg.installed
              Result: True
             Comment: The following packages were installed/updated: git
-            Started: 11:55:48.052983
-           Duration: 18560.592 ms
+            Started: 09:55:31.974892
+           Duration: 15904.873 ms
             Changes:   
               ----------
               git:
@@ -820,26 +818,12 @@ v1.0.1
                       2.23.0.windows.1
                   old:
        ----------
-          ID: kdiff3
-           Function: pkg.installed
-             Result: True
-            Comment: The following packages were installed/updated: kdiff3
-            Started: 11:56:06.613575
-           Duration: 9139.736 ms
-            Changes:   
-              ----------
-              kdiff3:
-                  ----------
-                  new:
-                      Not Found
-                  old:
-       ----------
           ID: 7zip
            Function: pkg.installed
              Result: True
             Comment: The following packages were installed/updated: 7zip=18.06.00.0
-            Started: 11:56:15.769852
-           Duration: 9701.71 ms
+            Started: 09:55:47.927536
+           Duration: 12328.162 ms
             Changes:   
               ----------
               7zip:
@@ -848,12 +832,26 @@ v1.0.1
                       18.06.00.0
                   old:
        ----------
+          ID: kdiff3
+           Function: pkg.installed
+             Result: True
+            Comment: The following packages were installed/updated: kdiff3
+            Started: 09:56:00.317382
+           Duration: 17109.249 ms
+            Changes:   
+              ----------
+              kdiff3:
+                  ----------
+                  new:
+                      Not Found
+                  old:
+       ----------
           ID: windows_environment.refresh.path
            Function: module.run
              Result: True
             Comment: windows_environment.refresh: Success
-            Started: 11:56:25.471562
-           Duration: 47.923 ms
+            Started: 09:56:17.442252
+           Duration: 47.332 ms
             Changes:   
               ----------
               windows_environment.refresh:
@@ -921,8 +919,8 @@ v1.0.1
               Ensuring chocolatey commands are on the path
        
               Ensuring chocolatey.nupkg is in the lib folder
-            Started: 11:56:25.519485
-           Duration: 22405.93 ms
+            Started: 09:56:17.505202
+           Duration: 22937.524 ms
             Changes:   
               ----------
               chocolatey.bootstrap:
@@ -966,19 +964,19 @@ v1.0.1
         Name: notepadplusplus
              Result: True
             Comment: 
-            Started: 11:56:47.925415
-           Duration: 10906.232 ms
+            Started: 09:56:40.442726
+           Duration: 10830.15 ms
             Changes:   
               ----------
               notepadplusplus:
                   ----------
                   new:
-                      - 7.8.4
+                      - 7.8.5
                   old:
               notepadplusplus.install:
                   ----------
                   new:
-                      - 7.8.4
+                      - 7.8.5
                   old:
        ----------
           ID: windows.system.packages.chocolatey.windirstat
@@ -986,8 +984,8 @@ v1.0.1
         Name: windirstat
              Result: True
             Comment: 
-            Started: 11:56:58.831647
-           Duration: 5514.968 ms
+            Started: 09:56:51.272876
+           Duration: 5435.275 ms
             Changes:   
               ----------
               windirstat:
@@ -1001,16 +999,16 @@ v1.0.1
         Name: TelnetClient
              Result: True
             Comment: Installed TelnetClient
-            Started: 11:57:04.346615
-           Duration: 6078.279 ms
+            Started: 09:56:56.708151
+           Duration: 6265.557 ms
             Changes:   
               ----------
               feature:
                   ----------
                   new:
-                      TelnetClient
+                      - TelnetClient
               pid:
-                  4596
+                  4076
               retcode:
                   0
               stderr:
@@ -1020,8 +1018,8 @@ v1.0.1
            Function: module.run
              Result: True
             Comment: system.reboot: True
-            Started: 11:57:10.424894
-           Duration: 203.021 ms
+            Started: 09:57:02.973708
+           Duration: 234.144 ms
             Changes:   
               ----------
               system.reboot:
@@ -1033,16 +1031,20 @@ v1.0.1
        Failed:     0
        -------------
        Total states run:     25
-       Total run time:  110.698 s
+       Total run time:  121.404 s
        Downloading files from <py3-windows-10-1903>
-       Finished converging <py3-windows-10-1903> (2m29.87s).
+       Finished converging <py3-windows-10-1903> (2m41.86s).
 -----> Setting up <py3-windows-10-1903>...
        Finished setting up <py3-windows-10-1903> (0m0.00s).
 -----> Verifying <py3-windows-10-1903>...
        Loaded default 
-`execution expired`, target may be rebooting after highstate. Remaining retries: 20
+       [WinRM] 500 returned in cleanup with error: Bad HTTP response returned from server. Body(if present): (500).
+`[WSMAN ERROR CODE: 995]: <f:WSManFault Code='995' Machine='127.0.0.1' xmlns:f='http://schemas.microsoft.com/wbem/wsman/1/wsmanfault'><f:Message>The I/O operation has been aborted because of either a thread exit or an application request. </f:Message></f:WSManFault>`, target may be rebooting after highstate. Remaining retries: 20
 `execution expired`, target may be rebooting after highstate. Remaining retries: 19
 `execution expired`, target may be rebooting after highstate. Remaining retries: 18
+`execution expired`, target may be rebooting after highstate. Remaining retries: 17
+`execution expired`, target may be rebooting after highstate. Remaining retries: 16
+`execution expired`, target may be rebooting after highstate. Remaining retries: 15
 INFO: Got pillar from the target minion using WinRM.
 
 Profile: SaltStack Windows Formula (default)
@@ -1083,13 +1085,13 @@ Target:  winrm://vagrant@http://127.0.0.1:55985/wsman:3389
 
 Profile Summary: 9 successful controls, 0 control failures, 1 control skipped
 Test Summary: 19 successful, 0 failures, 1 skipped
-       Finished verifying <py3-windows-10-1903> (0m52.99s).
+       Finished verifying <py3-windows-10-1903> (1m19.13s).
+       Finished testing <py3-windows-10-1903> (5m1.66s).
 -----> Destroying <py3-windows-10-1903>...
        ==> default: Forcing shutdown of VM...
        ==> default: Destroying VM and associated drives...
        Vagrant instance <py3-windows-10-1903> destroyed.
-       Finished destroying <py3-windows-10-1903> (0m13.32s).
-       Finished testing <py3-windows-10-1903> (4m38.07s).
------> Test Kitchen is finished. (4m50.57s)
+       Finished destroying <py3-windows-10-1903> (0m12.29s).
+-----> Test Kitchen is finished. (5m25.95s)
 KITCHEN TEST EXIT CODE
 0

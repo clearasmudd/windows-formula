@@ -66,6 +66,6 @@ Pending: (Failures listed here are expected and do not affect your suite's statu
      # Not yet implemented
      # 
 
-Finished in 6.24 seconds (files took 4 minutes 23.8 seconds to load)
+Finished in 3.63 seconds (files took 5 minutes 3 seconds to load)
 20 examples, 0 failures, 1 pending
 

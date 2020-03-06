@@ -1,0 +1,1093 @@
+Fri Mar  6 13:39:12 EST 2020
+commit 52abd5e1e609560fb2d7cf5f23a532e0fe0bbd0e
+Author: Peter Mudd <muddman@users.noreply.github.com>
+Date:   Fri Mar 6 12:43:24 2020 -0500
+
+    feat: support saltstack 3000
+CURRENT BRANCH COMMIT ID
+52abd5e1e609560fb2d7cf5f23a532e0fe0bbd0e
+CURRENT RELEASE TAG
+v1.0.0
+-----> Starting Test Kitchen (v2.3.4)
+-----> Cleaning up any prior instances of <py3-201923-windows-10-1903>
+-----> Destroying <py3-201923-windows-10-1903>...
+       Finished destroying <py3-201923-windows-10-1903> (0m0.00s).
+-----> Testing <py3-201923-windows-10-1903>
+-----> Creating <py3-201923-windows-10-1903>...
+       Bringing machine 'default' up with 'virtualbox' provider...
+       ==> default: Cloning VM...
+       [K==> default: Matching MAC address for NAT networking...
+       ==> default: Checking if box 'StefanScherer/windows_10' version '2020.01.15' is up to date...
+       ==> default: Setting the name of the VM: kitchen-windows-formula-py3-201923-windows-10-1903-af69d486-642f-4038-8272-01d15e5e4a8d
+       ==> default: Clearing any previously set network interfaces...
+       ==> default: Preparing network interfaces based on configuration...
+           default: Adapter 1: nat
+       ==> default: Forwarding ports...
+           default: 3389 (guest) => 3389 (host) (adapter 1)
+           default: 5985 (guest) => 55985 (host) (adapter 1)
+           default: 5986 (guest) => 55986 (host) (adapter 1)
+           default: 22 (guest) => 2222 (host) (adapter 1)
+       ==> default: Running 'pre-boot' VM customizations...
+       ==> default: Booting VM...
+       ==> default: Waiting for machine to boot. This may take a few minutes...
+           default: WinRM address: 127.0.0.1:55985
+           default: WinRM username: vagrant
+           default: WinRM execution_time_limit: PT2H
+           default: WinRM transport: negotiate
+       ==> default: Machine booted and ready!
+       ==> default: Checking for guest additions in VM...
+           default: The guest additions on this VM do not match the installed version of
+           default: VirtualBox! In most cases this is fine, but in rare cases it can
+           default: prevent things such as shared folders from working properly. If you see
+           default: shared folder errors, please make sure the guest additions within the
+           default: virtual machine match the version of VirtualBox you have installed on
+           default: your host and reload your VM.
+           default: 
+           default: Guest Additions Version: 6.0.10
+           default: VirtualBox Version: 6.1
+       ==> default: Mounting shared folders...
+           default: /results => /mnt/c/tmp/results
+       ==> default: Machine not provisioned because `--no-provision` is specified.
+       [WinRM] Established
+       
+       Vagrant instance <py3-201923-windows-10-1903> created.
+       Finished creating <py3-201923-windows-10-1903> (0m59.14s).
+-----> Converging <py3-201923-windows-10-1903>...
+       Preparing files for transfer
+       Preparing salt-minion
+       Preparing pillars into /srv/pillar
+       pillars-from-files is deprecated in favor of pillars_from_files
+       Preparing formula: windows from /home/pmudd/projects/github/clearasmudd/windows-formula
+       Preparing state_top
+       Preparing scripts into /etc/salt/scripts
+       
+       
+           Directory: C:\
+       
+       
+       Mode                LastWriteTime         Length Name                                                                                                                                                                                                    
+       ----                -------------         ------ ----                                                                                                                                                                                                    
+       d-----         3/6/2020  10:40 AM                temp                                                                                                                                                                                                    
+       Downloading Salt minion installer Salt-Minion-2019.2.3-Py3-AMD64-Setup.exe
+       Installing Salt minion
+       Starting the Salt minion service
+       Salt minion successfully installed
+       You asked for latest and you have 2019.2.3 installed, sweet!
+       
+       
+       
+       
+           Directory: C:\Users\vagrant\AppData\Local\Temp
+       
+       
+       Mode                LastWriteTime         Length Name                                                                                                                                                                                                    
+       ----                -------------         ------ ----                                                                                                                                                                                                    
+       d-----         3/6/2020  10:40 AM                kitchen                                                                                                                                                                                                 
+       
+       
+       Transferring files to <py3-201923-windows-10-1903>
+       c:\salt\salt-call.bat : [ERROR   ] Error resolving "S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681": No mapping between account names and security IDs was done.
+       At line:1 char:131
+       + ... alt\minion ;c:\salt\salt-call.bat --state-output=changes --config-dir ...
+       +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+           + CategoryInfo          : NotSpecified: ([ERROR   ] Erro...y IDs was done.:String) [], RemoteException
+           + FullyQualifiedErrorId : NativeCommandError
+        
+       
+       Traceback (most recent call last):
+         File "C:\salt\bin\lib\site-packages\salt\utils\win_dacl.py", line 1180, in get_name
+           return win32security.LookupAccountSid(None, sid_obj)[0]
+       pywintypes.error: (1332, 'LookupAccountSid', 'No mapping between account names and security IDs was done.')
+       
+       [ERROR   ] Error resolving "S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681": No mapping between account names and security IDs was done.
+       Traceback (most recent call last):
+         File "C:\salt\bin\lib\site-packages\salt\utils\win_dacl.py", line 1180, in get_name
+           return win32security.LookupAccountSid(None, sid_obj)[0]
+       pywintypes.error: (1332, 'LookupAccountSid', 'No mapping between account names and security IDs was done.')
+       
+       [WARNING ] C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extmods\modules\windows_environment\__init__.py:54: DeprecationWarning: bad escape \W
+         environ[key] = redata.sub(a, value)
+       
+       
+       [WARNING ] C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extmods\modules\windows_environment\__init__.py:54: DeprecationWarning: bad escape \P
+         environ[key] = redata.sub(a, value)
+       
+       
+       local:
+       ----------
+          ID: windows.state.system.hostname.saltstack1
+           Function: system.hostname
+        Name: saltstack1
+             Result: True
+            Comment: The current hostname is 'vagrant-10', but will be changed to 'saltstack1' on the next reboot
+            Started: 10:41:04.025952
+           Duration: 90.324 ms
+            Changes:   
+              ----------
+              hostname:
+                  saltstack1
+       ----------
+          ID: windows.state.system.computer_desc.description
+           Function: system.computer_desc
+        Name: Saltstack Computer Description
+             Result: True
+            Comment: Computer description successfully changed to 'Saltstack Computer Description'
+            Started: 10:41:04.116276
+           Duration: 2704.202 ms
+            Changes:   
+              ----------
+              new:
+                  Saltstack Computer Description
+              old:
+       ----------
+          ID: windows.state.timezone.system.America/New_York
+           Function: timezone.system
+        Name: America/New_York
+             Result: True
+            Comment: Set timezone America/New_York
+            Started: 10:41:06.834966
+           Duration: 15.8 ms
+            Changes:   
+              ----------
+              timezone:
+                  America/New_York
+       ----------
+          ID: windows.module.environ.items
+           Function: module.run
+             Result: True
+            Comment: environ.items: Success
+            Started: 10:41:06.866310
+           Duration: 0.0 ms
+            Changes:   
+              ----------
+              environ.items:
+                  ----------
+                  ALLUSERSPROFILE:
+                      C:\ProgramData
+                  APPDATA:
+                      C:\Users\vagrant\AppData\Roaming
+                  COMMONPROGRAMFILES:
+                      C:\Program Files\Common Files
+                  COMMONPROGRAMFILES(X86):
+                      C:\Program Files (x86)\Common Files
+                  COMMONPROGRAMW6432:
+                      C:\Program Files\Common Files
+                  COMPUTERNAME:
+                      VAGRANT-10
+                  COMSPEC:
+                      C:\Windows\system32\cmd.exe
+                  DRIVERDATA:
+                      C:\Windows\System32\Drivers\DriverData
+                  HOMEDRIVE:
+                      C:
+                  HOMEPATH:
+                      \Users\vagrant
+                  LOCALAPPDATA:
+                      C:\Users\vagrant\AppData\Local
+                  LOGONSERVER:
+                      \\VAGRANT-10
+                  NUMBER_OF_PROCESSORS:
+                      2
+                  ONEDRIVE:
+                      C:\Users\vagrant\OneDrive
+                  OS:
+                      Windows_NT
+                  PATH:
+                      C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\salt;C:\Users\vagrant\AppData\Local\Microsoft\WindowsApps;C:\salt\bin\lib\site-packages\pywin32_system32;C:\salt\bin\lib\site-packages\pywin32_system32
+                  PATHEXT:
+                      .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL
+                  PROCESSOR_ARCHITECTURE:
+                      AMD64
+                  PROCESSOR_IDENTIFIER:
+                      Intel64 Family 6 Model 142 Stepping 12, GenuineIntel
+                  PROCESSOR_LEVEL:
+                      6
+                  PROCESSOR_REVISION:
+                      8e0c
+                  PROGRAMDATA:
+                      C:\ProgramData
+                  PROGRAMFILES:
+                      C:\Program Files
+                  PROGRAMFILES(X86):
+                      C:\Program Files (x86)
+                  PROGRAMW6432:
+                      C:\Program Files
+                  PROMPT:
+                      $P$G
+                  PSMODULEPATH:
+                      C:\Users\vagrant\Documents\WindowsPowerShell\Modules;C:\Program Files\WindowsPowerShell\Modules;C:\Windows\system32\WindowsPowerShell\v1.0\Modules
+                  PUBLIC:
+                      C:\Users\Public
+                  PYTHON:
+                      C:\salt\bin\python.exe
+                  SALTDIR:
+                      C:\salt
+                  SCRIPT:
+                      C:\salt\bin\Scripts\salt-call
+                  SYSTEMDRIVE:
+                      C:
+                  SYSTEMROOT:
+                      C:\Windows
+                  TEMP:
+                      C:\Users\vagrant\AppData\Local\Temp
+                  TMP:
+                      C:\Users\vagrant\AppData\Local\Temp
+                  USERDOMAIN:
+                      VAGRANT-10
+                  USERDOMAIN_ROAMINGPROFILE:
+                      VAGRANT-10
+                  USERNAME:
+                      vagrant
+                  USERPROFILE:
+                      C:\Users\vagrant
+                  WINDIR:
+                      C:\Windows
+       ----------
+          ID: windows.module.user.current
+           Function: module.run
+             Result: True
+            Comment: user.current: VAGRANT-10\vagrant
+            Started: 10:41:06.866310
+           Duration: 16.183 ms
+            Changes:   
+              ----------
+              user.current:
+                  VAGRANT-10\vagrant
+       ----------
+          ID: windows.module.status.uptime
+           Function: module.run
+             Result: True
+            Comment: status.uptime: 0:01:16.898124
+            Started: 10:41:06.882493
+           Duration: 30.537 ms
+            Changes:   
+              ----------
+              status.uptime:
+                  0:01:16.898124
+       ----------
+          ID: windows.system.packages.appx.provisioned.uninstalled.Microsoft.MicrosoftSolitaireCollection
+           Function: cmd.run
+        Name: Get-AppxPackage Microsoft.MicrosoftSolitaireCollection | Remove-AppxPackage -Allusers
+             Result: True
+            Comment: Command "Get-AppxPackage Microsoft.MicrosoftSolitaireCollection | Remove-AppxPackage -Allusers" run
+            Started: 10:41:06.913030
+           Duration: 1751.62 ms
+            Changes:   
+              ----------
+              pid:
+                  4608
+              retcode:
+                  0
+              stderr:
+              stdout:
+       ----------
+          ID: windows.system.packages.appx.provisioned.uninstalled.Microsoft.Wallet
+           Function: cmd.run
+        Name: Get-AppxPackage Microsoft.Wallet | Remove-AppxPackage -Allusers
+             Result: True
+            Comment: Command "Get-AppxPackage Microsoft.Wallet | Remove-AppxPackage -Allusers" run
+            Started: 10:41:08.664650
+           Duration: 1530.11 ms
+            Changes:   
+              ----------
+              pid:
+                  864
+              retcode:
+                  0
+              stderr:
+              stdout:
+       ----------
+          ID: windows.system.packages.appx.provisioned.uninstalled.Microsoft.ZuneMusic
+           Function: cmd.run
+        Name: Get-AppxPackage Microsoft.ZuneMusic | Remove-AppxPackage -Allusers
+             Result: True
+            Comment: Command "Get-AppxPackage Microsoft.ZuneMusic | Remove-AppxPackage -Allusers" run
+            Started: 10:41:10.194760
+           Duration: 1472.363 ms
+            Changes:   
+              ----------
+              pid:
+                  4456
+              retcode:
+                  0
+              stderr:
+              stdout:
+       ----------
+          ID: windows.system.packages.appx.provisioned.uninstalled.Microsoft.ZuneVideo
+           Function: cmd.run
+        Name: Get-AppxPackage Microsoft.ZuneVideo | Remove-AppxPackage -Allusers
+             Result: True
+            Comment: Command "Get-AppxPackage Microsoft.ZuneVideo | Remove-AppxPackage -Allusers" run
+            Started: 10:41:11.667123
+           Duration: 1606.025 ms
+            Changes:   
+              ----------
+              pid:
+                  6016
+              retcode:
+                  0
+              stderr:
+              stdout:
+       ----------
+          ID: windows.system.packages.appx.provisioned.uninstalled.Microsoft.MixedReality.Portal
+           Function: cmd.run
+        Name: Get-AppxPackage Microsoft.MixedReality.Portal | Remove-AppxPackage -Allusers
+             Result: True
+            Comment: Command "Get-AppxPackage Microsoft.MixedReality.Portal | Remove-AppxPackage -Allusers" run
+            Started: 10:41:13.273148
+           Duration: 1562.132 ms
+            Changes:   
+              ----------
+              pid:
+                  1112
+              retcode:
+                  0
+              stderr:
+              stdout:
+       ----------
+          ID: windows.system.packages.powershell.framework.v4_5.tls1_2.systemdefaulttlsversions_32
+           Function: reg.present
+        Name: HKLM\SOFTWARE\Microsoft\.NETFramework\v4.0.30319
+             Result: True
+            Comment: Added HKLM\SOFTWARE\Microsoft\.NETFramework\v4.0.30319 to HKLM\SOFTWARE\Microsoft\.NETFramework\v4.0.30319
+            Started: 10:41:14.850757
+           Duration: 7781.415 ms
+            Changes:   
+              ----------
+              reg:
+                  ----------
+                  Added:
+                      ----------
+                      Entry:
+                          SystemDefaultTlsVersions
+                      Inheritance:
+                          True
+                      Key:
+                          HKLM\SOFTWARE\Microsoft\.NETFramework\v4.0.30319
+                      Owner:
+                          None
+                      Perms:
+                          ----------
+                          Deny:
+                              None
+                          Grant:
+                              None
+                      Value:
+                          1
+       ----------
+          ID: windows.system.packages.powershell.framework.v4_5.tls1_2.systemdefaulttlsversions_64
+           Function: reg.present
+        Name: HKLM\SOFTWARE\Microsoft\.NETFramework\v4.0.30319
+             Result: True
+            Comment: Added HKLM\SOFTWARE\Microsoft\.NETFramework\v4.0.30319 to HKLM\SOFTWARE\Microsoft\.NETFramework\v4.0.30319
+            Started: 10:41:22.632172
+           Duration: 218.284 ms
+            Changes:   
+              ----------
+              reg:
+                  ----------
+                  Added:
+                      ----------
+                      Entry:
+                          SystemDefaultTlsVersions
+                      Inheritance:
+                          True
+                      Key:
+                          HKLM\SOFTWARE\Microsoft\.NETFramework\v4.0.30319
+                      Owner:
+                          None
+                      Perms:
+                          ----------
+                          Deny:
+                              None
+                          Grant:
+                              None
+                      Value:
+                          1
+       ----------
+          ID: manually.update_git_repo-ng
+           Function: archive.extracted
+        Name: C:\Users\vagrant\AppData\Local\Temp\kitchen\srv\salt\win\repo-ng
+             Result: True
+            Comment: https://github.com/saltstack/salt-winrepo-ng/archive/master.zip extracted to C:\Users\vagrant\AppData\Local\Temp\kitchen\srv\salt\win\repo-ng\, due to absence of one or more files/dirs
+            Started: 10:41:22.850456
+           Duration: 750.232 ms
+            Changes:   
+              ----------
+              directories_created:
+                  - C:\Users\vagrant\AppData\Local\Temp\kitchen\srv\salt\win\repo-ng\
+              extracted_files:
+                  - salt-winrepo-ng-master/
+                  - salt-winrepo-ng-master/.gitignore
+                  - salt-winrepo-ng-master/.travis.yml
+                  - salt-winrepo-ng-master/.travis/
+                  - salt-winrepo-ng-master/.travis/requirements.txt
+                  - salt-winrepo-ng-master/.travis/tests.py
+                  - salt-winrepo-ng-master/7zip.sls
+                  - salt-winrepo-ng-master/LICENSE
+                  - salt-winrepo-ng-master/README.md
+                  - salt-winrepo-ng-master/_config.yml
+                  - salt-winrepo-ng-master/activeperl_x64.sls
+                  - salt-winrepo-ng-master/activeperl_x86.sls
+                  - salt-winrepo-ng-master/adobeair.sls
+                  - salt-winrepo-ng-master/adobereader-dc-classic.sls
+                  - salt-winrepo-ng-master/adobereader-xi.sls
+                  - salt-winrepo-ng-master/adobereader.sls
+                  - salt-winrepo-ng-master/adobeshockwaveplayer.sls
+                  - salt-winrepo-ng-master/adv-ip-scanner.sls
+                  - salt-winrepo-ng-master/adv-port-scanner.sls
+                  - salt-winrepo-ng-master/advancedlogging.sls
+                  - salt-winrepo-ng-master/anydesk-msi.sls
+                  - salt-winrepo-ng-master/anydesk.sls
+                  - salt-winrepo-ng-master/applicationrequestrouting.sls
+                  - salt-winrepo-ng-master/aspnet-mvc1.sls
+                  - salt-winrepo-ng-master/atom.sls
+                  - salt-winrepo-ng-master/audacity.sls
+                  - salt-winrepo-ng-master/auditbeat/
+                  - salt-winrepo-ng-master/auditbeat/init.sls
+                  - salt-winrepo-ng-master/auditbeat/install.cmd
+                  - salt-winrepo-ng-master/auditbeat/install.ps1
+                  - salt-winrepo-ng-master/auditbeat/remove.cmd
+                  - salt-winrepo-ng-master/autohotkey.sls
+                  - salt-winrepo-ng-master/autoit.sls
+                  - salt-winrepo-ng-master/autopsy.sls
+                  - salt-winrepo-ng-master/awscli.sls
+                  - salt-winrepo-ng-master/azuredatastudio.sls
+                  - salt-winrepo-ng-master/bandizip.sls
+                  - salt-winrepo-ng-master/belarc-advisor.sls
+                  - salt-winrepo-ng-master/bginfo4x.sls
+                  - salt-winrepo-ng-master/bitnami-nginxstack.sls
+                  - salt-winrepo-ng-master/bitvise.sls
+                  - salt-winrepo-ng-master/blender.sls
+                  - salt-winrepo-ng-master/bootracer.sls
+                  - salt-winrepo-ng-master/bulk_extractor.sls
+                  - salt-winrepo-ng-master/bulkrenameutility.sls
+                  - salt-winrepo-ng-master/ccleaner-slim.sls
+                  - salt-winrepo-ng-master/ccleaner.sls
+                  - salt-winrepo-ng-master/cdburnerxp.sls
+                  - salt-winrepo-ng-master/cdroller.sls
+                  - salt-winrepo-ng-master/check-mk-agent-msi.sls
+                  - salt-winrepo-ng-master/check-mk-agent.sls
+                  - salt-winrepo-ng-master/chocolatey/
+                  - salt-winrepo-ng-master/chocolatey/init.sls
+                  - salt-winrepo-ng-master/chocolatey/install.cmd
+                  - salt-winrepo-ng-master/chocolatey/uninstall.cmd
+                  - salt-winrepo-ng-master/chocolatey/uninstall.ps1
+                  - salt-winrepo-ng-master/chrome-rdp.sls
+                  - salt-winrepo-ng-master/chrome.sls
+                  - salt-winrepo-ng-master/clamav.sls
+                  - salt-winrepo-ng-master/clamwin.sls
+                  - salt-winrepo-ng-master/classicshell.sls
+                  - salt-winrepo-ng-master/clink.sls
+                  - salt-winrepo-ng-master/conemu.sls
+                  - salt-winrepo-ng-master/cpu-z.sls
+                  - salt-winrepo-ng-master/curl.sls
+                  - salt-winrepo-ng-master/cyberduck-cli.sls
+                  - salt-winrepo-ng-master/cyberduck-msi.sls
+                  - salt-winrepo-ng-master/cyberduck.sls
+                  - salt-winrepo-ng-master/defraggler.sls
+                  - salt-winrepo-ng-master/docs/
+                  - salt-winrepo-ng-master/docs/ReadMe.md
+                  - salt-winrepo-ng-master/dotnet.sls
+                  - salt-winrepo-ng-master/dropbox.sls
+                  - salt-winrepo-ng-master/duplicati.sls
+                  - salt-winrepo-ng-master/dvdstyler.sls
+                  - salt-winrepo-ng-master/echo-desktop.sls
+                  - salt-winrepo-ng-master/eea.sls
+                  - salt-winrepo-ng-master/emet.sls
+                  - salt-winrepo-ng-master/emsisoft-anti-malware.sls
+                  - salt-winrepo-ng-master/eraser.sls
+                  - salt-winrepo-ng-master/erlang/
+                  - salt-winrepo-ng-master/erlang/init.sls
+                  - salt-winrepo-ng-master/erlang/install.cmd
+                  - salt-winrepo-ng-master/evernote.sls
+                  - salt-winrepo-ng-master/fiddler.sls
+                  - salt-winrepo-ng-master/filebeat/
+                  - salt-winrepo-ng-master/filebeat/init.sls
+                  - salt-winrepo-ng-master/filebeat/install.cmd
+                  - salt-winrepo-ng-master/filebeat/install.ps1
+                  - salt-winrepo-ng-master/filebeat/remove.cmd
+                  - salt-winrepo-ng-master/filehippo-app-manager.sls
+                  - salt-winrepo-ng-master/filezilla.sls
+                  - salt-winrepo-ng-master/firefox-esr_x64.sls
+                  - salt-winrepo-ng-master/firefox-esr_x86.sls
+                  - salt-winrepo-ng-master/firefox_x64.sls
+                  - salt-winrepo-ng-master/firefox_x86.sls
+                  - salt-winrepo-ng-master/functionbeat/
+                  - salt-winrepo-ng-master/functionbeat/init.sls
+                  - salt-winrepo-ng-master/functionbeat/install.cmd
+                  - salt-winrepo-ng-master/functionbeat/install.ps1
+                  - salt-winrepo-ng-master/functionbeat/remove.cmd
+                  - salt-winrepo-ng-master/gedit.sls
+                  - salt-winrepo-ng-master/gimp.sls
+                  - salt-winrepo-ng-master/git-extensions.sls
+                  - salt-winrepo-ng-master/git.sls
+                  - salt-winrepo-ng-master/glarysoft-absolute-uninstaller.sls
+                  - salt-winrepo-ng-master/gnucash.sls
+                  - salt-winrepo-ng-master/golang.sls
+                  - salt-winrepo-ng-master/goodsync.sls
+                  - salt-winrepo-ng-master/gow.sls
+                  - salt-winrepo-ng-master/gpg4win-light.sls
+                  - salt-winrepo-ng-master/gpg4win-vanilla.sls
+                  - salt-winrepo-ng-master/gpg4win/
+                  - salt-winrepo-ng-master/gpg4win/init.sls
+                  - salt-winrepo-ng-master/gpg4win/silent.ini
+                  - salt-winrepo-ng-master/graylog-collector-sidecar.sls
+                  - salt-winrepo-ng-master/grepwin.sls
+                  - salt-winrepo-ng-master/gvim.sls
+                  - salt-winrepo-ng-master/handbrake.sls
+                  - salt-winrepo-ng-master/heartbeat/
+                  - salt-winrepo-ng-master/heartbeat/.remove.ps1.swp
+                  - salt-winrepo-ng-master/heartbeat/init.sls
+                  - salt-winrepo-ng-master/heartbeat/install.cmd
+                  - salt-winrepo-ng-master/heartbeat/install.ps1
+                  - salt-winrepo-ng-master/heartbeat/remove.cmd
+                  - salt-winrepo-ng-master/hipchat.sls
+                  - salt-winrepo-ng-master/hostsfileeditor.sls
+                  - salt-winrepo-ng-master/hwinfo.sls
+                  - salt-winrepo-ng-master/ice.sls
+                  - salt-winrepo-ng-master/icecast.sls
+                  - salt-winrepo-ng-master/icloud.sls
+                  - salt-winrepo-ng-master/iismediaservices.sls
+                  - salt-winrepo-ng-master/influx-capacitor.sls
+                  - salt-winrepo-ng-master/inkscape.sls
+                  - salt-winrepo-ng-master/intellij-community.sls
+                  - salt-winrepo-ng-master/intellij-ultimate.sls
+                  - salt-winrepo-ng-master/internet-evidence-finder.sls
+                  - salt-winrepo-ng-master/irfanview-plugins.sls
+                  - salt-winrepo-ng-master/irfanview.sls
+                  - salt-winrepo-ng-master/isapirewrite-lite.sls
+                  - salt-winrepo-ng-master/itunes.sls
+                  - salt-winrepo-ng-master/jdk8.sls
+                  - salt-winrepo-ng-master/jre.sls
+                  - salt-winrepo-ng-master/jre8.sls
+                  - salt-winrepo-ng-master/jungledisk-server-management.sls
+                  - salt-winrepo-ng-master/jungledisk-server.sls
+                  - salt-winrepo-ng-master/jungledisk-workgroup.sls
+                  - salt-winrepo-ng-master/kdiff3.sls
+                  - salt-winrepo-ng-master/keepass-2x.sls
+                  - salt-winrepo-ng-master/keepass.sls
+                  - salt-winrepo-ng-master/lastpass.sls
+                  - salt-winrepo-ng-master/lazarus.sls
+                  - salt-winrepo-ng-master/libreoffice.sls
+                  - salt-winrepo-ng-master/logparser.sls
+                  - salt-winrepo-ng-master/maas360bootanalyzer.sls
+                  - salt-winrepo-ng-master/malwarebytes.sls
+                  - salt-winrepo-ng-master/mariadb.sls
+                  - salt-winrepo-ng-master/mercurial.sls
+                  - salt-winrepo-ng-master/messageanalyzer.sls
+                  - salt-winrepo-ng-master/metricbeat/
+                  - salt-winrepo-ng-master/metricbeat/.remove.ps1.swp
+                  - salt-winrepo-ng-master/metricbeat/init.sls
+                  - salt-winrepo-ng-master/metricbeat/install.cmd
+                  - salt-winrepo-ng-master/metricbeat/install.ps1
+                  - salt-winrepo-ng-master/metricbeat/remove.cmd
+                  - salt-winrepo-ng-master/microsoft-build-tools.sls
+                  - salt-winrepo-ng-master/mikogo.sls
+                  - salt-winrepo-ng-master/miktex-basic.sls
+                  - salt-winrepo-ng-master/mongodb.sls
+                  - salt-winrepo-ng-master/ms-mbsa.sls
+                  - salt-winrepo-ng-master/ms-vcpp-2005-atl-redist_x64.sls
+                  - salt-winrepo-ng-master/ms-vcpp-2005-atl-redist_x86.sls
+                  - salt-winrepo-ng-master/ms-vcpp-2005-redist_x64.sls
+                  - salt-winrepo-ng-master/ms-vcpp-2005-redist_x86.sls
+                  - salt-winrepo-ng-master/ms-vcpp-2005-sp1-mfc-redist_x64.sls
+                  - salt-winrepo-ng-master/ms-vcpp-2005-sp1-mfc-redist_x86.sls
+                  - salt-winrepo-ng-master/ms-vcpp-2005-sp1-redist_x64.sls
+                  - salt-winrepo-ng-master/ms-vcpp-2005-sp1-redist_x86.sls
+                  - salt-winrepo-ng-master/ms-vcpp-2008-redist_x64.sls
+                  - salt-winrepo-ng-master/ms-vcpp-2008-redist_x86.sls
+                  - salt-winrepo-ng-master/ms-vcpp-2008-sp1-atl-redist_x64.sls
+                  - salt-winrepo-ng-master/ms-vcpp-2008-sp1-atl-redist_x86.sls
+                  - salt-winrepo-ng-master/ms-vcpp-2008-sp1-mfc-redist_x64.sls
+                  - salt-winrepo-ng-master/ms-vcpp-2008-sp1-mfc-redist_x86.sls
+                  - salt-winrepo-ng-master/ms-vcpp-2010-sp1-mfc-redist_64.sls
+                  - salt-winrepo-ng-master/ms-vcpp-2010-sp1-mfc-redist_x86.sls
+                  - salt-winrepo-ng-master/ms-vcpp-2012-redist_x64.sls
+                  - salt-winrepo-ng-master/ms-vcpp-2012-redist_x86.sls
+                  - salt-winrepo-ng-master/ms-vcpp-2013-redist_x64.sls
+                  - salt-winrepo-ng-master/ms-vcpp-2013-redist_x86.sls
+                  - salt-winrepo-ng-master/ms-vcpp-2015-build-tools.sls
+                  - salt-winrepo-ng-master/ms-vcpp-2015-redist_x64.sls
+                  - salt-winrepo-ng-master/ms-vcpp-2015-redist_x86.sls
+                  - salt-winrepo-ng-master/ms-vcpp-2017-redist_x64.sls
+                  - salt-winrepo-ng-master/ms-vcpp-2017-redist_x86.sls
+                  - salt-winrepo-ng-master/mucommander.sls
+                  - salt-winrepo-ng-master/mysql-essential.sls
+                  - salt-winrepo-ng-master/mysql-installer-community.sls
+                  - salt-winrepo-ng-master/mysql-workbench.sls
+                  - salt-winrepo-ng-master/never10.sls
+                  - salt-winrepo-ng-master/newrelic-infra.sls
+                  - salt-winrepo-ng-master/nextcloud-client.sls
+                  - salt-winrepo-ng-master/nmap.sls
+                  - salt-winrepo-ng-master/node.js-lts.sls
+                  - salt-winrepo-ng-master/node.js.sls
+                  - salt-winrepo-ng-master/nomacs.sls
+                  - salt-winrepo-ng-master/npp.sls
+                  - salt-winrepo-ng-master/nsclient.sls
+                  - salt-winrepo-ng-master/nsis.sls
+                  - salt-winrepo-ng-master/ntp.sls
+                  - salt-winrepo-ng-master/nunit-console.sls
+                  - salt-winrepo-ng-master/nxlog.sls
+                  - salt-winrepo-ng-master/octopus-tentacle.sls
+                  - salt-winrepo-ng-master/openlp.sls
+                  - salt-winrepo-ng-master/openoffice.sls
+                  - salt-winrepo-ng-master/openvpn.sls
+                  - salt-winrepo-ng-master/osquery.sls
+                  - salt-winrepo-ng-master/ossec-agent.sls
+                  - salt-winrepo-ng-master/owncloud.sls
+                  - salt-winrepo-ng-master/packetbeat/
+                  - salt-winrepo-ng-master/packetbeat/init.sls
+                  - salt-winrepo-ng-master/packetbeat/install.cmd
+                  - salt-winrepo-ng-master/packetbeat/install.ps1
+                  - salt-winrepo-ng-master/packetbeat/remove.cmd
+                  - salt-winrepo-ng-master/pandoc.sls
+                  - salt-winrepo-ng-master/parallels-client-15.sls
+                  - salt-winrepo-ng-master/pass4win.sls
+                  - salt-winrepo-ng-master/passware-kit-agent.sls
+                  - salt-winrepo-ng-master/passware-kit-forensic.sls
+                  - salt-winrepo-ng-master/patchmypc-free.sls
+                  - salt-winrepo-ng-master/pdf24creator.sls
+                  - salt-winrepo-ng-master/pdfcreator.sls
+                  - salt-winrepo-ng-master/peazip.sls
+                  - salt-winrepo-ng-master/pgadmin4.sls
+                  - salt-winrepo-ng-master/pgina.sls
+                  - salt-winrepo-ng-master/pidgin.sls
+                  - salt-winrepo-ng-master/postgresql.sls
+                  - salt-winrepo-ng-master/powerbi-desktop.sls
+                  - salt-winrepo-ng-master/powershell-core.sls
+                  - salt-winrepo-ng-master/prometheus-wmi-exporter.sls
+                  - salt-winrepo-ng-master/putty.sls
+                  - salt-winrepo-ng-master/pycharm-pro/
+                  - salt-winrepo-ng-master/pycharm-pro/init.sls
+                  - salt-winrepo-ng-master/pycharm-pro/silent.config
+                  - salt-winrepo-ng-master/python2_x64.sls
+                  - salt-winrepo-ng-master/python2_x86.sls
+                  - salt-winrepo-ng-master/python3_x64.sls
+                  - salt-winrepo-ng-master/python3_x86.sls
+                  - salt-winrepo-ng-master/qemu.sls
+                  - salt-winrepo-ng-master/queueexplorerpro.sls
+                  - salt-winrepo-ng-master/quicktime.sls
+                  - salt-winrepo-ng-master/rabbitmq.sls
+                  - salt-winrepo-ng-master/rakudo-star-no-jit_x86.sls
+                  - salt-winrepo-ng-master/rakudo-star_x64.sls
+                  - salt-winrepo-ng-master/rasclient.sls
+                  - salt-winrepo-ng-master/rdcman.sls
+                  - salt-winrepo-ng-master/rocketchat.sls
+                  - salt-winrepo-ng-master/rubyinstaller_x64.sls
+                  - salt-winrepo-ng-master/rubyinstaller_x86.sls
+                  - salt-winrepo-ng-master/salt-minion-py2.sls
+                  - salt-winrepo-ng-master/salt-minion-py3.sls
+                  - salt-winrepo-ng-master/sandboxie.sls
+                  - salt-winrepo-ng-master/scaleout.sls
+                  - salt-winrepo-ng-master/secunia.psi.sls
+                  - salt-winrepo-ng-master/sensu.sls
+                  - salt-winrepo-ng-master/sharpdevelop.sls
+                  - salt-winrepo-ng-master/skitch.sls
+                  - salt-winrepo-ng-master/skype-msi.sls
+                  - salt-winrepo-ng-master/skype.sls
+                  - salt-winrepo-ng-master/slack-machine-msi.sls
+                  - salt-winrepo-ng-master/slack-user-msi.sls
+                  - salt-winrepo-ng-master/slack.sls
+                  - salt-winrepo-ng-master/smartmontools.sls
+                  - salt-winrepo-ng-master/snmptools.sls
+                  - salt-winrepo-ng-master/soapui.sls
+                  - salt-winrepo-ng-master/software-informer.sls
+                  - salt-winrepo-ng-master/sourcetree.sls
+                  - salt-winrepo-ng-master/spybot-anti-beacon.sls
+                  - salt-winrepo-ng-master/spybot.sls
+                  - salt-winrepo-ng-master/sscserv-free.sls
+                  - salt-winrepo-ng-master/stayawake/
+                  - salt-winrepo-ng-master/stayawake/init.sls
+                  - salt-winrepo-ng-master/stayawake/install.cmd
+                  - salt-winrepo-ng-master/steam.sls
+                  - salt-winrepo-ng-master/stellarium.sls
+                  - salt-winrepo-ng-master/strawberryperl_x64.sls
+                  - salt-winrepo-ng-master/strawberryperl_x86.sls
+                  - salt-winrepo-ng-master/stunnel.sls
+                  - salt-winrepo-ng-master/subinacl.sls
+                  - salt-winrepo-ng-master/sumatrapdf.sls
+                  - salt-winrepo-ng-master/svn.sls
+                  - salt-winrepo-ng-master/teamviewer.sls
+                  - salt-winrepo-ng-master/teamviewer_host.sls
+                  - salt-winrepo-ng-master/teracopy.sls
+                  - salt-winrepo-ng-master/texmaker.sls
+                  - salt-winrepo-ng-master/texniccenter.sls
+                  - salt-winrepo-ng-master/texstudio.sls
+                  - salt-winrepo-ng-master/texworks.sls
+                  - salt-winrepo-ng-master/thunderbird.sls
+                  - salt-winrepo-ng-master/tightvnc.sls
+                  - salt-winrepo-ng-master/todotxt.net.sls
+                  - salt-winrepo-ng-master/todour.sls
+                  - salt-winrepo-ng-master/tortoise-bzr.sls
+                  - salt-winrepo-ng-master/tortoise-git.sls
+                  - salt-winrepo-ng-master/tortoise-hg.sls
+                  - salt-winrepo-ng-master/tortoise-svn.sls
+                  - salt-winrepo-ng-master/truecrypt.sls
+                  - salt-winrepo-ng-master/ultradefrag.sls
+                  - salt-winrepo-ng-master/urlrewrite.sls
+                  - salt-winrepo-ng-master/usbdlm.sls
+                  - salt-winrepo-ng-master/vagrant.sls
+                  - salt-winrepo-ng-master/vcforpython27.sls
+                  - salt-winrepo-ng-master/vcxsrv.sls
+                  - salt-winrepo-ng-master/verysleepy.sls
+                  - salt-winrepo-ng-master/veyon.sls
+                  - salt-winrepo-ng-master/virtualbox.sls
+                  - salt-winrepo-ng-master/viscosity.sls
+                  - salt-winrepo-ng-master/vivaldi.sls
+                  - salt-winrepo-ng-master/vlc.sls
+                  - salt-winrepo-ng-master/vs-community.sls
+                  - salt-winrepo-ng-master/vs_remotetools_2017.sls
+                  - salt-winrepo-ng-master/vscode.sls
+                  - salt-winrepo-ng-master/vsee.sls
+                  - salt-winrepo-ng-master/wamp-server-3.sls
+                  - salt-winrepo-ng-master/wamp-stack.sls
+                  - salt-winrepo-ng-master/webdeploy.sls
+                  - salt-winrepo-ng-master/webplatforminstaller.sls
+                  - salt-winrepo-ng-master/win-app-manager.sls
+                  - salt-winrepo-ng-master/windirstat.sls
+                  - salt-winrepo-ng-master/winhttpcertcfg.sls
+                  - salt-winrepo-ng-master/winlogbeat/
+                  - salt-winrepo-ng-master/winlogbeat/init.sls
+                  - salt-winrepo-ng-master/winlogbeat/install.cmd
+                  - salt-winrepo-ng-master/winlogbeat/install.ps1
+                  - salt-winrepo-ng-master/winlogbeat/remove.cmd
+                  - salt-winrepo-ng-master/winmerge.sls
+                  - salt-winrepo-ng-master/winmtr.sls
+                  - salt-winrepo-ng-master/winpcap.sls
+                  - salt-winrepo-ng-master/winrar.sls
+                  - salt-winrepo-ng-master/winscp.sls
+                  - salt-winrepo-ng-master/wireshark.sls
+                  - salt-winrepo-ng-master/wmi_provider/
+                  - salt-winrepo-ng-master/wmi_provider/README.md
+                  - salt-winrepo-ng-master/wmi_provider/answer.txt
+                  - salt-winrepo-ng-master/wmi_provider/init.sls
+                  - salt-winrepo-ng-master/wmi_provider/majsetup.reg
+                  - salt-winrepo-ng-master/wscc.sls
+                  - salt-winrepo-ng-master/wufuc.sls
+                  - salt-winrepo-ng-master/xampp.sls
+                  - salt-winrepo-ng-master/xming.sls
+                  - salt-winrepo-ng-master/yubikey-manager.sls
+                  - salt-winrepo-ng-master/yubikey-personalization-tool.sls
+                  - salt-winrepo-ng-master/zabbix-agent.sls
+                  - salt-winrepo-ng-master/zipinstaller/
+                  - salt-winrepo-ng-master/zipinstaller/init.sls
+                  - salt-winrepo-ng-master/zipinstaller/~zipinst~_x64.zic
+                  - salt-winrepo-ng-master/zipinstaller/~zipinst~_x86.zic
+                  - salt-winrepo-ng-master/zoom.sls
+       ----------
+          ID: rename-extract
+           Function: module.run
+             Result: True
+            Comment: file.rename: True
+            Started: 10:41:23.600688
+           Duration: 0.0 ms
+            Changes:   
+              ----------
+              file.rename:
+                  True
+       ----------
+          ID: pkg.refresh_db
+           Function: module.run
+             Result: True
+            Comment: check_cmd determined the state succeeded
+            Started: 10:41:23.600688
+           Duration: 6687.456 ms
+            Changes:   
+              ----------
+              pkg.refresh_db:
+                  ----------
+                  failed:
+                      0
+                  success:
+                      298
+                  total:
+                      298
+       ----------
+          ID: kdiff3
+           Function: pkg.installed
+             Result: True
+            Comment: The following packages were installed/updated: kdiff3
+            Started: 10:41:30.288144
+           Duration: 4890.989 ms
+            Changes:   
+              ----------
+              kdiff3:
+                  ----------
+                  new:
+                      Not Found
+                  old:
+       ----------
+          ID: 7zip
+           Function: pkg.installed
+             Result: True
+            Comment: The following packages were installed/updated: 7zip=18.06.00.0
+            Started: 10:41:35.194300
+           Duration: 12469.067 ms
+            Changes:   
+              ----------
+              7zip:
+                  ----------
+                  new:
+                      18.06.00.0
+                  old:
+       ----------
+          ID: git
+           Function: pkg.installed
+             Result: True
+            Comment: The following packages were installed/updated: git
+            Started: 10:41:47.678870
+           Duration: 24953.167 ms
+            Changes:   
+              ----------
+              git:
+                  ----------
+                  new:
+                      2.23.0.windows.1
+                  old:
+       ----------
+          ID: windows_environment.refresh.path
+           Function: module.run
+             Result: True
+            Comment: windows_environment.refresh: Success
+            Started: 10:42:12.647805
+           Duration: 78.043 ms
+            Changes:   
+              ----------
+              windows_environment.refresh:
+                  ----------
+                  PATH:
+                      C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\salt;C:\Program Files\Git\cmd
+       ----------
+          ID: chocolatey.bootstrap
+           Function: module.run
+             Result: True
+            Comment: chocolatey.bootstrap: Getting latest version of the Chocolatey package for download.
+       
+              Getting Chocolatey from https://chocolatey.org/api/v2/package/chocolatey/0.10.15.
+       
+              Downloading 7-Zip commandline tool prior to extraction.
+       
+              Extracting C:\Users\vagrant\AppData\Local\Temp\chocolatey\chocInstall\chocolatey.zip to C:\Users\vagrant\AppData\Local\Temp\chocolatey\chocInstall...
+       
+              Installing chocolatey on this machine
+       
+              Creating ChocolateyInstall as an environment variable (targeting 'Machine') 
+                Setting ChocolateyInstall to 'C:\ProgramData\chocolatey'
+       
+              WARNING: It's very likely you will need to close and reopen your shell 
+                before you can use choco.
+              Restricting write permissions to Administrators
+       
+              We are setting up the Chocolatey package repository.
+       
+              The packages themselves go to 'C:\ProgramData\chocolatey\lib'
+       
+                (i.e. C:\ProgramData\chocolatey\lib\yourPackageName).
+       
+              A shim file for the command line goes to 'C:\ProgramData\chocolatey\bin'
+       
+                and points to an executable in 'C:\ProgramData\chocolatey\lib\yourPackageName'.
+       
+              
+       
+              Creating Chocolatey folders if they do not already exist.
+       
+              
+       
+              WARNING: You can safely ignore errors related to missing log files when 
+                upgrading from a version of Chocolatey less than 0.9.9. 
+                'Batch file could not be found' is also safe to ignore. 
+                'The system cannot find the file specified' - also safe.
+              chocolatey.nupkg file not installed in lib.
+               Attempting to locate it from bootstrapper.
+       
+              PATH environment variable does not have C:\ProgramData\chocolatey\bin in it. Adding...
+              WARNING: Not setting tab completion: Profile file does not exist at 
+       
+              'C:\Users\vagrant\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1'.
+              Chocolatey (choco.exe) is now ready.
+       
+              You can call choco from anywhere, command line or powershell by typing choco.
+       
+              Run choco /? for a list of functions.
+       
+              You may need to shut down and restart powershell and/or consoles
+       
+               first prior to using choco.
+       
+              Ensuring chocolatey commands are on the path
+       
+              Ensuring chocolatey.nupkg is in the lib folder
+            Started: 10:42:12.725848
+           Duration: 26375.7 ms
+            Changes:   
+              ----------
+              chocolatey.bootstrap:
+                  Getting latest version of the Chocolatey package for download.
+                  Getting Chocolatey from https://chocolatey.org/api/v2/package/chocolatey/0.10.15.
+                  Downloading 7-Zip commandline tool prior to extraction.
+                  Extracting C:\Users\vagrant\AppData\Local\Temp\chocolatey\chocInstall\chocolatey.zip to C:\Users\vagrant\AppData\Local\Temp\chocolatey\chocInstall...
+                  Installing chocolatey on this machine
+                  Creating ChocolateyInstall as an environment variable (targeting 'Machine') 
+                    Setting ChocolateyInstall to 'C:\ProgramData\chocolatey'
+                  WARNING: It's very likely you will need to close and reopen your shell 
+                    before you can use choco.
+                  Restricting write permissions to Administrators
+                  We are setting up the Chocolatey package repository.
+                  The packages themselves go to 'C:\ProgramData\chocolatey\lib'
+                    (i.e. C:\ProgramData\chocolatey\lib\yourPackageName).
+                  A shim file for the command line goes to 'C:\ProgramData\chocolatey\bin'
+                    and points to an executable in 'C:\ProgramData\chocolatey\lib\yourPackageName'.
+                  
+                  Creating Chocolatey folders if they do not already exist.
+                  
+                  WARNING: You can safely ignore errors related to missing log files when 
+                    upgrading from a version of Chocolatey less than 0.9.9. 
+                    'Batch file could not be found' is also safe to ignore. 
+                    'The system cannot find the file specified' - also safe.
+                  chocolatey.nupkg file not installed in lib.
+                   Attempting to locate it from bootstrapper.
+                  PATH environment variable does not have C:\ProgramData\chocolatey\bin in it. Adding...
+                  WARNING: Not setting tab completion: Profile file does not exist at 
+                  'C:\Users\vagrant\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1'.
+                  Chocolatey (choco.exe) is now ready.
+                  You can call choco from anywhere, command line or powershell by typing choco.
+                  Run choco /? for a list of functions.
+                  You may need to shut down and restart powershell and/or consoles
+                   first prior to using choco.
+                  Ensuring chocolatey commands are on the path
+                  Ensuring chocolatey.nupkg is in the lib folder
+       ----------
+          ID: windows.system.packages.chocolatey.notepadplusplus
+           Function: chocolatey.installed
+        Name: notepadplusplus
+             Result: True
+            Comment: 
+            Started: 10:42:39.101548
+           Duration: 12014.798 ms
+            Changes:   
+              ----------
+              notepadplusplus:
+                  ----------
+                  new:
+                      - 7.8.5
+                  old:
+              notepadplusplus.install:
+                  ----------
+                  new:
+                      - 7.8.5
+                  old:
+       ----------
+          ID: windows.system.packages.chocolatey.windirstat
+           Function: chocolatey.installed
+        Name: windirstat
+             Result: True
+            Comment: 
+            Started: 10:42:51.116346
+           Duration: 5015.586 ms
+            Changes:   
+              ----------
+              windirstat:
+                  ----------
+                  new:
+                      - 1.1.2.20161210
+                  old:
+       ----------
+          ID: windows.system.desktop.optional_features.installed.TelnetClient
+           Function: dism.feature_installed
+        Name: TelnetClient
+             Result: True
+            Comment: Installed TelnetClient
+            Started: 10:42:56.131932
+           Duration: 6062.588 ms
+            Changes:   
+              ----------
+              feature:
+                  ----------
+                  new:
+                      TelnetClient
+              pid:
+                  4796
+              retcode:
+                  0
+              stderr:
+              stdout:
+       ----------
+          ID: windows.module.system.reboot
+           Function: module.run
+             Result: True
+            Comment: system.reboot: True
+            Started: 10:43:02.194520
+           Duration: 219.274 ms
+            Changes:   
+              ----------
+              system.reboot:
+                  True
+       
+       Summary for local
+       -------------
+       Succeeded: 25 (changed=25)
+       Failed:     0
+       -------------
+       Total states run:     25
+       Total run time:  118.296 s
+       Downloading files from <py3-201923-windows-10-1903>
+       Finished converging <py3-201923-windows-10-1903> (2m33.98s).
+-----> Setting up <py3-201923-windows-10-1903>...
+       Finished setting up <py3-201923-windows-10-1903> (0m0.00s).
+-----> Verifying <py3-201923-windows-10-1903>...
+       Loaded default 
+`execution expired`, target may be rebooting after highstate. Remaining retries: 20
+`execution expired`, target may be rebooting after highstate. Remaining retries: 19
+`execution expired`, target may be rebooting after highstate. Remaining retries: 18
+INFO: Got pillar from the target minion using WinRM.
+
+Profile: SaltStack Windows Formula (default)
+Version: (not specified)
+Target:  winrm://vagrant@http://127.0.0.1:55985/wsman:3389
+
+  ✔  Operating System: 
+     ✔  windows_10_enterprise_evaluation should include "windows"
+  ✔  Windows AppX Provisioned Package Uninstalled: salt.formula.windows.system.packages.appx.provisioned.uninstalled
+     ✔  Windows AppX Provisioned Package `Microsoft.MicrosoftSolitaireCollection` should not be installed
+     ✔  Windows AppX Provisioned Package `Microsoft.Wallet` should not be installed
+     ✔  Windows AppX Provisioned Package `Microsoft.ZuneMusic` should not be installed
+     ✔  Windows AppX Provisioned Package `Microsoft.ZuneVideo` should not be installed
+     ✔  Windows AppX Provisioned Package `Microsoft.MixedReality.Portal` should not be installed
+  ✔  Chocolatey Package Installed: salt.formula.windows.system.packages.chocolatey
+     ✔  Chocolatey package notepadplusplus should be installed
+     ✔  Chocolatey package windirstat should be installed
+     ✔  Chocolatey package windirstat version should cmp == "1.1.2.20161210"
+  ↺  Windows Features: salt.formula.windows.system.server.features
+     ↺  Skipped control due to only_if condition: only supported on servers
+  ✔  Chocolatey Installed: salt.modules.chocolatey.bootstrap
+     ✔  Command: `choco` should exist
+  ✔  Windows Timezone: salt.states.timezone.system
+     ✔  `Eastern Standard Time` timezone (converted from America/New_York) should be set
+  ✔  Windows Optional Features: salt.states.win_dism.feature_installed
+     ✔  Windows Optional Feature: `TelnetClient` should be installed
+  ✔  Windows Computer Hostname: salt.states.win_system.hostname
+     ✔  System Information hostname should cmp == "saltstack1"
+     ✔  Registry Key HKLM\SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName ComputerName should cmp == "saltstack1"
+  ✔  Windows Computer Description: salt.states.win_system.computer_desc
+     ✔  Powershell stdout should match "Saltstack Computer Description"
+  ✔  Saltstack Package Installed: windows.system.packages.saltstack.installed
+     ✔  System Package Git should be installed
+     ✔  System Package 7-Zip should be installed
+     ✔  System Package 7-Zip version should cmp == "18.06.00.0"
+     ✔  System Package KDiff3 should be installed
+
+
+Profile Summary: 9 successful controls, 0 control failures, 1 control skipped
+Test Summary: 19 successful, 0 failures, 1 skipped
+       Finished verifying <py3-201923-windows-10-1903> (0m53.79s).
+       Finished testing <py3-201923-windows-10-1903> (4m26.92s).
+-----> Destroying <py3-201923-windows-10-1903>...
+       ==> default: Forcing shutdown of VM...
+       ==> default: Destroying VM and associated drives...
+       Vagrant instance <py3-201923-windows-10-1903> destroyed.
+       Finished destroying <py3-201923-windows-10-1903> (0m10.80s).
+-----> Test Kitchen is finished. (4m49.50s)
+KITCHEN TEST EXIT CODE
+0

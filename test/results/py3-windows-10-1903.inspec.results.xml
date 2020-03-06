@@ -1,27 +1,27 @@
 <?xml version='1.0'?>
 <testsuites>
   <testsuite name='default' tests='20' failed='0' failures='0'>
-    <testcase name='windows_10_enterprise_evaluation should include &quot;windows&quot;' classname='default.Operating System' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.0001177'/>
-    <testcase name='Windows AppX Provisioned Package `Microsoft.MicrosoftSolitaireCollection` should not be installed' classname='default.Windows AppX Provisioned Package Uninstalled' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.3023662'/>
-    <testcase name='Windows AppX Provisioned Package `Microsoft.Wallet` should not be installed' classname='default.Windows AppX Provisioned Package Uninstalled' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.0447944'/>
-    <testcase name='Windows AppX Provisioned Package `Microsoft.ZuneMusic` should not be installed' classname='default.Windows AppX Provisioned Package Uninstalled' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.0389849'/>
-    <testcase name='Windows AppX Provisioned Package `Microsoft.ZuneVideo` should not be installed' classname='default.Windows AppX Provisioned Package Uninstalled' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.0388734'/>
-    <testcase name='Windows AppX Provisioned Package `Microsoft.MixedReality.Portal` should not be installed' classname='default.Windows AppX Provisioned Package Uninstalled' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.0506324'/>
-    <testcase name='Chocolatey package notepadplusplus should be installed' classname='default.Chocolatey Package Installed' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.0001627'/>
-    <testcase name='Chocolatey package windirstat should be installed' classname='default.Chocolatey Package Installed' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.0001066'/>
-    <testcase name='Chocolatey package windirstat version should cmp == &quot;1.1.2.20161210&quot;' classname='default.Chocolatey Package Installed' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.0001626'/>
-    <testcase name='No-op' classname='default.Windows Features' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='1.13e-05'>
+    <testcase name='windows_10_enterprise_evaluation should include &quot;windows&quot;' classname='default.Operating System' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.0001074'/>
+    <testcase name='Windows AppX Provisioned Package `Microsoft.MicrosoftSolitaireCollection` should not be installed' classname='default.Windows AppX Provisioned Package Uninstalled' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.1979289'/>
+    <testcase name='Windows AppX Provisioned Package `Microsoft.Wallet` should not be installed' classname='default.Windows AppX Provisioned Package Uninstalled' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.0350443'/>
+    <testcase name='Windows AppX Provisioned Package `Microsoft.ZuneMusic` should not be installed' classname='default.Windows AppX Provisioned Package Uninstalled' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.0330581'/>
+    <testcase name='Windows AppX Provisioned Package `Microsoft.ZuneVideo` should not be installed' classname='default.Windows AppX Provisioned Package Uninstalled' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.0290897'/>
+    <testcase name='Windows AppX Provisioned Package `Microsoft.MixedReality.Portal` should not be installed' classname='default.Windows AppX Provisioned Package Uninstalled' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.0340859'/>
+    <testcase name='Chocolatey package notepadplusplus should be installed' classname='default.Chocolatey Package Installed' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.0001302'/>
+    <testcase name='Chocolatey package windirstat should be installed' classname='default.Chocolatey Package Installed' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='8.24e-05'/>
+    <testcase name='Chocolatey package windirstat version should cmp == &quot;1.1.2.20161210&quot;' classname='default.Chocolatey Package Installed' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.0001329'/>
+    <testcase name='No-op' classname='default.Windows Features' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='8.0e-06'>
       <skipped/>
     </testcase>
-    <testcase name='Command: `choco` should exist' classname='default.Chocolatey Installed' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.1076793'/>
-    <testcase name='`Eastern Standard Time` timezone (converted from America/New_York) should be set' classname='default.Windows Timezone' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.5742223'/>
-    <testcase name='Windows Optional Feature: `TelnetClient` should be installed' classname='default.Windows Optional Features' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='3.6697929'/>
-    <testcase name='System Information hostname should cmp == &quot;saltstack1&quot;' classname='default.Windows Computer Hostname' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.0479686'/>
-    <testcase name='Registry Key HKLM\SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName ComputerName should cmp == &quot;saltstack1&quot;' classname='default.Windows Computer Hostname' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.0002433'/>
-    <testcase name='Powershell stdout should match &quot;Saltstack Computer Description&quot;' classname='default.Windows Computer Description' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.4298593'/>
-    <testcase name='System Package Git should be installed' classname='default.Saltstack Package Installed' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.2936617'/>
-    <testcase name='System Package 7-Zip should be installed' classname='default.Saltstack Package Installed' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.1824969'/>
-    <testcase name='System Package 7-Zip version should cmp == &quot;18.06.00.0&quot;' classname='default.Saltstack Package Installed' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.2208735'/>
-    <testcase name='System Package KDiff3 should be installed' classname='default.Saltstack Package Installed' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.2006732'/>
+    <testcase name='Command: `choco` should exist' classname='default.Chocolatey Installed' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.0482952'/>
+    <testcase name='`Eastern Standard Time` timezone (converted from America/New_York) should be set' classname='default.Windows Timezone' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.4398386'/>
+    <testcase name='Windows Optional Feature: `TelnetClient` should be installed' classname='default.Windows Optional Features' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='2.1038065'/>
+    <testcase name='System Information hostname should cmp == &quot;saltstack1&quot;' classname='default.Windows Computer Hostname' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.0192527'/>
+    <testcase name='Registry Key HKLM\SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName ComputerName should cmp == &quot;saltstack1&quot;' classname='default.Windows Computer Hostname' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.0001611'/>
+    <testcase name='Powershell stdout should match &quot;Saltstack Computer Description&quot;' classname='default.Windows Computer Description' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.0988618'/>
+    <testcase name='System Package Git should be installed' classname='default.Saltstack Package Installed' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.1519444'/>
+    <testcase name='System Package 7-Zip should be installed' classname='default.Saltstack Package Installed' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.1411013'/>
+    <testcase name='System Package 7-Zip version should cmp == &quot;18.06.00.0&quot;' classname='default.Saltstack Package Installed' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.1384968'/>
+    <testcase name='System Package KDiff3 should be installed' classname='default.Saltstack Package Installed' target='winrm://vagrant@http://127.0.0.1:55985/wsman:3389' time='0.1294099'/>
   </testsuite>
 </testsuites>
