@@ -130,6 +130,9 @@ for:
   - matrix:
       only:
         - job_depends_on: Chef Inspec Tests
+    branches:
+      only:
+        - master
     build_script:
       - ps: Write-Host "build_script for $env:APPVEYOR_JOB_NAME"
       - ps: $ErrorActionPreference = "Stop";
