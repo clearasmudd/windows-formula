@@ -28,7 +28,7 @@ windows-formula
    :alt: License
    :scale: 100%
    :target: https://github.com/clearasmudd/windows-formula/LICENSE
-.. |img_appveyor_master| image:: https://ci.appveyor.com/api/projects/status/5nm6yfh5n5qk1isn/branch/master?svg=true&passingText=master%20passing&pendingText=master%20pending&failingText=master%20failing
+.. |img_appveyor_master| image:: https://ci.appveyor.com/api/projects/status/5nm6yfh5n5qk1isn/branch/master?svg=true
    :alt: Appveyor Build Master
    :scale: 100%
    :target: https://ci.appveyor.com/project/muddman/windows-formula/branch/master

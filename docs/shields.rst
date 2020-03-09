@@ -45,10 +45,10 @@ Shields
    :alt: GitHub release date
    :scale: 100%
    :target: https://github.com/clearasmudd/windows-formula/releases
-.. |img_appveyor_master| image:: https://img.shields.io/appveyor/build/muddman/windows-formula/master?label=master
+.. |img_appveyor_master| image:: https://ci.appveyor.com/api/projects/status/5nm6yfh5n5qk1isn/branch/master?svg=true
    :alt: Appveyor Build Master
    :scale: 100%
-   :target: https://ci.appveyor.com/project/muddman/windows-formula
+   :target: https://ci.appveyor.com/project/muddman/windows-formula/branch/master
 .. |img_sr| image:: http://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?color=blue
    :alt: Semantic Release
    :scale: 100%
@@ -57,14 +57,14 @@ Shields
    :alt: License
    :scale: 100%
    :target: https://github.com/clearasmudd/windows-formula/LICENSE
-.. |img_appveyor_tests| image:: https://img.shields.io/appveyor/tests/muddman/windows-formula
+.. |img_appveyor_tests| image:: https://img.shields.io/appveyor/tests/muddman/windows-formula/master
    :alt: Appveyor Test Results
    :scale: 100%
    :target: https://ci.appveyor.com/project/muddman/windows-formula
 .. |img_readthedocs| image:: https://readthedocs.com/projects/clearasmudd-windows-formula/badge/?version=master
    :alt: Read the Docs
    :scale: 100%
-   :target: https://clearasmudd-windows-formula.readthedocs-hosted.com/en/latest/?badge=latest :alt: Documentation Status 
+   :target: https://clearasmudd-windows-formula.readthedocs-hosted.com/en/latest/?badge=latest
 .. |img_appveyor_win2019| image:: https://img.shields.io/appveyor/job/build/muddman/windows-formula/Chef%20Inspec%20Tests%20(Windows%20Server%202019)/master?label=Windows%20Server%202019
    :alt: Appveyor Windows Server 2019
    :scale: 100%
