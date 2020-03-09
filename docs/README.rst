@@ -39,7 +39,7 @@ windows-formula
 .. |img_readthedocs| image:: https://readthedocs.com/projects/clearasmudd-windows-formula/badge/?version=master
    :alt: Read the Docs
    :scale: 100%
-   :target: https://clearasmudd-windows-formula.readthedocs-hosted.com/en/latest/?badge=latest :alt: Documentation Status 
+   :target: https://clearasmudd-windows-formula.readthedocs-hosted.com/en/latest/?badge=latest
 .. |img_librariesio| image:: https://img.shields.io/librariesio/github/clearasmudd/windows-formula?cacheSeconds=120
    :alt: Libraries IO Dependencies
    :scale: 100%
