@@ -96,7 +96,7 @@ def get_pillar_from_inspec_pillar_file
     Inspec::Log.debug('[get_pillar_from_inspec_pillar_file] returning cached value')
     return @cache_pillar_from_inspec_pillar_file
   end
-  pillar_file = ENV['INSPEC_TEST_SALT_PILLAR'] || 'test/salt/pillar/windows.sls'
+  pillar_file = ENV['INSPEC_TEST_SALT_PILLAR'] || 'pillar.example'
   begin
     @cache_pillar_from_inspec_pillar_file = YAML.safe_load(File.read(pillar_file)) if File.exist?(pillar_file)
   rescue StandardError => e
