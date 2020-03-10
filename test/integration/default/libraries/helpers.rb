@@ -44,6 +44,8 @@ require 'timeout'
 require "inspec/log"
 require 'json'
 
+SafeYAML::OPTIONS[:default_mode] = :safe
+
 # https://www.inspec.io/docs/reference/inputs/
 def set_input_pillar_default
   input('pillar', value: get_pillar_default, type: 'hash', description: 'SaltStack Pillar Data')
