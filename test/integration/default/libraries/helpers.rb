@@ -141,9 +141,10 @@ def ingest_from_minion(type, ps_cmd, max_retries = 20, sec_timeout = 10)
         puts(msg)
         Inspec::Log.debug(msg)
       end
-      puts "yes - windows" if OS.windows?
+      puts 'yes - windows' if OS.windows?
       if OS.windows?
-        cmd = '$test_path=".kitchen/kitchen-vagrant/$(Get-ChildItem -Path .kitchen/logs/*.log | Where-Object {$_.Name -ne "kitchen.log"} | Sort-Object -Property @{Expression = {$_.LastWriteTime}; Descending = $True} | Select-Object -Property BaseName -First 1 -expandproperty BaseName)"; Set-Location -Path $test_path; $test_vagrantfile = "$test_path/Vagrantfile"; Set-Content -Path $test_vagrantfile -Value (get-content -Path $test_vagrantfile | Select-String -Pattern "vagrant_vb_guest.rb" -NotMatch); Set-Location -Path $test_path; vagrant winrm'
+        pwsh_cmd = '$test_path=".kitchen/kitchen-vagrant/$(Get-ChildItem -Path .kitchen/logs/*.log | Where-Object {$_.Name -ne "kitchen.log"} | Sort-Object -Property @{Expression = {$_.LastWriteTime}; Descending = $True} | Select-Object -Property BaseName -First 1 -expandproperty BaseName)"; Set-Location -Path $test_path; $test_vagrantfile = "$test_path/Vagrantfile"; Set-Content -Path $test_vagrantfile -Value (get-content -Path $test_vagrantfile | Select-String -Pattern "vagrant_vb_guest.rb" -NotMatch); Set-Location -Path $test_path; vagrant winrm'
+        cmd = "powershell -command '#{pwsh_cmd}'"
       else
         cmd = "cd .kitchen/kitchen-vagrant/$(ls -t .kitchen/logs/*.log | grep -v .kitchen/logs/kitchen.log | head -n1 | cut -f3 -d/ | awk -F. '{print $1}'); vagrant winrm"
       end
