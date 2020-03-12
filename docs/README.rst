@@ -10,6 +10,8 @@ windows-formula
 |
 | |img_codacy| |img_snyk| |img_librariesio|
 
+.. https://www.appveyor.com/docs/status-badges/#display-badge-for-specific-branch
+
 .. |img_semver| image::  https://img.shields.io/github/v/release/clearasmudd/windows-formula?cacheSeconds=120
    :alt: GitHub release (latest SemVer)
    :scale: 100%
@@ -26,18 +28,18 @@ windows-formula
    :alt: License
    :scale: 100%
    :target: https://github.com/clearasmudd/windows-formula/LICENSE
-.. |img_appveyor_master| image:: https://img.shields.io/appveyor/build/muddman/windows-formula/master?label=master&cacheSeconds=120
+.. |img_appveyor_master| image:: https://ci.appveyor.com/api/projects/status/5nm6yfh5n5qk1isn/branch/master?svg=true
    :alt: Appveyor Build Master
    :scale: 100%
-   :target: https://ci.appveyor.com/project/muddman/windows-formula
-.. |img_appveyor_tests| image:: https://img.shields.io/appveyor/tests/muddman/windows-formula?cacheSeconds=120
+   :target: https://ci.appveyor.com/project/muddman/windows-formula/branch/master
+.. |img_appveyor_tests| image:: https://img.shields.io/appveyor/tests/muddman/windows-formula/master?cacheSeconds=120
    :alt: Appveyor Test Results
    :scale: 100%
-   :target: https://ci.appveyor.com/project/muddman/windows-formula
+   :target: https://ci.appveyor.com/project/muddman/windows-formula/branch/master
 .. |img_readthedocs| image:: https://readthedocs.com/projects/clearasmudd-windows-formula/badge/?version=master
    :alt: Read the Docs
    :scale: 100%
-   :target: https://clearasmudd-windows-formula.readthedocs-hosted.com/en/latest/?badge=latest :alt: Documentation Status 
+   :target: https://clearasmudd-windows-formula.readthedocs-hosted.com/en/latest/?badge=latest
 .. |img_librariesio| image:: https://img.shields.io/librariesio/github/clearasmudd/windows-formula?cacheSeconds=120
    :alt: Libraries IO Dependencies
    :scale: 100%

@@ -43,6 +43,7 @@ require 'train'
 require 'timeout'
 require "inspec/log"
 require 'json'
+require 'os'
 
 SafeYAML::OPTIONS[:default_mode] = :safe
 
@@ -117,8 +118,6 @@ def ingest_from_minion(type, ps_cmd, max_retries = 20, sec_timeout = 10)
   # cd .kitchen/kitchen-vagrant/{instance name}; vagrant winrm-config
   # cmd ="nc -z -w1 $(sed -n -e 's/^.*WinRM address: //p' $(ls -t .kitchen/logs/*.log | sed -n '2p') | cut -f1 -d:) $(sed -n -e 's/^.*WinRM address: //p' $(ls -t .kitchen/logs/*.log | sed -n '2p') | cut -f2 -d:); echo $?"
 
-    
-
   retries ||= 0
   Inspec::Log.debug("Ingesting #{type} content using `#{ps_cmd}` with timout of #{sec_timeout} and a max of #{max_retries} retries.")
   # require 'pry'; binding.pry
@@ -138,9 +137,17 @@ def ingest_from_minion(type, ps_cmd, max_retries = 20, sec_timeout = 10)
       begin
         backend::backend.run_command('whoami').stdout
       rescue => e
-        Inspec::Log.warn("Unable to get whoami from backend::backend.run_command: #{e.message}")
+        msg = "Unable to get whoami from backend::backend.run_command: #{e.message}"
+        puts(msg)
+        Inspec::Log.debug(msg)
       end
-      cmd = "cd .kitchen/kitchen-vagrant/$(ls -t .kitchen/logs/*.log | grep -v .kitchen/logs/kitchen.log | head -n1 | cut -f3 -d/ | awk -F. '{print $1}'); vagrant winrm"
+      puts 'yes - windows' if OS.windows?
+      if OS.windows?
+        pwsh_cmd = '$test_path=".kitchen/kitchen-vagrant/$(Get-ChildItem -Path .kitchen/logs/*.log | Where-Object {$_.Name -ne "kitchen.log"} | Sort-Object -Property @{Expression = {$_.LastWriteTime}; Descending = $True} | Select-Object -Property BaseName -First 1 -expandproperty BaseName)"; Set-Location -Path $test_path; $test_vagrantfile = "$test_path/Vagrantfile"; Set-Content -Path $test_vagrantfile -Value (get-content -Path $test_vagrantfile | Select-String -Pattern "vagrant_vb_guest.rb" -NotMatch); Set-Location -Path $test_path; vagrant winrm'
+        cmd = "powershell -command '#{pwsh_cmd}'"
+      else
+        cmd = "cd .kitchen/kitchen-vagrant/$(ls -t .kitchen/logs/*.log | grep -v .kitchen/logs/kitchen.log | head -n1 | cut -f3 -d/ | awk -F. '{print $1}'); vagrant winrm"
+      end
       if system( cmd )
         puts('Successfully connected via `vagrant winrm`')
         Inspec::Log.debug('Successfully connected via `vagrant winrm`')
