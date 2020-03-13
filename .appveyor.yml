@@ -13,7 +13,7 @@ environment:
     # https://www.appveyor.com/docs/windows-images-software/
     - job_name: Chef Inspec Tests (Windows Server 2019)
       job_depends_on: Lint Tests
-      job_branch: feature_hotfix
+      job_branch: pre_release
       job_group: Chef Inspec Tests
       appveyor_build_worker_image: Visual Studio 2019
 
@@ -89,7 +89,7 @@ for:
   - matrix:
       only:
         - job_depends_on: Lint Tests
-        - job_branch: feature_hotfix
+        - job_branch: pre_release
     branches:
       only:
         - /feature.*/
