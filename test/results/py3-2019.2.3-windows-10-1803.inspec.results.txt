@@ -1,0 +1,71 @@
+
+windows_10_enterprise_evaluation
+  should include "windows"
+
+Windows AppX Provisioned Package `Microsoft.MicrosoftSolitaireCollection`
+  should not be installed
+
+Windows AppX Provisioned Package `Microsoft.Wallet`
+  should not be installed
+
+Windows AppX Provisioned Package `Microsoft.ZuneMusic`
+  should not be installed
+
+Windows AppX Provisioned Package `Microsoft.ZuneVideo`
+  should not be installed
+
+Windows AppX Provisioned Package `Microsoft.MixedReality.Portal`
+  should not be installed
+
+Chocolatey package notepadplusplus
+  should be installed
+
+Chocolatey package windirstat
+  should be installed
+  version
+    should cmp == "1.1.2.20161210"
+
+No-op
+  Skipped control due to only_if condition: only supported on servers (PENDING: Not yet implemented)
+
+Command: `choco`
+  should exist
+
+`Eastern Standard Time` timezone (converted from America/New_York)
+  should be set
+
+Windows Optional Feature: `TelnetClient`
+  should be installed
+
+System Information
+  hostname
+    should cmp == "saltstack1"
+
+Registry Key HKLM\SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName
+  ComputerName
+    should cmp == "saltstack1"
+
+Powershell
+  stdout
+    should match "Saltstack Computer Description"
+
+System Package Git
+  should be installed
+
+System Package 7-Zip
+  should be installed
+  version
+    should cmp == "18.06.00.0"
+
+System Package KDiff3
+  should be installed
+
+Pending: (Failures listed here are expected and do not affect your suite's status)
+
+  1) No-op Skipped control due to only_if condition: only supported on servers
+     # Not yet implemented
+     # 
+
+Finished in 3.06 seconds (files took 4 minutes 34.4 seconds to load)
+20 examples, 0 failures, 1 pending
+

@@ -2,5 +2,5 @@
 {%- from tplroot ~ "/map.jinja" import windows with context %}
 {%- if windows.system.enabled and windows.system.desktop.enabled and windows.system.desktop.optional_features.enabled and 'Server' not in grains['osfinger'] %}
   {%- set action = sls.split('.')[-1] %}
-  {%- include slspath + "/optional_features.jinja" %}
+  {%- include tpldir + "/optional_features.jinja" %}
 {%- endif %}

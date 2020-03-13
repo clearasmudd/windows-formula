@@ -1167,7 +1167,7 @@ git:
     - refresh_minion_env_path: True
     - require:
       - pkg.refresh_db
-7zip:
+git:
   pkg.installed:
     - version: 18.06.00.0
     - refresh_minion_env_path: False
@@ -1556,15 +1556,19 @@ OrderedDict([('include', ['.feature_installed'])])
 2020-03-12 10:42:52,556 [salt.loaded.int.module.cmdmod:843 ][DEBUG   ][4724] stdout: vagrant
 2020-03-12 10:42:52,556 [salt.loaded.int.module.cmdmod:1202][DEBUG   ][4724] output: vagrant
 2020-03-12 10:42:52,572 [salt.loaded.int.module.cmdmod:397 ][INFO    ][4724] Executing command 'wmic computersystem where name='vagrant' call rename name='saltstack1'' in directory 'C:\Users\vagrant'
-2020-03-12 10:42:52,680 [salt.loaded.int.module.cmdmod:843 ][DEBUG   ][4724] stdout: Executing (\\VAGRANT\ROOT\CIMV2:Win32_ComputerSystem.Name="VAGRANT")->rename()
-Method execution successful.
+2020-03-12 10:42:52,680 [salt.loaded.int.module.cmdmod:843 ][DEBUG   ][4724] stdout: Executing (\\VAGRANT\ROOT\CIMV2:Win32_ComputerSystem.Name="VAGRANT")->rename()
+
+Method execution successful.
+
 Out Parameters:
 instance of __PARAMETERS
 {
 	ReturnValue = 0;
 };
-2020-03-12 10:42:52,696 [salt.loaded.int.module.cmdmod:1202][DEBUG   ][4724] output: Executing (\\VAGRANT\ROOT\CIMV2:Win32_ComputerSystem.Name="VAGRANT")->rename()
-Method execution successful.
+2020-03-12 10:42:52,696 [salt.loaded.int.module.cmdmod:1202][DEBUG   ][4724] output: Executing (\\VAGRANT\ROOT\CIMV2:Win32_ComputerSystem.Name="VAGRANT")->rename()
+
+Method execution successful.
+
 Out Parameters:
 instance of __PARAMETERS
 {
@@ -1787,7 +1791,7 @@ ImportError: No module named 'salt.modules.freebsdports'
 2020-03-12 10:43:06,777 [salt.loaded.int.utils.win_dacl:2340][DEBUG   ][4724] Getting current permissions for HKLM\SOFTWARE\Microsoft\.NETFramework\v4.0.30319
 2020-03-12 10:43:06,793 [salt.loaded.int.utils.win_dacl:1186][ERROR   ][4724] Error resolving "S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681": No mapping between account names and security IDs was done.
 Traceback (most recent call last):
-  File "C:\salt\bin\lib\site-packages\salt\utils\win_dacl.py", line 1180, in get_name
+  File "C:\salt\bin\lib\site-packages\salt-3000-py3.5.egg\salt\utils\win_dacl.py", line 1180, in get_name
     return win32security.LookupAccountSid(None, sid_obj)[0]
 pywintypes.error: (1332, 'LookupAccountSid', 'No mapping between account names and security IDs was done.')
 2020-03-12 10:43:06,793 [salt.state       :320 ][INFO    ][4724] {'reg': {'Added': {'Value': 1, 'Perms': {'Deny': None, 'Grant': None}, 'Key': 'HKLM\\SOFTWARE\\Microsoft\\.NETFramework\\v4.0.30319', 'Entry': 'SystemDefaultTlsVersions', 'Owner': None, 'Inheritance': True}}}
@@ -1800,7 +1804,7 @@ pywintypes.error: (1332, 'LookupAccountSid', 'No mapping between account names a
 2020-03-12 10:43:07,104 [salt.loaded.int.utils.win_dacl:2340][DEBUG   ][4724] Getting current permissions for HKLM\SOFTWARE\Microsoft\.NETFramework\v4.0.30319
 2020-03-12 10:43:07,104 [salt.loaded.int.utils.win_dacl:1186][ERROR   ][4724] Error resolving "S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681": No mapping between account names and security IDs was done.
 Traceback (most recent call last):
-  File "C:\salt\bin\lib\site-packages\salt\utils\win_dacl.py", line 1180, in get_name
+  File "C:\salt\bin\lib\site-packages\salt-3000-py3.5.egg\salt\utils\win_dacl.py", line 1180, in get_name
     return win32security.LookupAccountSid(None, sid_obj)[0]
 pywintypes.error: (1332, 'LookupAccountSid', 'No mapping between account names and security IDs was done.')
 2020-03-12 10:43:07,104 [salt.state       :320 ][INFO    ][4724] {'reg': {'Added': {'Value': 1, 'Perms': {'Deny': None, 'Grant': None}, 'Key': 'HKLM\\SOFTWARE\\Microsoft\\.NETFramework\\v4.0.30319', 'Entry': 'SystemDefaultTlsVersions', 'Owner': None, 'Inheritance': True}}}
@@ -3369,48 +3373,9 @@ File Not Found
 
   '16.04.00.0':
     
-    full_name: '7-Zip 16.04 (x64 edition)'
-    installer: 'https://d.7-zip.org/a/7z1604-x64.msi'
-    uninstaller: 'https://d.7-zip.org/a/7z1604-x64.msi'
-    arch: x64
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    locale: en_US
-    reboot: False
-
-  '16.03.00.0':
-    
-    full_name: '7-Zip 16.03 (x64 edition)'
-    installer: 'https://d.7-zip.org/a/7z1603-x64.msi'
-    uninstaller: 'https://d.7-zip.org/a/7z1603-x64.msi'
-    arch: x64
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    locale: en_US
-    reboot: False
-
-  '16.02.00.0':
-    
-    full_name: '7-Zip 16.02 (x64 edition)'
-    installer: 'https://d.7-zip.org/a/7z1602-x64.msi'
-    uninstaller: 'https://d.7-zip.org/a/7z1602-x64.msi'
-    arch: x64
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    locale: en_US
-    reboot: False
-
-  '16.00.00.0':
-    
-    full_name: '7-Zip 16.00 (x64 edition)'
-    installer: 'https://d.7-zip.org/a/7z1600-x64.msi'
-    uninstaller: 'https://d.7-zip.org/a/7z1600-x64.msi'
+    full_name: '7-Zip 19.00 (x64 edition)'
+    installer: 'https://d.7-zip.org/a/7z1900-x64.msi'
+    uninstaller: 'https://d.7-zip.org/a/7z1900-x64.msi'
     arch: x64
     
     install_flags: '/qn /norestart'
@@ -3465,6 +3430,47 @@ File Not Found
     full_name: '7-Zip 18.01 (x64 edition)'
     installer: 'https://d.7-zip.org/a/7z1801-x64.msi'
     uninstaller: 'https://d.7-zip.org/a/7z1801-x64.msi'
+    arch: x64
+    
+    install_flags: '/qn /norestart'
+    uninstall_flags: '/qn /norestart'
+    msiexec: True
+    locale: en_US
+    reboot: False
+
+
+
+  '16.04.00.0':
+    
+    full_name: '7-Zip 16.04 (x64 edition)'
+    installer: 'https://d.7-zip.org/a/7z1604-x64.msi'
+    uninstaller: 'https://d.7-zip.org/a/7z1604-x64.msi'
+    arch: x64
+    
+    install_flags: '/qn /norestart'
+    uninstall_flags: '/qn /norestart'
+    msiexec: True
+    locale: en_US
+    reboot: False
+
+  '16.03.00.0':
+    
+    full_name: '7-Zip 16.03 (x64 edition)'
+    installer: 'https://d.7-zip.org/a/7z1603-x64.msi'
+    uninstaller: 'https://d.7-zip.org/a/7z1603-x64.msi'
+    arch: x64
+    
+    install_flags: '/qn /norestart'
+    uninstall_flags: '/qn /norestart'
+    msiexec: True
+    locale: en_US
+    reboot: False
+
+  '16.02.00.0':
+    
+    full_name: '7-Zip 16.02 (x64 edition)'
+    installer: 'https://d.7-zip.org/a/7z1602-x64.msi'
+    uninstaller: 'https://d.7-zip.org/a/7z1602-x64.msi'
     arch: x64
     
     install_flags: '/qn /norestart'
@@ -14835,343 +14841,275 @@ mariadb:
     msiexec: True
     reboot: False
 
-  '10.0.33.0':
+  '10.1.33.0':
     
-    full_name: 'MariaDB 10.0 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.0.33/winx64-packages/mariadb-10.0.33-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.0.33/winx64-packages/mariadb-10.0.33-winx64.msi'
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    reboot: False
-
-  '10.0.32.0':
-    
-    full_name: 'MariaDB 10.0 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.0.32/winx64-packages/mariadb-10.0.32-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.0.32/winx64-packages/mariadb-10.0.32-winx64.msi'
+    full_name: 'MariaDB 10.1 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.1.33/winx64-packages/mariadb-10.1.33-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.33/winx64-packages/mariadb-10.1.33-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-  '10.0.31.0':
+  '10.1.32.0':
     
-    full_name: 'MariaDB 10.0 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.0.31/winx64-packages/mariadb-10.0.31-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.0.31/winx64-packages/mariadb-10.0.31-winx64.msi'
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    reboot: False
-
-  '10.0.30.0':
-    
-    full_name: 'MariaDB 10.0 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.0.30/winx64-packages/mariadb-10.0.30-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.0.30/winx64-packages/mariadb-10.0.30-winx64.msi'
+    full_name: 'MariaDB 10.1 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.1.32/winx64-packages/mariadb-10.1.32-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.32/winx64-packages/mariadb-10.1.32-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-  '10.0.29.0':
+  '10.1.31.0':
     
-    full_name: 'MariaDB 10.0 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.0.29/winx64-packages/mariadb-10.0.29-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.0.29/winx64-packages/mariadb-10.0.29-winx64.msi'
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    reboot: False
-
-  '10.0.28.0':
-    
-    full_name: 'MariaDB 10.0 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.0.28/winx64-packages/mariadb-10.0.28-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.0.28/winx64-packages/mariadb-10.0.28-winx64.msi'
+    full_name: 'MariaDB 10.1 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.1.31/winx64-packages/mariadb-10.1.31-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.31/winx64-packages/mariadb-10.1.31-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-  '10.0.27.0':
+  '10.1.30.0':
     
-    full_name: 'MariaDB 10.0 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.0.27/winx64-packages/mariadb-10.0.27-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.0.27/winx64-packages/mariadb-10.0.27-winx64.msi'
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    reboot: False
-
-  '10.0.26.0':
-    
-    full_name: 'MariaDB 10.0 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.0.26/winx64-packages/mariadb-10.0.26-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.0.26/winx64-packages/mariadb-10.0.26-winx64.msi'
+    full_name: 'MariaDB 10.1 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.1.30/winx64-packages/mariadb-10.1.30-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.30/winx64-packages/mariadb-10.1.30-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-  '10.0.25.0':
+  '10.1.29.0':
     
-    full_name: 'MariaDB 10.0 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.0.25/winx64-packages/mariadb-10.0.25-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.0.25/winx64-packages/mariadb-10.0.25-winx64.msi'
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    reboot: False
-
-  '10.0.24.0':
-    
-    full_name: 'MariaDB 10.0 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.0.24/winx64-packages/mariadb-10.0.24-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.0.24/winx64-packages/mariadb-10.0.24-winx64.msi'
+    full_name: 'MariaDB 10.1 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.1.29/winx64-packages/mariadb-10.1.29-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.29/winx64-packages/mariadb-10.1.29-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-  '10.0.23.0':
+  '10.1.28.0':
     
-    full_name: 'MariaDB 10.0 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.0.23/winx64-packages/mariadb-10.0.23-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.0.23/winx64-packages/mariadb-10.0.23-winx64.msi'
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    reboot: False
-
-  '10.0.22.0':
-    
-    full_name: 'MariaDB 10.0 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.0.22/winx64-packages/mariadb-10.0.22-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.0.22/winx64-packages/mariadb-10.0.22-winx64.msi'
+    full_name: 'MariaDB 10.1 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.1.28/winx64-packages/mariadb-10.1.28-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.28/winx64-packages/mariadb-10.1.28-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-  '10.0.21.0':
+  '10.1.27.0':
     
-    full_name: 'MariaDB 10.0 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.0.21/winx64-packages/mariadb-10.0.21-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.0.21/winx64-packages/mariadb-10.0.21-winx64.msi'
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    reboot: False
-
-  '10.0.20.0':
-    
-    full_name: 'MariaDB 10.0 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.0.20/winx64-packages/mariadb-10.0.20-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.0.20/winx64-packages/mariadb-10.0.20-winx64.msi'
+    full_name: 'MariaDB 10.1 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.1.27/winx64-packages/mariadb-10.1.27-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.27/winx64-packages/mariadb-10.1.27-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-  '10.0.19.0':
+  '10.1.26.0':
     
-    full_name: 'MariaDB 10.0 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.0.19/winx64-packages/mariadb-10.0.19-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.0.19/winx64-packages/mariadb-10.0.19-winx64.msi'
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    reboot: False
-
-  '10.0.18.0':
-    
-    full_name: 'MariaDB 10.0 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.0.18/winx64-packages/mariadb-10.0.18-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.0.18/winx64-packages/mariadb-10.0.18-winx64.msi'
+    full_name: 'MariaDB 10.1 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.1.26/winx64-packages/mariadb-10.1.26-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.26/winx64-packages/mariadb-10.1.26-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-  '10.0.17.0':
+  '10.1.25.0':
     
-    full_name: 'MariaDB 10.0 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.0.17/winx64-packages/mariadb-10.0.17-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.0.17/winx64-packages/mariadb-10.0.17-winx64.msi'
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    reboot: False
-
-  '10.0.16.0':
-    
-    full_name: 'MariaDB 10.0 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.0.16/winx64-packages/mariadb-10.0.16-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.0.16/winx64-packages/mariadb-10.0.16-winx64.msi'
+    full_name: 'MariaDB 10.1 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.1.25/winx64-packages/mariadb-10.1.25-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.25/winx64-packages/mariadb-10.1.25-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-  '10.0.15.0':
+  '10.1.24.0':
     
-    full_name: 'MariaDB 10.0 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.0.15/winx64-packages/mariadb-10.0.15-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.0.15/winx64-packages/mariadb-10.0.15-winx64.msi'
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    reboot: False
-
-  '10.0.14.0':
-    
-    full_name: 'MariaDB 10.0 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.0.14/winx64-packages/mariadb-10.0.14-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.0.14/winx64-packages/mariadb-10.0.14-winx64.msi'
+    full_name: 'MariaDB 10.1 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.1.24/winx64-packages/mariadb-10.1.24-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.24/winx64-packages/mariadb-10.1.24-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-  '10.0.13.0':
+  '10.1.23.0':
     
-    full_name: 'MariaDB 10.0 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.0.13/winx64-packages/mariadb-10.0.13-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.0.13/winx64-packages/mariadb-10.0.13-winx64.msi'
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    reboot: False
-
-  '10.0.12.0':
-    
-    full_name: 'MariaDB 10.0 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.0.12/winx64-packages/mariadb-10.0.12-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.0.12/winx64-packages/mariadb-10.0.12-winx64.msi'
+    full_name: 'MariaDB 10.1 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.1.23/winx64-packages/mariadb-10.1.23-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.23/winx64-packages/mariadb-10.1.23-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-  '10.0.11.0':
+  '10.1.22.0':
     
-    full_name: 'MariaDB 10.0 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.0.11/winx64-packages/mariadb-10.0.11-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.0.11/winx64-packages/mariadb-10.0.11-winx64.msi'
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    reboot: False
-
-  '10.0.10.0':
-    
-    full_name: 'MariaDB 10.0 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.0.10/winx64-packages/mariadb-10.0.10-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.0.10/winx64-packages/mariadb-10.0.10-winx64.msi'
+    full_name: 'MariaDB 10.1 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.1.22/winx64-packages/mariadb-10.1.22-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.22/winx64-packages/mariadb-10.1.22-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-
-
-  '10.3.13.0':
+  '10.1.21.0':
     
-    full_name: 'MariaDB 10.3 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.3.13/winx64-packages/mariadb-10.3.13-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.3.13/winx64-packages/mariadb-10.3.13-winx64.msi'
+    full_name: 'MariaDB 10.1 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.1.21/winx64-packages/mariadb-10.1.21-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.21/winx64-packages/mariadb-10.1.21-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-  '10.3.12.0':
+  '10.1.20.0':
     
-    full_name: 'MariaDB 10.3 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.3.12/winx64-packages/mariadb-10.3.12-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.3.12/winx64-packages/mariadb-10.3.12-winx64.msi'
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    reboot: False
-
-  '10.3.11.0':
-    
-    full_name: 'MariaDB 10.3 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.3.11/winx64-packages/mariadb-10.3.11-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.3.11/winx64-packages/mariadb-10.3.11-winx64.msi'
+    full_name: 'MariaDB 10.1 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.1.20/winx64-packages/mariadb-10.1.20-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.20/winx64-packages/mariadb-10.1.20-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-  '10.3.10.0':
+  '10.1.19.0':
     
-    full_name: 'MariaDB 10.3 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.3.10/winx64-packages/mariadb-10.3.10-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.3.10/winx64-packages/mariadb-10.3.10-winx64.msi'
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    reboot: False
-
-  '10.3.9.0':
-    
-    full_name: 'MariaDB 10.3 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.3.9/winx64-packages/mariadb-10.3.9-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.3.9/winx64-packages/mariadb-10.3.9-winx64.msi'
+    full_name: 'MariaDB 10.1 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.1.19/winx64-packages/mariadb-10.1.19-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.19/winx64-packages/mariadb-10.1.19-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-  '10.3.8.0':
+  '10.1.18.0':
     
-    full_name: 'MariaDB 10.3 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.3.8/winx64-packages/mariadb-10.3.8-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.3.8/winx64-packages/mariadb-10.3.8-winx64.msi'
+    full_name: 'MariaDB 10.1 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.1.18/winx64-packages/mariadb-10.1.18-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.18/winx64-packages/mariadb-10.1.18-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-  '10.3.7.0':
+  '10.1.17.0':
     
-    full_name: 'MariaDB 10.3 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.3.7/winx64-packages/mariadb-10.3.7-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.3.7/winx64-packages/mariadb-10.3.7-winx64.msi'
+    full_name: 'MariaDB 10.1 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.1.17/winx64-packages/mariadb-10.1.17-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.17/winx64-packages/mariadb-10.1.17-winx64.msi'
+    
+    install_flags: '/qn /norestart'
+    uninstall_flags: '/qn /norestart'
+    msiexec: True
+    reboot: False
+
+  '10.1.16.0':
+    
+    full_name: 'MariaDB 10.1 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.1.16/winx64-packages/mariadb-10.1.16-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.16/winx64-packages/mariadb-10.1.16-winx64.msi'
+    
+    install_flags: '/qn /norestart'
+    uninstall_flags: '/qn /norestart'
+    msiexec: True
+    reboot: False
+
+  '10.1.14.0':
+    
+    full_name: 'MariaDB 10.1 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.1.14/winx64-packages/mariadb-10.1.14-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.14/winx64-packages/mariadb-10.1.14-winx64.msi'
+    
+    install_flags: '/qn /norestart'
+    uninstall_flags: '/qn /norestart'
+    msiexec: True
+    reboot: False
+
+  '10.1.13.0':
+    
+    full_name: 'MariaDB 10.1 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.1.13/winx64-packages/mariadb-10.1.13-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.13/winx64-packages/mariadb-10.1.13-winx64.msi'
+    
+    install_flags: '/qn /norestart'
+    uninstall_flags: '/qn /norestart'
+    msiexec: True
+    reboot: False
+
+  '10.1.12.0':
+    
+    full_name: 'MariaDB 10.1 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.1.12/winx64-packages/mariadb-10.1.12-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.12/winx64-packages/mariadb-10.1.12-winx64.msi'
+    
+    install_flags: '/qn /norestart'
+    uninstall_flags: '/qn /norestart'
+    msiexec: True
+    reboot: False
+
+  '10.1.11.0':
+    
+    full_name: 'MariaDB 10.1 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.1.11/winx64-packages/mariadb-10.1.11-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.11/winx64-packages/mariadb-10.1.11-winx64.msi'
+    
+    install_flags: '/qn /norestart'
+    uninstall_flags: '/qn /norestart'
+    msiexec: True
+    reboot: False
+
+  '10.1.10.0':
+    
+    full_name: 'MariaDB 10.1 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.1.10/winx64-packages/mariadb-10.1.10-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.10/winx64-packages/mariadb-10.1.10-winx64.msi'
+    
+    install_flags: '/qn /norestart'
+    uninstall_flags: '/qn /norestart'
+    msiexec: True
+    reboot: False
+
+  '10.1.9.0':
+    
+    full_name: 'MariaDB 10.1 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.1.9/winx64-packages/mariadb-10.1.9-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.9/winx64-packages/mariadb-10.1.9-winx64.msi'
+    
+    install_flags: '/qn /norestart'
+    uninstall_flags: '/qn /norestart'
+    msiexec: True
+    reboot: False
+
+  '10.1.8.0':
+    
+    full_name: 'MariaDB 10.1 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.1.8/winx64-packages/mariadb-10.1.8-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.8/winx64-packages/mariadb-10.1.8-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
@@ -15512,330 +15450,334 @@ mariadb:
 
 
 
-  '10.1.38.0':
+  '10.2.22.0':
     
-    full_name: 'MariaDB 10.1 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.1.38/winx64-packages/mariadb-10.1.38-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.38/winx64-packages/mariadb-10.1.38-winx64.msi'
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    reboot: False
-
-  '10.1.37.0':
-    
-    full_name: 'MariaDB 10.1 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.1.37/winx64-packages/mariadb-10.1.37-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.37/winx64-packages/mariadb-10.1.37-winx64.msi'
+    full_name: 'MariaDB 10.2 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.2.22/winx64-packages/mariadb-10.2.22-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.2.22/winx64-packages/mariadb-10.2.22-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-  '10.1.36.0':
+  '10.2.21.0':
     
-    full_name: 'MariaDB 10.1 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.1.36/winx64-packages/mariadb-10.1.36-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.36/winx64-packages/mariadb-10.1.36-winx64.msi'
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    reboot: False
-
-  '10.1.35.0':
-    
-    full_name: 'MariaDB 10.1 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.1.35/winx64-packages/mariadb-10.1.35-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.35/winx64-packages/mariadb-10.1.35-winx64.msi'
+    full_name: 'MariaDB 10.2 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.2.21/winx64-packages/mariadb-10.2.21-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.2.21/winx64-packages/mariadb-10.2.21-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-  '10.1.34.0':
+  '10.2.20.0':
     
-    full_name: 'MariaDB 10.1 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.1.34/winx64-packages/mariadb-10.1.34-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.34/winx64-packages/mariadb-10.1.34-winx64.msi'
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    reboot: False
-
-  '10.1.33.0':
-    
-    full_name: 'MariaDB 10.1 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.1.33/winx64-packages/mariadb-10.1.33-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.33/winx64-packages/mariadb-10.1.33-winx64.msi'
+    full_name: 'MariaDB 10.2 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.2.20/winx64-packages/mariadb-10.2.20-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.2.20/winx64-packages/mariadb-10.2.20-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-  '10.1.32.0':
+  '10.2.19.0':
     
-    full_name: 'MariaDB 10.1 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.1.32/winx64-packages/mariadb-10.1.32-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.32/winx64-packages/mariadb-10.1.32-winx64.msi'
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    reboot: False
-
-  '10.1.31.0':
-    
-    full_name: 'MariaDB 10.1 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.1.31/winx64-packages/mariadb-10.1.31-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.31/winx64-packages/mariadb-10.1.31-winx64.msi'
+    full_name: 'MariaDB 10.2 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.2.19/winx64-packages/mariadb-10.2.19-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.2.19/winx64-packages/mariadb-10.2.19-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-  '10.1.30.0':
+  '10.2.18.0':
     
-    full_name: 'MariaDB 10.1 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.1.30/winx64-packages/mariadb-10.1.30-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.30/winx64-packages/mariadb-10.1.30-winx64.msi'
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    reboot: False
-
-  '10.1.29.0':
-    
-    full_name: 'MariaDB 10.1 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.1.29/winx64-packages/mariadb-10.1.29-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.29/winx64-packages/mariadb-10.1.29-winx64.msi'
+    full_name: 'MariaDB 10.2 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.2.18/winx64-packages/mariadb-10.2.18-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.2.18/winx64-packages/mariadb-10.2.18-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-  '10.1.28.0':
+  '10.2.17.0':
     
-    full_name: 'MariaDB 10.1 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.1.28/winx64-packages/mariadb-10.1.28-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.28/winx64-packages/mariadb-10.1.28-winx64.msi'
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    reboot: False
-
-  '10.1.27.0':
-    
-    full_name: 'MariaDB 10.1 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.1.27/winx64-packages/mariadb-10.1.27-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.27/winx64-packages/mariadb-10.1.27-winx64.msi'
+    full_name: 'MariaDB 10.2 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.2.17/winx64-packages/mariadb-10.2.17-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.2.17/winx64-packages/mariadb-10.2.17-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-  '10.1.26.0':
+  '10.2.16.0':
     
-    full_name: 'MariaDB 10.1 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.1.26/winx64-packages/mariadb-10.1.26-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.26/winx64-packages/mariadb-10.1.26-winx64.msi'
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    reboot: False
-
-  '10.1.25.0':
-    
-    full_name: 'MariaDB 10.1 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.1.25/winx64-packages/mariadb-10.1.25-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.25/winx64-packages/mariadb-10.1.25-winx64.msi'
+    full_name: 'MariaDB 10.2 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.2.16/winx64-packages/mariadb-10.2.16-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.2.16/winx64-packages/mariadb-10.2.16-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-  '10.1.24.0':
+  '10.2.15.0':
     
-    full_name: 'MariaDB 10.1 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.1.24/winx64-packages/mariadb-10.1.24-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.24/winx64-packages/mariadb-10.1.24-winx64.msi'
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    reboot: False
-
-  '10.1.23.0':
-    
-    full_name: 'MariaDB 10.1 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.1.23/winx64-packages/mariadb-10.1.23-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.23/winx64-packages/mariadb-10.1.23-winx64.msi'
+    full_name: 'MariaDB 10.2 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.2.15/winx64-packages/mariadb-10.2.15-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.2.15/winx64-packages/mariadb-10.2.15-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-  '10.1.22.0':
+  '10.2.14.0':
     
-    full_name: 'MariaDB 10.1 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.1.22/winx64-packages/mariadb-10.1.22-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.22/winx64-packages/mariadb-10.1.22-winx64.msi'
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    reboot: False
-
-  '10.1.21.0':
-    
-    full_name: 'MariaDB 10.1 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.1.21/winx64-packages/mariadb-10.1.21-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.21/winx64-packages/mariadb-10.1.21-winx64.msi'
+    full_name: 'MariaDB 10.2 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.2.14/winx64-packages/mariadb-10.2.14-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.2.14/winx64-packages/mariadb-10.2.14-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-  '10.1.20.0':
+  '10.2.13.0':
     
-    full_name: 'MariaDB 10.1 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.1.20/winx64-packages/mariadb-10.1.20-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.20/winx64-packages/mariadb-10.1.20-winx64.msi'
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    reboot: False
-
-  '10.1.19.0':
-    
-    full_name: 'MariaDB 10.1 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.1.19/winx64-packages/mariadb-10.1.19-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.19/winx64-packages/mariadb-10.1.19-winx64.msi'
+    full_name: 'MariaDB 10.2 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.2.13/winx64-packages/mariadb-10.2.13-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.2.13/winx64-packages/mariadb-10.2.13-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-  '10.1.18.0':
+  '10.2.12.0':
     
-    full_name: 'MariaDB 10.1 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.1.18/winx64-packages/mariadb-10.1.18-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.18/winx64-packages/mariadb-10.1.18-winx64.msi'
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    reboot: False
-
-  '10.1.17.0':
-    
-    full_name: 'MariaDB 10.1 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.1.17/winx64-packages/mariadb-10.1.17-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.17/winx64-packages/mariadb-10.1.17-winx64.msi'
+    full_name: 'MariaDB 10.2 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.2.12/winx64-packages/mariadb-10.2.12-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.2.12/winx64-packages/mariadb-10.2.12-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-  '10.1.16.0':
+  '10.2.11.0':
     
-    full_name: 'MariaDB 10.1 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.1.16/winx64-packages/mariadb-10.1.16-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.16/winx64-packages/mariadb-10.1.16-winx64.msi'
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    reboot: False
-
-  '10.1.14.0':
-    
-    full_name: 'MariaDB 10.1 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.1.14/winx64-packages/mariadb-10.1.14-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.14/winx64-packages/mariadb-10.1.14-winx64.msi'
+    full_name: 'MariaDB 10.2 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.2.11/winx64-packages/mariadb-10.2.11-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.2.11/winx64-packages/mariadb-10.2.11-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-  '10.1.13.0':
+  '10.2.10.0':
     
-    full_name: 'MariaDB 10.1 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.1.13/winx64-packages/mariadb-10.1.13-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.13/winx64-packages/mariadb-10.1.13-winx64.msi'
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    reboot: False
-
-  '10.1.12.0':
-    
-    full_name: 'MariaDB 10.1 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.1.12/winx64-packages/mariadb-10.1.12-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.12/winx64-packages/mariadb-10.1.12-winx64.msi'
+    full_name: 'MariaDB 10.2 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.2.10/winx64-packages/mariadb-10.2.10-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.2.10/winx64-packages/mariadb-10.2.10-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-  '10.1.11.0':
+  '10.2.9.0':
     
-    full_name: 'MariaDB 10.1 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.1.11/winx64-packages/mariadb-10.1.11-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.11/winx64-packages/mariadb-10.1.11-winx64.msi'
-    
-    install_flags: '/qn /norestart'
-    uninstall_flags: '/qn /norestart'
-    msiexec: True
-    reboot: False
-
-  '10.1.10.0':
-    
-    full_name: 'MariaDB 10.1 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.1.10/winx64-packages/mariadb-10.1.10-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.10/winx64-packages/mariadb-10.1.10-winx64.msi'
+    full_name: 'MariaDB 10.2 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.2.9/winx64-packages/mariadb-10.2.9-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.2.9/winx64-packages/mariadb-10.2.9-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-  '10.1.9.0':
+  '10.2.8.0':
     
-    full_name: 'MariaDB 10.1 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.1.9/winx64-packages/mariadb-10.1.9-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.9/winx64-packages/mariadb-10.1.9-winx64.msi'
+    full_name: 'MariaDB 10.2 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.2.8/winx64-packages/mariadb-10.2.8-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.2.8/winx64-packages/mariadb-10.2.8-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
     msiexec: True
     reboot: False
 
-  '10.1.8.0':
+  '10.2.7.0':
     
-    full_name: 'MariaDB 10.1 (x64)'
-    installer: 'http://archive.mariadb.org/mariadb-10.1.8/winx64-packages/mariadb-10.1.8-winx64.msi'
-    uninstaller: 'http://archive.mariadb.org/mariadb-10.1.8/winx64-packages/mariadb-10.1.8-winx64.msi'
+    full_name: 'MariaDB 10.2 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.2.7/winx64-packages/mariadb-10.2.7-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.2.7/winx64-packages/mariadb-10.2.7-winx64.msi'
+    
+    install_flags: '/qn /norestart'
+    uninstall_flags: '/qn /norestart'
+    msiexec: True
+    reboot: False
+
+  '10.2.6.0':
+    
+    full_name: 'MariaDB 10.2 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.2.6/winx64-packages/mariadb-10.2.6-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.2.6/winx64-packages/mariadb-10.2.6-winx64.msi'
+    
+    install_flags: '/qn /norestart'
+    uninstall_flags: '/qn /norestart'
+    msiexec: True
+    reboot: False
+
+
+
+  '10.3.13.0':
+    
+    full_name: 'MariaDB 10.3 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.3.13/winx64-packages/mariadb-10.3.13-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.3.13/winx64-packages/mariadb-10.3.13-winx64.msi'
+    
+    install_flags: '/qn /norestart'
+    uninstall_flags: '/qn /norestart'
+    msiexec: True
+    reboot: False
+
+  '10.3.12.0':
+    
+    full_name: 'MariaDB 10.3 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.3.12/winx64-packages/mariadb-10.3.12-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.3.12/winx64-packages/mariadb-10.3.12-winx64.msi'
+    
+    install_flags: '/qn /norestart'
+    uninstall_flags: '/qn /norestart'
+    msiexec: True
+    reboot: False
+
+  '10.3.11.0':
+    
+    full_name: 'MariaDB 10.3 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.3.11/winx64-packages/mariadb-10.3.11-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.3.11/winx64-packages/mariadb-10.3.11-winx64.msi'
+    
+    install_flags: '/qn /norestart'
+    uninstall_flags: '/qn /norestart'
+    msiexec: True
+    reboot: False
+
+  '10.3.10.0':
+    
+    full_name: 'MariaDB 10.3 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.3.10/winx64-packages/mariadb-10.3.10-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.3.10/winx64-packages/mariadb-10.3.10-winx64.msi'
+    
+    install_flags: '/qn /norestart'
+    uninstall_flags: '/qn /norestart'
+    msiexec: True
+    reboot: False
+
+  '10.3.9.0':
+    
+    full_name: 'MariaDB 10.3 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.3.9/winx64-packages/mariadb-10.3.9-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.3.9/winx64-packages/mariadb-10.3.9-winx64.msi'
+    
+    install_flags: '/qn /norestart'
+    uninstall_flags: '/qn /norestart'
+    msiexec: True
+    reboot: False
+
+  '10.3.8.0':
+    
+    full_name: 'MariaDB 10.3 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.3.8/winx64-packages/mariadb-10.3.8-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.3.8/winx64-packages/mariadb-10.3.8-winx64.msi'
+    
+    install_flags: '/qn /norestart'
+    uninstall_flags: '/qn /norestart'
+    msiexec: True
+    reboot: False
+
+  '10.3.7.0':
+    
+    full_name: 'MariaDB 10.3 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.3.7/winx64-packages/mariadb-10.3.7-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.3.7/winx64-packages/mariadb-10.3.7-winx64.msi'
+    
+    install_flags: '/qn /norestart'
+    uninstall_flags: '/qn /norestart'
+    msiexec: True
+    reboot: False
+
+
+
+  '10.0.38.0':
+    
+    full_name: 'MariaDB 10.0 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.0.38/winx64-packages/mariadb-10.0.38-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.0.38/winx64-packages/mariadb-10.0.38-winx64.msi'
+    
+    install_flags: '/qn /norestart'
+    uninstall_flags: '/qn /norestart'
+    msiexec: True
+    reboot: False
+
+  '10.0.37.0':
+    
+    full_name: 'MariaDB 10.0 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.0.37/winx64-packages/mariadb-10.0.37-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.0.37/winx64-packages/mariadb-10.0.37-winx64.msi'
+    
+    install_flags: '/qn /norestart'
+    uninstall_flags: '/qn /norestart'
+    msiexec: True
+    reboot: False
+
+  '10.0.36.0':
+    
+    full_name: 'MariaDB 10.0 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.0.36/winx64-packages/mariadb-10.0.36-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.0.36/winx64-packages/mariadb-10.0.36-winx64.msi'
+    
+    install_flags: '/qn /norestart'
+    uninstall_flags: '/qn /norestart'
+    msiexec: True
+    reboot: False
+
+  '10.0.35.0':
+    
+    full_name: 'MariaDB 10.0 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.0.35/winx64-packages/mariadb-10.0.35-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.0.35/winx64-packages/mariadb-10.0.35-winx64.msi'
+    
+    install_flags: '/qn /norestart'
+    uninstall_flags: '/qn /norestart'
+    msiexec: True
+    reboot: False
+
+  '10.0.34.0':
+    
+    full_name: 'MariaDB 10.0 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.0.34/winx64-packages/mariadb-10.0.34-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.0.34/winx64-packages/mariadb-10.0.34-winx64.msi'
+    
+    install_flags: '/qn /norestart'
+    uninstall_flags: '/qn /norestart'
+    msiexec: True
+    reboot: False
+
+  '10.0.33.0':
+    
+    full_name: 'MariaDB 10.0 (x64)'
+    installer: 'http://archive.mariadb.org/mariadb-10.0.33/winx64-packages/mariadb-10.0.33-winx64.msi'
+    uninstaller: 'http://archive.mariadb.org/mariadb-10.0.33/winx64-packages/mariadb-10.0.33-winx64.msi'
     
     install_flags: '/qn /norestart'
     uninstall_flags: '/qn /norestart'
@@ -18324,9 +18266,9 @@ ossec-agent:
 
 
 
-  '3.2.0':
-    full_name: 'OSSEC HIDS 3.2.0'
-    installer: 'https://updates.atomicorp.com/channels/atomic/windows/ossec-agent-win32-3.2.0-6132.exe'
+  '2.9.0':
+    full_name: 'OSSEC HIDS 2.9.0'
+    installer: 'https://updates.atomicorp.com/channels/atomic/windows/ossec-agent-win32-2.9.0-2017.exe'
     install_flags: '/S'
     uninstaller: '%ProgramFiles(x86)%\ossec-agent\uninstall.exe'
     uninstall_flags: '/S'
@@ -18336,9 +18278,9 @@ ossec-agent:
 
 
 
-  '3.0.0':
-    full_name: 'OSSEC HIDS 3.0.0'
-    installer: 'https://updates.atomicorp.com/channels/atomic/windows/ossec-agent-win32-3.0.0-5609.exe'
+  '2.9.2':
+    full_name: 'OSSEC HIDS 2.9.2'
+    installer: 'https://updates.atomicorp.com/channels/atomic/windows/ossec-agent-win32-2.9.2-2760.exe'
     install_flags: '/S'
     uninstaller: '%ProgramFiles(x86)%\ossec-agent\uninstall.exe'
     uninstall_flags: '/S'
@@ -18384,9 +18326,9 @@ ossec-agent:
 
 
 
-  '3.0.1':
-    full_name: 'OSSEC HIDS 3.0.1'
-    installer: 'https://updates.atomicorp.com/channels/atomic/windows/ossec-agent-win32-3.0.1-5667.exe'
+  '2.9.3':
+    full_name: 'OSSEC HIDS 2.9.3'
+    installer: 'https://updates.atomicorp.com/channels/atomic/windows/ossec-agent-win32-2.9.3-4466.exe'
     install_flags: '/S'
     uninstaller: '%ProgramFiles(x86)%\ossec-agent\uninstall.exe'
     uninstall_flags: '/S'
@@ -18396,9 +18338,9 @@ ossec-agent:
 
 
 
-  '2.9.3':
-    full_name: 'OSSEC HIDS 2.9.3'
-    installer: 'https://updates.atomicorp.com/channels/atomic/windows/ossec-agent-win32-2.9.3-4466.exe'
+  '3.0.1':
+    full_name: 'OSSEC HIDS 3.0.1'
+    installer: 'https://updates.atomicorp.com/channels/atomic/windows/ossec-agent-win32-3.0.1-5667.exe'
     install_flags: '/S'
     uninstaller: '%ProgramFiles(x86)%\ossec-agent\uninstall.exe'
     uninstall_flags: '/S'
@@ -28733,113 +28675,220 @@ ImportError: No module named 'salt.modules.freebsdports'
 2020-03-12 10:44:22,795 [salt.utils.http  :234 ][DEBUG   ][4724] Requesting URL http://download.microsoft.com/download/1/B/E/1BE39E79-7E39-46A3-96FF-047F95396215/dotNetFx40_Full_setup.exe using GET method
 2020-03-12 10:44:22,810 [salt.utils.http  :235 ][DEBUG   ][4724] Using backend: tornado
 2020-03-12 10:44:23,919 [salt.loaded.int.module.cmdmod:397 ][INFO    ][4724] Executing command ['C:\\Users\\vagrant\\AppData\\Local\\Temp\\dotnet4.exe', '/q', '/norestart'] in directory 'C:\Users\vagrant'
-2020-03-12 10:44:29,857 [salt.loaded.int.module.cmdmod:843 ][DEBUG   ][4724] stdout: Preparing: C:\2c563cfce1db3b885172a45a4a\header.bmp...
-Preparing: C:\2c563cfce1db3b885172a45a4a\SplashScreen.bmp...
-Preparing: C:\2c563cfce1db3b885172a45a4a\watermark.bmp...
-Preparing: C:\2c563cfce1db3b885172a45a4a\DisplayIcon.ico...
-Preparing: C:\2c563cfce1db3b885172a45a4a\Graphics\Print.ico...
-Preparing: C:\2c563cfce1db3b885172a45a4a\Graphics\Rotate1.ico...
-Preparing: C:\2c563cfce1db3b885172a45a4a\Graphics\Rotate2.ico...
-Preparing: C:\2c563cfce1db3b885172a45a4a\Graphics\Rotate3.ico...
-Preparing: C:\2c563cfce1db3b885172a45a4a\Graphics\Rotate4.ico...
-Preparing: C:\2c563cfce1db3b885172a45a4a\Graphics\Rotate5.ico...
-Preparing: C:\2c563cfce1db3b885172a45a4a\Graphics\Rotate6.ico...
-Preparing: C:\2c563cfce1db3b885172a45a4a\Graphics\Rotate7.ico...
-Preparing: C:\2c563cfce1db3b885172a45a4a\Graphics\Rotate8.ico...
-Preparing: C:\2c563cfce1db3b885172a45a4a\Graphics\Save.ico...
-Preparing: C:\2c563cfce1db3b885172a45a4a\Graphics\Setup.ico...
-Preparing: C:\2c563cfce1db3b885172a45a4a\Graphics\stop.ico...
-Preparing: C:\2c563cfce1db3b885172a45a4a\Graphics\SysReqMet.ico...
-Preparing: C:\2c563cfce1db3b885172a45a4a\Graphics\SysReqNotMet.ico...
-Preparing: C:\2c563cfce1db3b885172a45a4a\Graphics\warn.ico...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1033\LocalizedData.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1042\LocalizedData.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1041\LocalizedData.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1037\LocalizedData.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1025\LocalizedData.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1035\LocalizedData.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1030\LocalizedData.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1044\LocalizedData.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1043\LocalizedData.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1040\LocalizedData.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1029\LocalizedData.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1031\LocalizedData.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1036\LocalizedData.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1032\LocalizedData.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1038\LocalizedData.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\2052\LocalizedData.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1028\LocalizedData.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\3076\LocalizedData.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1055\LocalizedData.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1053\LocalizedData.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\3082\LocalizedData.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\2070\LocalizedData.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1046\LocalizedData.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1049\LocalizedData.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1045\LocalizedData.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\Client\Parameterinfo.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\Extended\Parameterinfo.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\ParameterInfo.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\Strings.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\UiInfo.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\Client\UiInfo.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\Extended\UiInfo.xml...
-Preparing: C:\2c563cfce1db3b885172a45a4a\SetupUi.xsd...
-Preparing: C:\2c563cfce1db3b885172a45a4a\DHtmlHeader.html...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1033\eula.rtf...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1025\eula.rtf...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1028\eula.rtf...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1030\eula.rtf...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1031\eula.rtf...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1029\eula.rtf...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1036\eula.rtf...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1035\eula.rtf...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1032\eula.rtf...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1038\eula.rtf...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1037\eula.rtf...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1040\eula.rtf...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1041\eula.rtf...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1042\eula.rtf...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1044\eula.rtf...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1043\eula.rtf...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1046\eula.rtf...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1045\eula.rtf...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1055\eula.rtf...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1053\eula.rtf...
-Preparing: C:\2c563cfce1db3b885172a45a4a\2052\eula.rtf...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1049\eula.rtf...
-Preparing: C:\2c563cfce1db3b885172a45a4a\3082\eula.rtf...
-Preparing: C:\2c563cfce1db3b885172a45a4a\2070\eula.rtf...
-Preparing: C:\2c563cfce1db3b885172a45a4a\3076\eula.rtf...
-Preparing: C:\2c563cfce1db3b885172a45a4a\Setup.exe...
-Preparing: C:\2c563cfce1db3b885172a45a4a\SetupUtility.exe...
-Preparing: C:\2c563cfce1db3b885172a45a4a\SetupEngine.dll...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1025\SetupResources.dll...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1033\SetupResources.dll...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1029\SetupResources.dll...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1030\SetupResources.dll...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1035\SetupResources.dll...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1031\SetupResources.dll...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1036\SetupResources.dll...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1032\SetupResources.dll...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1028\SetupResources.dll...
-Preparing: C:\2c563cfce1db3b885172a45a4a\2052\SetupResources.dll...
-Preparing: C:\2c563cfce1db3b885172a45a4a\3076\SetupResources.dll...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1042\SetupResources.dll...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1041\SetupResources.dll...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1037\SetupResources.dll...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1044\SetupResources.dll...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1053\SetupResources.dll...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1055\SetupResources.dll...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1040\SetupResources.dll...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1045\SetupResources.dll...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1046\SetupResources.dll...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1049\SetupResources.dll...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1038\SetupResources.dll...
-Preparing: C:\2c563cfce1db3b885172a45a4a\2070\SetupResources.dll...
-Preparing: C:\2c563cfce1db3b885172a45a4a\3082\SetupResources.dll...
-Preparing: C:\2c563cfce1db3b885172a45a4a\1043\SetupResources.dll...
-Preparing: C:\2c563cfce1db3b885172a45a4a\SetupUi.dll...
+2020-03-12 10:44:29,857 [salt.loaded.int.module.cmdmod:843 ][DEBUG   ][4724] stdout: Preparing: C:\2c563cfce1db3b885172a45a4a\header.bmp...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\SplashScreen.bmp...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\watermark.bmp...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\DisplayIcon.ico...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\Graphics\Print.ico...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\Graphics\Rotate1.ico...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\Graphics\Rotate2.ico...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\Graphics\Rotate3.ico...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\Graphics\Rotate4.ico...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\Graphics\Rotate5.ico...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\Graphics\Rotate6.ico...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\Graphics\Rotate7.ico...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\Graphics\Rotate8.ico...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\Graphics\Save.ico...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\Graphics\Setup.ico...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\Graphics\stop.ico...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\Graphics\SysReqMet.ico...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\Graphics\SysReqNotMet.ico...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\Graphics\warn.ico...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1033\LocalizedData.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1042\LocalizedData.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1041\LocalizedData.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1037\LocalizedData.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1025\LocalizedData.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1035\LocalizedData.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1030\LocalizedData.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1044\LocalizedData.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1043\LocalizedData.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1040\LocalizedData.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1029\LocalizedData.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1031\LocalizedData.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1036\LocalizedData.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1032\LocalizedData.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1038\LocalizedData.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\2052\LocalizedData.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1028\LocalizedData.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\3076\LocalizedData.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1055\LocalizedData.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1053\LocalizedData.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\3082\LocalizedData.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\2070\LocalizedData.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1046\LocalizedData.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1049\LocalizedData.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1045\LocalizedData.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\Client\Parameterinfo.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\Extended\Parameterinfo.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\ParameterInfo.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\Strings.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\UiInfo.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\Client\UiInfo.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\Extended\UiInfo.xml...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\SetupUi.xsd...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\DHtmlHeader.html...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1033\eula.rtf...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1025\eula.rtf...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1028\eula.rtf...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1030\eula.rtf...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1031\eula.rtf...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1029\eula.rtf...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1036\eula.rtf...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1035\eula.rtf...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1032\eula.rtf...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1038\eula.rtf...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1037\eula.rtf...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1040\eula.rtf...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1041\eula.rtf...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1042\eula.rtf...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1044\eula.rtf...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1043\eula.rtf...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1046\eula.rtf...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1045\eula.rtf...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1055\eula.rtf...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1053\eula.rtf...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\2052\eula.rtf...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1049\eula.rtf...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\3082\eula.rtf...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\2070\eula.rtf...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\3076\eula.rtf...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\Setup.exe...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\SetupUtility.exe...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\SetupEngine.dll...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1025\SetupResources.dll...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1033\SetupResources.dll...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1029\SetupResources.dll...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1030\SetupResources.dll...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1035\SetupResources.dll...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1031\SetupResources.dll...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1036\SetupResources.dll...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1032\SetupResources.dll...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1028\SetupResources.dll...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\2052\SetupResources.dll...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\3076\SetupResources.dll...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1042\SetupResources.dll...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1041\SetupResources.dll...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1037\SetupResources.dll...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1044\SetupResources.dll...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1053\SetupResources.dll...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1055\SetupResources.dll...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1040\SetupResources.dll...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1045\SetupResources.dll...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1046\SetupResources.dll...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1049\SetupResources.dll...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1038\SetupResources.dll...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\2070\SetupResources.dll...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\3082\SetupResources.dll...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\1043\SetupResources.dll...
+
+Preparing: C:\2c563cfce1db3b885172a45a4a\SetupUi.dll...
+
 Preparing: C:\2c563cfce1db3b885172a45a4a\sqmapi.dll...
 2020-03-12 10:44:29,872 [salt.loaded.int.module.cmdmod:397 ][INFO    ][4724] Executing command 'C:\Windows\SYSTEM32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%systemdrive%\chocolatey\bin' in directory 'C:\Users\vagrant'
 2020-03-12 10:44:34,841 [salt.loaded.int.module.cmdmod:843 ][DEBUG   ][4724] stdout: Getting latest version of the Chocolatey package for download.

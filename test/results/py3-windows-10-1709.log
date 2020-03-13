@@ -22,7 +22,7 @@ Date:   Wed Mar 11 22:44:10 2020 +0000
 CURRENT BRANCH COMMIT ID
 e91701cf75f9c3a9ef35f6c05f0524452c51a495
 CURRENT RELEASE TAG
-v1.0.1
+v1.0.0
 -----> Starting Test Kitchen (v2.3.4)
 -----> Cleaning up any prior instances of <py3-windows-10-1709>
 -----> Destroying <py3-windows-10-1709>...
@@ -31,7 +31,8 @@ v1.0.1
 -----> Creating <py3-windows-10-1709>...
        Bringing machine 'default' up with 'virtualbox' provider...
        ==> default: Cloning VM...
-       [K==> default: Matching MAC address for NAT networking...
+       
+[K==> default: Matching MAC address for NAT networking...
        ==> default: Checking if box 'StefanScherer/windows_10' version '2018.03.14' is up to date...
        ==> default: Setting the name of the VM: kitchen-windows-formula-py3-windows-10-1709-b964ddf2-0d90-4f43-a7b5-e12cef9e86c0
        ==> default: Clearing any previously set network interfaces...
@@ -87,7 +88,7 @@ v1.0.1
        Installing Salt minion
        Starting the Salt minion service
        Salt minion successfully installed
-       You asked for latest and you have 2019.2.3 installed, sweet!
+       You asked for latest and you have 3000 installed, sweet!
        
        
        
@@ -110,21 +111,39 @@ v1.0.1
         
        
        Traceback (most recent call last):
-         File "C:\salt\bin\lib\site-packages\salt\utils\win_dacl.py", line 1180, in get_name
+         File "C:\salt\bin\lib\site-packages\salt-3000-py3.5.egg\salt\utils\win_dacl.py", line 1180, in get_name
            return win32security.LookupAccountSid(None, sid_obj)[0]
        pywintypes.error: (1332, 'LookupAccountSid', 'No mapping between account names and security IDs was done.')
        
        [ERROR   ] Error resolving "S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681": No mapping between account names and security IDs was done.
        Traceback (most recent call last):
-         File "C:\salt\bin\lib\site-packages\salt\utils\win_dacl.py", line 1180, in get_name
+         File "C:\salt\bin\lib\site-packages\salt-3000-py3.5.egg\salt\utils\win_dacl.py", line 1180, in get_name
            return win32security.LookupAccountSid(None, sid_obj)[0]
        pywintypes.error: (1332, 'LookupAccountSid', 'No mapping between account names and security IDs was done.')
        
-       [WARNING ] C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extmods\modules\windows_environment\__init__.py:54: DeprecationWarning: bad escape \W
-         environ[key] = redata.sub(a, value)
+       [ERROR   ] An exception occurred in this state: Traceback (most recent call last):
+         File "C:\salt\bin\lib\site-packages\salt-3000-py3.5.egg\salt\state.py", line 1981, in call
+           **cdata['kwargs'])
+         File "C:\salt\bin\lib\site-packages\salt-3000-py3.5.egg\salt\loader.py", line 1977, in wrapper
+           return f(*args, **kwargs)
+         File "C:\salt\bin\lib\site-packages\salt-3000-py3.5.egg\salt\states\pkg.py", line 1769, in installed
+           **kwargs)
+         File "C:\salt\bin\lib\site-packages\salt-3000-py3.5.egg\salt\modules\win_pkg.py", line 1563, in install
+           cached_pkg = __salt__['cp.cache_file'](installer, saltenv)
+         File "C:\salt\bin\lib\site-packages\salt-3000-py3.5.egg\salt\modules\cp.py", line 517, in cache_file
+           result = _client().cache_file(path, saltenv, source_hash=source_hash)
+         File "C:\salt\bin\lib\site-packages\salt-3000-py3.5.egg\salt\fileclient.py", line 193, in cache_file
+           path, '', True, saltenv, cachedir=cachedir, source_hash=source_hash)
+         File "C:\salt\bin\lib\site-packages\salt-3000-py3.5.egg\salt\fileclient.py", line 700, in get_url
+           raise MinionError('Error: {0} reading {1}'.format(query['error'], url))
+       salt.exceptions.MinionError: Error: HTTP 599: Timeout while connecting reading https://downloads.sourceforge.net/project/kdiff3/kdiff3/0.9.98/KDiff3-64bit-Setup_0.9.98-2.exe
        
        
        [WARNING ] C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extmods\modules\windows_environment\__init__.py:54: DeprecationWarning: bad escape \P
+         environ[key] = redata.sub(a, value)
+       
+       
+       [WARNING ] C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extmods\modules\windows_environment\__init__.py:54: DeprecationWarning: bad escape \W
          environ[key] = redata.sub(a, value)
        
        
@@ -816,6 +835,29 @@ v1.0.1
                       18.06.00.0
                   old:
        ----------
+          ID: kdiff3
+           Function: pkg.installed
+             Result: False
+            Comment: An exception occurred in this state: Traceback (most recent call last):
+                File "C:\salt\bin\lib\site-packages\salt-3000-py3.5.egg\salt\state.py", line 1981, in call
+                  **cdata['kwargs'])
+                File "C:\salt\bin\lib\site-packages\salt-3000-py3.5.egg\salt\loader.py", line 1977, in wrapper
+                  return f(*args, **kwargs)
+                File "C:\salt\bin\lib\site-packages\salt-3000-py3.5.egg\salt\states\pkg.py", line 1769, in installed
+                  **kwargs)
+                File "C:\salt\bin\lib\site-packages\salt-3000-py3.5.egg\salt\modules\win_pkg.py", line 1563, in install
+                  cached_pkg = __salt__['cp.cache_file'](installer, saltenv)
+                File "C:\salt\bin\lib\site-packages\salt-3000-py3.5.egg\salt\modules\cp.py", line 517, in cache_file
+                  result = _client().cache_file(path, saltenv, source_hash=source_hash)
+                File "C:\salt\bin\lib\site-packages\salt-3000-py3.5.egg\salt\fileclient.py", line 193, in cache_file
+                  path, '', True, saltenv, cachedir=cachedir, source_hash=source_hash)
+                File "C:\salt\bin\lib\site-packages\salt-3000-py3.5.egg\salt\fileclient.py", line 700, in get_url
+                  raise MinionError('Error: {0} reading {1}'.format(query['error'], url))
+              salt.exceptions.MinionError: Error: HTTP 599: Timeout while connecting reading https://downloads.sourceforge.net/project/kdiff3/kdiff3/0.9.98/KDiff3-64bit-Setup_0.9.98-2.exe
+            Started: 10:14:58.921575
+           Duration: 35421.791 ms
+            Changes:   
+       ----------
           ID: git
            Function: pkg.installed
              Result: True
@@ -1004,7 +1046,7 @@ v1.0.1
               feature:
                   ----------
                   new:
-                      TelnetClient
+                      - TelnetClient
               pid:
                   4472
               retcode:
@@ -1025,8 +1067,8 @@ v1.0.1
        
        Summary for local
        -------------
-       Succeeded: 25 (changed=24)
-       Failed:     0
+       Succeeded: 24 (changed=23)
+       Failed:     1
        -------------
        Total states run:     25
        Total run time:  240.220 s
@@ -1109,4 +1151,4 @@ Test Summary: 19 successful, 0 failures, 1 skipped
        Finished testing <py3-windows-10-1709> (9m14.80s).
 -----> Test Kitchen is finished. (9m28.78s)
 KITCHEN TEST EXIT CODE
-0
+20
