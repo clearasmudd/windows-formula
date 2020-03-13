@@ -136,10 +136,9 @@ for:
       only:
         - job_depends_on: Lint Tests
     branches:
-      except:
-        - /feature.*/
-        - /hotfix.*/
-        - develop
+      only:
+        - master
+        - /release.*/
     build_script:
       - ps: Write-Host "build_script for $env:APPVEYOR_JOB_NAME"
       # Saltstack needs to see the CI environment variable when run through test kitchen proxy driver
