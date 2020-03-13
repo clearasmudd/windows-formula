@@ -19,11 +19,13 @@ environment:
 
     - job_name: Chef Inspec Tests (Windows Server 2016)
       job_depends_on: Lint Tests
+      job_branch: release
       job_group: Chef Inspec Tests
       appveyor_build_worker_image: Visual Studio 2017
 
     - job_name: Chef Inspec Tests (Windows Server 2012 R2)
       job_depends_on: Lint Tests
+      job_branch: release
       job_group: Chef Inspec Tests
       appveyor_build_worker_image: Visual Studio 2015
 
@@ -135,6 +137,7 @@ for:
   - matrix:
       only:
         - job_depends_on: Lint Tests
+        - job_branch: release
     branches:
       only:
         - master
