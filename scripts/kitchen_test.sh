@@ -87,7 +87,7 @@ if [ ${#failures_array[@]} -eq 0 ]; then
   dos2unix test/results/*
   read -p 'Commit test results and push to github? [y]' -n 1 -r REPLY
   echo
-  commit_message="test: on premise windows 10 and windows server `kitchen test` results"
+  commit_message="test: on premise windows 10 and windows server 'kitchen test' results [skip ci]"
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     git add -A test/results
     git commit -m "$commit_message"
