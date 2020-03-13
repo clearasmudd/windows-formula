@@ -91,7 +91,6 @@ for:
   - matrix:
       only:
         - job_branch: pre_release
-        - job_depends_on: Lint Tests
     branches:
       only:
         - /feature.*/
@@ -137,7 +136,6 @@ for:
   - matrix:
       only:
         - job_branch: release
-        - job_depends_on: Lint Tests
     branches:
       only:
         - master
