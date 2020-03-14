@@ -21,12 +21,12 @@ Chocolatey package notepadplusplus
   should be installed
 
 Chocolatey package windirstat
-  should be installed
+  should be installed (FAILED - 1)
   version
-    should cmp == "1.1.2.20161210"
+    should cmp == "1.1.2.20161210" (FAILED - 2)
 
-Windows Feature 'telnet-client'
-  should be installed
+No-op
+  Skipped control due to only_if condition: only supported on servers (PENDING: Not yet implemented)
 
 Command: `choco`
   should exist
@@ -62,10 +62,35 @@ System Package KDiff3
 
 Pending: (Failures listed here are expected and do not affect your suite's status)
 
-  1) Windows Optional Feature: `TelnetClient` The `windows_optional_feature` resource is not supported on server OSs, use `windows_feature` instead.
+  1) No-op Skipped control due to only_if condition: only supported on servers
      # Not yet implemented
      # 
 
-Finished in 3.31 seconds (files took 5 minutes 32 seconds to load)
-20 examples, 0 failures, 1 pending
+  2) Windows Optional Feature: `TelnetClient` The `windows_optional_feature` resource is not supported on server OSs, use `windows_feature` instead.
+     # Not yet implemented
+     # 
+
+Failures:
+
+  1) Chocolatey package windirstat should be installed
+     Failure/Error: DEFAULT_FAILURE_NOTIFIER = lambda { |failure, _opts| raise failure }
+       expected that `Chocolatey package windirstat` is installed
+     # ./test/integration/default/controls/salt.formula.windows.system.packages.chocolatey.rb:56:in `block (4 levels) in load_with_context'
+
+  2) Chocolatey package windirstat version should cmp == "1.1.2.20161210"
+     Failure/Error: DEFAULT_FAILURE_NOTIFIER = lambda { |failure, _opts| raise failure }
+
+       expected: "1.1.2.20161210"
+            got: nil
+
+       (compared using `cmp` matcher)
+     # ./test/integration/default/controls/salt.formula.windows.system.packages.chocolatey.rb:58:in `block (4 levels) in load_with_context'
+
+Finished in 1.5 seconds (files took 5 minutes 44 seconds to load)
+20 examples, 2 failures, 2 pending
+
+Failed examples:
+
+rspec /opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/inspec-4.18.39/lib/inspec/rule.rb[1:1] # Chocolatey package windirstat should be installed
+rspec /opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/inspec-4.18.39/lib/inspec/rule.rb[1:2:1] # Chocolatey package windirstat version should cmp == "1.1.2.20161210"
 

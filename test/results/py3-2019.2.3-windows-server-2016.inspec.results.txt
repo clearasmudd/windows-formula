@@ -3,13 +3,13 @@ windows_server_2016_standard_evaluation
   should include "windows"
 
 Windows AppX Provisioned Package `Microsoft.MicrosoftSolitaireCollection`
-  should not be installed
+  should not be installed (FAILED - 1)
 
 Windows AppX Provisioned Package `Microsoft.Wallet`
-  should not be installed
+  should not be installed (FAILED - 2)
 
 Windows AppX Provisioned Package `Microsoft.ZuneMusic`
-  should not be installed
+  should not be installed (FAILED - 3)
 
 Windows AppX Provisioned Package `Microsoft.ZuneVideo`
   should not be installed
@@ -37,10 +37,6 @@ Command: `choco`
 Windows Optional Feature: `TelnetClient`
   The `windows_optional_feature` resource is not supported on server OSs, use `windows_feature` instead. (PENDING: Not yet implemented)
 
-System Information
-  hostname
-    should cmp == "saltstack1"
-
 Registry Key HKLM\SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName
   ComputerName
     should cmp == "saltstack1"
@@ -66,6 +62,49 @@ Pending: (Failures listed here are expected and do not affect your suite's statu
      # Not yet implemented
      # 
 
-Finished in 3.56 seconds (files took 5 minutes 18 seconds to load)
-20 examples, 0 failures, 1 pending
+Failures:
+
+  1) Windows AppX Provisioned Package `Microsoft.MicrosoftSolitaireCollection` should not be installed
+     Failure/Error: raise WinRMWSManFault.new(fault.to_s, fault.attributes['Code']) unless fault.nil?
+
+     WinRM::WinRMWSManFault:
+       [WSMAN ERROR CODE: 995]: <f:WSManFault Code='995' Machine='127.0.0.1' xmlns:f='http://schemas.microsoft.com/wbem/wsman/1/wsmanfault'><f:Message>The I/O operation has been aborted because of either a thread exit or an application request. </f:Message></f:WSManFault>
+     # libraries/windows.system.packages.appx-windows_appx-resource.rb:54:in `check_appx_package_status'
+     # libraries/windows.system.packages.appx-windows_appx-resource.rb:40:in `installed?'
+     # ./test/integration/default/controls/salt.formula.windows.system.packages.appx.rb:42:in `block (4 levels) in load_with_context'
+
+  2) Windows AppX Provisioned Package `Microsoft.Wallet` should not be installed
+     Failure/Error:
+       raise WinRMHTTPTransportError.new(
+         "Bad HTTP response returned from server. Body(if present):#{@response_body}",
+         @status_code
+       )
+
+     WinRM::WinRMHTTPTransportError:
+       Bad HTTP response returned from server. Body(if present): (500).
+     # libraries/windows.system.packages.appx-windows_appx-resource.rb:54:in `check_appx_package_status'
+     # libraries/windows.system.packages.appx-windows_appx-resource.rb:40:in `installed?'
+     # ./test/integration/default/controls/salt.formula.windows.system.packages.appx.rb:42:in `block (4 levels) in load_with_context'
+
+  3) Windows AppX Provisioned Package `Microsoft.ZuneMusic` should not be installed
+     Failure/Error:
+       raise WinRMHTTPTransportError.new(
+         "Bad HTTP response returned from server. Body(if present):#{@response_body}",
+         @status_code
+       )
+
+     WinRM::WinRMHTTPTransportError:
+       Bad HTTP response returned from server. Body(if present): (500).
+     # libraries/windows.system.packages.appx-windows_appx-resource.rb:54:in `check_appx_package_status'
+     # libraries/windows.system.packages.appx-windows_appx-resource.rb:40:in `installed?'
+     # ./test/integration/default/controls/salt.formula.windows.system.packages.appx.rb:42:in `block (4 levels) in load_with_context'
+
+Finished in 26.32 seconds (files took 4 minutes 55.9 seconds to load)
+19 examples, 3 failures, 1 pending
+
+Failed examples:
+
+rspec /opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/inspec-4.18.39/lib/inspec/rule.rb[1:1] # Windows AppX Provisioned Package `Microsoft.MicrosoftSolitaireCollection` should not be installed
+rspec /opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/inspec-4.18.39/lib/inspec/rule.rb[1:1] # Windows AppX Provisioned Package `Microsoft.Wallet` should not be installed
+rspec /opt/chefdk/embedded/lib/ruby/gems/2.6.0/gems/inspec-4.18.39/lib/inspec/rule.rb[1:1] # Windows AppX Provisioned Package `Microsoft.ZuneMusic` should not be installed
 

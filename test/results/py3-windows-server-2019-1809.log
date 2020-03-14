@@ -1,28 +1,13 @@
-Thu Mar 12 13:32:03 EDT 2020
-commit e91701cf75f9c3a9ef35f6c05f0524452c51a495
-Merge: 43e5ce7 c32d08e
+Fri Mar 13 22:23:42 EDT 2020
+commit bacd7f21eacd108e5683a4c922d19e2e1a053dd4
 Author: Peter Mudd <muddman@users.noreply.github.com>
-Date:   Thu Mar 12 12:37:51 2020 -0400
+Date:   Fri Mar 13 20:11:32 2020 -0400
 
-    chore: merge branch 'master' into release/1.0.1
-
-commit c32d08e3913ca9abb2b0079727dd8d8d2b250bde
-Author: semantic-release-bot <semantic-release-bot@martynus.net>
-Date:   Wed Mar 11 22:44:10 2020 +0000
-
-    chore(release): 1.0.1 [skip ci]
-    
-    ## [1.0.1](https://github.com/clearasmudd/windows-formula/compare/v1.0.0...v1.0.1) (2020-03-11)
-    
-    ### Bug Fixes
-    
-    * inspec pillar from minion fallback to pillar.example ([e53be56](https://github.com/clearasmudd/windows-formula/commit/e53be561ae8908596ae0e055f3e98fceda649630))
-    * merge branch 'hotfix/inspec_from_minion_fallback_to_pillar_example' ([22760ef](https://github.com/clearasmudd/windows-formula/commit/22760efabaa0595d712eee1a3d5ca01d68925d0e))
-    * ruby safe yaml issue ([d16a606](https://github.com/clearasmudd/windows-formula/commit/d16a606d1fb27d5cc05fda7bd5cf75c7baf09dc2))
+    test: add read the docs configuration
 CURRENT BRANCH COMMIT ID
-e91701cf75f9c3a9ef35f6c05f0524452c51a495
+bacd7f21eacd108e5683a4c922d19e2e1a053dd4
 CURRENT RELEASE TAG
-v1.0.0
+v1.0.2
 -----> Starting Test Kitchen (v2.3.4)
 -----> Cleaning up any prior instances of <py3-windows-server-2019-1809>
 -----> Destroying <py3-windows-server-2019-1809>...
@@ -31,10 +16,9 @@ v1.0.0
 -----> Creating <py3-windows-server-2019-1809>...
        Bringing machine 'default' up with 'virtualbox' provider...
        ==> default: Cloning VM...
-       
-[K==> default: Matching MAC address for NAT networking...
+       [K==> default: Matching MAC address for NAT networking...
        ==> default: Checking if box 'StefanScherer/windows_2019' version '2020.02.12' is up to date...
-       ==> default: Setting the name of the VM: kitchen-windows-formula-py3-windows-server-2019-1809-0c21f401-328d-4ece-ab8d-86c7698e810f
+       ==> default: Setting the name of the VM: kitchen-windows-formula-py3-windows-server-2019-1809-d7c705d7-bbca-4afe-b294-26bba3137d7a
        ==> default: Clearing any previously set network interfaces...
        ==> default: Preparing network interfaces based on configuration...
            default: Adapter 1: nat
@@ -58,7 +42,7 @@ v1.0.0
        [WinRM] Established
        
        Vagrant instance <py3-windows-server-2019-1809> created.
-       Finished creating <py3-windows-server-2019-1809> (2m45.21s).
+       Finished creating <py3-windows-server-2019-1809> (1m54.93s).
 -----> Converging <py3-windows-server-2019-1809>...
        Preparing files for transfer
        Preparing salt-minion
@@ -74,8 +58,8 @@ v1.0.0
        
        Mode                LastWriteTime         Length Name                                                                                                                                                                                                    
        ----                -------------         ------ ----                                                                                                                                                                                                    
-       d-----        3/12/2020  10:35 AM                temp                                                                                                                                                                                                    
-       Downloading Salt minion installer Salt-Minion-2019.2.3-Py3-AMD64-Setup.exe
+       d-----        3/13/2020   7:25 PM                temp                                                                                                                                                                                                    
+       Downloading Salt minion installer Salt-Minion-3000-Py3-AMD64-Setup.exe
        Installing Salt minion
        Starting the Salt minion service
        Salt minion successfully installed
@@ -89,7 +73,7 @@ v1.0.0
        
        Mode                LastWriteTime         Length Name                                                                                                                                                                                                    
        ----                -------------         ------ ----                                                                                                                                                                                                    
-       d-----        3/12/2020  10:36 AM                kitchen                                                                                                                                                                                                 
+       d-----        3/13/2020   7:27 PM                kitchen                                                                                                                                                                                                 
        
        
        Transferring files to <py3-windows-server-2019-1809>
@@ -127,8 +111,8 @@ v1.0.0
         Name: saltstack1
              Result: True
             Comment: The current hostname is 'vagrant', but will be changed to 'saltstack1' on the next reboot
-            Started: 10:36:35.379959
-           Duration: 156.887 ms
+            Started: 19:27:18.119002
+           Duration: 140.957 ms
             Changes:   
               ----------
               hostname:
@@ -139,8 +123,8 @@ v1.0.0
         Name: Saltstack Computer Description
              Result: True
             Comment: Computer description successfully changed to 'Saltstack Computer Description'
-            Started: 10:36:35.536846
-           Duration: 3393.427 ms
+            Started: 19:27:18.259959
+           Duration: 3165.471 ms
             Changes:   
               ----------
               new:
@@ -152,8 +136,8 @@ v1.0.0
         Name: America/New_York
              Result: True
             Comment: Set timezone America/New_York
-            Started: 10:36:38.961595
-           Duration: 63.015 ms
+            Started: 19:27:21.454343
+           Duration: 46.952 ms
             Changes:   
               ----------
               timezone:
@@ -163,8 +147,8 @@ v1.0.0
            Function: module.run
              Result: True
             Comment: environ.items: Success
-            Started: 10:36:39.024610
-           Duration: 15.151 ms
+            Started: 19:27:21.501295
+           Duration: 17.647 ms
             Changes:   
               ----------
               environ.items:
@@ -252,8 +236,8 @@ v1.0.0
            Function: module.run
              Result: True
             Comment: user.current: VAGRANT\vagrant
-            Started: 10:36:39.039761
-           Duration: 16.117 ms
+            Started: 19:27:21.518942
+           Duration: 29.853 ms
             Changes:   
               ----------
               user.current:
@@ -262,21 +246,21 @@ v1.0.0
           ID: windows.module.status.uptime
            Function: module.run
              Result: True
-            Comment: status.uptime: 0:02:14.087698
-            Started: 10:36:39.055878
-           Duration: 31.82 ms
+            Comment: status.uptime: 0:02:03.580554
+            Started: 19:27:21.548795
+           Duration: 31.759 ms
             Changes:   
               ----------
               status.uptime:
-                  0:02:14.087698
+                  0:02:03.580554
        ----------
           ID: windows.system.packages.powershell.framework.v4_5.tls1_2.systemdefaulttlsversions_32
            Function: reg.present
         Name: HKLM\SOFTWARE\Microsoft\.NETFramework\v4.0.30319
              Result: True
             Comment: Added HKLM\SOFTWARE\Microsoft\.NETFramework\v4.0.30319 to HKLM\SOFTWARE\Microsoft\.NETFramework\v4.0.30319
-            Started: 10:36:39.102326
-           Duration: 9881.931 ms
+            Started: 19:27:21.595236
+           Duration: 13489.599 ms
             Changes:   
               ----------
               reg:
@@ -305,8 +289,8 @@ v1.0.0
         Name: HKLM\SOFTWARE\Microsoft\.NETFramework\v4.0.30319
              Result: True
             Comment: Added HKLM\SOFTWARE\Microsoft\.NETFramework\v4.0.30319 to HKLM\SOFTWARE\Microsoft\.NETFramework\v4.0.30319
-            Started: 10:36:48.984257
-           Duration: 281.443 ms
+            Started: 19:27:35.084835
+           Duration: 295.161 ms
             Changes:   
               ----------
               reg:
@@ -335,8 +319,8 @@ v1.0.0
         Name: C:\Users\vagrant\AppData\Local\Temp\kitchen\srv\salt\win\repo-ng
              Result: True
             Comment: https://github.com/saltstack/salt-winrepo-ng/archive/master.zip extracted to C:\Users\vagrant\AppData\Local\Temp\kitchen\srv\salt\win\repo-ng\, due to absence of one or more files/dirs
-            Started: 10:36:49.265700
-           Duration: 906.164 ms
+            Started: 19:27:35.379996
+           Duration: 877.188 ms
             Changes:   
               ----------
               directories_created:
@@ -705,7 +689,7 @@ v1.0.0
            Function: module.run
              Result: True
             Comment: file.rename: True
-            Started: 10:36:50.171864
+            Started: 19:27:36.257184
            Duration: 0.0 ms
             Changes:   
               ----------
@@ -715,10 +699,9 @@ v1.0.0
           ID: pkg.refresh_db
            Function: module.run
              Result: True
-            Comment: Attempt 1: Returned a result of "False", with the following comment: "check_cmd determined the state failed"
-              check_cmd determined the state succeeded
-            Started: 10:36:50.171864
-           Duration: 16060.447 ms
+            Comment: check_cmd determined the state succeeded
+            Started: 19:27:36.257184
+           Duration: 12180.766 ms
             Changes:   
               ----------
               pkg.refresh_db:
@@ -730,12 +713,26 @@ v1.0.0
                   total:
                       298
        ----------
+          ID: git
+           Function: pkg.installed
+             Result: True
+            Comment: The following packages were installed/updated: git
+            Started: 19:27:48.455637
+           Duration: 24064.257 ms
+            Changes:   
+              ----------
+              git:
+                  ----------
+                  new:
+                      2.25.1
+                  old:
+       ----------
           ID: kdiff3
            Function: pkg.installed
              Result: True
             Comment: The following packages were installed/updated: kdiff3
-            Started: 10:37:06.265475
-           Duration: 5858.767 ms
+            Started: 19:28:12.582019
+           Duration: 14469.688 ms
             Changes:   
               ----------
               kdiff3:
@@ -747,23 +744,9 @@ v1.0.0
           ID: 7zip
            Function: pkg.installed
              Result: True
-            Comment: The following packages were installed/updated: git
-            Started: 10:37:12.140517
-           Duration: 31310.944 ms
-            Changes:   
-              ----------
-              7zip:
-                  ----------
-                  new:
-                      2.25.1
-                  old:
-       ----------
-          ID: 7zip
-           Function: pkg.installed
-             Result: True
             Comment: The following packages were installed/updated: 7zip=18.06.00.0
-            Started: 10:37:43.468500
-           Duration: 9623.472 ms
+            Started: 19:28:27.129501
+           Duration: 12953.658 ms
             Changes:   
               ----------
               7zip:
@@ -776,8 +759,8 @@ v1.0.0
            Function: module.run
              Result: True
             Comment: windows_environment.refresh: Success
-            Started: 10:37:53.091972
-           Duration: 63.027 ms
+            Started: 19:28:40.098484
+           Duration: 62.552 ms
             Changes:   
               ----------
               windows_environment.refresh:
@@ -845,8 +828,8 @@ v1.0.0
               Ensuring chocolatey commands are on the path
        
               Ensuring chocolatey.nupkg is in the lib folder
-            Started: 10:37:53.154999
-           Duration: 25764.74 ms
+            Started: 19:28:40.161036
+           Duration: 29585.566 ms
             Changes:   
               ----------
               chocolatey.bootstrap:
@@ -885,28 +868,13 @@ v1.0.0
                   Ensuring chocolatey commands are on the path
                   Ensuring chocolatey.nupkg is in the lib folder
        ----------
-          ID: windows.system.packages.chocolatey.windirstat
-           Function: chocolatey.installed
-        Name: windirstat
-             Result: True
-            Comment: 
-            Started: 10:38:18.919739
-           Duration: 10767.149 ms
-            Changes:   
-              ----------
-              windirstat:
-                  ----------
-                  new:
-                      - 1.1.2.20161210
-                  old:
-       ----------
           ID: windows.system.packages.chocolatey.notepadplusplus
            Function: chocolatey.installed
         Name: notepadplusplus
              Result: True
             Comment: 
-            Started: 10:38:29.686888
-           Duration: 12905.855 ms
+            Started: 19:29:09.754907
+           Duration: 12625.02 ms
             Changes:   
               ----------
               notepadplusplus:
@@ -920,15 +888,30 @@ v1.0.0
                       - 7.8.5
                   old:
        ----------
+          ID: windows.system.packages.chocolatey.windirstat
+           Function: chocolatey.installed
+        Name: windirstat
+             Result: True
+            Comment: 
+            Started: 19:29:22.379927
+           Duration: 9891.124 ms
+            Changes:   
+              ----------
+              windirstat:
+                  ----------
+                  new:
+                      - 1.1.2.20161210
+                  old:
+       ----------
           ID: windows.system.server.features.installed.telnet-client
            Function: win_servermanager.installed
         Name: telnet-client
              Result: True
             Comment: Installed the following:
-              - telnet-client
               - Telnet-Client
-            Started: 10:38:42.592743
-           Duration: 27796.065 ms
+              - telnet-client
+            Started: 19:29:32.271051
+           Duration: 27046.386 ms
             Changes:   
               ----------
               Telnet-Client:
@@ -941,8 +924,8 @@ v1.0.0
            Function: module.run
              Result: True
             Comment: system.reboot: True
-            Started: 10:39:10.388808
-           Duration: 234.876 ms
+            Started: 19:29:59.333552
+           Duration: 281.738 ms
             Changes:   
               ----------
               system.reboot:
@@ -954,9 +937,9 @@ v1.0.0
        Failed:     0
        -------------
        Total states run:     20
-       Total run time:  155.131 s
+       Total run time:  161.255 s
        Downloading files from <py3-windows-server-2019-1809>
-       Finished converging <py3-windows-server-2019-1809> (3m55.92s).
+       Finished converging <py3-windows-server-2019-1809> (4m5.31s).
 -----> Setting up <py3-windows-server-2019-1809>...
        Finished setting up <py3-windows-server-2019-1809> (0m0.00s).
 -----> Verifying <py3-windows-server-2019-1809>...
@@ -1003,13 +986,13 @@ Target:  winrm://vagrant@http://127.0.0.1:55985/wsman:3389
 
 Profile Summary: 9 successful controls, 0 control failures, 1 control skipped
 Test Summary: 19 successful, 0 failures, 1 skipped
-       Finished verifying <py3-windows-server-2019-1809> (0m39.11s).
+       Finished verifying <py3-windows-server-2019-1809> (0m39.68s).
+       Finished testing <py3-windows-server-2019-1809> (6m39.94s).
 -----> Destroying <py3-windows-server-2019-1809>...
        ==> default: Forcing shutdown of VM...
        ==> default: Destroying VM and associated drives...
        Vagrant instance <py3-windows-server-2019-1809> destroyed.
-       Finished destroying <py3-windows-server-2019-1809> (0m11.54s).
-       Finished testing <py3-windows-server-2019-1809> (7m31.81s).
------> Test Kitchen is finished. (7m49.35s)
+       Finished destroying <py3-windows-server-2019-1809> (0m11.03s).
+-----> Test Kitchen is finished. (7m2.83s)
 KITCHEN TEST EXIT CODE
 0
