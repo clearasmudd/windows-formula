@@ -22,7 +22,7 @@ Date:   Wed Mar 11 22:44:10 2020 +0000
 CURRENT BRANCH COMMIT ID
 e91701cf75f9c3a9ef35f6c05f0524452c51a495
 CURRENT RELEASE TAG
-v1.0.1
+v1.0.0
 -----> Starting Test Kitchen (v2.3.4)
 -----> Cleaning up any prior instances of <py3-windows-server-2016>
 -----> Destroying <py3-windows-server-2016>...
@@ -31,7 +31,8 @@ v1.0.1
 -----> Creating <py3-windows-server-2016>...
        Bringing machine 'default' up with 'virtualbox' provider...
        ==> default: Cloning VM...
-       [K==> default: Matching MAC address for NAT networking...
+       
+[K==> default: Matching MAC address for NAT networking...
        ==> default: Checking if box 'StefanScherer/windows_2016' version '2019.02.14' is up to date...
        ==> default: Setting the name of the VM: kitchen-windows-formula-py3-windows-server-2016-8f99afaa-1288-4e12-bebd-a44af5e6ec9a
        ==> default: Clearing any previously set network interfaces...
@@ -87,7 +88,7 @@ v1.0.1
        Installing Salt minion
        Starting the Salt minion service
        Salt minion successfully installed
-       You asked for latest and you have 2019.2.3 installed, sweet!
+       You asked for latest and you have 3000 installed, sweet!
        
        
        
@@ -110,13 +111,13 @@ v1.0.1
         
        
        Traceback (most recent call last):
-         File "C:\salt\bin\lib\site-packages\salt\utils\win_dacl.py", line 1180, in get_name
+         File "C:\salt\bin\lib\site-packages\salt-3000-py3.5.egg\salt\utils\win_dacl.py", line 1180, in get_name
            return win32security.LookupAccountSid(None, sid_obj)[0]
        pywintypes.error: (1332, 'LookupAccountSid', 'No mapping between account names and security IDs was done.')
        
        [ERROR   ] Error resolving "S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681": No mapping between account names and security IDs was done.
        Traceback (most recent call last):
-         File "C:\salt\bin\lib\site-packages\salt\utils\win_dacl.py", line 1180, in get_name
+         File "C:\salt\bin\lib\site-packages\salt-3000-py3.5.egg\salt\utils\win_dacl.py", line 1180, in get_name
            return win32security.LookupAccountSid(None, sid_obj)[0]
        pywintypes.error: (1332, 'LookupAccountSid', 'No mapping between account names and security IDs was done.')
        
@@ -766,7 +767,7 @@ v1.0.1
                       2.25.1
                   old:
        ----------
-          ID: 7zip
+          ID: git
            Function: pkg.installed
              Result: True
             Comment: The following packages were installed/updated: 7zip=18.06.00.0
@@ -774,10 +775,10 @@ v1.0.1
            Duration: 10327.616 ms
             Changes:   
               ----------
-              7zip:
+              git:
                   ----------
                   new:
-                      18.06.00.0
+                      2.23.0.windows.1
                   old:
        ----------
           ID: windows_environment.refresh.path
@@ -969,6 +970,8 @@ v1.0.1
        Finished setting up <py3-windows-server-2016> (0m0.00s).
 -----> Verifying <py3-windows-server-2016>...
        Loaded default 
+`execution expired`, target may be rebooting after highstate. Remaining retries: 20
+`execution expired`, target may be rebooting after highstate. Remaining retries: 19
 INFO: Got pillar from the target minion using WinRM.
 
 Profile: SaltStack Windows Formula (default)

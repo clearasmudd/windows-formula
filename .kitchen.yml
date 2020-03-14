@@ -155,11 +155,11 @@ platforms:
 suites:
   - name: py3
     provisioner:
-      salt_bootstrap_options: "-version 2019.2.3 -pythonVersion 3"
+      salt_bootstrap_options: "-version 3000 -pythonVersion 3"
       # salt_version: latest
-      # - name: py3-3000
-      #   provisioner:
-      #     salt_bootstrap_options: "-version 3000 -pythonVersion 3"
+  - name: py3-2019.2.3
+    provisioner:
+      salt_bootstrap_options: "-version 2019.2.3 -pythonVersion 3"
       # - name: py2
       #   provisioner:
       #     salt_bootstrap_options: "-version 2019.2.3 -pythonVersion 2"
