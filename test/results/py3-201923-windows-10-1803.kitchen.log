@@ -1,0 +1,1022 @@
+I, [2020-03-13T22:53:39.067000 #6931]  INFO -- py3-201923-windows-10-1803: -----> Cleaning up any prior instances of <py3-201923-windows-10-1803>
+I, [2020-03-13T22:53:39.067166 #6931]  INFO -- py3-201923-windows-10-1803: -----> Destroying <py3-201923-windows-10-1803>...
+I, [2020-03-13T22:53:39.068476 #6931]  INFO -- py3-201923-windows-10-1803: Finished destroying <py3-201923-windows-10-1803> (0m0.00s).
+I, [2020-03-13T22:53:39.069513 #6931]  INFO -- py3-201923-windows-10-1803: -----> Testing <py3-201923-windows-10-1803>
+I, [2020-03-13T22:53:39.069633 #6931]  INFO -- py3-201923-windows-10-1803: -----> Creating <py3-201923-windows-10-1803>...
+I, [2020-03-13T22:53:44.753051 #6931]  INFO -- py3-201923-windows-10-1803: Bringing machine 'default' up with 'virtualbox' provider...
+I, [2020-03-13T22:53:45.445437 #6931]  INFO -- py3-201923-windows-10-1803: ==> default: Cloning VM...
+I, [2020-03-13T22:53:45.856324 #6931]  INFO -- py3-201923-windows-10-1803: [K==> default: Matching MAC address for NAT networking...
+I, [2020-03-13T22:53:46.105600 #6931]  INFO -- py3-201923-windows-10-1803: ==> default: Checking if box 'StefanScherer/windows_10' version '2018.09.12' is up to date...
+I, [2020-03-13T22:53:46.944153 #6931]  INFO -- py3-201923-windows-10-1803: ==> default: Setting the name of the VM: kitchen-windows-formula-py3-201923-windows-10-1803-1d5e609e-1bae-4aac-8108-b257fdc82c3b
+I, [2020-03-13T22:53:53.435933 #6931]  INFO -- py3-201923-windows-10-1803: ==> default: Clearing any previously set network interfaces...
+I, [2020-03-13T22:53:53.558062 #6931]  INFO -- py3-201923-windows-10-1803: ==> default: Preparing network interfaces based on configuration...
+I, [2020-03-13T22:53:53.558654 #6931]  INFO -- py3-201923-windows-10-1803:     default: Adapter 1: nat
+I, [2020-03-13T22:53:53.702940 #6931]  INFO -- py3-201923-windows-10-1803: ==> default: Forwarding ports...
+I, [2020-03-13T22:53:53.869727 #6931]  INFO -- py3-201923-windows-10-1803:     default: 3389 (guest) => 3389 (host) (adapter 1)
+I, [2020-03-13T22:53:53.870341 #6931]  INFO -- py3-201923-windows-10-1803:     default: 5985 (guest) => 55985 (host) (adapter 1)
+I, [2020-03-13T22:53:53.870764 #6931]  INFO -- py3-201923-windows-10-1803:     default: 5986 (guest) => 55986 (host) (adapter 1)
+I, [2020-03-13T22:53:53.871189 #6931]  INFO -- py3-201923-windows-10-1803:     default: 22 (guest) => 2222 (host) (adapter 1)
+I, [2020-03-13T22:53:54.307195 #6931]  INFO -- py3-201923-windows-10-1803: ==> default: Running 'pre-boot' VM customizations...
+I, [2020-03-13T22:53:55.422106 #6931]  INFO -- py3-201923-windows-10-1803: ==> default: Booting VM...
+I, [2020-03-13T22:53:58.039025 #6931]  INFO -- py3-201923-windows-10-1803: ==> default: Waiting for machine to boot. This may take a few minutes...
+I, [2020-03-13T22:53:59.517914 #6931]  INFO -- py3-201923-windows-10-1803:     default: WinRM address: 127.0.0.1:55985
+I, [2020-03-13T22:53:59.518133 #6931]  INFO -- py3-201923-windows-10-1803:     default: WinRM username: vagrant
+I, [2020-03-13T22:53:59.518435 #6931]  INFO -- py3-201923-windows-10-1803:     default: WinRM execution_time_limit: PT2H
+I, [2020-03-13T22:53:59.518780 #6931]  INFO -- py3-201923-windows-10-1803:     default: WinRM transport: negotiate
+I, [2020-03-13T22:54:21.355189 #6931]  INFO -- py3-201923-windows-10-1803: ==> default: Machine booted and ready!
+I, [2020-03-13T22:54:21.379072 #6931]  INFO -- py3-201923-windows-10-1803: ==> default: Checking for guest additions in VM...
+I, [2020-03-13T22:54:21.554150 #6931]  INFO -- py3-201923-windows-10-1803:     default: The guest additions on this VM do not match the installed version of
+I, [2020-03-13T22:54:21.554261 #6931]  INFO -- py3-201923-windows-10-1803:     default: VirtualBox! In most cases this is fine, but in rare cases it can
+I, [2020-03-13T22:54:21.554311 #6931]  INFO -- py3-201923-windows-10-1803:     default: prevent things such as shared folders from working properly. If you see
+I, [2020-03-13T22:54:21.554338 #6931]  INFO -- py3-201923-windows-10-1803:     default: shared folder errors, please make sure the guest additions within the
+I, [2020-03-13T22:54:21.554714 #6931]  INFO -- py3-201923-windows-10-1803:     default: virtual machine match the version of VirtualBox you have installed on
+I, [2020-03-13T22:54:21.554778 #6931]  INFO -- py3-201923-windows-10-1803:     default: your host and reload your VM.
+I, [2020-03-13T22:54:21.554810 #6931]  INFO -- py3-201923-windows-10-1803:     default: 
+I, [2020-03-13T22:54:21.554847 #6931]  INFO -- py3-201923-windows-10-1803:     default: Guest Additions Version: 5.2.16
+I, [2020-03-13T22:54:21.554872 #6931]  INFO -- py3-201923-windows-10-1803:     default: VirtualBox Version: 6.1
+I, [2020-03-13T22:54:22.240623 #6931]  INFO -- py3-201923-windows-10-1803: ==> default: Mounting shared folders...
+I, [2020-03-13T22:54:22.242419 #6931]  INFO -- py3-201923-windows-10-1803:     default: /results => /mnt/c/tmp/results
+I, [2020-03-13T22:54:27.960756 #6931]  INFO -- py3-201923-windows-10-1803: ==> default: Machine not provisioned because `--no-provision` is specified.
+I, [2020-03-13T22:54:39.903124 #6931]  INFO -- py3-201923-windows-10-1803: [WinRM] Established
+I, [2020-03-13T22:54:39.903283 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:54:39.933841 #6931]  INFO -- py3-201923-windows-10-1803: Vagrant instance <py3-201923-windows-10-1803> created.
+I, [2020-03-13T22:54:39.936762 #6931]  INFO -- py3-201923-windows-10-1803: Finished creating <py3-201923-windows-10-1803> (1m0.86s).
+I, [2020-03-13T22:54:39.937086 #6931]  INFO -- py3-201923-windows-10-1803: -----> Converging <py3-201923-windows-10-1803>...
+I, [2020-03-13T22:54:39.940305 #6931]  INFO -- py3-201923-windows-10-1803: Preparing files for transfer
+I, [2020-03-13T22:54:39.940551 #6931]  INFO -- py3-201923-windows-10-1803: Preparing salt-minion
+I, [2020-03-13T22:54:39.947499 #6931]  INFO -- py3-201923-windows-10-1803: Preparing pillars into /srv/pillar
+I, [2020-03-13T22:54:39.947648 #6931]  INFO -- py3-201923-windows-10-1803: pillars-from-files is deprecated in favor of pillars_from_files
+I, [2020-03-13T22:54:39.953375 #6931]  INFO -- py3-201923-windows-10-1803: Preparing formula: windows from /home/pmudd/projects/github/clearasmudd/windows-formula
+I, [2020-03-13T22:54:40.170851 #6931]  INFO -- py3-201923-windows-10-1803: Preparing state_top
+I, [2020-03-13T22:54:40.172929 #6931]  INFO -- py3-201923-windows-10-1803: Preparing scripts into /etc/salt/scripts
+I, [2020-03-13T22:54:41.282968 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:54:41.283412 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:54:41.283917 #6931]  INFO -- py3-201923-windows-10-1803:     Directory: C:\
+I, [2020-03-13T22:54:41.284404 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:54:41.285012 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:54:41.285655 #6931]  INFO -- py3-201923-windows-10-1803: Mode                LastWriteTime         Length Name                                                                                                                                                                                                    
+I, [2020-03-13T22:54:41.286271 #6931]  INFO -- py3-201923-windows-10-1803: ----                -------------         ------ ----                                                                                                                                                                                                    
+I, [2020-03-13T22:54:41.286849 #6931]  INFO -- py3-201923-windows-10-1803: d-----        3/13/2020   7:54 PM                temp                                                                                                                                                                                                    
+I, [2020-03-13T22:54:42.320447 #6931]  INFO -- py3-201923-windows-10-1803: Downloading Salt minion installer Salt-Minion-2019.2.3-Py3-AMD64-Setup.exe
+I, [2020-03-13T22:54:45.753826 #6931]  INFO -- py3-201923-windows-10-1803: Installing Salt minion
+I, [2020-03-13T22:54:59.168368 #6931]  INFO -- py3-201923-windows-10-1803: Starting the Salt minion service
+I, [2020-03-13T22:54:59.169357 #6931]  INFO -- py3-201923-windows-10-1803: Salt minion successfully installed
+I, [2020-03-13T22:55:00.686265 #6931]  INFO -- py3-201923-windows-10-1803: You asked for latest and you have 2019.2.3 installed, sweet!
+I, [2020-03-13T22:55:00.686723 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:55:00.687157 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:55:01.258388 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:55:01.258795 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:55:01.259258 #6931]  INFO -- py3-201923-windows-10-1803:     Directory: C:\Users\vagrant\AppData\Local\Temp
+I, [2020-03-13T22:55:01.259667 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:55:01.260025 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:55:01.260539 #6931]  INFO -- py3-201923-windows-10-1803: Mode                LastWriteTime         Length Name                                                                                                                                                                                                    
+I, [2020-03-13T22:55:01.261040 #6931]  INFO -- py3-201923-windows-10-1803: ----                -------------         ------ ----                                                                                                                                                                                                    
+I, [2020-03-13T22:55:01.261581 #6931]  INFO -- py3-201923-windows-10-1803: d-----        3/13/2020   7:55 PM                kitchen                                                                                                                                                                                                 
+I, [2020-03-13T22:55:01.261978 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:55:01.262400 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:55:01.278332 #6931]  INFO -- py3-201923-windows-10-1803: Transferring files to <py3-201923-windows-10-1803>
+I, [2020-03-13T22:55:31.469166 #6931]  INFO -- py3-201923-windows-10-1803: c:\salt\salt-call.bat : [ERROR   ] Error resolving "S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681": No mapping between account names and security IDs was done.
+I, [2020-03-13T22:55:31.469654 #6931]  INFO -- py3-201923-windows-10-1803: At line:1 char:131
+I, [2020-03-13T22:55:31.470024 #6931]  INFO -- py3-201923-windows-10-1803: + ... alt\minion ;c:\salt\salt-call.bat --state-output=changes --config-dir ...
+I, [2020-03-13T22:55:31.470363 #6931]  INFO -- py3-201923-windows-10-1803: +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+I, [2020-03-13T22:55:31.470778 #6931]  INFO -- py3-201923-windows-10-1803:     + CategoryInfo          : NotSpecified: ([ERROR   ] Erro...y IDs was done.:String) [], RemoteException
+I, [2020-03-13T22:55:31.471173 #6931]  INFO -- py3-201923-windows-10-1803:     + FullyQualifiedErrorId : NativeCommandError
+I, [2020-03-13T22:55:31.471556 #6931]  INFO -- py3-201923-windows-10-1803:  
+I, [2020-03-13T22:55:31.471919 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:55:31.472394 #6931]  INFO -- py3-201923-windows-10-1803: Traceback (most recent call last):
+I, [2020-03-13T22:55:31.472980 #6931]  INFO -- py3-201923-windows-10-1803:   File "C:\salt\bin\lib\site-packages\salt\utils\win_dacl.py", line 1180, in get_name
+I, [2020-03-13T22:55:31.473425 #6931]  INFO -- py3-201923-windows-10-1803:     return win32security.LookupAccountSid(None, sid_obj)[0]
+I, [2020-03-13T22:55:31.473910 #6931]  INFO -- py3-201923-windows-10-1803: pywintypes.error: (1332, 'LookupAccountSid', 'No mapping between account names and security IDs was done.')
+I, [2020-03-13T22:55:31.474274 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:55:31.474704 #6931]  INFO -- py3-201923-windows-10-1803: [ERROR   ] Error resolving "S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681": No mapping between account names and security IDs was done.
+I, [2020-03-13T22:55:31.475107 #6931]  INFO -- py3-201923-windows-10-1803: Traceback (most recent call last):
+I, [2020-03-13T22:55:31.475541 #6931]  INFO -- py3-201923-windows-10-1803:   File "C:\salt\bin\lib\site-packages\salt\utils\win_dacl.py", line 1180, in get_name
+I, [2020-03-13T22:55:31.475895 #6931]  INFO -- py3-201923-windows-10-1803:     return win32security.LookupAccountSid(None, sid_obj)[0]
+I, [2020-03-13T22:55:31.476146 #6931]  INFO -- py3-201923-windows-10-1803: pywintypes.error: (1332, 'LookupAccountSid', 'No mapping between account names and security IDs was done.')
+I, [2020-03-13T22:55:31.476392 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:56:17.073653 #6931]  INFO -- py3-201923-windows-10-1803: [WARNING ] C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extmods\modules\windows_environment\__init__.py:54: DeprecationWarning: bad escape \W
+I, [2020-03-13T22:56:17.073980 #6931]  INFO -- py3-201923-windows-10-1803:   environ[key] = redata.sub(a, value)
+I, [2020-03-13T22:56:17.074317 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:56:17.074667 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:56:17.075037 #6931]  INFO -- py3-201923-windows-10-1803: [WARNING ] C:\Users\vagrant\AppData\Local\Temp\kitchen\var\cache\salt\minion\extmods\modules\windows_environment\__init__.py:54: DeprecationWarning: bad escape \P
+I, [2020-03-13T22:56:17.075394 #6931]  INFO -- py3-201923-windows-10-1803:   environ[key] = redata.sub(a, value)
+I, [2020-03-13T22:56:17.075689 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:56:17.076044 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:57:04.579461 #6931]  INFO -- py3-201923-windows-10-1803: local:
+I, [2020-03-13T22:57:04.580008 #6931]  INFO -- py3-201923-windows-10-1803: ----------
+I, [2020-03-13T22:57:04.580570 #6931]  INFO -- py3-201923-windows-10-1803:    ID: windows.state.system.hostname.saltstack1
+I, [2020-03-13T22:57:04.581083 #6931]  INFO -- py3-201923-windows-10-1803:     Function: system.hostname
+I, [2020-03-13T22:57:04.581578 #6931]  INFO -- py3-201923-windows-10-1803:  Name: saltstack1
+I, [2020-03-13T22:57:04.581975 #6931]  INFO -- py3-201923-windows-10-1803:       Result: True
+I, [2020-03-13T22:57:04.582386 #6931]  INFO -- py3-201923-windows-10-1803:      Comment: The current hostname is 'vagrant-10', but will be changed to 'saltstack1' on the next reboot
+I, [2020-03-13T22:57:04.582786 #6931]  INFO -- py3-201923-windows-10-1803:      Started: 19:55:13.588977
+I, [2020-03-13T22:57:04.583180 #6931]  INFO -- py3-201923-windows-10-1803:     Duration: 147.374 ms
+I, [2020-03-13T22:57:04.583606 #6931]  INFO -- py3-201923-windows-10-1803:      Changes:   
+I, [2020-03-13T22:57:04.584069 #6931]  INFO -- py3-201923-windows-10-1803:        ----------
+I, [2020-03-13T22:57:04.584510 #6931]  INFO -- py3-201923-windows-10-1803:        hostname:
+I, [2020-03-13T22:57:04.584978 #6931]  INFO -- py3-201923-windows-10-1803:            saltstack1
+I, [2020-03-13T22:57:04.585392 #6931]  INFO -- py3-201923-windows-10-1803: ----------
+I, [2020-03-13T22:57:04.585849 #6931]  INFO -- py3-201923-windows-10-1803:    ID: windows.state.system.computer_desc.description
+I, [2020-03-13T22:57:04.586300 #6931]  INFO -- py3-201923-windows-10-1803:     Function: system.computer_desc
+I, [2020-03-13T22:57:04.586757 #6931]  INFO -- py3-201923-windows-10-1803:  Name: Saltstack Computer Description
+I, [2020-03-13T22:57:04.587184 #6931]  INFO -- py3-201923-windows-10-1803:       Result: True
+I, [2020-03-13T22:57:04.587642 #6931]  INFO -- py3-201923-windows-10-1803:      Comment: Computer description successfully changed to 'Saltstack Computer Description'
+I, [2020-03-13T22:57:04.588091 #6931]  INFO -- py3-201923-windows-10-1803:      Started: 19:55:13.736351
+I, [2020-03-13T22:57:04.588524 #6931]  INFO -- py3-201923-windows-10-1803:     Duration: 2688.506 ms
+I, [2020-03-13T22:57:04.588950 #6931]  INFO -- py3-201923-windows-10-1803:      Changes:   
+I, [2020-03-13T22:57:04.589386 #6931]  INFO -- py3-201923-windows-10-1803:        ----------
+I, [2020-03-13T22:57:04.589880 #6931]  INFO -- py3-201923-windows-10-1803:        new:
+I, [2020-03-13T22:57:04.590323 #6931]  INFO -- py3-201923-windows-10-1803:            Saltstack Computer Description
+I, [2020-03-13T22:57:04.590714 #6931]  INFO -- py3-201923-windows-10-1803:        old:
+I, [2020-03-13T22:57:04.591090 #6931]  INFO -- py3-201923-windows-10-1803: ----------
+I, [2020-03-13T22:57:04.591477 #6931]  INFO -- py3-201923-windows-10-1803:    ID: windows.state.timezone.system.America/New_York
+I, [2020-03-13T22:57:04.591971 #6931]  INFO -- py3-201923-windows-10-1803:     Function: timezone.system
+I, [2020-03-13T22:57:04.592413 #6931]  INFO -- py3-201923-windows-10-1803:  Name: America/New_York
+I, [2020-03-13T22:57:04.592828 #6931]  INFO -- py3-201923-windows-10-1803:       Result: True
+I, [2020-03-13T22:57:04.593203 #6931]  INFO -- py3-201923-windows-10-1803:      Comment: Set timezone America/New_York
+I, [2020-03-13T22:57:04.593568 #6931]  INFO -- py3-201923-windows-10-1803:      Started: 19:55:16.445053
+I, [2020-03-13T22:57:04.593906 #6931]  INFO -- py3-201923-windows-10-1803:     Duration: 15.239 ms
+I, [2020-03-13T22:57:04.594269 #6931]  INFO -- py3-201923-windows-10-1803:      Changes:   
+I, [2020-03-13T22:57:04.594667 #6931]  INFO -- py3-201923-windows-10-1803:        ----------
+I, [2020-03-13T22:57:04.595066 #6931]  INFO -- py3-201923-windows-10-1803:        timezone:
+I, [2020-03-13T22:57:04.595440 #6931]  INFO -- py3-201923-windows-10-1803:            America/New_York
+I, [2020-03-13T22:57:04.595792 #6931]  INFO -- py3-201923-windows-10-1803: ----------
+I, [2020-03-13T22:57:04.596143 #6931]  INFO -- py3-201923-windows-10-1803:    ID: windows.module.environ.items
+I, [2020-03-13T22:57:04.596534 #6931]  INFO -- py3-201923-windows-10-1803:     Function: module.run
+I, [2020-03-13T22:57:04.596894 #6931]  INFO -- py3-201923-windows-10-1803:       Result: True
+I, [2020-03-13T22:57:04.597372 #6931]  INFO -- py3-201923-windows-10-1803:      Comment: environ.items: Success
+I, [2020-03-13T22:57:04.597799 #6931]  INFO -- py3-201923-windows-10-1803:      Started: 19:55:16.476293
+I, [2020-03-13T22:57:04.598258 #6931]  INFO -- py3-201923-windows-10-1803:     Duration: 0.0 ms
+I, [2020-03-13T22:57:04.598756 #6931]  INFO -- py3-201923-windows-10-1803:      Changes:   
+I, [2020-03-13T22:57:04.599230 #6931]  INFO -- py3-201923-windows-10-1803:        ----------
+I, [2020-03-13T22:57:04.599718 #6931]  INFO -- py3-201923-windows-10-1803:        environ.items:
+I, [2020-03-13T22:57:04.600116 #6931]  INFO -- py3-201923-windows-10-1803:            ----------
+I, [2020-03-13T22:57:04.600497 #6931]  INFO -- py3-201923-windows-10-1803:            ALLUSERSPROFILE:
+I, [2020-03-13T22:57:04.600832 #6931]  INFO -- py3-201923-windows-10-1803:                C:\ProgramData
+I, [2020-03-13T22:57:04.601172 #6931]  INFO -- py3-201923-windows-10-1803:            APPDATA:
+I, [2020-03-13T22:57:04.601509 #6931]  INFO -- py3-201923-windows-10-1803:                C:\Users\vagrant\AppData\Roaming
+I, [2020-03-13T22:57:04.601884 #6931]  INFO -- py3-201923-windows-10-1803:            COMMONPROGRAMFILES:
+I, [2020-03-13T22:57:04.602265 #6931]  INFO -- py3-201923-windows-10-1803:                C:\Program Files\Common Files
+I, [2020-03-13T22:57:04.602612 #6931]  INFO -- py3-201923-windows-10-1803:            COMMONPROGRAMFILES(X86):
+I, [2020-03-13T22:57:04.602998 #6931]  INFO -- py3-201923-windows-10-1803:                C:\Program Files (x86)\Common Files
+I, [2020-03-13T22:57:04.603359 #6931]  INFO -- py3-201923-windows-10-1803:            COMMONPROGRAMW6432:
+I, [2020-03-13T22:57:04.603758 #6931]  INFO -- py3-201923-windows-10-1803:                C:\Program Files\Common Files
+I, [2020-03-13T22:57:04.604264 #6931]  INFO -- py3-201923-windows-10-1803:            COMPUTERNAME:
+I, [2020-03-13T22:57:04.604753 #6931]  INFO -- py3-201923-windows-10-1803:                VAGRANT-10
+I, [2020-03-13T22:57:04.605202 #6931]  INFO -- py3-201923-windows-10-1803:            COMSPEC:
+I, [2020-03-13T22:57:04.605550 #6931]  INFO -- py3-201923-windows-10-1803:                C:\Windows\system32\cmd.exe
+I, [2020-03-13T22:57:04.605950 #6931]  INFO -- py3-201923-windows-10-1803:            DRIVERDATA:
+I, [2020-03-13T22:57:04.606434 #6931]  INFO -- py3-201923-windows-10-1803:                C:\Windows\System32\Drivers\DriverData
+I, [2020-03-13T22:57:04.606895 #6931]  INFO -- py3-201923-windows-10-1803:            HOMEDRIVE:
+I, [2020-03-13T22:57:04.607376 #6931]  INFO -- py3-201923-windows-10-1803:                C:
+I, [2020-03-13T22:57:04.607826 #6931]  INFO -- py3-201923-windows-10-1803:            HOMEPATH:
+I, [2020-03-13T22:57:04.608332 #6931]  INFO -- py3-201923-windows-10-1803:                \Users\vagrant
+I, [2020-03-13T22:57:04.608822 #6931]  INFO -- py3-201923-windows-10-1803:            LOCALAPPDATA:
+I, [2020-03-13T22:57:04.609315 #6931]  INFO -- py3-201923-windows-10-1803:                C:\Users\vagrant\AppData\Local
+I, [2020-03-13T22:57:04.609909 #6931]  INFO -- py3-201923-windows-10-1803:            LOGONSERVER:
+I, [2020-03-13T22:57:04.610486 #6931]  INFO -- py3-201923-windows-10-1803:                \\VAGRANT-10
+I, [2020-03-13T22:57:04.610999 #6931]  INFO -- py3-201923-windows-10-1803:            NUMBER_OF_PROCESSORS:
+I, [2020-03-13T22:57:04.611423 #6931]  INFO -- py3-201923-windows-10-1803:                2
+I, [2020-03-13T22:57:04.611840 #6931]  INFO -- py3-201923-windows-10-1803:            ONEDRIVE:
+I, [2020-03-13T22:57:04.612297 #6931]  INFO -- py3-201923-windows-10-1803:                C:\Users\vagrant\OneDrive
+I, [2020-03-13T22:57:04.612744 #6931]  INFO -- py3-201923-windows-10-1803:            OS:
+I, [2020-03-13T22:57:04.613204 #6931]  INFO -- py3-201923-windows-10-1803:                Windows_NT
+I, [2020-03-13T22:57:04.613692 #6931]  INFO -- py3-201923-windows-10-1803:            PATH:
+I, [2020-03-13T22:57:04.614370 #6931]  INFO -- py3-201923-windows-10-1803:                C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\salt;C:\Users\vagrant\AppData\Local\Microsoft\WindowsApps;C:\salt\bin\lib\site-packages\pywin32_system32;C:\salt\bin\lib\site-packages\pywin32_system32
+I, [2020-03-13T22:57:04.614970 #6931]  INFO -- py3-201923-windows-10-1803:            PATHEXT:
+I, [2020-03-13T22:57:04.615583 #6931]  INFO -- py3-201923-windows-10-1803:                .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL
+I, [2020-03-13T22:57:04.616321 #6931]  INFO -- py3-201923-windows-10-1803:            PROCESSOR_ARCHITECTURE:
+I, [2020-03-13T22:57:04.617017 #6931]  INFO -- py3-201923-windows-10-1803:                AMD64
+I, [2020-03-13T22:57:04.617674 #6931]  INFO -- py3-201923-windows-10-1803:            PROCESSOR_IDENTIFIER:
+I, [2020-03-13T22:57:04.618256 #6931]  INFO -- py3-201923-windows-10-1803:                Intel64 Family 6 Model 142 Stepping 12, GenuineIntel
+I, [2020-03-13T22:57:04.618781 #6931]  INFO -- py3-201923-windows-10-1803:            PROCESSOR_LEVEL:
+I, [2020-03-13T22:57:04.619286 #6931]  INFO -- py3-201923-windows-10-1803:                6
+I, [2020-03-13T22:57:04.619820 #6931]  INFO -- py3-201923-windows-10-1803:            PROCESSOR_REVISION:
+I, [2020-03-13T22:57:04.620322 #6931]  INFO -- py3-201923-windows-10-1803:                8e0c
+I, [2020-03-13T22:57:04.620820 #6931]  INFO -- py3-201923-windows-10-1803:            PROGRAMDATA:
+I, [2020-03-13T22:57:04.621301 #6931]  INFO -- py3-201923-windows-10-1803:                C:\ProgramData
+I, [2020-03-13T22:57:04.621864 #6931]  INFO -- py3-201923-windows-10-1803:            PROGRAMFILES:
+I, [2020-03-13T22:57:04.622350 #6931]  INFO -- py3-201923-windows-10-1803:                C:\Program Files
+I, [2020-03-13T22:57:04.622923 #6931]  INFO -- py3-201923-windows-10-1803:            PROGRAMFILES(X86):
+I, [2020-03-13T22:57:04.623588 #6931]  INFO -- py3-201923-windows-10-1803:                C:\Program Files (x86)
+I, [2020-03-13T22:57:04.624171 #6931]  INFO -- py3-201923-windows-10-1803:            PROGRAMW6432:
+I, [2020-03-13T22:57:04.624752 #6931]  INFO -- py3-201923-windows-10-1803:                C:\Program Files
+I, [2020-03-13T22:57:04.625343 #6931]  INFO -- py3-201923-windows-10-1803:            PROMPT:
+I, [2020-03-13T22:57:04.625991 #6931]  INFO -- py3-201923-windows-10-1803:                $P$G
+I, [2020-03-13T22:57:04.626607 #6931]  INFO -- py3-201923-windows-10-1803:            PSMODULEPATH:
+I, [2020-03-13T22:57:04.627333 #6931]  INFO -- py3-201923-windows-10-1803:                C:\Users\vagrant\Documents\WindowsPowerShell\Modules;C:\Program Files\WindowsPowerShell\Modules;C:\Windows\system32\WindowsPowerShell\v1.0\Modules
+I, [2020-03-13T22:57:04.628003 #6931]  INFO -- py3-201923-windows-10-1803:            PUBLIC:
+I, [2020-03-13T22:57:04.628626 #6931]  INFO -- py3-201923-windows-10-1803:                C:\Users\Public
+I, [2020-03-13T22:57:04.629266 #6931]  INFO -- py3-201923-windows-10-1803:            PYTHON:
+I, [2020-03-13T22:57:04.629903 #6931]  INFO -- py3-201923-windows-10-1803:                C:\salt\bin\python.exe
+I, [2020-03-13T22:57:04.630521 #6931]  INFO -- py3-201923-windows-10-1803:            SALTDIR:
+I, [2020-03-13T22:57:04.631175 #6931]  INFO -- py3-201923-windows-10-1803:                C:\salt
+I, [2020-03-13T22:57:04.631788 #6931]  INFO -- py3-201923-windows-10-1803:            SCRIPT:
+I, [2020-03-13T22:57:04.632659 #6931]  INFO -- py3-201923-windows-10-1803:                C:\salt\bin\Scripts\salt-call
+I, [2020-03-13T22:57:04.633445 #6931]  INFO -- py3-201923-windows-10-1803:            SYSTEMDRIVE:
+I, [2020-03-13T22:57:04.635583 #6931]  INFO -- py3-201923-windows-10-1803:                C:
+I, [2020-03-13T22:57:04.636375 #6931]  INFO -- py3-201923-windows-10-1803:            SYSTEMROOT:
+I, [2020-03-13T22:57:04.637074 #6931]  INFO -- py3-201923-windows-10-1803:                C:\Windows
+I, [2020-03-13T22:57:04.637563 #6931]  INFO -- py3-201923-windows-10-1803:            TEMP:
+I, [2020-03-13T22:57:04.638040 #6931]  INFO -- py3-201923-windows-10-1803:                C:\Users\vagrant\AppData\Local\Temp
+I, [2020-03-13T22:57:04.638490 #6931]  INFO -- py3-201923-windows-10-1803:            TMP:
+I, [2020-03-13T22:57:04.638956 #6931]  INFO -- py3-201923-windows-10-1803:                C:\Users\vagrant\AppData\Local\Temp
+I, [2020-03-13T22:57:04.639381 #6931]  INFO -- py3-201923-windows-10-1803:            USERDOMAIN:
+I, [2020-03-13T22:57:04.639923 #6931]  INFO -- py3-201923-windows-10-1803:                VAGRANT-10
+I, [2020-03-13T22:57:04.640386 #6931]  INFO -- py3-201923-windows-10-1803:            USERDOMAIN_ROAMINGPROFILE:
+I, [2020-03-13T22:57:04.640943 #6931]  INFO -- py3-201923-windows-10-1803:                VAGRANT-10
+I, [2020-03-13T22:57:04.641474 #6931]  INFO -- py3-201923-windows-10-1803:            USERNAME:
+I, [2020-03-13T22:57:04.641912 #6931]  INFO -- py3-201923-windows-10-1803:                vagrant
+I, [2020-03-13T22:57:04.642481 #6931]  INFO -- py3-201923-windows-10-1803:            USERPROFILE:
+I, [2020-03-13T22:57:04.643084 #6931]  INFO -- py3-201923-windows-10-1803:                C:\Users\vagrant
+I, [2020-03-13T22:57:04.643682 #6931]  INFO -- py3-201923-windows-10-1803:            WINDIR:
+I, [2020-03-13T22:57:04.644289 #6931]  INFO -- py3-201923-windows-10-1803:                C:\Windows
+I, [2020-03-13T22:57:04.645184 #6931]  INFO -- py3-201923-windows-10-1803: ----------
+I, [2020-03-13T22:57:04.646332 #6931]  INFO -- py3-201923-windows-10-1803:    ID: windows.module.user.current
+I, [2020-03-13T22:57:04.647097 #6931]  INFO -- py3-201923-windows-10-1803:     Function: module.run
+I, [2020-03-13T22:57:04.647692 #6931]  INFO -- py3-201923-windows-10-1803:       Result: True
+I, [2020-03-13T22:57:04.648288 #6931]  INFO -- py3-201923-windows-10-1803:      Comment: user.current: VAGRANT-10\vagrant
+I, [2020-03-13T22:57:04.648894 #6931]  INFO -- py3-201923-windows-10-1803:      Started: 19:55:16.476293
+I, [2020-03-13T22:57:04.649537 #6931]  INFO -- py3-201923-windows-10-1803:     Duration: 15.597 ms
+I, [2020-03-13T22:57:04.650259 #6931]  INFO -- py3-201923-windows-10-1803:      Changes:   
+I, [2020-03-13T22:57:04.650897 #6931]  INFO -- py3-201923-windows-10-1803:        ----------
+I, [2020-03-13T22:57:04.651492 #6931]  INFO -- py3-201923-windows-10-1803:        user.current:
+I, [2020-03-13T22:57:04.652125 #6931]  INFO -- py3-201923-windows-10-1803:            VAGRANT-10\vagrant
+I, [2020-03-13T22:57:04.652698 #6931]  INFO -- py3-201923-windows-10-1803: ----------
+I, [2020-03-13T22:57:04.653171 #6931]  INFO -- py3-201923-windows-10-1803:    ID: windows.module.status.uptime
+I, [2020-03-13T22:57:04.653641 #6931]  INFO -- py3-201923-windows-10-1803:     Function: module.run
+I, [2020-03-13T22:57:04.654118 #6931]  INFO -- py3-201923-windows-10-1803:       Result: True
+I, [2020-03-13T22:57:04.654657 #6931]  INFO -- py3-201923-windows-10-1803:      Comment: status.uptime: 0:01:14.523624
+I, [2020-03-13T22:57:04.655090 #6931]  INFO -- py3-201923-windows-10-1803:      Started: 19:55:16.491890
+I, [2020-03-13T22:57:04.655529 #6931]  INFO -- py3-201923-windows-10-1803:     Duration: 31.734 ms
+I, [2020-03-13T22:57:04.655969 #6931]  INFO -- py3-201923-windows-10-1803:      Changes:   
+I, [2020-03-13T22:57:04.656478 #6931]  INFO -- py3-201923-windows-10-1803:        ----------
+I, [2020-03-13T22:57:04.657044 #6931]  INFO -- py3-201923-windows-10-1803:        status.uptime:
+I, [2020-03-13T22:57:04.657532 #6931]  INFO -- py3-201923-windows-10-1803:            0:01:14.523624
+I, [2020-03-13T22:57:04.657946 #6931]  INFO -- py3-201923-windows-10-1803: ----------
+I, [2020-03-13T22:57:04.658521 #6931]  INFO -- py3-201923-windows-10-1803:    ID: windows.system.packages.appx.provisioned.uninstalled.Microsoft.MicrosoftSolitaireCollection
+I, [2020-03-13T22:57:04.658969 #6931]  INFO -- py3-201923-windows-10-1803:     Function: cmd.run
+I, [2020-03-13T22:57:04.659473 #6931]  INFO -- py3-201923-windows-10-1803:  Name: Get-AppxPackage Microsoft.MicrosoftSolitaireCollection | Remove-AppxPackage
+I, [2020-03-13T22:57:04.659902 #6931]  INFO -- py3-201923-windows-10-1803:       Result: True
+I, [2020-03-13T22:57:04.660456 #6931]  INFO -- py3-201923-windows-10-1803:      Comment: Command "Get-AppxPackage Microsoft.MicrosoftSolitaireCollection | Remove-AppxPackage" run
+I, [2020-03-13T22:57:04.661028 #6931]  INFO -- py3-201923-windows-10-1803:      Started: 19:55:16.539246
+I, [2020-03-13T22:57:04.661499 #6931]  INFO -- py3-201923-windows-10-1803:     Duration: 1828.25 ms
+I, [2020-03-13T22:57:04.661934 #6931]  INFO -- py3-201923-windows-10-1803:      Changes:   
+I, [2020-03-13T22:57:04.662503 #6931]  INFO -- py3-201923-windows-10-1803:        ----------
+I, [2020-03-13T22:57:04.662971 #6931]  INFO -- py3-201923-windows-10-1803:        pid:
+I, [2020-03-13T22:57:04.663472 #6931]  INFO -- py3-201923-windows-10-1803:            6480
+I, [2020-03-13T22:57:04.663991 #6931]  INFO -- py3-201923-windows-10-1803:        retcode:
+I, [2020-03-13T22:57:04.664572 #6931]  INFO -- py3-201923-windows-10-1803:            0
+I, [2020-03-13T22:57:04.665149 #6931]  INFO -- py3-201923-windows-10-1803:        stderr:
+I, [2020-03-13T22:57:04.665595 #6931]  INFO -- py3-201923-windows-10-1803:        stdout:
+I, [2020-03-13T22:57:04.666154 #6931]  INFO -- py3-201923-windows-10-1803: ----------
+I, [2020-03-13T22:57:04.666714 #6931]  INFO -- py3-201923-windows-10-1803:    ID: windows.system.packages.appx.provisioned.uninstalled.Microsoft.Wallet
+I, [2020-03-13T22:57:04.667231 #6931]  INFO -- py3-201923-windows-10-1803:     Function: cmd.run
+I, [2020-03-13T22:57:04.667755 #6931]  INFO -- py3-201923-windows-10-1803:  Name: Get-AppxPackage Microsoft.Wallet | Remove-AppxPackage
+I, [2020-03-13T22:57:04.668419 #6931]  INFO -- py3-201923-windows-10-1803:       Result: True
+I, [2020-03-13T22:57:04.669000 #6931]  INFO -- py3-201923-windows-10-1803:      Comment: Command "Get-AppxPackage Microsoft.Wallet | Remove-AppxPackage" run
+I, [2020-03-13T22:57:04.669458 #6931]  INFO -- py3-201923-windows-10-1803:      Started: 19:55:18.367496
+I, [2020-03-13T22:57:04.670095 #6931]  INFO -- py3-201923-windows-10-1803:     Duration: 1327.469 ms
+I, [2020-03-13T22:57:04.670752 #6931]  INFO -- py3-201923-windows-10-1803:      Changes:   
+I, [2020-03-13T22:57:04.671256 #6931]  INFO -- py3-201923-windows-10-1803:        ----------
+I, [2020-03-13T22:57:04.671828 #6931]  INFO -- py3-201923-windows-10-1803:        pid:
+I, [2020-03-13T22:57:04.672303 #6931]  INFO -- py3-201923-windows-10-1803:            6412
+I, [2020-03-13T22:57:04.672778 #6931]  INFO -- py3-201923-windows-10-1803:        retcode:
+I, [2020-03-13T22:57:04.673249 #6931]  INFO -- py3-201923-windows-10-1803:            0
+I, [2020-03-13T22:57:04.673774 #6931]  INFO -- py3-201923-windows-10-1803:        stderr:
+I, [2020-03-13T22:57:04.674278 #6931]  INFO -- py3-201923-windows-10-1803:        stdout:
+I, [2020-03-13T22:57:04.674762 #6931]  INFO -- py3-201923-windows-10-1803: ----------
+I, [2020-03-13T22:57:04.675370 #6931]  INFO -- py3-201923-windows-10-1803:    ID: windows.system.packages.appx.provisioned.uninstalled.Microsoft.ZuneMusic
+I, [2020-03-13T22:57:04.675922 #6931]  INFO -- py3-201923-windows-10-1803:     Function: cmd.run
+I, [2020-03-13T22:57:04.676388 #6931]  INFO -- py3-201923-windows-10-1803:  Name: Get-AppxPackage Microsoft.ZuneMusic | Remove-AppxPackage
+I, [2020-03-13T22:57:04.676836 #6931]  INFO -- py3-201923-windows-10-1803:       Result: True
+I, [2020-03-13T22:57:04.677289 #6931]  INFO -- py3-201923-windows-10-1803:      Comment: Command "Get-AppxPackage Microsoft.ZuneMusic | Remove-AppxPackage" run
+I, [2020-03-13T22:57:04.677718 #6931]  INFO -- py3-201923-windows-10-1803:      Started: 19:55:19.694965
+I, [2020-03-13T22:57:04.678202 #6931]  INFO -- py3-201923-windows-10-1803:     Duration: 1227.796 ms
+I, [2020-03-13T22:57:04.678811 #6931]  INFO -- py3-201923-windows-10-1803:      Changes:   
+I, [2020-03-13T22:57:04.679368 #6931]  INFO -- py3-201923-windows-10-1803:        ----------
+I, [2020-03-13T22:57:04.679997 #6931]  INFO -- py3-201923-windows-10-1803:        pid:
+I, [2020-03-13T22:57:04.680558 #6931]  INFO -- py3-201923-windows-10-1803:            1304
+I, [2020-03-13T22:57:04.681067 #6931]  INFO -- py3-201923-windows-10-1803:        retcode:
+I, [2020-03-13T22:57:04.681519 #6931]  INFO -- py3-201923-windows-10-1803:            0
+I, [2020-03-13T22:57:04.681984 #6931]  INFO -- py3-201923-windows-10-1803:        stderr:
+I, [2020-03-13T22:57:04.682444 #6931]  INFO -- py3-201923-windows-10-1803:        stdout:
+I, [2020-03-13T22:57:04.682875 #6931]  INFO -- py3-201923-windows-10-1803: ----------
+I, [2020-03-13T22:57:04.683311 #6931]  INFO -- py3-201923-windows-10-1803:    ID: windows.system.packages.appx.provisioned.uninstalled.Microsoft.ZuneVideo
+I, [2020-03-13T22:57:04.683780 #6931]  INFO -- py3-201923-windows-10-1803:     Function: cmd.run
+I, [2020-03-13T22:57:04.684319 #6931]  INFO -- py3-201923-windows-10-1803:  Name: Get-AppxPackage Microsoft.ZuneVideo | Remove-AppxPackage
+I, [2020-03-13T22:57:04.684961 #6931]  INFO -- py3-201923-windows-10-1803:       Result: True
+I, [2020-03-13T22:57:04.685677 #6931]  INFO -- py3-201923-windows-10-1803:      Comment: Command "Get-AppxPackage Microsoft.ZuneVideo | Remove-AppxPackage" run
+I, [2020-03-13T22:57:04.686418 #6931]  INFO -- py3-201923-windows-10-1803:      Started: 19:55:20.922761
+I, [2020-03-13T22:57:04.687208 #6931]  INFO -- py3-201923-windows-10-1803:     Duration: 1303.039 ms
+I, [2020-03-13T22:57:04.687870 #6931]  INFO -- py3-201923-windows-10-1803:      Changes:   
+I, [2020-03-13T22:57:04.688472 #6931]  INFO -- py3-201923-windows-10-1803:        ----------
+I, [2020-03-13T22:57:04.689043 #6931]  INFO -- py3-201923-windows-10-1803:        pid:
+I, [2020-03-13T22:57:04.689677 #6931]  INFO -- py3-201923-windows-10-1803:            5132
+I, [2020-03-13T22:57:04.690303 #6931]  INFO -- py3-201923-windows-10-1803:        retcode:
+I, [2020-03-13T22:57:04.699405 #6931]  INFO -- py3-201923-windows-10-1803:            0
+I, [2020-03-13T22:57:04.699995 #6931]  INFO -- py3-201923-windows-10-1803:        stderr:
+I, [2020-03-13T22:57:04.700550 #6931]  INFO -- py3-201923-windows-10-1803:        stdout:
+I, [2020-03-13T22:57:04.701177 #6931]  INFO -- py3-201923-windows-10-1803:   Name: Get-AppxPackage Microsoft.MixedReality.Portal | Remove-AppxPackage - Function: cmd.run - Result: Clean Started: - 19:55:22.225800 Duration: 433.846 ms
+I, [2020-03-13T22:57:04.701790 #6931]  INFO -- py3-201923-windows-10-1803: ----------
+I, [2020-03-13T22:57:04.702275 #6931]  INFO -- py3-201923-windows-10-1803:    ID: windows.system.packages.powershell.framework.v4_5.tls1_2.systemdefaulttlsversions_32
+I, [2020-03-13T22:57:04.702745 #6931]  INFO -- py3-201923-windows-10-1803:     Function: reg.present
+I, [2020-03-13T22:57:04.703378 #6931]  INFO -- py3-201923-windows-10-1803:  Name: HKLM\SOFTWARE\Microsoft\.NETFramework\v4.0.30319
+I, [2020-03-13T22:57:04.704029 #6931]  INFO -- py3-201923-windows-10-1803:       Result: True
+I, [2020-03-13T22:57:04.704592 #6931]  INFO -- py3-201923-windows-10-1803:      Comment: Added HKLM\SOFTWARE\Microsoft\.NETFramework\v4.0.30319 to HKLM\SOFTWARE\Microsoft\.NETFramework\v4.0.30319
+I, [2020-03-13T22:57:04.705089 #6931]  INFO -- py3-201923-windows-10-1803:      Started: 19:55:22.659646
+I, [2020-03-13T22:57:04.705601 #6931]  INFO -- py3-201923-windows-10-1803:     Duration: 8102.455 ms
+I, [2020-03-13T22:57:04.706156 #6931]  INFO -- py3-201923-windows-10-1803:      Changes:   
+I, [2020-03-13T22:57:04.706675 #6931]  INFO -- py3-201923-windows-10-1803:        ----------
+I, [2020-03-13T22:57:04.707245 #6931]  INFO -- py3-201923-windows-10-1803:        reg:
+I, [2020-03-13T22:57:04.707733 #6931]  INFO -- py3-201923-windows-10-1803:            ----------
+I, [2020-03-13T22:57:04.708217 #6931]  INFO -- py3-201923-windows-10-1803:            Added:
+I, [2020-03-13T22:57:04.708680 #6931]  INFO -- py3-201923-windows-10-1803:                ----------
+I, [2020-03-13T22:57:04.709105 #6931]  INFO -- py3-201923-windows-10-1803:                Entry:
+I, [2020-03-13T22:57:04.709554 #6931]  INFO -- py3-201923-windows-10-1803:                    SystemDefaultTlsVersions
+I, [2020-03-13T22:57:04.710015 #6931]  INFO -- py3-201923-windows-10-1803:                Inheritance:
+I, [2020-03-13T22:57:04.710523 #6931]  INFO -- py3-201923-windows-10-1803:                    True
+I, [2020-03-13T22:57:04.711048 #6931]  INFO -- py3-201923-windows-10-1803:                Key:
+I, [2020-03-13T22:57:04.711480 #6931]  INFO -- py3-201923-windows-10-1803:                    HKLM\SOFTWARE\Microsoft\.NETFramework\v4.0.30319
+I, [2020-03-13T22:57:04.711993 #6931]  INFO -- py3-201923-windows-10-1803:                Owner:
+I, [2020-03-13T22:57:04.712491 #6931]  INFO -- py3-201923-windows-10-1803:                    None
+I, [2020-03-13T22:57:04.712918 #6931]  INFO -- py3-201923-windows-10-1803:                Perms:
+I, [2020-03-13T22:57:04.713463 #6931]  INFO -- py3-201923-windows-10-1803:                    ----------
+I, [2020-03-13T22:57:04.714049 #6931]  INFO -- py3-201923-windows-10-1803:                    Deny:
+I, [2020-03-13T22:57:04.714641 #6931]  INFO -- py3-201923-windows-10-1803:                        None
+I, [2020-03-13T22:57:04.715246 #6931]  INFO -- py3-201923-windows-10-1803:                    Grant:
+I, [2020-03-13T22:57:04.715848 #6931]  INFO -- py3-201923-windows-10-1803:                        None
+I, [2020-03-13T22:57:04.716437 #6931]  INFO -- py3-201923-windows-10-1803:                Value:
+I, [2020-03-13T22:57:04.717012 #6931]  INFO -- py3-201923-windows-10-1803:                    1
+I, [2020-03-13T22:57:04.717569 #6931]  INFO -- py3-201923-windows-10-1803: ----------
+I, [2020-03-13T22:57:04.718167 #6931]  INFO -- py3-201923-windows-10-1803:    ID: windows.system.packages.powershell.framework.v4_5.tls1_2.systemdefaulttlsversions_64
+I, [2020-03-13T22:57:04.718750 #6931]  INFO -- py3-201923-windows-10-1803:     Function: reg.present
+I, [2020-03-13T22:57:04.719322 #6931]  INFO -- py3-201923-windows-10-1803:  Name: HKLM\SOFTWARE\Microsoft\.NETFramework\v4.0.30319
+I, [2020-03-13T22:57:04.719892 #6931]  INFO -- py3-201923-windows-10-1803:       Result: True
+I, [2020-03-13T22:57:04.720632 #6931]  INFO -- py3-201923-windows-10-1803:      Comment: Added HKLM\SOFTWARE\Microsoft\.NETFramework\v4.0.30319 to HKLM\SOFTWARE\Microsoft\.NETFramework\v4.0.30319
+I, [2020-03-13T22:57:04.721242 #6931]  INFO -- py3-201923-windows-10-1803:      Started: 19:55:30.762101
+I, [2020-03-13T22:57:04.721851 #6931]  INFO -- py3-201923-windows-10-1803:     Duration: 190.354 ms
+I, [2020-03-13T22:57:04.722388 #6931]  INFO -- py3-201923-windows-10-1803:      Changes:   
+I, [2020-03-13T22:57:04.722828 #6931]  INFO -- py3-201923-windows-10-1803:        ----------
+I, [2020-03-13T22:57:04.723280 #6931]  INFO -- py3-201923-windows-10-1803:        reg:
+I, [2020-03-13T22:57:04.723684 #6931]  INFO -- py3-201923-windows-10-1803:            ----------
+I, [2020-03-13T22:57:04.724176 #6931]  INFO -- py3-201923-windows-10-1803:            Added:
+I, [2020-03-13T22:57:04.724631 #6931]  INFO -- py3-201923-windows-10-1803:                ----------
+I, [2020-03-13T22:57:04.725116 #6931]  INFO -- py3-201923-windows-10-1803:                Entry:
+I, [2020-03-13T22:57:04.725605 #6931]  INFO -- py3-201923-windows-10-1803:                    SystemDefaultTlsVersions
+I, [2020-03-13T22:57:04.726124 #6931]  INFO -- py3-201923-windows-10-1803:                Inheritance:
+I, [2020-03-13T22:57:04.727493 #6931]  INFO -- py3-201923-windows-10-1803:                    True
+I, [2020-03-13T22:57:04.728040 #6931]  INFO -- py3-201923-windows-10-1803:                Key:
+I, [2020-03-13T22:57:04.728475 #6931]  INFO -- py3-201923-windows-10-1803:                    HKLM\SOFTWARE\Microsoft\.NETFramework\v4.0.30319
+I, [2020-03-13T22:57:04.728881 #6931]  INFO -- py3-201923-windows-10-1803:                Owner:
+I, [2020-03-13T22:57:04.729368 #6931]  INFO -- py3-201923-windows-10-1803:                    None
+I, [2020-03-13T22:57:04.729786 #6931]  INFO -- py3-201923-windows-10-1803:                Perms:
+I, [2020-03-13T22:57:04.730348 #6931]  INFO -- py3-201923-windows-10-1803:                    ----------
+I, [2020-03-13T22:57:04.730787 #6931]  INFO -- py3-201923-windows-10-1803:                    Deny:
+I, [2020-03-13T22:57:04.731191 #6931]  INFO -- py3-201923-windows-10-1803:                        None
+I, [2020-03-13T22:57:04.731653 #6931]  INFO -- py3-201923-windows-10-1803:                    Grant:
+I, [2020-03-13T22:57:04.732067 #6931]  INFO -- py3-201923-windows-10-1803:                        None
+I, [2020-03-13T22:57:04.732492 #6931]  INFO -- py3-201923-windows-10-1803:                Value:
+I, [2020-03-13T22:57:04.732899 #6931]  INFO -- py3-201923-windows-10-1803:                    1
+I, [2020-03-13T22:57:04.733284 #6931]  INFO -- py3-201923-windows-10-1803: ----------
+I, [2020-03-13T22:57:04.733800 #6931]  INFO -- py3-201923-windows-10-1803:    ID: manually.update_git_repo-ng
+I, [2020-03-13T22:57:04.734209 #6931]  INFO -- py3-201923-windows-10-1803:     Function: archive.extracted
+I, [2020-03-13T22:57:04.734696 #6931]  INFO -- py3-201923-windows-10-1803:  Name: C:\Users\vagrant\AppData\Local\Temp\kitchen\srv\salt\win\repo-ng
+I, [2020-03-13T22:57:04.735207 #6931]  INFO -- py3-201923-windows-10-1803:       Result: True
+I, [2020-03-13T22:57:04.735770 #6931]  INFO -- py3-201923-windows-10-1803:      Comment: https://github.com/saltstack/salt-winrepo-ng/archive/master.zip extracted to C:\Users\vagrant\AppData\Local\Temp\kitchen\srv\salt\win\repo-ng\, due to absence of one or more files/dirs
+I, [2020-03-13T22:57:04.736267 #6931]  INFO -- py3-201923-windows-10-1803:      Started: 19:55:30.952455
+I, [2020-03-13T22:57:04.736813 #6931]  INFO -- py3-201923-windows-10-1803:     Duration: 761.848 ms
+I, [2020-03-13T22:57:04.737338 #6931]  INFO -- py3-201923-windows-10-1803:      Changes:   
+I, [2020-03-13T22:57:04.737816 #6931]  INFO -- py3-201923-windows-10-1803:        ----------
+I, [2020-03-13T22:57:04.738271 #6931]  INFO -- py3-201923-windows-10-1803:        directories_created:
+I, [2020-03-13T22:57:04.738792 #6931]  INFO -- py3-201923-windows-10-1803:            - C:\Users\vagrant\AppData\Local\Temp\kitchen\srv\salt\win\repo-ng\
+I, [2020-03-13T22:57:04.739252 #6931]  INFO -- py3-201923-windows-10-1803:        extracted_files:
+I, [2020-03-13T22:57:04.739780 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/
+I, [2020-03-13T22:57:04.740446 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/.gitignore
+I, [2020-03-13T22:57:04.740963 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/.travis.yml
+I, [2020-03-13T22:57:04.741420 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/.travis/
+I, [2020-03-13T22:57:04.741812 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/.travis/requirements.txt
+I, [2020-03-13T22:57:04.742235 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/.travis/tests.py
+I, [2020-03-13T22:57:04.742683 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/7zip.sls
+I, [2020-03-13T22:57:04.743263 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/LICENSE
+I, [2020-03-13T22:57:04.743741 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/README.md
+I, [2020-03-13T22:57:04.744316 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/_config.yml
+I, [2020-03-13T22:57:04.744815 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/activeperl_x64.sls
+I, [2020-03-13T22:57:04.745353 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/activeperl_x86.sls
+I, [2020-03-13T22:57:04.745857 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/adobeair.sls
+I, [2020-03-13T22:57:04.746280 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/adobereader-dc-classic.sls
+I, [2020-03-13T22:57:04.746700 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/adobereader-xi.sls
+I, [2020-03-13T22:57:04.747198 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/adobereader.sls
+I, [2020-03-13T22:57:04.747689 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/adobeshockwaveplayer.sls
+I, [2020-03-13T22:57:04.748183 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/adv-ip-scanner.sls
+I, [2020-03-13T22:57:04.748779 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/adv-port-scanner.sls
+I, [2020-03-13T22:57:04.749381 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/advancedlogging.sls
+I, [2020-03-13T22:57:04.749972 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/anydesk-msi.sls
+I, [2020-03-13T22:57:04.750547 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/anydesk.sls
+I, [2020-03-13T22:57:04.751131 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/applicationrequestrouting.sls
+I, [2020-03-13T22:57:04.751704 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/aspnet-mvc1.sls
+I, [2020-03-13T22:57:04.752309 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/atom.sls
+I, [2020-03-13T22:57:04.752902 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/audacity.sls
+I, [2020-03-13T22:57:04.753388 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/auditbeat/
+I, [2020-03-13T22:57:04.754006 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/auditbeat/init.sls
+I, [2020-03-13T22:57:04.754510 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/auditbeat/install.cmd
+I, [2020-03-13T22:57:04.755005 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/auditbeat/install.ps1
+I, [2020-03-13T22:57:04.755513 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/auditbeat/remove.cmd
+I, [2020-03-13T22:57:04.756116 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/autohotkey.sls
+I, [2020-03-13T22:57:04.756725 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/autoit.sls
+I, [2020-03-13T22:57:04.757294 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/autopsy.sls
+I, [2020-03-13T22:57:04.758053 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/awscli.sls
+I, [2020-03-13T22:57:04.758709 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/azuredatastudio.sls
+I, [2020-03-13T22:57:04.759310 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/bandizip.sls
+I, [2020-03-13T22:57:04.759905 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/belarc-advisor.sls
+I, [2020-03-13T22:57:04.760481 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/bginfo4x.sls
+I, [2020-03-13T22:57:04.760971 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/bitnami-nginxstack.sls
+I, [2020-03-13T22:57:04.761418 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/bitvise.sls
+I, [2020-03-13T22:57:04.761834 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/blender.sls
+I, [2020-03-13T22:57:04.762209 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/bootracer.sls
+I, [2020-03-13T22:57:04.762595 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/bulk_extractor.sls
+I, [2020-03-13T22:57:04.763057 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/bulkrenameutility.sls
+I, [2020-03-13T22:57:04.763548 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ccleaner-slim.sls
+I, [2020-03-13T22:57:04.763996 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ccleaner.sls
+I, [2020-03-13T22:57:04.764388 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/cdburnerxp.sls
+I, [2020-03-13T22:57:04.764747 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/cdroller.sls
+I, [2020-03-13T22:57:04.765107 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/check-mk-agent-msi.sls
+I, [2020-03-13T22:57:04.765507 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/check-mk-agent.sls
+I, [2020-03-13T22:57:04.766004 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/chocolatey/
+I, [2020-03-13T22:57:04.766464 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/chocolatey/init.sls
+I, [2020-03-13T22:57:04.766920 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/chocolatey/install.cmd
+I, [2020-03-13T22:57:04.767516 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/chocolatey/uninstall.cmd
+I, [2020-03-13T22:57:04.768006 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/chocolatey/uninstall.ps1
+I, [2020-03-13T22:57:04.768521 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/chrome-rdp.sls
+I, [2020-03-13T22:57:04.768972 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/chrome.sls
+I, [2020-03-13T22:57:04.769403 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/clamav.sls
+I, [2020-03-13T22:57:04.769810 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/clamwin.sls
+I, [2020-03-13T22:57:04.770198 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/classicshell.sls
+I, [2020-03-13T22:57:04.770599 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/clink.sls
+I, [2020-03-13T22:57:04.771107 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/conemu.sls
+I, [2020-03-13T22:57:04.771689 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/cpu-z.sls
+I, [2020-03-13T22:57:04.772282 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/curl.sls
+I, [2020-03-13T22:57:04.772848 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/cyberduck-cli.sls
+I, [2020-03-13T22:57:04.773372 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/cyberduck-msi.sls
+I, [2020-03-13T22:57:04.773861 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/cyberduck.sls
+I, [2020-03-13T22:57:04.774338 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/defraggler.sls
+I, [2020-03-13T22:57:04.774802 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/docs/
+I, [2020-03-13T22:57:04.775236 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/docs/ReadMe.md
+I, [2020-03-13T22:57:04.775701 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/dotnet.sls
+I, [2020-03-13T22:57:04.776139 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/dropbox.sls
+I, [2020-03-13T22:57:04.776513 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/duplicati.sls
+I, [2020-03-13T22:57:04.776888 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/dvdstyler.sls
+I, [2020-03-13T22:57:04.777393 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/echo-desktop.sls
+I, [2020-03-13T22:57:04.777896 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/eea.sls
+I, [2020-03-13T22:57:04.778425 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/emet.sls
+I, [2020-03-13T22:57:04.778833 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/emsisoft-anti-malware.sls
+I, [2020-03-13T22:57:04.779222 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/eraser.sls
+I, [2020-03-13T22:57:04.779606 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/erlang/
+I, [2020-03-13T22:57:04.780025 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/erlang/init.sls
+I, [2020-03-13T22:57:04.780392 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/erlang/install.cmd
+I, [2020-03-13T22:57:04.780767 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/evernote.sls
+I, [2020-03-13T22:57:04.781249 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/fiddler.sls
+I, [2020-03-13T22:57:04.781731 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/filebeat/
+I, [2020-03-13T22:57:04.782181 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/filebeat/init.sls
+I, [2020-03-13T22:57:04.782576 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/filebeat/install.cmd
+I, [2020-03-13T22:57:04.783063 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/filebeat/install.ps1
+I, [2020-03-13T22:57:04.783434 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/filebeat/remove.cmd
+I, [2020-03-13T22:57:04.783867 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/filehippo-app-manager.sls
+I, [2020-03-13T22:57:04.784318 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/filezilla.sls
+I, [2020-03-13T22:57:04.784779 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/firefox-esr_x64.sls
+I, [2020-03-13T22:57:04.785227 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/firefox-esr_x86.sls
+I, [2020-03-13T22:57:04.785744 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/firefox_x64.sls
+I, [2020-03-13T22:57:04.786326 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/firefox_x86.sls
+I, [2020-03-13T22:57:04.786757 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/functionbeat/
+I, [2020-03-13T22:57:04.787173 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/functionbeat/init.sls
+I, [2020-03-13T22:57:04.787584 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/functionbeat/install.cmd
+I, [2020-03-13T22:57:04.788093 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/functionbeat/install.ps1
+I, [2020-03-13T22:57:04.788554 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/functionbeat/remove.cmd
+I, [2020-03-13T22:57:04.789136 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/gedit.sls
+I, [2020-03-13T22:57:04.789710 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/gimp.sls
+I, [2020-03-13T22:57:04.790310 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/git-extensions.sls
+I, [2020-03-13T22:57:04.790928 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/git.sls
+I, [2020-03-13T22:57:04.791548 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/glarysoft-absolute-uninstaller.sls
+I, [2020-03-13T22:57:04.792206 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/gnucash.sls
+I, [2020-03-13T22:57:04.792858 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/golang.sls
+I, [2020-03-13T22:57:04.793442 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/goodsync.sls
+I, [2020-03-13T22:57:04.794059 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/gow.sls
+I, [2020-03-13T22:57:04.794674 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/gpg4win-light.sls
+I, [2020-03-13T22:57:04.795349 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/gpg4win-vanilla.sls
+I, [2020-03-13T22:57:04.795988 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/gpg4win/
+I, [2020-03-13T22:57:04.796486 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/gpg4win/init.sls
+I, [2020-03-13T22:57:04.796907 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/gpg4win/silent.ini
+I, [2020-03-13T22:57:04.797317 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/graylog-collector-sidecar.sls
+I, [2020-03-13T22:57:04.797714 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/grepwin.sls
+I, [2020-03-13T22:57:04.798168 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/gvim.sls
+I, [2020-03-13T22:57:04.798701 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/handbrake.sls
+I, [2020-03-13T22:57:04.799232 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/heartbeat/
+I, [2020-03-13T22:57:04.799714 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/heartbeat/.remove.ps1.swp
+I, [2020-03-13T22:57:04.800117 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/heartbeat/init.sls
+I, [2020-03-13T22:57:04.800510 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/heartbeat/install.cmd
+I, [2020-03-13T22:57:04.800906 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/heartbeat/install.ps1
+I, [2020-03-13T22:57:04.801286 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/heartbeat/remove.cmd
+I, [2020-03-13T22:57:04.801690 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/hipchat.sls
+I, [2020-03-13T22:57:04.802101 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/hostsfileeditor.sls
+I, [2020-03-13T22:57:04.802638 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/hwinfo.sls
+I, [2020-03-13T22:57:04.803282 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ice.sls
+I, [2020-03-13T22:57:04.803927 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/icecast.sls
+I, [2020-03-13T22:57:04.804542 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/icloud.sls
+I, [2020-03-13T22:57:04.805156 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/iismediaservices.sls
+I, [2020-03-13T22:57:04.805744 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/influx-capacitor.sls
+I, [2020-03-13T22:57:04.806313 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/inkscape.sls
+I, [2020-03-13T22:57:04.806899 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/intellij-community.sls
+I, [2020-03-13T22:57:04.807479 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/intellij-ultimate.sls
+I, [2020-03-13T22:57:04.808175 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/internet-evidence-finder.sls
+I, [2020-03-13T22:57:04.808874 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/irfanview-plugins.sls
+I, [2020-03-13T22:57:04.809610 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/irfanview.sls
+I, [2020-03-13T22:57:04.810190 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/isapirewrite-lite.sls
+I, [2020-03-13T22:57:04.810707 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/itunes.sls
+I, [2020-03-13T22:57:04.811225 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/jdk8.sls
+I, [2020-03-13T22:57:04.811728 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/jre.sls
+I, [2020-03-13T22:57:04.812291 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/jre8.sls
+I, [2020-03-13T22:57:04.812843 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/jungledisk-server-management.sls
+I, [2020-03-13T22:57:04.813469 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/jungledisk-server.sls
+I, [2020-03-13T22:57:04.814085 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/jungledisk-workgroup.sls
+I, [2020-03-13T22:57:04.814710 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/kdiff3.sls
+I, [2020-03-13T22:57:04.815329 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/keepass-2x.sls
+I, [2020-03-13T22:57:04.815946 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/keepass.sls
+I, [2020-03-13T22:57:04.816581 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/lastpass.sls
+I, [2020-03-13T22:57:04.817195 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/lazarus.sls
+I, [2020-03-13T22:57:04.817813 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/libreoffice.sls
+I, [2020-03-13T22:57:04.818462 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/logparser.sls
+I, [2020-03-13T22:57:04.819120 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/maas360bootanalyzer.sls
+I, [2020-03-13T22:57:04.819768 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/malwarebytes.sls
+I, [2020-03-13T22:57:04.820409 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/mariadb.sls
+I, [2020-03-13T22:57:04.820944 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/mercurial.sls
+I, [2020-03-13T22:57:04.821370 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/messageanalyzer.sls
+I, [2020-03-13T22:57:04.821824 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/metricbeat/
+I, [2020-03-13T22:57:04.822247 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/metricbeat/.remove.ps1.swp
+I, [2020-03-13T22:57:04.822649 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/metricbeat/init.sls
+I, [2020-03-13T22:57:04.823110 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/metricbeat/install.cmd
+I, [2020-03-13T22:57:04.823630 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/metricbeat/install.ps1
+I, [2020-03-13T22:57:04.824140 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/metricbeat/remove.cmd
+I, [2020-03-13T22:57:04.824661 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/microsoft-build-tools.sls
+I, [2020-03-13T22:57:04.825213 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/mikogo.sls
+I, [2020-03-13T22:57:04.825762 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/miktex-basic.sls
+I, [2020-03-13T22:57:04.826257 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/mongodb.sls
+I, [2020-03-13T22:57:04.826778 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ms-mbsa.sls
+I, [2020-03-13T22:57:04.827328 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ms-vcpp-2005-atl-redist_x64.sls
+I, [2020-03-13T22:57:04.827868 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ms-vcpp-2005-atl-redist_x86.sls
+I, [2020-03-13T22:57:04.828338 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ms-vcpp-2005-redist_x64.sls
+I, [2020-03-13T22:57:04.828950 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ms-vcpp-2005-redist_x86.sls
+I, [2020-03-13T22:57:04.829605 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ms-vcpp-2005-sp1-mfc-redist_x64.sls
+I, [2020-03-13T22:57:04.830293 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ms-vcpp-2005-sp1-mfc-redist_x86.sls
+I, [2020-03-13T22:57:04.830920 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ms-vcpp-2005-sp1-redist_x64.sls
+I, [2020-03-13T22:57:04.839766 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ms-vcpp-2005-sp1-redist_x86.sls
+I, [2020-03-13T22:57:04.840535 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ms-vcpp-2008-redist_x64.sls
+I, [2020-03-13T22:57:04.841063 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ms-vcpp-2008-redist_x86.sls
+I, [2020-03-13T22:57:04.841540 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ms-vcpp-2008-sp1-atl-redist_x64.sls
+I, [2020-03-13T22:57:04.842126 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ms-vcpp-2008-sp1-atl-redist_x86.sls
+I, [2020-03-13T22:57:04.842726 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ms-vcpp-2008-sp1-mfc-redist_x64.sls
+I, [2020-03-13T22:57:04.843355 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ms-vcpp-2008-sp1-mfc-redist_x86.sls
+I, [2020-03-13T22:57:04.843947 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ms-vcpp-2010-sp1-mfc-redist_64.sls
+I, [2020-03-13T22:57:04.844594 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ms-vcpp-2010-sp1-mfc-redist_x86.sls
+I, [2020-03-13T22:57:04.845285 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ms-vcpp-2012-redist_x64.sls
+I, [2020-03-13T22:57:04.845932 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ms-vcpp-2012-redist_x86.sls
+I, [2020-03-13T22:57:04.846572 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ms-vcpp-2013-redist_x64.sls
+I, [2020-03-13T22:57:04.847261 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ms-vcpp-2013-redist_x86.sls
+I, [2020-03-13T22:57:04.847910 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ms-vcpp-2015-build-tools.sls
+I, [2020-03-13T22:57:04.848585 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ms-vcpp-2015-redist_x64.sls
+I, [2020-03-13T22:57:04.849267 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ms-vcpp-2015-redist_x86.sls
+I, [2020-03-13T22:57:04.849974 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ms-vcpp-2017-redist_x64.sls
+I, [2020-03-13T22:57:04.850614 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ms-vcpp-2017-redist_x86.sls
+I, [2020-03-13T22:57:04.851261 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/mucommander.sls
+I, [2020-03-13T22:57:04.851883 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/mysql-essential.sls
+I, [2020-03-13T22:57:04.852516 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/mysql-installer-community.sls
+I, [2020-03-13T22:57:04.853148 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/mysql-workbench.sls
+I, [2020-03-13T22:57:04.853777 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/never10.sls
+I, [2020-03-13T22:57:04.854413 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/newrelic-infra.sls
+I, [2020-03-13T22:57:04.855061 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/nextcloud-client.sls
+I, [2020-03-13T22:57:04.855713 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/nmap.sls
+I, [2020-03-13T22:57:04.856314 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/node.js-lts.sls
+I, [2020-03-13T22:57:04.856887 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/node.js.sls
+I, [2020-03-13T22:57:04.857456 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/nomacs.sls
+I, [2020-03-13T22:57:04.858002 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/npp.sls
+I, [2020-03-13T22:57:04.858515 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/nsclient.sls
+I, [2020-03-13T22:57:04.859049 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/nsis.sls
+I, [2020-03-13T22:57:04.859638 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ntp.sls
+I, [2020-03-13T22:57:04.860196 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/nunit-console.sls
+I, [2020-03-13T22:57:04.860784 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/nxlog.sls
+I, [2020-03-13T22:57:04.861373 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/octopus-tentacle.sls
+I, [2020-03-13T22:57:04.861971 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/openlp.sls
+I, [2020-03-13T22:57:04.862537 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/openoffice.sls
+I, [2020-03-13T22:57:04.863104 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/openvpn.sls
+I, [2020-03-13T22:57:04.863706 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/osquery.sls
+I, [2020-03-13T22:57:04.864369 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ossec-agent.sls
+I, [2020-03-13T22:57:04.864906 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/owncloud.sls
+I, [2020-03-13T22:57:04.865408 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/packetbeat/
+I, [2020-03-13T22:57:04.865818 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/packetbeat/init.sls
+I, [2020-03-13T22:57:04.866232 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/packetbeat/install.cmd
+I, [2020-03-13T22:57:04.866785 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/packetbeat/install.ps1
+I, [2020-03-13T22:57:04.867284 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/packetbeat/remove.cmd
+I, [2020-03-13T22:57:04.867782 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/pandoc.sls
+I, [2020-03-13T22:57:04.868202 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/parallels-client-15.sls
+I, [2020-03-13T22:57:04.868768 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/pass4win.sls
+I, [2020-03-13T22:57:04.869366 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/passware-kit-agent.sls
+I, [2020-03-13T22:57:04.869990 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/passware-kit-forensic.sls
+I, [2020-03-13T22:57:04.870454 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/patchmypc-free.sls
+I, [2020-03-13T22:57:04.870901 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/pdf24creator.sls
+I, [2020-03-13T22:57:04.871330 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/pdfcreator.sls
+I, [2020-03-13T22:57:04.871730 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/peazip.sls
+I, [2020-03-13T22:57:04.872161 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/pgadmin4.sls
+I, [2020-03-13T22:57:04.872590 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/pgina.sls
+I, [2020-03-13T22:57:04.872997 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/pidgin.sls
+I, [2020-03-13T22:57:04.873437 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/postgresql.sls
+I, [2020-03-13T22:57:04.873908 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/powerbi-desktop.sls
+I, [2020-03-13T22:57:04.874414 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/powershell-core.sls
+I, [2020-03-13T22:57:04.874841 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/prometheus-wmi-exporter.sls
+I, [2020-03-13T22:57:04.875292 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/putty.sls
+I, [2020-03-13T22:57:04.875682 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/pycharm-pro/
+I, [2020-03-13T22:57:04.876045 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/pycharm-pro/init.sls
+I, [2020-03-13T22:57:04.876429 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/pycharm-pro/silent.config
+I, [2020-03-13T22:57:04.876870 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/python2_x64.sls
+I, [2020-03-13T22:57:04.877317 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/python2_x86.sls
+I, [2020-03-13T22:57:04.877791 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/python3_x64.sls
+I, [2020-03-13T22:57:04.878332 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/python3_x86.sls
+I, [2020-03-13T22:57:04.878848 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/qemu.sls
+I, [2020-03-13T22:57:04.879317 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/queueexplorerpro.sls
+I, [2020-03-13T22:57:04.879716 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/quicktime.sls
+I, [2020-03-13T22:57:04.880106 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/rabbitmq.sls
+I, [2020-03-13T22:57:04.880530 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/rakudo-star-no-jit_x86.sls
+I, [2020-03-13T22:57:04.880936 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/rakudo-star_x64.sls
+I, [2020-03-13T22:57:04.881351 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/rasclient.sls
+I, [2020-03-13T22:57:04.881754 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/rdcman.sls
+I, [2020-03-13T22:57:04.882195 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/rocketchat.sls
+I, [2020-03-13T22:57:04.882646 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/rubyinstaller_x64.sls
+I, [2020-03-13T22:57:04.883119 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/rubyinstaller_x86.sls
+I, [2020-03-13T22:57:04.883680 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/salt-minion-py2.sls
+I, [2020-03-13T22:57:04.884257 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/salt-minion-py3.sls
+I, [2020-03-13T22:57:04.884813 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/sandboxie.sls
+I, [2020-03-13T22:57:04.885237 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/scaleout.sls
+I, [2020-03-13T22:57:04.885600 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/secunia.psi.sls
+I, [2020-03-13T22:57:04.885989 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/sensu.sls
+I, [2020-03-13T22:57:04.886401 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/sharpdevelop.sls
+I, [2020-03-13T22:57:04.886789 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/skitch.sls
+I, [2020-03-13T22:57:04.887223 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/skype-msi.sls
+I, [2020-03-13T22:57:04.887632 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/skype.sls
+I, [2020-03-13T22:57:04.888120 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/slack-machine-msi.sls
+I, [2020-03-13T22:57:04.888607 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/slack-user-msi.sls
+I, [2020-03-13T22:57:04.889029 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/slack.sls
+I, [2020-03-13T22:57:04.889463 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/smartmontools.sls
+I, [2020-03-13T22:57:04.889907 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/snmptools.sls
+I, [2020-03-13T22:57:04.890324 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/soapui.sls
+I, [2020-03-13T22:57:04.890768 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/software-informer.sls
+I, [2020-03-13T22:57:04.891275 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/sourcetree.sls
+I, [2020-03-13T22:57:04.891719 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/spybot-anti-beacon.sls
+I, [2020-03-13T22:57:04.892175 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/spybot.sls
+I, [2020-03-13T22:57:04.892624 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/sscserv-free.sls
+I, [2020-03-13T22:57:04.893021 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/stayawake/
+I, [2020-03-13T22:57:04.893406 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/stayawake/init.sls
+I, [2020-03-13T22:57:04.893819 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/stayawake/install.cmd
+I, [2020-03-13T22:57:04.894254 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/steam.sls
+I, [2020-03-13T22:57:04.894678 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/stellarium.sls
+I, [2020-03-13T22:57:04.895091 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/strawberryperl_x64.sls
+I, [2020-03-13T22:57:04.895496 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/strawberryperl_x86.sls
+I, [2020-03-13T22:57:04.895906 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/stunnel.sls
+I, [2020-03-13T22:57:04.896292 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/subinacl.sls
+I, [2020-03-13T22:57:04.896907 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/sumatrapdf.sls
+I, [2020-03-13T22:57:04.897546 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/svn.sls
+I, [2020-03-13T22:57:04.898129 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/teamviewer.sls
+I, [2020-03-13T22:57:04.898658 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/teamviewer_host.sls
+I, [2020-03-13T22:57:04.899119 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/teracopy.sls
+I, [2020-03-13T22:57:04.899488 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/texmaker.sls
+I, [2020-03-13T22:57:04.899872 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/texniccenter.sls
+I, [2020-03-13T22:57:04.900246 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/texstudio.sls
+I, [2020-03-13T22:57:04.900619 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/texworks.sls
+I, [2020-03-13T22:57:04.901146 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/thunderbird.sls
+I, [2020-03-13T22:57:04.901725 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/tightvnc.sls
+I, [2020-03-13T22:57:04.902306 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/todotxt.net.sls
+I, [2020-03-13T22:57:04.902751 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/todour.sls
+I, [2020-03-13T22:57:04.903175 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/tortoise-bzr.sls
+I, [2020-03-13T22:57:04.903574 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/tortoise-git.sls
+I, [2020-03-13T22:57:04.903959 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/tortoise-hg.sls
+I, [2020-03-13T22:57:04.904336 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/tortoise-svn.sls
+I, [2020-03-13T22:57:04.904755 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/truecrypt.sls
+I, [2020-03-13T22:57:04.905138 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/ultradefrag.sls
+I, [2020-03-13T22:57:04.905537 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/urlrewrite.sls
+I, [2020-03-13T22:57:04.906062 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/usbdlm.sls
+I, [2020-03-13T22:57:04.906495 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/vagrant.sls
+I, [2020-03-13T22:57:04.907000 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/vcforpython27.sls
+I, [2020-03-13T22:57:04.907481 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/vcxsrv.sls
+I, [2020-03-13T22:57:04.907966 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/verysleepy.sls
+I, [2020-03-13T22:57:04.908386 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/veyon.sls
+I, [2020-03-13T22:57:04.908841 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/virtualbox.sls
+I, [2020-03-13T22:57:04.909374 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/viscosity.sls
+I, [2020-03-13T22:57:04.909778 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/vivaldi.sls
+I, [2020-03-13T22:57:04.910361 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/vlc.sls
+I, [2020-03-13T22:57:04.910851 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/vs-community.sls
+I, [2020-03-13T22:57:04.911272 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/vs_remotetools_2017.sls
+I, [2020-03-13T22:57:04.911689 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/vscode.sls
+I, [2020-03-13T22:57:04.912074 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/vsee.sls
+I, [2020-03-13T22:57:04.912527 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/wamp-server-3.sls
+I, [2020-03-13T22:57:04.913102 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/wamp-stack.sls
+I, [2020-03-13T22:57:04.913707 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/webdeploy.sls
+I, [2020-03-13T22:57:05.011583 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/webplatforminstaller.sls
+I, [2020-03-13T22:57:05.012088 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/win-app-manager.sls
+I, [2020-03-13T22:57:05.012553 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/windirstat.sls
+I, [2020-03-13T22:57:05.013047 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/winhttpcertcfg.sls
+I, [2020-03-13T22:57:05.013520 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/winlogbeat/
+I, [2020-03-13T22:57:05.014013 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/winlogbeat/init.sls
+I, [2020-03-13T22:57:05.014407 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/winlogbeat/install.cmd
+I, [2020-03-13T22:57:05.014810 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/winlogbeat/install.ps1
+I, [2020-03-13T22:57:05.015203 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/winlogbeat/remove.cmd
+I, [2020-03-13T22:57:05.015600 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/winmerge.sls
+I, [2020-03-13T22:57:05.016003 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/winmtr.sls
+I, [2020-03-13T22:57:05.016450 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/winpcap.sls
+I, [2020-03-13T22:57:05.016866 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/winrar.sls
+I, [2020-03-13T22:57:05.017333 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/winscp.sls
+I, [2020-03-13T22:57:05.017924 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/wireshark.sls
+I, [2020-03-13T22:57:05.018552 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/wmi_provider/
+I, [2020-03-13T22:57:05.019056 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/wmi_provider/README.md
+I, [2020-03-13T22:57:05.019504 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/wmi_provider/answer.txt
+I, [2020-03-13T22:57:05.019889 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/wmi_provider/init.sls
+I, [2020-03-13T22:57:05.020287 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/wmi_provider/majsetup.reg
+I, [2020-03-13T22:57:05.020667 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/wscc.sls
+I, [2020-03-13T22:57:05.021089 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/wufuc.sls
+I, [2020-03-13T22:57:05.021580 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/xampp.sls
+I, [2020-03-13T22:57:05.022004 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/xming.sls
+I, [2020-03-13T22:57:05.022436 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/yubikey-manager.sls
+I, [2020-03-13T22:57:05.022827 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/yubikey-personalization-tool.sls
+I, [2020-03-13T22:57:05.023257 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/zabbix-agent.sls
+I, [2020-03-13T22:57:05.023767 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/zipinstaller/
+I, [2020-03-13T22:57:05.024179 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/zipinstaller/init.sls
+I, [2020-03-13T22:57:05.024743 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/zipinstaller/~zipinst~_x64.zic
+I, [2020-03-13T22:57:05.025214 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/zipinstaller/~zipinst~_x86.zic
+I, [2020-03-13T22:57:05.025648 #6931]  INFO -- py3-201923-windows-10-1803:            - salt-winrepo-ng-master/zoom.sls
+I, [2020-03-13T22:57:05.026040 #6931]  INFO -- py3-201923-windows-10-1803: ----------
+I, [2020-03-13T22:57:05.026391 #6931]  INFO -- py3-201923-windows-10-1803:    ID: rename-extract
+I, [2020-03-13T22:57:05.026778 #6931]  INFO -- py3-201923-windows-10-1803:     Function: module.run
+I, [2020-03-13T22:57:05.027151 #6931]  INFO -- py3-201923-windows-10-1803:       Result: True
+I, [2020-03-13T22:57:05.027526 #6931]  INFO -- py3-201923-windows-10-1803:      Comment: file.rename: True
+I, [2020-03-13T22:57:05.027963 #6931]  INFO -- py3-201923-windows-10-1803:      Started: 19:55:31.714303
+I, [2020-03-13T22:57:05.028417 #6931]  INFO -- py3-201923-windows-10-1803:     Duration: 15.59 ms
+I, [2020-03-13T22:57:05.028855 #6931]  INFO -- py3-201923-windows-10-1803:      Changes:   
+I, [2020-03-13T22:57:05.029249 #6931]  INFO -- py3-201923-windows-10-1803:        ----------
+I, [2020-03-13T22:57:05.036927 #6931]  INFO -- py3-201923-windows-10-1803:        file.rename:
+I, [2020-03-13T22:57:05.037506 #6931]  INFO -- py3-201923-windows-10-1803:            True
+I, [2020-03-13T22:57:05.037987 #6931]  INFO -- py3-201923-windows-10-1803: ----------
+I, [2020-03-13T22:57:05.038478 #6931]  INFO -- py3-201923-windows-10-1803:    ID: pkg.refresh_db
+I, [2020-03-13T22:57:05.038922 #6931]  INFO -- py3-201923-windows-10-1803:     Function: module.run
+I, [2020-03-13T22:57:05.039303 #6931]  INFO -- py3-201923-windows-10-1803:       Result: True
+I, [2020-03-13T22:57:05.039716 #6931]  INFO -- py3-201923-windows-10-1803:      Comment: check_cmd determined the state succeeded
+I, [2020-03-13T22:57:05.040097 #6931]  INFO -- py3-201923-windows-10-1803:      Started: 19:55:31.729893
+I, [2020-03-13T22:57:05.040552 #6931]  INFO -- py3-201923-windows-10-1803:     Duration: 8968.723 ms
+I, [2020-03-13T22:57:05.040993 #6931]  INFO -- py3-201923-windows-10-1803:      Changes:   
+I, [2020-03-13T22:57:05.041387 #6931]  INFO -- py3-201923-windows-10-1803:        ----------
+I, [2020-03-13T22:57:05.041791 #6931]  INFO -- py3-201923-windows-10-1803:        pkg.refresh_db:
+I, [2020-03-13T22:57:05.042290 #6931]  INFO -- py3-201923-windows-10-1803:            ----------
+I, [2020-03-13T22:57:05.042741 #6931]  INFO -- py3-201923-windows-10-1803:            failed:
+I, [2020-03-13T22:57:05.043145 #6931]  INFO -- py3-201923-windows-10-1803:                0
+I, [2020-03-13T22:57:05.043537 #6931]  INFO -- py3-201923-windows-10-1803:            success:
+I, [2020-03-13T22:57:05.043916 #6931]  INFO -- py3-201923-windows-10-1803:                298
+I, [2020-03-13T22:57:05.044297 #6931]  INFO -- py3-201923-windows-10-1803:            total:
+I, [2020-03-13T22:57:05.044667 #6931]  INFO -- py3-201923-windows-10-1803:                298
+I, [2020-03-13T22:57:05.045119 #6931]  INFO -- py3-201923-windows-10-1803: ----------
+I, [2020-03-13T22:57:05.045619 #6931]  INFO -- py3-201923-windows-10-1803:    ID: 7zip
+I, [2020-03-13T22:57:05.046041 #6931]  INFO -- py3-201923-windows-10-1803:     Function: pkg.installed
+I, [2020-03-13T22:57:05.046402 #6931]  INFO -- py3-201923-windows-10-1803:       Result: True
+I, [2020-03-13T22:57:05.046764 #6931]  INFO -- py3-201923-windows-10-1803:      Comment: The following packages were installed/updated: 7zip=18.06.00.0
+I, [2020-03-13T22:57:05.047099 #6931]  INFO -- py3-201923-windows-10-1803:      Started: 19:55:40.731009
+I, [2020-03-13T22:57:05.047460 #6931]  INFO -- py3-201923-windows-10-1803:     Duration: 1911.667 ms
+I, [2020-03-13T22:57:05.047817 #6931]  INFO -- py3-201923-windows-10-1803:      Changes:   
+I, [2020-03-13T22:57:05.048186 #6931]  INFO -- py3-201923-windows-10-1803:        ----------
+I, [2020-03-13T22:57:05.048618 #6931]  INFO -- py3-201923-windows-10-1803:        7zip:
+I, [2020-03-13T22:57:05.049110 #6931]  INFO -- py3-201923-windows-10-1803:            ----------
+I, [2020-03-13T22:57:05.049553 #6931]  INFO -- py3-201923-windows-10-1803:            new:
+I, [2020-03-13T22:57:05.049991 #6931]  INFO -- py3-201923-windows-10-1803:                18.06.00.0
+I, [2020-03-13T22:57:05.050369 #6931]  INFO -- py3-201923-windows-10-1803:            old:
+I, [2020-03-13T22:57:05.050740 #6931]  INFO -- py3-201923-windows-10-1803: ----------
+I, [2020-03-13T22:57:05.051136 #6931]  INFO -- py3-201923-windows-10-1803:    ID: git
+I, [2020-03-13T22:57:05.051527 #6931]  INFO -- py3-201923-windows-10-1803:     Function: pkg.installed
+I, [2020-03-13T22:57:05.051928 #6931]  INFO -- py3-201923-windows-10-1803:       Result: True
+I, [2020-03-13T22:57:05.052424 #6931]  INFO -- py3-201923-windows-10-1803:      Comment: The following packages were installed/updated: git
+I, [2020-03-13T22:57:05.052967 #6931]  INFO -- py3-201923-windows-10-1803:      Started: 19:55:42.651004
+I, [2020-03-13T22:57:05.053543 #6931]  INFO -- py3-201923-windows-10-1803:     Duration: 22398.603 ms
+I, [2020-03-13T22:57:05.054044 #6931]  INFO -- py3-201923-windows-10-1803:      Changes:   
+I, [2020-03-13T22:57:05.054441 #6931]  INFO -- py3-201923-windows-10-1803:        ----------
+I, [2020-03-13T22:57:05.054788 #6931]  INFO -- py3-201923-windows-10-1803:        git:
+I, [2020-03-13T22:57:05.055300 #6931]  INFO -- py3-201923-windows-10-1803:            ----------
+I, [2020-03-13T22:57:05.055709 #6931]  INFO -- py3-201923-windows-10-1803:            new:
+I, [2020-03-13T22:57:05.056329 #6931]  INFO -- py3-201923-windows-10-1803:                2.25.1
+I, [2020-03-13T22:57:05.056824 #6931]  INFO -- py3-201923-windows-10-1803:            old:
+I, [2020-03-13T22:57:05.057250 #6931]  INFO -- py3-201923-windows-10-1803: ----------
+I, [2020-03-13T22:57:05.057622 #6931]  INFO -- py3-201923-windows-10-1803:    ID: kdiff3
+I, [2020-03-13T22:57:05.057994 #6931]  INFO -- py3-201923-windows-10-1803:     Function: pkg.installed
+I, [2020-03-13T22:57:05.058386 #6931]  INFO -- py3-201923-windows-10-1803:       Result: True
+I, [2020-03-13T22:57:05.058776 #6931]  INFO -- py3-201923-windows-10-1803:      Comment: The following packages were installed/updated: kdiff3
+I, [2020-03-13T22:57:05.059249 #6931]  INFO -- py3-201923-windows-10-1803:      Started: 19:56:05.065141
+I, [2020-03-13T22:57:05.059752 #6931]  INFO -- py3-201923-windows-10-1803:     Duration: 11454.779 ms
+I, [2020-03-13T22:57:05.060195 #6931]  INFO -- py3-201923-windows-10-1803:      Changes:   
+I, [2020-03-13T22:57:05.060589 #6931]  INFO -- py3-201923-windows-10-1803:        ----------
+I, [2020-03-13T22:57:05.060957 #6931]  INFO -- py3-201923-windows-10-1803:        kdiff3:
+I, [2020-03-13T22:57:05.061318 #6931]  INFO -- py3-201923-windows-10-1803:            ----------
+I, [2020-03-13T22:57:05.061673 #6931]  INFO -- py3-201923-windows-10-1803:            new:
+I, [2020-03-13T22:57:05.062045 #6931]  INFO -- py3-201923-windows-10-1803:                Not Found
+I, [2020-03-13T22:57:05.062424 #6931]  INFO -- py3-201923-windows-10-1803:            old:
+I, [2020-03-13T22:57:05.062762 #6931]  INFO -- py3-201923-windows-10-1803: ----------
+I, [2020-03-13T22:57:05.063131 #6931]  INFO -- py3-201923-windows-10-1803:    ID: windows_environment.refresh.path
+I, [2020-03-13T22:57:05.063607 #6931]  INFO -- py3-201923-windows-10-1803:     Function: module.run
+I, [2020-03-13T22:57:05.064107 #6931]  INFO -- py3-201923-windows-10-1803:       Result: True
+I, [2020-03-13T22:57:05.064645 #6931]  INFO -- py3-201923-windows-10-1803:      Comment: windows_environment.refresh: Success
+I, [2020-03-13T22:57:05.065131 #6931]  INFO -- py3-201923-windows-10-1803:      Started: 19:56:16.519920
+I, [2020-03-13T22:57:05.065531 #6931]  INFO -- py3-201923-windows-10-1803:     Duration: 46.917 ms
+I, [2020-03-13T22:57:05.065963 #6931]  INFO -- py3-201923-windows-10-1803:      Changes:   
+I, [2020-03-13T22:57:05.066465 #6931]  INFO -- py3-201923-windows-10-1803:        ----------
+I, [2020-03-13T22:57:05.067036 #6931]  INFO -- py3-201923-windows-10-1803:        windows_environment.refresh:
+I, [2020-03-13T22:57:05.067549 #6931]  INFO -- py3-201923-windows-10-1803:            ----------
+I, [2020-03-13T22:57:05.068017 #6931]  INFO -- py3-201923-windows-10-1803:            PATH:
+I, [2020-03-13T22:57:05.069564 #6931]  INFO -- py3-201923-windows-10-1803:                C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\salt;C:\Program Files\Git\cmd
+I, [2020-03-13T22:57:05.070139 #6931]  INFO -- py3-201923-windows-10-1803: ----------
+I, [2020-03-13T22:57:05.070636 #6931]  INFO -- py3-201923-windows-10-1803:    ID: chocolatey.bootstrap
+I, [2020-03-13T22:57:05.071150 #6931]  INFO -- py3-201923-windows-10-1803:     Function: module.run
+I, [2020-03-13T22:57:05.071698 #6931]  INFO -- py3-201923-windows-10-1803:       Result: True
+I, [2020-03-13T22:57:05.072289 #6931]  INFO -- py3-201923-windows-10-1803:      Comment: chocolatey.bootstrap: Getting latest version of the Chocolatey package for download.
+I, [2020-03-13T22:57:05.072675 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:57:05.073101 #6931]  INFO -- py3-201923-windows-10-1803:        Getting Chocolatey from https://chocolatey.org/api/v2/package/chocolatey/0.10.15.
+I, [2020-03-13T22:57:05.073479 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:57:05.073990 #6931]  INFO -- py3-201923-windows-10-1803:        Downloading 7-Zip commandline tool prior to extraction.
+I, [2020-03-13T22:57:05.074438 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:57:05.074936 #6931]  INFO -- py3-201923-windows-10-1803:        Extracting C:\Users\vagrant\AppData\Local\Temp\chocolatey\chocInstall\chocolatey.zip to C:\Users\vagrant\AppData\Local\Temp\chocolatey\chocInstall...
+I, [2020-03-13T22:57:05.075344 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:57:05.075869 #6931]  INFO -- py3-201923-windows-10-1803:        Installing chocolatey on this machine
+I, [2020-03-13T22:57:05.076292 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:57:05.076743 #6931]  INFO -- py3-201923-windows-10-1803:        Creating ChocolateyInstall as an environment variable (targeting 'Machine') 
+I, [2020-03-13T22:57:05.077172 #6931]  INFO -- py3-201923-windows-10-1803:          Setting ChocolateyInstall to 'C:\ProgramData\chocolatey'
+I, [2020-03-13T22:57:05.077585 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:57:05.078000 #6931]  INFO -- py3-201923-windows-10-1803:        WARNING: It's very likely you will need to close and reopen your shell 
+I, [2020-03-13T22:57:05.078500 #6931]  INFO -- py3-201923-windows-10-1803:          before you can use choco.
+I, [2020-03-13T22:57:05.078984 #6931]  INFO -- py3-201923-windows-10-1803:        Restricting write permissions to Administrators
+I, [2020-03-13T22:57:05.079405 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:57:05.079834 #6931]  INFO -- py3-201923-windows-10-1803:        We are setting up the Chocolatey package repository.
+I, [2020-03-13T22:57:05.080225 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:57:05.080687 #6931]  INFO -- py3-201923-windows-10-1803:        The packages themselves go to 'C:\ProgramData\chocolatey\lib'
+I, [2020-03-13T22:57:05.081064 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:57:05.081552 #6931]  INFO -- py3-201923-windows-10-1803:          (i.e. C:\ProgramData\chocolatey\lib\yourPackageName).
+I, [2020-03-13T22:57:05.082046 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:57:05.082623 #6931]  INFO -- py3-201923-windows-10-1803:        A shim file for the command line goes to 'C:\ProgramData\chocolatey\bin'
+I, [2020-03-13T22:57:05.083046 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:57:05.083522 #6931]  INFO -- py3-201923-windows-10-1803:          and points to an executable in 'C:\ProgramData\chocolatey\lib\yourPackageName'.
+I, [2020-03-13T22:57:05.083909 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:57:05.084360 #6931]  INFO -- py3-201923-windows-10-1803:        
+I, [2020-03-13T22:57:05.084828 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:57:05.085347 #6931]  INFO -- py3-201923-windows-10-1803:        Creating Chocolatey folders if they do not already exist.
+I, [2020-03-13T22:57:05.085815 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:57:05.086249 #6931]  INFO -- py3-201923-windows-10-1803:        
+I, [2020-03-13T22:57:05.086618 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:57:05.087093 #6931]  INFO -- py3-201923-windows-10-1803:        WARNING: You can safely ignore errors related to missing log files when 
+I, [2020-03-13T22:57:05.087565 #6931]  INFO -- py3-201923-windows-10-1803:          upgrading from a version of Chocolatey less than 0.9.9. 
+I, [2020-03-13T22:57:05.087962 #6931]  INFO -- py3-201923-windows-10-1803:          'Batch file could not be found' is also safe to ignore. 
+I, [2020-03-13T22:57:05.088479 #6931]  INFO -- py3-201923-windows-10-1803:          'The system cannot find the file specified' - also safe.
+I, [2020-03-13T22:57:05.088920 #6931]  INFO -- py3-201923-windows-10-1803:        chocolatey.nupkg file not installed in lib.
+I, [2020-03-13T22:57:05.089401 #6931]  INFO -- py3-201923-windows-10-1803:         Attempting to locate it from bootstrapper.
+I, [2020-03-13T22:57:05.089817 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:57:05.090244 #6931]  INFO -- py3-201923-windows-10-1803:        PATH environment variable does not have C:\ProgramData\chocolatey\bin in it. Adding...
+I, [2020-03-13T22:57:05.090678 #6931]  INFO -- py3-201923-windows-10-1803:        WARNING: Not setting tab completion: Profile file does not exist at 
+I, [2020-03-13T22:57:05.091020 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:57:05.091424 #6931]  INFO -- py3-201923-windows-10-1803:        'C:\Users\vagrant\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1'.
+I, [2020-03-13T22:57:05.091796 #6931]  INFO -- py3-201923-windows-10-1803:        Chocolatey (choco.exe) is now ready.
+I, [2020-03-13T22:57:05.092159 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:57:05.092601 #6931]  INFO -- py3-201923-windows-10-1803:        You can call choco from anywhere, command line or powershell by typing choco.
+I, [2020-03-13T22:57:05.093030 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:57:05.093478 #6931]  INFO -- py3-201923-windows-10-1803:        Run choco /? for a list of functions.
+I, [2020-03-13T22:57:05.093833 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:57:05.094229 #6931]  INFO -- py3-201923-windows-10-1803:        You may need to shut down and restart powershell and/or consoles
+I, [2020-03-13T22:57:05.094557 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:57:05.094960 #6931]  INFO -- py3-201923-windows-10-1803:         first prior to using choco.
+I, [2020-03-13T22:57:05.095286 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:57:05.095737 #6931]  INFO -- py3-201923-windows-10-1803:        Ensuring chocolatey commands are on the path
+I, [2020-03-13T22:57:05.096177 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:57:05.096578 #6931]  INFO -- py3-201923-windows-10-1803:        Ensuring chocolatey.nupkg is in the lib folder
+I, [2020-03-13T22:57:05.097024 #6931]  INFO -- py3-201923-windows-10-1803:      Started: 19:56:16.566837
+I, [2020-03-13T22:57:05.097382 #6931]  INFO -- py3-201923-windows-10-1803:     Duration: 20920.19 ms
+I, [2020-03-13T22:57:05.097738 #6931]  INFO -- py3-201923-windows-10-1803:      Changes:   
+I, [2020-03-13T22:57:05.098101 #6931]  INFO -- py3-201923-windows-10-1803:        ----------
+I, [2020-03-13T22:57:05.098491 #6931]  INFO -- py3-201923-windows-10-1803:        chocolatey.bootstrap:
+I, [2020-03-13T22:57:05.098936 #6931]  INFO -- py3-201923-windows-10-1803:            Getting latest version of the Chocolatey package for download.
+I, [2020-03-13T22:57:05.099354 #6931]  INFO -- py3-201923-windows-10-1803:            Getting Chocolatey from https://chocolatey.org/api/v2/package/chocolatey/0.10.15.
+I, [2020-03-13T22:57:05.099862 #6931]  INFO -- py3-201923-windows-10-1803:            Downloading 7-Zip commandline tool prior to extraction.
+I, [2020-03-13T22:57:05.100357 #6931]  INFO -- py3-201923-windows-10-1803:            Extracting C:\Users\vagrant\AppData\Local\Temp\chocolatey\chocInstall\chocolatey.zip to C:\Users\vagrant\AppData\Local\Temp\chocolatey\chocInstall...
+I, [2020-03-13T22:57:05.100717 #6931]  INFO -- py3-201923-windows-10-1803:            Installing chocolatey on this machine
+I, [2020-03-13T22:57:05.101144 #6931]  INFO -- py3-201923-windows-10-1803:            Creating ChocolateyInstall as an environment variable (targeting 'Machine') 
+I, [2020-03-13T22:57:05.101528 #6931]  INFO -- py3-201923-windows-10-1803:              Setting ChocolateyInstall to 'C:\ProgramData\chocolatey'
+I, [2020-03-13T22:57:05.101957 #6931]  INFO -- py3-201923-windows-10-1803:            WARNING: It's very likely you will need to close and reopen your shell 
+I, [2020-03-13T22:57:05.102414 #6931]  INFO -- py3-201923-windows-10-1803:              before you can use choco.
+I, [2020-03-13T22:57:05.102882 #6931]  INFO -- py3-201923-windows-10-1803:            Restricting write permissions to Administrators
+I, [2020-03-13T22:57:05.103472 #6931]  INFO -- py3-201923-windows-10-1803:            We are setting up the Chocolatey package repository.
+I, [2020-03-13T22:57:05.104005 #6931]  INFO -- py3-201923-windows-10-1803:            The packages themselves go to 'C:\ProgramData\chocolatey\lib'
+I, [2020-03-13T22:57:05.104583 #6931]  INFO -- py3-201923-windows-10-1803:              (i.e. C:\ProgramData\chocolatey\lib\yourPackageName).
+I, [2020-03-13T22:57:05.105160 #6931]  INFO -- py3-201923-windows-10-1803:            A shim file for the command line goes to 'C:\ProgramData\chocolatey\bin'
+I, [2020-03-13T22:57:05.105757 #6931]  INFO -- py3-201923-windows-10-1803:              and points to an executable in 'C:\ProgramData\chocolatey\lib\yourPackageName'.
+I, [2020-03-13T22:57:05.106374 #6931]  INFO -- py3-201923-windows-10-1803:            
+I, [2020-03-13T22:57:05.106974 #6931]  INFO -- py3-201923-windows-10-1803:            Creating Chocolatey folders if they do not already exist.
+I, [2020-03-13T22:57:05.107525 #6931]  INFO -- py3-201923-windows-10-1803:            
+I, [2020-03-13T22:57:05.108050 #6931]  INFO -- py3-201923-windows-10-1803:            WARNING: You can safely ignore errors related to missing log files when 
+I, [2020-03-13T22:57:05.108598 #6931]  INFO -- py3-201923-windows-10-1803:              upgrading from a version of Chocolatey less than 0.9.9. 
+I, [2020-03-13T22:57:05.109153 #6931]  INFO -- py3-201923-windows-10-1803:              'Batch file could not be found' is also safe to ignore. 
+I, [2020-03-13T22:57:05.109719 #6931]  INFO -- py3-201923-windows-10-1803:              'The system cannot find the file specified' - also safe.
+I, [2020-03-13T22:57:05.110237 #6931]  INFO -- py3-201923-windows-10-1803:            chocolatey.nupkg file not installed in lib.
+I, [2020-03-13T22:57:05.110775 #6931]  INFO -- py3-201923-windows-10-1803:             Attempting to locate it from bootstrapper.
+I, [2020-03-13T22:57:05.111290 #6931]  INFO -- py3-201923-windows-10-1803:            PATH environment variable does not have C:\ProgramData\chocolatey\bin in it. Adding...
+I, [2020-03-13T22:57:05.111750 #6931]  INFO -- py3-201923-windows-10-1803:            WARNING: Not setting tab completion: Profile file does not exist at 
+I, [2020-03-13T22:57:05.112143 #6931]  INFO -- py3-201923-windows-10-1803:            'C:\Users\vagrant\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1'.
+I, [2020-03-13T22:57:05.112492 #6931]  INFO -- py3-201923-windows-10-1803:            Chocolatey (choco.exe) is now ready.
+I, [2020-03-13T22:57:05.112923 #6931]  INFO -- py3-201923-windows-10-1803:            You can call choco from anywhere, command line or powershell by typing choco.
+I, [2020-03-13T22:57:05.113336 #6931]  INFO -- py3-201923-windows-10-1803:            Run choco /? for a list of functions.
+I, [2020-03-13T22:57:05.113714 #6931]  INFO -- py3-201923-windows-10-1803:            You may need to shut down and restart powershell and/or consoles
+I, [2020-03-13T22:57:05.114121 #6931]  INFO -- py3-201923-windows-10-1803:             first prior to using choco.
+I, [2020-03-13T22:57:05.114511 #6931]  INFO -- py3-201923-windows-10-1803:            Ensuring chocolatey commands are on the path
+I, [2020-03-13T22:57:05.115001 #6931]  INFO -- py3-201923-windows-10-1803:            Ensuring chocolatey.nupkg is in the lib folder
+I, [2020-03-13T22:57:05.115432 #6931]  INFO -- py3-201923-windows-10-1803: ----------
+I, [2020-03-13T22:57:05.115821 #6931]  INFO -- py3-201923-windows-10-1803:    ID: windows.system.packages.chocolatey.notepadplusplus
+I, [2020-03-13T22:57:05.116185 #6931]  INFO -- py3-201923-windows-10-1803:     Function: chocolatey.installed
+I, [2020-03-13T22:57:05.116541 #6931]  INFO -- py3-201923-windows-10-1803:  Name: notepadplusplus
+I, [2020-03-13T22:57:05.116928 #6931]  INFO -- py3-201923-windows-10-1803:       Result: True
+I, [2020-03-13T22:57:05.117287 #6931]  INFO -- py3-201923-windows-10-1803:      Comment: 
+I, [2020-03-13T22:57:05.117699 #6931]  INFO -- py3-201923-windows-10-1803:      Started: 19:56:37.502774
+I, [2020-03-13T22:57:05.118125 #6931]  INFO -- py3-201923-windows-10-1803:     Duration: 14362.54 ms
+I, [2020-03-13T22:57:05.118510 #6931]  INFO -- py3-201923-windows-10-1803:      Changes:   
+I, [2020-03-13T22:57:05.118945 #6931]  INFO -- py3-201923-windows-10-1803:        ----------
+I, [2020-03-13T22:57:05.119504 #6931]  INFO -- py3-201923-windows-10-1803:        notepadplusplus:
+I, [2020-03-13T22:57:05.120027 #6931]  INFO -- py3-201923-windows-10-1803:            ----------
+I, [2020-03-13T22:57:05.120416 #6931]  INFO -- py3-201923-windows-10-1803:            new:
+I, [2020-03-13T22:57:05.120803 #6931]  INFO -- py3-201923-windows-10-1803:                - 7.8.5
+I, [2020-03-13T22:57:05.121198 #6931]  INFO -- py3-201923-windows-10-1803:            old:
+I, [2020-03-13T22:57:05.121644 #6931]  INFO -- py3-201923-windows-10-1803:        notepadplusplus.install:
+I, [2020-03-13T22:57:05.122203 #6931]  INFO -- py3-201923-windows-10-1803:            ----------
+I, [2020-03-13T22:57:05.122653 #6931]  INFO -- py3-201923-windows-10-1803:            new:
+I, [2020-03-13T22:57:05.123114 #6931]  INFO -- py3-201923-windows-10-1803:                - 7.8.5
+I, [2020-03-13T22:57:05.123589 #6931]  INFO -- py3-201923-windows-10-1803:            old:
+I, [2020-03-13T22:57:05.124041 #6931]  INFO -- py3-201923-windows-10-1803: ----------
+I, [2020-03-13T22:57:05.124443 #6931]  INFO -- py3-201923-windows-10-1803:    ID: windows.system.packages.chocolatey.windirstat
+I, [2020-03-13T22:57:05.124821 #6931]  INFO -- py3-201923-windows-10-1803:     Function: chocolatey.installed
+I, [2020-03-13T22:57:05.125189 #6931]  INFO -- py3-201923-windows-10-1803:  Name: windirstat
+I, [2020-03-13T22:57:05.125556 #6931]  INFO -- py3-201923-windows-10-1803:       Result: True
+I, [2020-03-13T22:57:05.125919 #6931]  INFO -- py3-201923-windows-10-1803:      Comment: 
+I, [2020-03-13T22:57:05.126309 #6931]  INFO -- py3-201923-windows-10-1803:      Started: 19:56:51.865314
+I, [2020-03-13T22:57:05.126729 #6931]  INFO -- py3-201923-windows-10-1803:     Duration: 6894.193 ms
+I, [2020-03-13T22:57:05.127139 #6931]  INFO -- py3-201923-windows-10-1803:      Changes:   
+I, [2020-03-13T22:57:05.127510 #6931]  INFO -- py3-201923-windows-10-1803:        ----------
+I, [2020-03-13T22:57:05.127867 #6931]  INFO -- py3-201923-windows-10-1803:        windirstat:
+I, [2020-03-13T22:57:05.128217 #6931]  INFO -- py3-201923-windows-10-1803:            ----------
+I, [2020-03-13T22:57:05.128564 #6931]  INFO -- py3-201923-windows-10-1803:            new:
+I, [2020-03-13T22:57:05.128974 #6931]  INFO -- py3-201923-windows-10-1803:                - 1.1.2.20161210
+I, [2020-03-13T22:57:05.129357 #6931]  INFO -- py3-201923-windows-10-1803:            old:
+I, [2020-03-13T22:57:05.129809 #6931]  INFO -- py3-201923-windows-10-1803: ----------
+I, [2020-03-13T22:57:05.130307 #6931]  INFO -- py3-201923-windows-10-1803:    ID: windows.system.desktop.optional_features.installed.TelnetClient
+I, [2020-03-13T22:57:05.130817 #6931]  INFO -- py3-201923-windows-10-1803:     Function: dism.feature_installed
+I, [2020-03-13T22:57:05.131308 #6931]  INFO -- py3-201923-windows-10-1803:  Name: TelnetClient
+I, [2020-03-13T22:57:05.131675 #6931]  INFO -- py3-201923-windows-10-1803:       Result: True
+I, [2020-03-13T22:57:05.132061 #6931]  INFO -- py3-201923-windows-10-1803:      Comment: Installed TelnetClient
+I, [2020-03-13T22:57:05.132426 #6931]  INFO -- py3-201923-windows-10-1803:      Started: 19:56:58.759507
+I, [2020-03-13T22:57:05.132776 #6931]  INFO -- py3-201923-windows-10-1803:     Duration: 5195.173 ms
+I, [2020-03-13T22:57:05.133131 #6931]  INFO -- py3-201923-windows-10-1803:      Changes:   
+I, [2020-03-13T22:57:05.133500 #6931]  INFO -- py3-201923-windows-10-1803:        ----------
+I, [2020-03-13T22:57:05.133909 #6931]  INFO -- py3-201923-windows-10-1803:        feature:
+I, [2020-03-13T22:57:05.134410 #6931]  INFO -- py3-201923-windows-10-1803:            ----------
+I, [2020-03-13T22:57:05.134854 #6931]  INFO -- py3-201923-windows-10-1803:            new:
+I, [2020-03-13T22:57:05.135227 #6931]  INFO -- py3-201923-windows-10-1803:                TelnetClient
+I, [2020-03-13T22:57:05.135590 #6931]  INFO -- py3-201923-windows-10-1803:        pid:
+I, [2020-03-13T22:57:05.135944 #6931]  INFO -- py3-201923-windows-10-1803:            412
+I, [2020-03-13T22:57:05.136299 #6931]  INFO -- py3-201923-windows-10-1803:        retcode:
+I, [2020-03-13T22:57:05.136663 #6931]  INFO -- py3-201923-windows-10-1803:            0
+I, [2020-03-13T22:57:05.137028 #6931]  INFO -- py3-201923-windows-10-1803:        stderr:
+I, [2020-03-13T22:57:05.137511 #6931]  INFO -- py3-201923-windows-10-1803:        stdout:
+I, [2020-03-13T22:57:05.137929 #6931]  INFO -- py3-201923-windows-10-1803: ----------
+I, [2020-03-13T22:57:05.138470 #6931]  INFO -- py3-201923-windows-10-1803:    ID: windows.module.system.reboot
+I, [2020-03-13T22:57:05.139068 #6931]  INFO -- py3-201923-windows-10-1803:     Function: module.run
+I, [2020-03-13T22:57:05.139653 #6931]  INFO -- py3-201923-windows-10-1803:       Result: True
+I, [2020-03-13T22:57:05.140229 #6931]  INFO -- py3-201923-windows-10-1803:      Comment: system.reboot: True
+I, [2020-03-13T22:57:05.140755 #6931]  INFO -- py3-201923-windows-10-1803:      Started: 19:57:03.954680
+I, [2020-03-13T22:57:05.141242 #6931]  INFO -- py3-201923-windows-10-1803:     Duration: 211.799 ms
+I, [2020-03-13T22:57:05.141696 #6931]  INFO -- py3-201923-windows-10-1803:      Changes:   
+I, [2020-03-13T22:57:05.142143 #6931]  INFO -- py3-201923-windows-10-1803:        ----------
+I, [2020-03-13T22:57:05.151029 #6931]  INFO -- py3-201923-windows-10-1803:        system.reboot:
+I, [2020-03-13T22:57:05.151636 #6931]  INFO -- py3-201923-windows-10-1803:            True
+I, [2020-03-13T22:57:05.152157 #6931]  INFO -- py3-201923-windows-10-1803: 
+I, [2020-03-13T22:57:05.152587 #6931]  INFO -- py3-201923-windows-10-1803: Summary for local
+I, [2020-03-13T22:57:05.153024 #6931]  INFO -- py3-201923-windows-10-1803: -------------
+I, [2020-03-13T22:57:05.153390 #6931]  INFO -- py3-201923-windows-10-1803: Succeeded: 25 (changed=24)
+I, [2020-03-13T22:57:05.153743 #6931]  INFO -- py3-201923-windows-10-1803: Failed:     0
+I, [2020-03-13T22:57:05.154104 #6931]  INFO -- py3-201923-windows-10-1803: -------------
+I, [2020-03-13T22:57:05.154433 #6931]  INFO -- py3-201923-windows-10-1803: Total states run:     25
+I, [2020-03-13T22:57:05.154749 #6931]  INFO -- py3-201923-windows-10-1803: Total run time:  110.454 s
+I, [2020-03-13T22:57:05.174288 #6931]  INFO -- py3-201923-windows-10-1803: Downloading files from <py3-201923-windows-10-1803>
+I, [2020-03-13T22:57:05.324128 #6931]  INFO -- py3-201923-windows-10-1803: Finished converging <py3-201923-windows-10-1803> (2m25.38s).
+I, [2020-03-13T22:57:05.324328 #6931]  INFO -- py3-201923-windows-10-1803: -----> Setting up <py3-201923-windows-10-1803>...
+I, [2020-03-13T22:57:05.331681 #6931]  INFO -- py3-201923-windows-10-1803: Finished setting up <py3-201923-windows-10-1803> (0m0.00s).
+I, [2020-03-13T22:57:05.331871 #6931]  INFO -- py3-201923-windows-10-1803: -----> Verifying <py3-201923-windows-10-1803>...
+I, [2020-03-13T22:57:06.315413 #6931]  INFO -- py3-201923-windows-10-1803: Loaded default 
+I, [2020-03-13T22:57:11.958347 #6931]  INFO -- py3-201923-windows-10-1803: [WinRM] 500 returned in cleanup with error: Bad HTTP response returned from server. Body(if present): (500).
+I, [2020-03-13T22:58:01.099920 #6931]  INFO -- py3-201923-windows-10-1803: Finished verifying <py3-201923-windows-10-1803> (0m55.76s).
+I, [2020-03-13T22:58:01.100064 #6931]  INFO -- py3-201923-windows-10-1803: Finished testing <py3-201923-windows-10-1803> (4m22.03s).
+I, [2020-03-13T22:58:01.101214 #6931]  INFO -- py3-201923-windows-10-1803: -----> Destroying <py3-201923-windows-10-1803>...
+I, [2020-03-13T22:58:09.958943 #6931]  INFO -- py3-201923-windows-10-1803: ==> default: Forcing shutdown of VM...
+I, [2020-03-13T22:58:11.519505 #6931]  INFO -- py3-201923-windows-10-1803: ==> default: Destroying VM and associated drives...
+I, [2020-03-13T22:58:12.512723 #6931]  INFO -- py3-201923-windows-10-1803: Vagrant instance <py3-201923-windows-10-1803> destroyed.
+I, [2020-03-13T22:58:12.513830 #6931]  INFO -- py3-201923-windows-10-1803: Finished destroying <py3-201923-windows-10-1803> (0m11.41s).
